@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
+class RecruitRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+ 		return true;
+	}
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+		return [
+			'title' => [
+				'required',
+			],
+			'job' => [
+            	'required',
+			],
+ 			'position' => [
+     			'required',
+			],
+ 			'content' => [
+     			'required',
+			],
+       ];
+    }
+
+
+    
+    public function messages(){
+        return [
+            'title.required'  => 'タイトルを入力してください。',
+            'job.required'  => '職種を入力してください。',
+            'position.required'  => 'ポシションを入力してください。',
+            'content.required'  => '内容を入力してください。',
+        ];
+    }
+
+}

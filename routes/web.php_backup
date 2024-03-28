@@ -1,0 +1,715 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+//Auth::routes();
+
+Auth::routes([
+    'register' => false,
+    'reset'    => false,
+    'verify'   => false
+]);
+
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/', 'User\Auth\LoginController@top')->name('users.index');
+
+//Route::get('/', 'User\Auth\LoginController@showLoginForm')->name('users.index');
+//Route::post('/', 'User\Auth\LoginController@login');
+
+Route::get('/comps', 'Comp\Auth\LoginController@showLoginForm')->name('comps.index');
+Route::post('/comps', 'Comp\Auth\LoginController@login');
+
+Route::get('/admins', 'Admin\Auth\LoginController@showLoginForm')->name('admins.index');
+Route::post('/admins', 'Admin\Auth\LoginController@login');
+
+/******************************************
+* ユーザー
+*******************************************/
+
+	// 企業を探す
+	Route::get('/company', 'CompanyController@list');
+	Route::post('/company', 'CompanyController@list');
+
+	Route::get ('/company/{compId}', 'CompanyController@comp_detail');
+	Route::post('/company/{compId}', 'CompanyController@comp_detail');
+
+
+
+
+
+
+Route::namespace('User')->prefix('user')->name('user.')->group(function () {
+
+    // ログイン認証関連
+    Auth::routes([
+        'register' => false,
+        'reset'    => true,
+        'verify'   => false
+    ]);
+
+    // ログイン認証後
+    Route::middleware('auth:user')->group(function () {
+
+        // TOPページ
+        Route::resource('mypage', 'MypageController', ['only' => 'index']);
+    });
+});
+
+
+Route::group(['prefix' => 'user'], function(){
+	Route::get('/chart', 'ChartController@index');
+	Route::get('/eval/regist', 'EvalController@index')->name('user.eval.regist');
+	Route::post('/eval/regist', 'EvalController@index');
+
+	Route::get('/eval/store', 'EvalController@store')->name('user.eval.store');
+	Route::post('/eval/store', 'EvalController@store');
+
+	Route::get('/eval/confirm', 'EvalController@confirm')->name('user.eval.confirm');
+	Route::post('/eval/confirm', 'EvalController@confirm');
+
+	Route::get('/eval/send', 'EvalController@send')->name('user.eval.send');
+	Route::post('/eval/send', 'EvalController@send');
+
+	Route::get('/eval/complete', 'EvalController@complete')->name('user.eval.complete');
+
+});
+
+
+
+	Route::get('/user/corporate', 'GuideController@corporate');
+	Route::get('/user/privacy', 'GuideController@privacy');
+
+	// ユーザ新規登録
+	Route::get('/user/register', 'User\Auth\RegisterController@getRegister')->name('user.register');
+	Route::post('/user/register', 'User\Auth\RegisterController@postRegister');
+
+
+	// パスワード忘れ
+	Route::post('user/password/reset', 'User\ResetPasswordController@reset')->name('user.password.reupdate');
+	Route::get('user/password/reset', 'User\ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
+	Route::post('user/password/email', 'User\ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
+	Route::get('user/password/reset/{token}', 'User\ResetPasswordController@showResetForm')->name('user.password.reset');
+	Route::get('user/password/complete', 'User\ResetCompleteController@index')->name('user.password.complete');
+
+	Route::get('/api/complist', 'ApiController@complist');
+	Route::post('/api/complist', 'ApiController@complist');
+
+Route::group(['prefix' => 'user'], function(){
+//Route::group(['middleware' => ['auth:user','guest'], 'prefix' => 'user'], function(){
+
+	// マイページ
+	Route::get('/mypage', 'MypageController@index')->name('user.mypage');
+
+	// 個人設定
+	Route::get('/setting', 'UserController@setting');
+	Route::get('/setting/store', 'UserController@settingStore');
+	Route::post('/setting/store', 'UserController@settingStore');
+
+// メールアドレス確認メールを送信
+	Route::post('/email/change', 'ChangeEmailController@sendChangeEmailLink');
+	Route::get('/reset/{token}', 'ChangeEmailController@reset');
+
+	// パスワード変更
+	Route::get('/password/edit', 'UserController@editPassword')->name('user.password.edit');
+	Route::post('/password/', 'UserController@updatePassword')->name('user.password.update');
+	
+//	Route::get('/user/edit', 'UserController@edit')->name('user.edit');
+//	Route::post('/user/store', 'UserController@store')->name('user.store');
+//	Route::get('/user/store', 'UserController@store');
+//	Route::get('/download', 'DownloadController@download');
+
+	// 基本情報
+	Route::get('/base', 'UserController@base');
+	Route::post('/base', 'UserController@base');
+	Route::get('/option', 'UserController@option');
+	Route::post('/option', 'UserController@option');
+	Route::get('/base/store', 'UserController@base_store');
+	Route::post('/base/store', 'UserController@base_store');
+
+	// 職務経歴書
+	Route::get('/cv', 'UserController@cv');
+	Route::post('/cv', 'UserController@cv');
+	Route::get('/cv/store1', 'UserController@cv_store1');
+	Route::post('/cv/store1', 'UserController@cv_store1');
+	Route::get('/cv/store2', 'UserController@cv_store2');
+	Route::post('/cv/store2', 'UserController@cv_store2');
+	Route::get('/cv/store3', 'UserController@cv_store3');
+	Route::post('/cv/store3', 'UserController@cv_store3');
+
+	// 職務経歴書（英語）
+	Route::get('/cv/eng', 'UserController@cv_eng');
+	Route::post('/cv/eng', 'UserController@cv_eng');
+	Route::get('/cv/eng/store1', 'UserController@cv_eng_store1');
+	Route::post('/cv/eng/store1', 'UserController@cv_eng_store1');
+	Route::get('/cv/eng/store2', 'UserController@cv_eng_store2');
+	Route::post('/cv/eng/store2', 'UserController@cv_eng_store2');
+	Route::get('/cv/eng/store3', 'UserController@cv_eng_store3');
+	Route::post('/cv/eng/store3', 'UserController@cv_eng_store3');
+
+	// 履歴書
+	Route::get('/vitae', 'UserController@vitae');
+	Route::post('/vitae', 'UserController@vitae');
+	Route::get('/vitae/store', 'UserController@vitae_store');
+	Route::post('/vitae/store', 'UserController@vitae_store');
+
+	// 企業を探す
+	Route::get('/company', 'CompanyController@list');
+	Route::post('/company', 'CompanyController@list');
+
+	// 企業詳細
+	Route::get('/company/detail', 'CompanyController@comp_detail');
+	Route::post('/company/detail', 'CompanyController@comp_detail');
+
+	Route::get ('/company/{compId}', 'CompanyController@comp_detail');
+	Route::post('/company/{compId}', 'CompanyController@comp_detail');
+
+	Route::get ('/company/detail/{compId?}', 'CompanyController@comp_detail');
+	Route::post('/company/detail/{compId?}', 'CompanyController@comp_detail');
+
+//	Route::get('/company/search', 'CompanyController@search');
+//	Route::post('/company/search', 'CompanyController@search');
+
+	Route::get('/unit/detail', 'CompanyController@unit_detail');
+	Route::post('/unit/detail', 'CompanyController@unit_detail');
+
+	// ジョブ
+	Route::get ('/job', 'JobController@index');
+
+	Route::get ('/job/list', 'JobController@list');
+	Route::post('/job/list', 'JobController@list');
+
+	Route::get ('/job/detail', 'JobController@detail');
+	Route::post('/job/detail', 'JobController@detail');
+
+	Route::get('/job/favorite', 'JobController@favorite');
+
+	Route::get ('/job/favorite/add', 'JobController@favoriteAdd');
+	Route::post('/job/favorite/add', 'JobController@favoriteAdd');
+
+	// メッセージ
+	Route::get('/interview/flow', 'InterviewController@interviewFlow');
+	Route::post('/interview/flow', 'InterviewController@interviewFlow');
+	Route::get('/interview/flowpost', 'InterviewController@interviewFlowPost');
+	Route::post('/interview/flowpost', 'InterviewController@interviewFlowPost');
+	Route::get('/interview/request', 'InterviewController@interviewRequest');
+	Route::post('/interview/request', 'InterviewController@interviewRequest')->name('user.interview.request');
+	Route::get('/interview/request/send', 'InterviewController@interviewRequestSend');
+	Route::post('/interview/request/send', 'InterviewController@interviewRequestSend');
+
+
+	Route::get('/interview', 'InterviewController@index')->name('user.interview');
+	Route::get('/interview/list', 'InterviewController@list');
+	Route::post('/interview/list', 'InterviewController@list');
+	Route::get('/interview/detail', 'InterviewController@detail')->name('user.interview.detail');
+	Route::post('/interview/detail', 'InterviewController@detail');
+	Route::get('/interview/store', 'InterviewController@store')->name('user.interview.store');
+	Route::post('/interview/store', 'InterviewController@store');
+
+	Route::get('/interview/aprove', 'InterviewController@aprove');
+	Route::post('/interview/aprove', 'InterviewController@aprove');
+
+	// イベント
+	Route::get('/event', 'EventController@index')->name('user.event');
+	Route::get('/event/detail', 'EventController@detail');
+	Route::post('/event/detail', 'EventController@detail');
+
+	// お問合せ 企業
+	Route::get('/compfaq', 'FAQController@comp_faq');
+	Route::post('/compfaq', 'FAQController@comp_faq');
+	Route::post('/compfaq/store', 'FAQController@comp_faq_store');
+
+	// お問合せ 運営
+	Route::get('/adminfaq', 'FAQController@admin_faq');
+	Route::get('/adminfaq', 'FAQController@admin_faq');
+	Route::post('/adminfaq/store', 'FAQController@admin_faq_store');
+
+});
+
+
+/******************************************
+* 企業
+*******************************************/
+Route::namespace('Comp')->prefix('comp')->name('comp.')->group(function () {
+
+    // ログイン認証関連
+    Auth::routes([
+        'register' => false,
+        'reset'    => true,
+        'verify'   => false
+    ]);
+
+
+    // ログイン認証後
+    Route::middleware('auth:comp')->group(function () {
+
+        // TOPページ
+        Route::resource('mypage', 'MypageController', ['only' => 'index']);
+
+    });
+});
+	// ログインテスト
+//	Route::get('comp/virtual/login', 'Comp\Auth\LoginController@showLoginForm2');
+	Route::get('comp/virtual/login', 'Comp\Auth\VirtualLoginController@showLoginForm2');
+
+	// パスワード忘れ
+	Route::post('comp/password/reset', 'Comp\ResetPasswordController@reset')->name('comp.password.reupdate');
+	Route::get('comp/password/reset', 'Comp\ForgotPasswordController@showLinkRequestForm')->name('comp.password.request');
+	Route::post('comp/password/email', 'Comp\ForgotPasswordController@sendResetLinkEmail')->name('comp.password.email');
+	Route::get('comp/password/reset/{token}', 'Comp\ResetPasswordController@showResetForm')->name('comp.password.reset');
+	Route::get('comp/password/complete', 'Comp\ResetCompleteController@index')->name('comp.password.complete');
+
+
+Route::group(['prefix' => 'comp'], function(){
+
+	// マイページ
+//	Route::get('/mypage', 'Comp\CompMypageController@index')->name('comp.mypage');
+	Route::get('/mypage', 'Comp\CompMypageController@index_main');
+	Route::get('/mypage/search', 'Comp\CompMypageController@search');
+	Route::post('/mypage/search', 'Comp\CompMypageController@search');
+	
+	// マイページ改
+	Route::get('/mypage/main', 'Comp\CompMypageController@index_main')->name('comp.mypage.main');
+	Route::get('/mypage/main/list', 'Comp\CompMypageController@list_main');
+	Route::post('/mypage/main/list', 'Comp\CompMypageController@list_main');
+
+	Route::get('/mypage/newuser', 'Comp\CompMypageController@index_newuser')->name('comp.mypage.newuser');
+	Route::get('/mypage/newuser/list', 'Comp\CompMypageController@list_newuser');
+	Route::post('/mypage/newuser/list', 'Comp\CompMypageController@list_newuser');
+
+	Route::get('/mypage/progress', 'Comp\CompMypageController@index_progress')->name('comp.mypage.progress');
+	Route::get('/mypage/progress/list', 'Comp\CompMypageController@list_progress');
+	Route::post('/mypage/progress/list', 'Comp\CompMypageController@list_progress');
+
+
+	// パスワード変更
+	Route::get('/password/edit', 'Comp\CompMemberController@editPassword')->name('comp.password.edit');
+	Route::post('/password/', 'Comp\CompMemberController@updatePassword')->name('comp.password.update');
+	
+//	Route::get('/user/list', 'Comp\CompUserController@list')->name('comp.user.list');
+//	Route::get('/user/edit', 'Comp\CompUserController@edit')->name('comp.user.edit');
+//	Route::get('/download', 'Comp\CompDownloadController@download');
+
+    // 企業関連
+	Route::get('/edit', 'Comp\CompCompanyController@edit')->name('comp.edit');
+	Route::post('/store', 'Comp\CompCompanyController@store')->name('comp.store');
+	Route::get('/store', 'Comp\CompCompanyController@store');
+	Route::get('/preview', 'Comp\CompCompanyController@preview');
+	Route::get('/change', 'Comp\CompCompanyController@change')->name('comp.change');
+	Route::post('/change', 'Comp\CompCompanyController@change');
+
+    // ジョブ関連
+	Route::get('/job', 'Comp\CompJobController@index');
+	Route::get('/job/list', 'Comp\CompJobController@list')->name('comp.job.list');
+	Route::post('/job/list', 'Comp\CompJobController@list');
+
+	Route::get('/job/register', 'Comp\CompJobController@getRegister')->name('comp.job.register');
+	Route::post('/job/register', 'Comp\CompJobController@postRegister');
+
+	Route::get('/job/edit', 'Comp\CompJobController@edit');
+	Route::post('/job/edit', 'Comp\CompJobController@edit')->name('comp.job.edit');
+	Route::get('/job/edit/store', 'Comp\CompJobController@store');
+	Route::post('/job/edit/store', 'Comp\CompJobController@store');
+
+	Route::get('/job/change', 'Comp\CompJobController@edit')->name('comp.job.change');
+	Route::post('/job/change', 'Comp\CompJobController@change');
+
+
+    // イベント関連
+	Route::get('/event', 'Comp\CompEventController@index');
+	Route::get('/event/list', 'Comp\CompEventController@list')->name('comp.event.list');
+	Route::post('/event/list', 'Comp\CompEventController@list');
+
+	Route::get('/event/register', 'Comp\CompEventController@getRegister')->name('comp.event.register');
+	Route::post('/event/register', 'Comp\CompEventController@postRegister');
+
+	Route::get('/event/detail', 'Comp\CompEventController@detail')->name('comp.event.detail');
+	Route::post('/event/detail', 'Comp\CompEventController@detail');
+
+	Route::get('/event/edit', 'Comp\CompEventController@edit')->name('comp.event.edit');
+	Route::post('/event/edit', 'Comp\CompEventController@store');
+
+	Route::get('/event/change', 'Comp\CompEventController@edit')->name('comp.event.change');
+	Route::post('/event/change', 'Comp\CompEventController@change');
+
+	Route::get('/event/aprove', 'Comp\CompEventController@aprove')->name('comp.event.aprove');
+	Route::post('/event/aprove', 'Comp\CompEventController@aprove');
+
+    // 部署関連
+	Route::get('/unit', 'Comp\CompUnitController@index');
+	Route::get('/unit/list', 'Comp\CompUnitController@list')->name('comp.unit.list');
+	Route::post('/unit/list', 'Comp\CompUnitController@list');
+
+	Route::get('/unit/register', 'Comp\CompUnitController@getRegister')->name('comp.unit.register');
+	Route::post('/unit/register', 'Comp\CompUnitController@postRegister');
+
+	Route::get('/unit/edit', 'Comp\CompUnitController@edit');
+	Route::post('/unit/edit', 'Comp\CompUnitController@edit')->name('comp.unit.edit');
+	Route::get('/unit/edit/store', 'Comp\CompUnitController@store');
+	Route::post('/unit/edit/store', 'Comp\CompUnitController@store');
+
+	Route::get('/unit/change', 'Comp\CompUnitController@edit')->name('comp.unit.change');
+	Route::post('/unit/change', 'Comp\CompUnitController@change');
+
+	Route::get('/admin/unit', 'Comp\CompUnitController@adminIndex');
+	Route::get('/admin/unit/list', 'Comp\CompUnitController@adminList')->name('comp.admin.unit.list');
+	Route::post('/admin/unit/list', 'Comp\CompUnitController@adminList');
+
+	Route::get('/admin/unit/edit', 'Comp\CompUnitController@adminEdit')->name('comp.admin.unit.edit');
+	Route::post('/admin/unit/edit', 'Comp\CompUnitController@store');
+
+	Route::get('/admin/unit/register', 'Comp\CompUnitController@adminGetRegister')->name('comp.admin.unit.register');
+	Route::post('/admin/unit/register', 'Comp\CompUnitController@adminPostRegister');
+
+    // ユーザ関連
+	Route::get('/client', 'Comp\CompClientController@index');
+	Route::get('/client/list', 'Comp\CompClientController@list')->name('comp.client.list');
+	Route::post('/client/list', 'Comp\CompClientController@list');
+
+	Route::get('/clientend', 'Comp\CompClientController@endIndex');
+	Route::get('/clientend/list', 'Comp\CompClientController@endList')->name('comp.clientend.list');
+	Route::post('/clientend/list', 'Comp\CompClientController@endList');
+
+	Route::get('/client/enter', 'Comp\CompClientController@enter');
+	Route::get('/client/enter/list', 'Comp\CompClientController@enterList');
+	Route::post('/client/enter/list', 'Comp\CompClientController@enterList')->name('comp.client.enter.list');
+	Route::get('/client/enter/save', 'Comp\CompClientController@enterSave')->name('comp.cliententer.save');
+	Route::post('/client/enter/save', 'Comp\CompClientController@enterSave');
+
+	Route::get('/user', 'Comp\CompUserController@index');
+	Route::get('/user/list', 'Comp\CompUserController@list');
+	Route::post('/user/list', 'Comp\CompUserController@list');
+	Route::get('/user/freelist', 'Comp\CompUserController@freeList');
+	Route::post('/user/freelist', 'Comp\CompUserController@freeList');
+
+	Route::get('/user/detail', 'Comp\CompUserController@detail');
+	Route::post('/user/detail', 'Comp\CompUserController@detail');
+
+	Route::get('/user/memo', 'Comp\CompUserController@memo');
+	Route::post('/user/memo', 'Comp\CompUserController@memo');
+
+    // PDF出力
+	Route::get('/pdf/base', 'Comp\CompUserController@userBasePdf');
+	Route::post('/pdf/base', 'Comp\CompUserController@userBasePdf');
+	
+	Route::get('/pdf/cv', 'Comp\CompUserController@userCvPdf');
+	Route::post('/pdf/cv', 'Comp\CompUserController@userCvPdf');
+	
+	Route::get('/pdf/cv/eng', 'Comp\CompUserController@userCvEngPdf');
+	Route::post('/pdf/cv/eng', 'Comp\CompUserController@userCvEngPdf');
+	
+	Route::get('/pdf/vitae', 'Comp\CompUserController@userVitaePdf');
+	Route::post('/pdf/vitae', 'Comp\CompUserController@userVitaePdf');
+
+	Route::get('/candidate', 'Comp\CompUserController@canIndex');
+	Route::get('/candidate/list', 'Comp\CompUserController@canList');
+	Route::post('/candidate/list', 'Comp\CompUserController@canList');
+
+	Route::get('/candidate/freelist', 'Comp\CompUserController@canFreeList');
+	Route::post('/candidate/reelist', 'Comp\CompUserController@canFreeList');
+
+    // 企業メンバー関連
+	Route::get('/member', 'Comp\CompMemberController@index');
+	Route::get('/member/add', 'Comp\CompMemberController@add');
+	Route::post('/member/add', 'Comp\CompMemberController@add');
+
+	Route::get('/member/more', 'Comp\CompMemberController@more');
+	Route::post('/member/more', 'Comp\CompMemberController@more');
+
+	Route::get('/member/list', 'Comp\CompMemberController@list');
+	Route::post('/member/list', 'Comp\CompMemberController@list');
+
+	// 個人設定
+	Route::get('/member/setting', 'Comp\CompMemberController@setting');
+	Route::get('/member/setting/store', 'Comp\CompMemberController@settingStore');
+	Route::post('/member/setting/store', 'Comp\CompMemberController@settingStore');
+
+    // メッセージ関連
+	Route::get('/msg/casual/list', 'Comp\CompInterviewController@casualList');
+	Route::post('/msg/casual/list', 'Comp\CompInterviewController@casualList');
+	Route::get('/msg/formal/list', 'Comp\CompInterviewController@formalList');
+	Route::post('/msg/formal/list', 'Comp\CompInterviewController@formalList');
+	Route::get('/msg/event/list', 'Comp\CompInterviewController@eventList');
+	Route::post('/msg/event/list', 'Comp\CompInterviewController@eventList');
+
+	Route::get('/interview/flow', 'Comp\CompInterviewController@interviewFlow');
+	Route::post('/interview/flow', 'Comp\CompInterviewController@interviewFlow');
+	Route::get('/interview/flowpost', 'Comp\CompInterviewController@interviewFlowPost');
+	Route::post('/interview/flowpost', 'Comp\CompInterviewController@interviewFlowPost');
+	Route::get('/interview/mask', 'Comp\CompInterviewController@interviewMask');
+	Route::post('/interview/mask', 'Comp\CompInterviewController@interviewMask');
+
+	Route::get('/interview/request', 'Comp\CompInterviewController@interview_request');
+	Route::post('/interview/request', 'Comp\CompInterviewController@interview_request');
+	Route::get('/interview/request/store', 'Comp\CompInterviewController@interview_request_store');
+	Route::post('/interview/request/store', 'Comp\CompInterviewController@interview_request_store');
+
+	Route::get('/interview/aprove', 'Comp\CompInterviewController@aprove');
+	Route::post('/interview/aprove', 'Comp\CompInterviewController@aprove');
+
+    // 請求関連
+	Route::get('/billing', 'Comp\CompInterviewController@billing');
+	Route::post('/billing', 'Comp\CompInterviewController@billing');
+	Route::get('/billing/hist', 'Comp\CompInterviewController@billingHist');
+	Route::post('/billing/hist', 'Comp\CompInterviewController@billingHist');
+
+    // FAQ
+	Route::get('/faq/list', 'Comp\CompFaqController@index');
+	Route::get('/faq', 'Comp\CompFaqController@faq')->name('comp.faq');
+	Route::post('/faq', 'Comp\CompFaqController@store');
+	Route::get('/faq/change', 'Comp\CompFaqController@edit')->name('comp.faq.change');
+	Route::post('/faq/change', 'Comp\CompFaqController@change');
+	
+	Route::get('/claim/every', 'Comp\CompBillController@claimEvery')->name('comp.claim.every');
+	Route::get('/claim/monthly', 'Comp\CompBillController@claimMonthly')->name('comp.claim.monthly');
+
+
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+/******************************************
+* 運営管理者
+*******************************************/
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+
+    // ログイン認証関連
+    Auth::routes([
+        'register' => false,
+        'reset'    => true,
+        'verify'   => false
+    ]);
+
+    // ログイン認証後
+    Route::middleware('auth:admin')->group(function () {
+
+        // TOPページ
+        Route::resource('mypage', 'MypageController', ['only' => 'index']);
+
+    });
+});
+
+	// パスワード忘れ
+	Route::post('admin/password/reset', 'Admin\ResetPasswordController@reset')->name('admin.password.reupdate');
+	Route::get('admin/password/reset', 'Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+	Route::post('admin/password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+	Route::get('admin/password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
+	Route::get('admin/password/complete', 'Admin\ResetCompleteController@index')->name('admin.password.complete');
+
+
+
+Route::group(['prefix' => 'admin'], function(){
+
+	// マイページ
+	Route::get('/mypage', 'Admin\MypageController@index')->name('admin.mypage');
+	Route::get('/mypage/list', 'Admin\MypageController@list')->name('admin.mypage.list');
+	Route::post('/mypage/list', 'Admin\MypageController@list')->name('admin.mypage.list');
+
+	Route::get('/mypage/progress', 'Admin\MypageController@progress')->name('admin.mypage.progress');
+	Route::get('/mypage/progress/list', 'Admin\MypageController@progress_list')->name('admin.mypage.progress.list');
+	Route::post('/mypage/progress/list', 'Admin\MypageController@progress_list');
+
+	Route::get('/mypage/enter', 'Admin\MypageController@mypage_enter')->name('admin.mypage.enter');
+	Route::get('/mypage/enter/list', 'Admin\MypageController@enter_list')->name('admin.mypage.enter.list');
+	Route::post('/mypage/enter/list', 'Admin\MypageController@enter_list');
+
+	Route::get('/mypage/joblist', 'Admin\MypageController@joblist')->name('admin.mypage.joblist');
+	Route::get('/mypage/joblist/list', 'Admin\MypageController@joblist_list');
+	Route::post('/mypage/joblist/list', 'Admin\MypageController@joblist_list');
+	Route::get('/mypage/job/edit', 'Admin\MypageController@job_edit')->name('admin.mypage.job.edit');
+	Route::post('/mypage/job/edit', 'Admin\MypageController@job_edit');
+	Route::get('/mypage/job/change', 'Admin\MypageController@job_change');
+	Route::post('/mypage/job/change', 'Admin\MypageController@job_change');
+	Route::get('/mypage/job/post', 'Admin\MypageController@job_post');
+	Route::post('/mypage/job/post', 'Admin\MypageController@job_post');
+	Route::get('/mypage/joblist/download', 'Admin\MypageController@joblist_download');
+
+	Route::get('/mypage/joblist/upload', 'Admin\MypageController@upload_csv');
+	Route::post('/mypage/joblist/upload', 'Admin\MypageController@upload_csv');
+
+	Route::get('/mypage/jobsfc', 'Admin\MypageController@jobsfc');
+	Route::post('/mypage/jobsfc', 'Admin\MypageController@jobsfc');
+//	Route::get('/mypage/jobsfc/download', 'Admin\MypageController@joblist_download');
+
+	Route::get('/mypage/eval', 'Admin\MypageController@eval')->name('admin.mypage.eval');
+	Route::post('/mypage/eval', 'Admin\MypageController@eval');
+	Route::get('/mypage/eval/edit', 'Admin\MypageController@eval_edit')->name('admin.mypage.eval.edit');
+	Route::post('/mypage/eval/edit', 'Admin\MypageController@eval_edit');
+	Route::get('/mypage/eval/store', 'Admin\MypageController@eval_store')->name('admin.mypage.eval.store');
+	Route::post('/mypage/eval/store', 'Admin\MypageController@eval_store');
+
+	// パスワード変更
+	Route::get('/password/edit', 'Admin\AdminController@editPassword')->name('admin.password.edit');
+	Route::post('/password/', 'Admin\AdminController@updatePassword')->name('admin.password.update');
+
+    // お知らせ関連
+	Route::get('/info/list', 'Admin\AdminInfoController@index');
+	Route::get('/info', 'Admin\AdminInfoController@info')->name('admin.info');
+	Route::post('/info', 'Admin\AdminInfoController@store');
+	Route::get('/info/change', 'Admin\AdminInfoController@change')->name('admin.info.change');
+	Route::post('/info/change', 'Admin\AdminInfoController@change');
+
+
+    // 運営担当者関連
+	Route::get('/admin/list', 'Admin\AdminController@index');
+	Route::get('/admin/register', 'Admin\AdminController@getRegister');
+	Route::post('/admin/register', 'Admin\AdminController@postRegister');
+
+	Route::get('/admin/edit', 'Admin\AdminController@edit');
+	Route::post('/admin/edit', 'Admin\AdminController@edit');
+
+	Route::get('/update/token', 'Admin\ApiController@updateToken');
+	Route::post('/update/token', 'Admin\ApiController@updateToken');
+
+    // ユーザ関連
+	Route::get('/user/list', 'Admin\AdminUserController@index');
+	Route::get('/user/aprove', 'Admin\AdminUserController@aprove');
+	Route::post('/user/aprove', 'Admin\AdminUserController@aprove');
+
+	Route::get('/user/hist', 'Admin\AdminUserController@aproveHist');
+	Route::post('/user/hist', 'Admin\AdminUserController@aproveHist');
+	Route::get('/user/histback', 'Admin\AdminUserController@histBack');
+	Route::post('/user/histback', 'Admin\AdminUserController@histBack');
+	
+	Route::get('/user/detail', 'Admin\AdminUserController@detail');
+	Route::post('/user/detail', 'Admin\AdminUserController@detail')->name('admin.user.detail');
+
+	Route::get('/user/change', 'Admin\AdminUserController@change');
+	Route::post('/user/change', 'Admin\AdminUserController@change');
+
+	Route::get('/user/changehist', 'Admin\AdminUserController@changeHist');
+	Route::post('/user/changehist', 'Admin\AdminUserController@changeHist');
+
+	Route::get('/user/edit', 'Admin\AdminUserController@edit')->name('admin.user.edit');
+	Route::post('/user/store', 'Admin\AdminUserController@store')->name('admin.user.store');
+	Route::get('/user/store', 'Admin\AdminUserController@store');
+
+    // 企業関連
+	Route::get('/comp/list', 'Admin\AdminCompanyController@list')->name('admin.comp.list');
+	Route::post('/comp/list', 'Admin\AdminCompanyController@list');
+
+	Route::get('/comp/register', 'Admin\AdminCompanyController@getRegister');
+	Route::post('/comp/register', 'Admin\AdminCompanyController@postRegister');
+
+	Route::get('/comp/edit', 'Admin\AdminCompanyController@edit');
+	Route::post('/comp/edit', 'Admin\AdminCompanyController@edit')->name('admin.comp.edit');
+	Route::get('/comp/inmail', 'Admin\AdminCompanyController@inMailPost');
+	Route::post('/comp/inmail', 'Admin\AdminCompanyController@inMailPost');
+
+    // 企業メンバー関連
+	Route::get('/member/list', 'Admin\AdminMemberController@list');
+	Route::post('/member/list', 'Admin\AdminMemberController@list')->name('admin.member.list');
+
+	Route::get('/member/add', 'Admin\AdminMemberController@add');
+	Route::post('/member/add', 'Admin\AdminMemberController@add');
+
+	Route::get('/member/store', 'Admin\AdminMemberController@store');
+	Route::post('/member/store', 'Admin\AdminMemberController@store');
+
+    // 候補者関連
+	Route::get('/candidate', 'Admin\AdminUserController@canIndex');
+	Route::get('/candidate/list', 'Admin\AdminUserController@canList');
+	Route::post('/candidate/list', 'Admin\AdminUserController@canList');
+
+    // オーナーシップ
+	Route::get('/ownership', 'Admin\AdminUserController@ownership');
+	Route::post('/ownership', 'Admin\AdminUserController@ownership');
+
+    // ログ関連
+	Route::get('/log/list', 'Admin\LoggingController@list')->name('admin.log.list');
+	Route::post('/log/list', 'Admin\LoggingController@list');
+
+    // 請求関連
+	Route::get('/bill', 'Admin\AdminBillController@index');
+	Route::post('/bill', 'Admin\AdminBillController@list');
+
+	Route::get('/bill/detail', 'Admin\AdminBillController@detail');
+	Route::post('/bill/detail', 'Admin\AdminBillController@detail')->name('admin.bill.detail');
+
+	Route::get('/bill/change', 'Admin\AdminBillController@change');
+	Route::post('/bill/change', 'Admin\AdminBillController@change');
+
+	Route::get('/nobill', 'Admin\AdminBillController@no_bill');
+	Route::post('/nobill', 'Admin\AdminBillController@no_bill');
+
+	Route::get('/claim/every', 'Admin\AdminBillController@claimEvery')->name('admin.claim.every');
+	Route::get('/claim/monthly', 'Admin\AdminBillController@claimMonthly')->name('admin.claim.monthly');
+
+	Route::get('/claim/every/store', 'Admin\AdminBillController@claimEveryStore');
+	Route::post('/claim/every/store', 'Admin\AdminBillController@claimEveryStore');
+
+	Route::get('/claim/monthly/store', 'Admin\AdminBillController@claimMonthlyStore');
+	Route::post('/claim/monthly/store', 'Admin\AdminBillController@claimMonthlyStore');
+
+    // 業種
+	Route::get('/buscat', 'Admin\AdminCatController@buscatIndex');
+	Route::get('/buscat/add', 'Admin\AdminCatController@buscatAdd');
+	Route::post('/buscat/add', 'Admin\AdminCatController@buscatAdd');
+	Route::get('/buscat/store', 'Admin\AdminCatController@buscatStore');
+	Route::post('/buscat/store', 'Admin\AdminCatController@buscatStore');
+
+    // 業種詳細
+	Route::get('/buscatdetail', 'Admin\AdminCatController@buscatDetailList');
+	Route::post('/buscatdetail', 'Admin\AdminCatController@buscatDetailList')->name('admin.buscat_detail.list');
+	Route::get('/buscatdetail/add', 'Admin\AdminCatController@buscatDetailAdd');
+	Route::post('/buscatdetail/add', 'Admin\AdminCatController@buscatDetailAdd');
+	Route::get('/buscatdetail/store', 'Admin\AdminCatController@buscatDetailStore');
+	Route::post('/buscatdetail/store', 'Admin\AdminCatController@buscatDetailStore');
+
+    // 職種
+	Route::get('/jobcat', 'Admin\AdminCatController@jobcatIndex');
+	Route::get('/jobcat/add', 'Admin\AdminCatController@jobcatAdd');
+	Route::post('/jobcat/add', 'Admin\AdminCatController@jobcatAdd');
+	Route::get('/jobcat/store', 'Admin\AdminCatController@jobcatStore');
+	Route::post('/jobcat/store', 'Admin\AdminCatController@jobcatStore');
+
+    // 職種詳細
+	Route::get('/jobcatdetail', 'Admin\AdminCatController@jobcatDetailList');
+	Route::post('/jobcatdetail', 'Admin\AdminCatController@jobcatDetailList')->name('admin.jobcat_detail.list');
+	Route::get('/jobcatdetail/add', 'Admin\AdminCatController@jobcatDetailAdd');
+	Route::post('/jobcatdetail/add', 'Admin\AdminCatController@jobcatDetailAdd');
+	Route::get('/jobcatdetail/store', 'Admin\AdminCatController@jobcatDetailStore');
+	Route::post('/jobcatdetail/store', 'Admin\AdminCatController@jobcatDetailStore');
+
+    // FAQ
+	Route::get('/faq/list', 'Admin\AdminFaqController@index');
+	Route::get('/faq', 'Admin\AdminFaqController@faq')->name('admin.faq');
+	Route::post('/faq', 'Admin\AdminFaqController@store');
+	Route::get('/faq/change', 'Admin\AdminFaqController@edit')->name('admin.faq.change');
+	Route::post('/faq/change', 'Admin\AdminFaqController@change');
+
+	Route::get('/ask', 'Admin\AdminFaqController@ask');
+
+    // ピックアップ
+	Route::get('/pickup', 'Admin\AdminPickupController@index')->name('admin.pickup');
+	Route::post('/pickup', 'Admin\AdminPickupController@store');
+
+    // バナー
+	Route::get('/banner', 'Admin\AdminBannerController@index')->name('admin.banner');
+	Route::post('/banner', 'Admin\AdminBannerController@store');
+
+	Route::get('/api/joblist', 'Admin\ApiController@joblist');
+
+});
+
+

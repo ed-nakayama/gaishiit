@@ -1,0 +1,192 @@
+@extends('layouts.user.auth')
+
+@section('content')
+
+<head>
+	<title>マイページ｜{{ config('app.name', 'Laravel') }}</title>
+    <link href="{{ asset('css/mypage.css') }}" rel="stylesheet">
+</head>
+
+
+@include('user.user_activity')
+
+
+            <main class="pane-main">
+                <div class="inner">
+{{-- 広告領域 --}}
+                    <div class="con-wrap ads">
+                        <a href="">
+                            <figure>
+                            	@if ( empty($banner[0]->image) )
+                                	<img src="/img/mypage/img_ads.jpg" alt="">
+                                @else
+	                            	@if ( empty($banner[0]->url) )
+                                		<a></a>
+                                	@else
+                                		<a href="{{ $banner[0]->url }}">
+                                		<img src="{{ $banner[0]->image }}" alt="">
+                                		</a>
+                                	@endif
+                                @endif
+                            </figure>
+                        </a>
+                    </div>
+{{-- END 広告領域 --}}
+
+                    <div class="con-wrap col-2">
+
+                        <div class="item setting message">
+                            <div class="ttl">
+                                <h2>メッセージ</h2>
+                            </div>        
+                            <div class="item-inner">
+                                <button class="cate pc" onclick="location.href='/interview/list'">ALL</button>
+                                <ul>
+                                
+	                                @foreach ($interviewList as $int)
+                                    <li>
+                                    	<a href="javascript:intform{{ $int['id'] }}.submit()">
+                                        	<dl>
+                                            	<dt>
+                                                	<span class="tag">@if ($int->interview_type == '0')カジュアル面談 @elseif ($int->interview_type == '1')正式応募 @elseif ($int->interview_type == '2')イベント @endif </span>
+                                                	<span class="date">{{ $int['updated_at']->format('Y/m/d/H:i') }}</span>
+                                           		</dt>
+                                            	<dd @if ($int['read_flag'] == '0')class="new"@endif>
+                                            		{{ mb_strimwidth($int->company_name, 0, 40, "...") }}
+                                            	</dd>
+                                        	</dl>
+                                        </a>
+                                        {{ Form::open(['url' => '/interview/flow', 'name' => 'intform' . $int->id  ,'method' => 'GET' ]) }}
+										{{ Form::hidden("interview_id", $int->id, ['class' => 'form-control'] )}}
+										{{ Form::close() }}
+                                    </li>
+	                                @endforeach
+                                </ul>
+                                <button class="cate sp" onclick="location.href='/interview/list'">ALL</button>
+
+                            </div>
+                        </div>
+
+
+                        <div class="item info job">
+                            <div class="ttl">
+                                <h2>希望条件のジョブ</h2>
+                            </div> 
+                            <div class="item-inner">
+                                <button class="cate pc" onclick="location.href='/job'">ALL</button>
+                                <ul>
+                                	@if (empty($jobList[0]) )
+                                    <li>
+                                	希望条件を設定してください
+                                    </li>
+                                	@else
+	                                @foreach ($jobList as $job)
+                                    <li>
+                                    <a href="javascript:jobform{{ $job->id }}.submit()">
+                                        <p class="txt">{{ mb_strimwidth($job->name, 0, 40, "...") }}</p>
+                                        <div class="corp-name">
+                                            <figure>
+                                                <img src="{{ $job->logo_file }}" alt="">
+                                            </figure>
+		                                    {{ Form::open(['url' => "/company/{$job->company_id}/{$job->id}", 'name' => 'jobform' . $job->id ]) }}
+                                            <p>{{ mb_strimwidth($job->company_name, 0, 40, "...") }}</p>
+											{{ Form::close() }}
+                                        </div>
+                                        </a>
+                                    </li>
+                                 @endforeach
+                                 @endif
+                                </ul>
+                                <button class="cate sp" onclick="location.href='/job'">ALL</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="con-wrap">
+
+                        <div class="item setting favorite">
+                            <div class="ttl">
+                                <h2>お気に入り</h2>
+                            </div>
+							<div class="item-inner">
+								@if (!empty($favoriteList[0]->id))
+									<button class="cate pc" onclick="location.href='/job/favorite'">ALL</button>
+									<ul>
+										@foreach ($favoriteList as $job)
+											<li>
+												{{ Form::open(['url' => "/company/{$job->company_id}/{$job->id}", 'name' => 'favform' . $job->id ]) }}
+												<a href="javascript:favform{{ $job->id }}.submit()">
+													<figure>
+													<img src="{{ $job->image_file }}" alt="">
+													</figure>
+													<p class="job-name">{{ mb_strimwidth($job->name, 0, 40, "...") }}</p>
+													<div class="corp-name">
+														<figure>
+															<img src="{{ $job->logo_file }}" alt="">
+														</figure>
+														<p>{{ mb_strimwidth($job->company_name, 0, 40, "...") }}</p>
+													</div>
+												</a>
+												{{ Form::close() }}
+											</li>
+										@endforeach
+									</ul>
+									<button class="cate sp" onclick="location.href='/job/favorite'">ALL</button>
+								@else
+									設定なし
+								@endif
+							</div>
+                        </div>
+
+                    </div>
+
+                    <div class="con-wrap">
+
+                        <div class="item info event">
+                            <div class="ttl">
+                                <h2>イベント</h2>
+                            </div>    
+                            <ul>
+	                            @foreach ($eventList as $event)
+                                <li>
+                                    <figure>
+										<a href="javascript:eventform{{ $event->id }}.submit()">
+                                    	@if (!empty($event->image))
+                                        	<img src="{{ $event->image }}" alt="">
+                                    	@else
+                                        	<img src="/img/mypage/img_event.jpg" alt="">
+                                        @endif
+                                    </figure>
+                                    <div class="inner">
+	                                        <p class="event-name">{{ mb_strimwidth($event->name, 0, 40, "...") }}</p>
+                                        <div class="info-c">
+                                            <div class="corp-name">
+                                                <figure>
+                                                    <img src="{{ $event->logo_file }}" alt="">
+                                                </figure>
+                                                <p>{{ mb_strimwidth($event->company_name, 0, 40, "...") }}</p>
+                                            </div>
+                                            <div class="time">
+                                                @if ($event->online_flag == '1')<span class="cate">オンライン</span>@else<span class="cate">オフライン</span @endif
+                                                <span class="date">{{ str_replace('-','/', substr($event->event_date, 0 ,10)) . '/' . $event->start_hour . ':' . $event->start_min . '〜' . $event->end_hour . ':' . $event->end_min }}</span>
+                                            </div>
+                                        </div>
+                                        <p class="txt">
+                                            {{ mb_strimwidth($event->intro, 0, 250, "...") }}
+                                        </p>
+                                    </div>
+									</a>
+                                	{{ Form::open(['url' => "/company/{$event->company_id}/event/{$event->id}", 'name' => 'eventform' . $event->id ]) }}
+									{{ Form::close() }}
+                                </li>
+                                @endforeach
+                            </ul>    
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+
+    <script src="{{ asset('/js/setting.js') }}"></script>
+    
+@endsection

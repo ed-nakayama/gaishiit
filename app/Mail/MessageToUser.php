@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+use App\Models\User;
+
+class MessageToUser extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    // 下記を追記
+    /**
+     * メール送信引数
+     *
+     * @var array
+     */
+    private $user;
+    private $comp;
+    private $interview;
+    // 上記までを追記
+
+    // 下記内容を修正
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct($user ,$comp ,$interview)
+    {
+        $this->user = $user;
+        $this->comp = $comp;
+        $this->interview = $interview;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+	    return $this->to($this->user->email)       // 送信先アドレス
+    	    ->subject('【ガイシIT】新着メッセージのお知らせ')        // 件名
+        	->text('mail_templates.message_to_user') // 本文
+        	->with(['user' => $this->user,
+        			'comp' => $this->comp,
+        			'interview' => $this->interview
+        			]);       // 本文に送る値
+    }
+
+}

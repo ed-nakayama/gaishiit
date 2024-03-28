@@ -1,0 +1,164 @@
+                   <h2>新規会員登録</h2>
+
+                        <div class="Group">
+                            <div class="Group-Bar"></div>
+                            <div class="Group-Item isActive">
+                                <p class="Group-Item-Text">1</p>
+                              <div class="Group-Item-CircleOuter Circle Shapeborder isActive">
+                                <div class="Group-Item-CircleInner Circle Shapeborder isActive"></div>
+                              </div>
+                              
+                            </div>
+                            <div class="Group-Item">
+                                <p class="Group-Item-Text">2</p>
+                              <div class="Group-Item-CircleOuter Circle Shapeborder">
+                                <div class="Group-Item-CircleInner Circle Shapeborder"></div>
+                              </div>
+                              
+                            </div>
+                            <div class="Group-Item">
+                                <p class="Group-Item-Text">3</p>
+                               <div class="Group-Item-CircleOuter Circle Shapeborder">
+                                 <div class="Group-Item-CircleInner Circle Shapeborder"></div>
+                               </div>
+                               
+                            </div>
+                        </div>
+
+                        <div class="formItem row">
+                            <div class="formTitle">
+                                <p>{{ __('User Name') }}</p>
+                            </div><!-- /.formTitle -->
+                            <div class="formBody">
+                                <ul class="twoRow">
+                                    <li><input type="text" name="last_name" placeholder="姓" value="{{ old('last_name') }}">
+                                    </li>
+                                    <li><input type="text" name="first_name" placeholder="名" value="{{ old('first_name') }}">
+                                    </li>
+                                </ul>
+                                <ul class="oneRow">
+                                    @error('last_name')
+                                        <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+                                    @enderror
+                                    @error('first_name')
+                                        <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+                                    @enderror
+                                </ul>
+                            </div><!-- /.formBody -->
+                        </div><!-- /.formItem -->
+                            
+                        <div class="formItem row">
+                            <div class="formTitle">
+                                <p>{{ __('User Sex') }}</p>
+                            </div><!-- /.formTitle -->
+                            <div class="formBody">
+                                <ul class="radioListRow">
+                                    <li><label><input type="radio" name="sex" id="" value="1" @if (old('sex') == '1')  checked="checked" @endif>男性</label></li>
+                                    <li><label><input type="radio" name="sex" id="" value="2" @if (old('sex') == '2')  checked="checked" @endif>女性</label></li>
+                                    <li><label><input type="radio" name="sex" id="" value="0" @if (old('sex') == '0')  checked="checked" @endif>選択しない</label></li>
+                                </ul><!-- /.radioList -->
+                                <ul class="oneRow">
+                                    @error('sex')
+                                        <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+                                    @enderror
+                                </ul>
+                            </div><!-- /.formBody -->
+                        </div><!-- /.formItem -->
+
+                        <div class="formItem row">
+                            <div class="formTitle">
+                                <p>{{ __('User Birthday') }}</p>
+                            </div><!-- /.formTitle -->
+                            <div class="formBody">
+                                <div class="mail-harf">
+                                    <input type="date" name="birthday" class="mail-harf" value="{{ old('birthday') }}">
+                                </div>
+                                    @error('birthday')
+                                        <span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+                                    @enderror
+                            </div><!-- /.formBody -->
+                        </div><!-- /.formItem -->
+
+                        <div class="formItem row">
+                            <div class="formTitle">
+                                <p>メールアドレス</p>
+                            </div><!-- /.formTitle -->
+                            <div class="formBody">
+                                <div class="mail-harf">
+                                    <input type="text" name="email" class="mail-harf" placeholder="MAIL@EXAMPLE.COM"  value="{{ old('email') }}">
+                                </div>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+                                    @enderror
+                            </div><!-- /.formBody -->
+                        </div><!-- /.formItem -->
+
+                        <div class="formItem col">
+                            <div class="formTitle">
+                                <p>{{ __('User Change Time') }}</p>
+                            </div><!-- /.formTitle -->
+                            <div class="formBody">
+                                <ul class="radioListVar">
+                                    <li><label><input type="radio" name="change_time" id="change_time" value="1" onclick="changeTimeDisabled(1);"  @if (old('change_time') == '1')  checked="checked" @endif>今すぐ</label></li>
+                                    <li>
+                                        <label><input type="radio" name="change_time" id="change_time" value="2" onclick="changeTimeDisabled(2);"  @if (old('change_time') == '2')  checked="checked" @endif>希望の転職時期がある</label></li>
+                                    <li>
+                                    <div id="changeTimeSelect">
+                                        <label>転職希望時期</label>
+                                        <div class="radioSelect">
+                                            <div class="selectWrap">
+                                                <select name="change_year" id="change_year" class="select-no">
+                                                    <option value="" disabled selected style="display:none;">年</option>
+                                                 @foreach ($yearList as $year)
+                                                    <option value="{{$year}}"   @if (old('change_year') == $year)  selected @endif>{{$year}}年</option>
+                                                 @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="selectWrap">
+                                                <select name="change_month" id="change_month" class="select-no">
+                                                    <option value="" disabled selected style="display:none;">月</option>
+                                                 @foreach ($monthList as $mon)
+                                                    <option value="{{$mon}}"   @if (old('change_month') == $mon)  selected @endif>{{$mon}}月</option>
+                                                 @endforeach
+                                                </select>
+                                            </div>
+                                         </div>
+                                     </div>
+
+                                    </li>
+                                </ul><!-- /.radioListVar -->
+                               <ul class="oneRow">
+                                    @error('change_time')
+                                        <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+                                    @enderror
+                                    @error('change_year')
+                                        <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+                                    @enderror
+                                    @error('change_month')
+                                        <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+                                    @enderror
+                                </ul>
+                            </div>
+                        </div><!-- /.formBody -->
+
+                        <div class="formItem col">
+                            <div class="formTitle">
+                                <p>{{ __('User Request Caategory') }}</p>
+                            </div><!-- /.formTitle -->
+                            <div class="formBody">
+                                <ul class="checkboxList">
+                                @foreach ($jobCat as $cat)
+                                    <li><label><input type="checkbox" name="request_cat[{{ $cat->id }}]" value="{{ $cat->id }}"  {{ (old('request_cat.'.$cat->id) == $cat->id) ? 'checked' : '' }}>{{ $cat->name }}</label></li>
+                                @endforeach
+                                </ul><!-- /.checkboxList -->
+                               <ul class="oneRow">
+                                    @error('request_cat')
+                                        <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+                                    @enderror
+                                </ul>
+                            </div><!-- /.formBody -->
+                        </div><!-- /.formItem -->
+                        <div class="formBtn">
+                            <a href="javascript:regform.submit()" class="formNextBtn">{{ __('NEXT') }}</a>
+                        </div><!-- /.formBtn -->
+                    </div><!-- /.formItem -->

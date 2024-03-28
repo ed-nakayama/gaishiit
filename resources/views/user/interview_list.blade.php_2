@@ -1,0 +1,61 @@
+@extends('layouts.user.auth')
+
+@section('content')
+
+<head>
+	<title>メッセージ一覧｜{{ config('app.name', 'Laravel') }}</title>
+    <link href="{{ asset('css/message.css') }}" rel="stylesheet">
+</head>
+
+
+@include('user.user_activity')
+
+            <main class="pane-main">
+                <div class="inner">
+                    <div class="ttl">
+                        <h2>@if ($intType == 0)カジュアル面談 @elseif ($intType == 1)正式応募 @elseif ($intType == 2)イベント@endif メッセージ一覧</h2>
+                        <!-- <div class="button-list">
+                            <button class="sort">並べ替え</button>
+                        </div> -->
+                    </div>
+                    <div class="con-wrap">
+
+                        <div class="item info">
+                            <div class="item-inner">
+                                
+                                @foreach ($interviewList as $int)
+                                <div class="item-block">
+                                    @if ($int['read_flag'] == '0')
+                                    	<div class="ttl unread">
+                                    @else
+                                    	<div class="ttl">
+                                    @endif
+                                    	<span class="date">{{ str_replace(' ','/', str_replace('-','/', substr($int->last_update, 0 ,16))) }}</span>
+                                    	{{ Form::open(['url' => '/user/interview/flow', 'name' => 'intform' . $int->id  ,'method' => 'GET' ]) }}
+										{{ Form::hidden("interview_id", $int->id, ['class' => 'form-control'] )}}
+                                        	<a href="javascript:intform{{ $int->id }}.submit()">{{ $int->company_name }} {{ $int->unit_name }} {{ $int->job_name }}</a>
+										{{ Form::close() }}
+                                	</div>
+                                    <p class="txt">
+                                        {{ mb_strimwidth($int->last_msg, 0, 100, "...") }}
+                                    </p>
+                                </div>
+                                
+                                @endforeach
+
+
+                            	<div class="pager">
+                                	<ul class="page">
+			                        	{{ $interviewList->appends($params)->links('pagination.user') }}
+                                	</ul>
+                            	</div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+		</div>
+
+@endsection

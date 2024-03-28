@@ -1,0 +1,1752 @@
+@charset "UTF-8";
+html,body{
+	height: 100%;
+}
+body {
+    background-color: #D8D1DD;
+    color: #484848;
+    font-size: 14px;
+    font-family: sans-serif;
+    line-height: 1.4;
+    -webkit-text-size-adjust: 100%;
+
+    /* footar用 */ 
+    display: flex;
+    flex-direction: column;
+}
+
+/*/////////////////////////////
+ common - ドロップダウン（グローバルナビ）
+/////////////////////////////*/
+.dropdown-global-menu {
+    position: relative;
+}
+.dropdown-global-menu li > a  {
+    pointer-events: visible;
+}
+.dropdown-global-menu .inner {
+    margin-top: 0;
+    padding: 0;
+    border-top: none;
+    border-bottom: none;
+
+    width: 200px;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    padding: 20px;
+    background-color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: .2s;
+}
+.dropdown-global-menu .inner li {
+    position: relative;
+}
+.dropdown-global-menu .inner li a {
+    color: #484848;
+}
+.dropdown-global-menu .inner li:not(:last-child) {
+    margin-bottom: 20px;
+}
+.dropdown-global-menu li:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*/////////////////////////////
+ common - ドロップダウン（ユーザーボタン）
+/////////////////////////////*/
+.dropdown-menu {
+    position: relative;
+    text-align: right;
+}
+.dropdown-menu li > a  {
+    pointer-events: visible;
+}
+.dropdown-menu .inner {
+    margin-top: 0;
+    padding: 0;
+    text-align: center;
+    border-top: none;
+    border-bottom: none;
+
+    width: 100%;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    padding: 15px;
+    background-color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: .2s;
+}
+.dropdown-menu .inner li {
+    position: relative;
+}
+.dropdown-menu .inner li a {
+    color: #484848;
+    text-align: center;
+    text-decoration: underline;
+}
+.dropdown-menu .inner li:not(:last-child) {
+    margin-bottom: 25px;
+}
+.dropdown-menu li:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*/////////////////////////////
+ common - トグル on/offボタン（ブロックを1つにまとめてます）
+/////////////////////////////*/
+.jobToggleList {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    font-size: 20px;
+    border-bottom: 1px dotted #484848;
+}
+.jobToggleList.leftAlign {
+    justify-content: flex-start;
+}
+.jobToggleList.leftAlign li:not(:last-child) {
+    margin-right: 80px;
+}
+.jobToggleList span {
+    margin-right: 10px;
+}
+.jobToggle input {
+	display: none;
+}
+.jobToggle label {
+	position: relative;
+	display: block;
+	padding-right: 50px;
+	cursor: pointer;
+}
+.jobToggle input[type='checkbox'] {
+	position: absolute;
+	visibility: hidden !important;
+}
+.jobToggle input[type='checkbox'] + label:before,
+.jobToggle input[type='checkbox'] + label:after {
+	position: absolute;
+	top: calc(50% - 9px);
+	content: '';
+}
+.jobToggle input[type='checkbox'] + label:before {
+	right: 0;
+	width: 40px;
+	height: 20px;
+    border: 1px solid #B1B1B1;
+	border-radius: 15px;
+	background: #fff;
+}
+.jobToggle input[type='checkbox'] + label:after {
+	right: 20px;
+	width: 20px;
+	height: 20px;
+    border: 1px solid #B1B1B1;
+	border-radius: 50%;
+	background: #fff;
+    transition: all 200ms ease-out;
+}
+.jobToggle input[type='checkbox']:checked + label:after {
+	right: 0;
+    border: none;
+	background: #001E6F;
+}
+
+/*/////////////////////////////
+ common - モーダルウィンドウ 設定
+/////////////////////////////*/
+/* タイトル */
+.modalTitle h2 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+.modalTitle h2.title-bb {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #B1B1B1;
+}
+
+/* コンテンツの調整 */
+.modalInner {
+    margin-bottom: 30px;
+}
+/* ボタンの上に線がある場合 */
+.modalInner.bb-ajust {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted #B1B1B1;
+}
+/* マージンが下にある場合 */
+.modalInner .mb-ajust {
+    margin-bottom: 20px;
+}
+
+/* コンテンツをボーダーで囲む */
+.modalInner.border-container {
+    padding: 30px;
+    text-align: left;
+    border: 1px solid #707070;
+}
+
+/* コンテンツをボーダーで囲む - フォントと行間の調整 */
+.modalInner.border-container .border-container-text {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* チェックボックスリスト */
+.modalInner .list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.modalInner .list li {
+    width: calc(50% - 10px);
+    display: flex;
+    text-align: left;
+    word-break: break-all;
+}
+.modalInner .list li:not(:nth-last-child(-n+2)) {
+    margin-bottom: 10px;
+}
+.modalInner .list li input {
+    margin-top: 3px;
+    margin-right: 10px;
+ }
+ .modalInner .list li span{
+    display: block;
+}
+
+/* フォーム パターン１ */
+.modalInner .formContainer {
+    text-align: left;
+}
+.modalInner .formContainer.al-item-none {
+    align-items: flex-start;
+}
+.modalInner .formContainer.mg-ajust {
+    margin-bottom: 20px;
+}
+.modalInner .formContainer .item-name {
+    width: 100px;
+    margin-right: 10px;
+}
+.modalInner .formContainer .item-input {
+    flex: 1;
+}
+/*/////////////////////////////
+ common - テーブル 設定
+/////////////////////////////*/
+/* 共通 */
+table {
+    border-collapse: collapse;
+}
+.sortIcon {
+    position: relative;
+}
+.sortIcon::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 5px);
+    right: -14px;
+    width: 10px;
+    height: 10px;
+    background: url(../../images/icon-sort.png) no-repeat center center;
+    background-size: contain;
+}
+
+/* 共通 - マージンが必要な場合 */
+table.mb-ajust {
+    margin-bottom: 30px;
+}
+
+/* 項目が3つでボタンが1つ */
+.tbl-3th {
+/*    width: 100%;*/
+	width: auto;
+    font-size: 12px;
+}
+.tbl-3th tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-3th th:nth-child(1) {
+/*	width: 25%;*/
+	width: auto;
+}
+.tbl-3th th:nth-child(2) {
+/*	width: 30%;*/
+	width: auto;
+}
+.tbl-3th th:nth-child(3) {
+/*	width: 30%;*/
+	width: auto;
+}
+.tbl-3th th:nth-child(4) {
+/*	width: 15%;*/
+	width: auto;
+}
+.tbl-3th th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-3th th, .tbl-3th td {
+    padding: 5px 10px;
+/*    text-align: center;*/
+}
+
+
+ /* 項目が4つでボタンが1つ */
+.tbl-4th {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-4th tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-4th th:nth-child(1) {
+	width: 15%;
+}
+.tbl-4th th:nth-child(2) {
+	width: 37%;
+}
+.tbl-4th th:nth-child(3) {
+	width: 25%;
+}
+.tbl-4th th:nth-child(4) {
+	width: 13%;
+}
+.tbl-4th th:nth-child(5) {
+	width: 10%;
+}
+.tbl-4th th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-4th th, .tbl-4th td {
+    padding: 5px 10px;
+}
+
+/* 項目が7つでボタンが1つ */
+.tbl-7th {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-7th tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-7th th:nth-child(1) {
+	width: 12%;
+}
+.tbl-7th th:nth-child(2) {
+	width: 8%;
+}
+.tbl-7th th:nth-child(3) {
+	width: 12%;
+}
+.tbl-7th th:nth-child(4) {
+	width: 14%;
+}
+.tbl-7th th:nth-child(5) {
+	width: 18%;
+}
+.tbl-7th th:nth-child(6) {
+	width: 10%;
+}
+.tbl-7th th:nth-child(7) {
+	width: 20%;
+}
+.tbl-7th th:nth-child(8) {
+	width: 6%;
+}
+.tbl-7th th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-7th th, .tbl-7th td {
+    padding: 5px 10px;
+}
+
+/* 項目が8つでボタンが1つ */
+.tbl-8th {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-8th tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-8th th:nth-child(1) {
+	width: 12%;
+}
+.tbl-8th th:nth-child(2) {
+	width: 8%;
+}
+.tbl-8th th:nth-child(3) {
+	width: 12%;
+}
+.tbl-8th th:nth-child(4) {
+	width: 14%;
+}
+.tbl-8th th:nth-child(5) {
+	width: 8%;
+}
+.tbl-8th th:nth-child(6) {
+	width: 12%;
+}
+.tbl-8th th:nth-child(7) {
+	width: 10%;
+}
+.tbl-8th th:nth-child(8) {
+	width: 18%;
+}
+.tbl-8th th:nth-child(9) {
+	width: 6%;
+}
+.tbl-8th th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-8th th, .tbl-8th td {
+    padding: 5px 10px;
+}
+
+/* 項目が10個でボタンが1つ */
+.tbl-10th {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-10th tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-10th th:nth-child(1) {
+	width: 10%;
+}
+.tbl-10th th:nth-child(2) {
+	width: 8%;
+}
+.tbl-10th th:nth-child(3) {
+	width: 5%;
+}
+.tbl-10th th:nth-child(4) {
+	width: 12%;
+}
+.tbl-10th th:nth-child(5) {
+	width: 14%;
+}
+.tbl-10th th:nth-child(6) {
+	width: 8%;
+}
+.tbl-10th th:nth-child(7) {
+	width: 10%;
+}
+.tbl-10th th:nth-child(8) {
+	width: 10%;
+}
+.tbl-10th th:nth-child(9) {
+	width: 6%;
+}
+.tbl-10th th:nth-child(9) {
+	width: 6%;
+}
+.tbl-10th th:nth-child(10) {
+	width: 13%;
+}
+.tbl-10th th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-10th th, .tbl-10th td {
+    padding: 5px 10px;
+}
+/* マイページ用 項目8個 */
+.tbl-mypage-8th {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-mypage-8th tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-mypage-8th th:nth-child(1) {
+	width: 10%;
+}
+.tbl-mypage-8th th:nth-child(2) {
+	width: 13%;
+}
+.tbl-mypage-8th th:nth-child(3) {
+	width: 7%;
+}
+.tbl-mypage-8th th:nth-child(4) {
+	width: 15%;
+}
+.tbl-mypage-8th th:nth-child(5) {
+	width: 15%;
+}
+.tbl-mypage-8th th:nth-child(6) {
+	width: 15%;
+}
+.tbl-mypage-8th th:nth-child(7) {
+	width: 15%;
+}
+.tbl-mypage-8th th:nth-child(8) {
+	width: 10%;
+}
+.tbl-mypage-8th th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-mypage-8th th, .tbl-mypage-8th td {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+/* ユーザー コンタクト履歴用 */
+.tbl-user-5th {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-user-5th tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-user-5th th:nth-child(1) {
+	width: 15%;
+}
+.tbl-user-5th th:nth-child(2) {
+	width: 15%;
+}
+.tbl-user-5th th:nth-child(3) {
+	width: 15%;
+}
+.tbl-user-5th th:nth-child(4) {
+	width: auto;
+}
+.tbl-user-5th th:nth-child(5) {
+	width: 15%;
+}
+.tbl-user-5th th, .tbl-user-5th td {
+    padding: 5px 10px;
+}
+
+/* ご請求 項目5個 */
+.tbl-claim-5th {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-claim-5th tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-claim-5th th:nth-child(1) {
+	width: 15%;
+}
+.tbl-claim-5th th:nth-child(2) {
+	width: 15%;
+}
+.tbl-claim-5th th:nth-child(3) {
+    width: auto;
+}
+.tbl-claim-5th th:nth-child(4) {
+	width: 15%;
+}
+.tbl-claim-5th th:nth-child(5) {
+	width: 15%;
+}
+.tbl-claim-5th th, .tbl-claim-5th td {
+    padding: 5px 10px;
+    text-align: center;
+}
+.tbl-claim-5th th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-claim-5th td:nth-child(3) {
+    text-align: left;
+}
+
+/* セレクトボックス ●の色変更用 */
+.selectStatus span { margin-right: 3px; }
+.color-num1 { color: #EC6EAD; }
+.color-num2 { color: #04D5CC; }
+.color-num3 { color: #FFF539; }
+.color-num4 { color: #B6BED1; }
+.color-num5 { color: #707070; }
+
+/* 承認パネルの背景 */
+.approval {
+    width: 130px;
+    display: inline-block;
+    padding: 10px;
+}
+.approval.on { border: 1px solid #707070; }
+.approval.off { background-color: #707070; color: #fff; }
+
+/*/////////////////////////////
+ common - 上部 メインタイトルとボタン 
+/////////////////////////////*/
+.secTitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.secTitle-btn {
+    margin-left: 30px;
+}
+.secTitle-btn .item-btn {
+    display: flex;
+}
+.secTitle-btn .item-btn li {
+    width: 150px;
+}
+.secTitle-btn .item-btn li:not(:last-child) {
+    margin-right: 10px;
+}
+
+/*/////////////////////////////
+ common - 上部 ボタンとチェックボックス
+/////////////////////////////*/
+.secBtnHead {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.secBtnHead .item-btn {
+    display: flex;
+}
+.secBtnHead .item-btn li {
+    width: 120px;
+}
+.secBtnHead .item-btn li:not(:last-child) {
+    margin-right: 10px;
+}
+.secBtnHead .item-btn li .squareBtn {
+    padding: 5px 0;
+}
+
+/*/////////////////////////////
+ common - ページャー 設定
+/////////////////////////////*/
+.pager {
+    width: 100%;
+}
+.pagerList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagerList li {
+    padding: 5px;
+}
+.pagerList li a {
+    display: inline-block;
+    padding: 5px;
+}
+.pagerList li a:hover {
+    background-color: #707070;
+    color: #fff;
+}
+
+
+/*/////////////////////////////
+ header
+/////////////////////////////*/
+.header {
+    margin-bottom: 30px;
+    background-color: #58008E;
+    color: #fff;
+}
+.headInner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1200px;
+    margin: auto;
+    padding: 11px 0;
+}
+.headMain {
+    display: flex;
+    align-items: center;
+}
+
+.headInner .logo {
+    margin-right: 50px;
+    padding: 5px 15px;
+    border: none;
+    white-space: nowrap;
+}
+
+/* ヘッダー下 お知らせ */
+.infoBar {
+    display: block;
+    background-color: #000;
+    font-size: 12px;
+}
+.infoBarInner {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 1200px;
+    padding: 5px 0;
+}
+.infoBarTitle {
+    width: 120px;
+}
+.infoBarTitle h2 {
+    margin-right: 20px;
+    padding: 2px 10px;
+    background-color: #fff;
+    color: #484848;
+    text-align: center;
+}
+.infoBarText {
+    flex: 1;
+}
+
+/*/////////////////////////////
+ メインナビゲーション
+/////////////////////////////*/
+.userName .name {
+    margin: 0;
+    padding: 5px 30px;
+    background-color: #fff;
+    color: #484848;
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* グロナビ - ボタン */
+.containerNavBtn {
+    margin-right: 30px;
+}
+.containerNavBtn .navBtn {
+    display: flex;
+}
+.containerNavBtn .navBtn {
+    display: flex;
+}
+.containerNavBtn .navBtn li:not(:last-child) {
+    margin-right: 20px;
+}
+.containerNavBtn .navBtn a {
+    padding: 5px 20px;
+    background-color: #fff;
+    color: #001E6F;
+    font-weight: 700;
+}
+/* グロナビ - テキスト */
+.containerMenu {
+    padding: 0;
+    text-align: left;
+    border-bottom: none;
+}
+.containerMenu .menu {
+    display: flex;
+    line-height: 1.0;
+}
+.containerMenu .menu > li:not(:last-child) {
+    margin-right: 20px;
+    padding-right: 20px;
+    border-right: 1px solid #fff;
+}
+
+/*/////////////////////////////
+ footer
+/////////////////////////////*/
+.footer {
+    width: 100%;
+    max-width: 100%;
+    background-color: #58008E;
+    padding: 8px 0;
+    color: #fff;
+    text-align: center;
+}
+
+/*/////////////////////////////
+ contents - レイアウト
+/////////////////////////////*/
+.main {
+    flex: 1 0 auto; /* footar用にコンテンツの高さを取る */ 
+    margin-bottom: 15px;
+}
+.mainContents {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    margin: auto;
+}
+
+/* 1カラム */
+.mainContentsInner-oneColumn {
+    width: 100%;
+}
+
+/* 2カラム */
+.mainContentsInner {
+    width: 850px;
+}
+.sideContents {
+    width: 300px;
+}
+.sideContentsInner.bg-white {
+    background-color: #fff;
+}
+.sideContentsInner.bg-blue {
+    background-color: #001E6F;
+}
+
+/* セクション ----------------- */
+.secContents {
+    background-color: #fff;
+}
+.secContents-mb {
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+.secContentsInner {
+    padding: 30px;
+}
+
+/*/////////////////////////////
+ contents - タイトル
+/////////////////////////////*/
+.mainTtl {
+    margin-bottom: 25px;
+}
+.title-main {
+    font-size: 34px;
+}
+.contentsTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.title-sub {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* タイトル 両端揃え横並びにテキストリンクがある場合 */
+.contentsTitle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.contentsTitle-container .title {
+    font-size: 18px;
+    padding-right: 30px;
+}
+.contentsTitle-container .linkList {
+    display: flex;
+}
+.contentsTitle-container .linkList li:not(:last-child) {
+    margin-right: 20px;
+}
+.contentsTitle-container .linkList a {
+    text-decoration: underline;
+}
+
+/*/////////////////////////////
+ contents - ボタン
+/////////////////////////////*/
+/* 中央寄せ用のコンテナ */
+.btnContainer {
+    text-align: center;
+}
+
+/* 中央寄せ用のコンテナ - 2つ並べる場合 */
+.btnContainerList {
+    display: flex;
+    justify-content: center;
+}
+.btnContainerList li {
+    width: 270px;
+}
+.btnContainerList li:first-child {
+    margin-right: 20px;
+}
+
+/* 四角のボタン 青 */
+.squareBtn {
+    display: inline-block;
+    width: 100%;
+    background-color: #001E6F;
+    color: #fff;
+    text-align: center;
+}
+/* 四角のボタン グレー */
+.squareGrayBtn {
+    display: inline-block;
+    width: 100%;
+    background-color: #B1B1B1;
+    padding: 10px 0;
+    color: #fff;
+    text-align: center;
+}
+
+/* 四角のボタン 紫 */
+.squarePurpleBtn {
+    display: inline-block;
+    width: 100%;
+    background-color: #58008E;
+    color: #fff;
+    text-align: center;
+}
+
+/* 四角のボタン サイズ */
+.btn-large {
+    max-width: 270px;
+    padding: 15px 0;
+}
+.btn-medium {
+    max-width: 150px;
+    padding: 10px 0;
+}
+
+
+
+/*/////////////////////////////
+ sideContents - メイン
+/////////////////////////////*/
+.sideContentsInner {
+    padding: 30px;
+}
+
+.sideContentsInner {
+    padding: 30px;
+}
+
+/*/////////////////////////////
+ sideContents - アクティビティ
+/////////////////////////////*/
+.adminInformation {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+    border-bottom: 1px solid #707070;
+}
+.adminInformation .company-logo {
+    margin-bottom: 20px;
+}
+.adminInformation .company-logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+.adminInformation .admin-name {
+    margin-bottom: 10px;
+    font-size: 26px;
+    font-weight: 700;
+}
+.adminInformation-sec h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+.adminCharge .list li {
+    padding: 15px 20px;
+    border: 1px solid #707070;
+}
+.adminCharge .list li:not(:last-child) {
+    margin-bottom: 10px;
+}
+.adminCharge .list li a {
+    text-decoration: underline;
+}
+.adminCharge .list li span {
+    color: #FF0000;
+}
+/*/////////////////////////////
+ form - ベース
+/////////////////////////////*/
+.formContainer {
+    display: flex;
+    align-items: center;
+}
+.formContainer.al-item-none {
+    align-items: flex-start;
+    margin-top: 5px;
+}
+.formContainer.mg-ajust-midashi {
+    margin-bottom: 10px;
+}
+.formContainer.mg-ajust,
+.formContainer-add.mg-ajust {
+    margin-bottom: 50px;
+}
+.formContainer.bb-ajust,
+.formContainer-add.bb-ajust {
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px dotted #484848;
+}
+.formContainer .item-name {
+    width: 150px;
+}
+.formContainer .item-name span {
+    margin-left: 10px;
+    color: #001E6F;
+}
+.formContainer .item-input {
+    flex: 1;
+}
+.item-input-row {
+    display: flex;
+    align-items: center;
+}
+.item-input-row .item-input-btn {
+    width: 120px;
+    margin-right: 20px;
+}
+.item-input-note {
+    flex: 1;
+}
+
+/* 新しいメッセージを送るコンテナ */
+.formContainer-message.mg-ajust {
+    margin-bottom: 50px;
+}
+.formContainer-message-inner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.formContainer-message-inner .item-name {
+    width: 150px;
+}
+.formContainer-message-inner .item-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.formContainer-message-inner .item-input .selectWrap {
+    flex: 1;
+}
+.formContainer-message-inner .messeageBtn {
+    width: 100px;
+    margin-left: 10px;
+}
+
+/* セレクトボックスの横並び用コンテナ */
+.select-item-container {
+    display: flex;
+    flex-direction: column;
+}
+.select-item-column:not(:last-of-type) {
+    margin-bottom: 20px;
+}
+
+/* セレクトボックスの日付等の横並び */
+.select-item-row {
+    display: flex;
+    align-items: center
+}
+.select-item-row .selectWrap:not(:last-of-type),
+.select-item-row .selectStatus {
+    margin-right: 10px;
+}
+.select-item-row .icon-ripple {
+    margin-right: 10px;
+}
+
+/* フォームの追加ボタン用のコンテナ */
+.formContainer-add .item-add {
+    max-width: 100%;
+    margin-top: 30px; 
+    padding-left: 150px; /* 左の見出し分 削除で中央寄せ */
+    /* text-align: center; 中央寄せ 削除でフォームの左に揃う */
+}
+
+/* フォームの追加ボタン */
+.addTxtBlockBtn {
+    display: inline-block;
+}
+.addTxtBlockBtn span {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: #707070;
+    border-radius: 50%;
+}
+.addTxtBlockBtn span::before,
+.addTxtBlockBtn span::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 8px);
+    left: calc(50% - 1px);
+    width: 2px;
+    height: 16px;
+    background-color: #fff;
+}
+.addTxtBlockBtn span::after {
+    transform: rotate(-90deg);
+}
+/*/////////////////////////////
+ input カスタマイズ用
+/////////////////////////////*/
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 7px 10px;
+    background-color: #fff;
+    border: 1px solid #C7C7C7;
+    border-radius: 3px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 3px;
+}
+
+/* セレクトボックス */
+select {
+    display: block;
+    width: 100%;
+    padding: 7px 10px;
+    background-color: #fff;
+    border: 1px solid #C7C7C7;
+    border-radius: 3px;
+}
+.selectWrap {
+    position: relative;
+    display: block;
+}
+.select-no::-ms-expand {
+    display: none;
+}
+.selectWrap::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    height: 5px;
+    margin: auto;
+    border-top: 5px solid #707070;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    pointer-events: none;
+}
+
+/* ラジオボタン横並び */
+.radioList {
+    display: flex;
+    align-items: center;
+}
+.radioList li:not(:last-child) {
+    margin-right: 15px;
+}
+/* チェックボックス横並び */
+.checkboxList {
+    display: flex;
+    align-items: center;
+}
+.checkboxList li:not(:last-child) {
+    margin-right: 30px;
+}
+
+/* 左に20px */
+.ml20 { margin-left: 10px; }
+
+/* サイズを半分にする */
+.harf { 
+    max-width: 50%;
+}
+/* サイズを30%にする */
+.thirty { 
+    max-width: 30%;
+}
+/* サイズを70%にする */
+.seventy { 
+    max-width: 70%;
+}
+
+/* サイズを100pxにする */
+.hundred { 
+    width: 100px;
+}
+
+/* サイズを130pxにする */
+.hundred-thirty { 
+    width: 130px;
+}
+/*/////////////////////////////
+ common - プロフィールボックス
+/////////////////////////////*/
+.containerProfile .requesteDate {
+    margin-bottom: 30px;
+    color: #606060;
+    font-size: 14px;
+}
+.profileName {
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+.profileListInner {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+.profileList {
+    margin-bottom: 10px;
+}
+.profileList li {
+    display: flex;
+    align-items: center;
+}
+.profileList li:not(:last-child) {
+    margin-bottom: 10px;
+}
+.profileTag {
+    width: 100px;
+    min-width: 100px;
+    margin-right: 10px;
+    padding: 2px 10px;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid #606060;
+}
+.profileJobId {
+    padding: 2px 10px;
+    background-color: #F5F5F5;
+    font-size: 12px;
+}
+.profileTagList {
+    display: flex;
+    align-items: center;
+}
+.profileTagListItem {
+    display: flex;
+    margin-right: 15px;
+}
+.profileTagListItem li {
+    padding: 2px 10px;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 10px;
+}
+.profileTagListItem li:not(:last-child) {
+    margin-right: 10px;
+}
+.profileTagListItem li.bg-pattern-a {
+    background-color: #707070;
+}
+.profileTagListItem li.bg-pattern-b {
+    background-color: #B1B1B1;
+}
+
+/* 地図アイコン*/
+.mapIcon {
+    position: relative;
+    padding-left: 15px;
+}
+.mapIcon::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 5px);
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    padding-left: 10px;
+    background: url(../../images/icon-map.png) no-repeat center center;
+    background-size: contain;
+}
+
+/*/////////////////////////////
+ common - タブ
+/////////////////////////////*/
+/* タブの実装 - 動きあり */
+.tab_box .btn_area {
+	display: flex;
+}
+.tab_box .tab_btn {
+	width: 50%;
+	padding: 15px 0;
+	color: #fff;
+	background: #B1B1B1;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.2s ease 0s;
+}
+.tab_box .tab_btn.active {
+    background:#fff;
+    color: #707070;
+}
+.tab_box .panel_area {
+    padding: 30px;
+}
+.tab_box .tab_panel {
+    display:none;
+}
+.tab_box .tab_panel.active {
+    display:block;
+}
+
+/* タブの実装 - 動き無し */
+.tab_box_no .btn_area {
+	display: flex;
+}
+.tab_box_no .tab_btn {
+	width: 33.3333%;
+	color: #fff;
+	background: #B1B1B1;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.2s ease 0s;
+}
+.tab_box_no .tab_btn a {
+	display: block;
+    padding: 15px 0;
+}
+.tab_box_no .tab_btn.active {
+    background:#fff;
+    color: #707070;
+}
+.tab_box_no .panel_area {
+    padding: 30px;
+}
+
+
+/*/////////////////////////////
+ common - トークボックス
+/////////////////////////////*/
+/* 最新のメッセージリンク */
+.newMessageLink {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+/* トークボックス全体 */
+.containerTalk .talkItemList li {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.containerTalk .talkItemList li.companyTalk {
+    justify-content: flex-end;
+}
+.containerTalk .talkItemList li:not(:last-child){
+    margin-bottom: 50px;
+}
+.talkItem {
+    width: 60%;
+}
+.talkItemProfile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.containerTalk .talkItemList li.companyTalk .talkItemProfile {
+    justify-content: flex-end;
+}
+.talkItemProfile .image {
+    margin-right: 20px;
+}
+.talkItemProfile .image img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+.talkItemProfile .text {
+    font-size: 12px;
+}
+.talkItemProfile .text .name {
+    margin-bottom: 5px;
+}
+.talkItemMesseage {
+    padding: 20px;
+    line-height: 1.8;
+}
+
+/* 吹き出しの背景色 */
+.talkItemMesseage.bg-pattern-a {
+    background-color: #707070;
+    color: #fff;
+}
+.talkItemMesseage.bg-pattern-b {
+    background-color: #EFEFEF;
+}
+
+/* トークボックスの下にボーダーがある場合 */
+.talk-bd-bt {
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #707070;
+}
+
+/*/////////////////////////////
+ 正式応募
+/////////////////////////////*/
+.tblCaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #B1B1B1;
+}
+.tblCaptionTitle {
+    font-size: 20px;
+}
+.tblCaptionList {
+    display: flex;
+}
+.tblCaptionList li:not(:last-child) {
+    margin-right: 20px;
+}
+.tblCaptionList li a {
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.containerTblUserInfo.mb-ajust {
+    margin-bottom: 50px;
+}
+.tblUserInfo  {
+    width: 100%;
+}
+.tblUserInfo th {
+    background-color: #F5F5F5;
+    font-weight: normal;
+    text-align: left;
+}
+.tblUserInfo td {
+    margin-bottom: 10px;
+}
+.tblUserInfo th, .tblUserInfo td {
+    padding: 10px 10px;
+}
+
+/*/////////////////////////////
+ メッセージボックス
+/////////////////////////////*/
+.messageBoxTbl th:nth-child(1) {
+    width: 20%;
+}
+.messageBoxTbl th:nth-child(2) {
+    width: 15%;
+}
+.messageBoxTbl th:nth-child(3) {
+    width: 55%;
+}
+.messageBoxTbl th:nth-child(4) {
+    width: 10%;
+}
+.messageBoxTbl th, .messageBoxTbl td {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+.messageBoxTbl th {
+    background-color: #F5F5F5;
+    font-weight: normal;
+    text-align: left;
+    vertical-align: top;
+}
+.messageBoxTbl .receiveName a {
+    font-weight: 700;
+    text-decoration: underline;
+}
+.messageBoxTbl .sendName {
+    text-align: right;
+    vertical-align: top;
+}
+.messageBoxTbl .unread {
+    color: #7C0101;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*/////////////////////////////
+ イベント
+/////////////////////////////*/
+/*　セミナー情報 */
+.containerSeminarInfo {
+    display: flex;
+}
+.containerSeminarInfo .seminarInfoTxt {
+    flex: 1;
+    padding: 30px;
+}
+.containerSeminarInfo .seminarInfoImage {
+    width: 300px;
+}
+.seminarInfoTxt .seminarLeader {
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.seminarInfoTxt .seminarName {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+.seminarInfoTxt .inner {
+    margin-bottom: 10px;
+}
+.seminarInfoTxt .inner ul {
+    display: flex;
+}
+.seminarInfoTxt .inner li {
+    flex: 1;
+    padding: 3px;
+}
+.seminarInfoTxt .inner li.venue {
+    width: 55%;
+    background-color: #F5F5F5;
+    border: 1px solid #000;
+}
+.seminarInfoTxt .inner li.date {
+    width: 45%;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+.containerSeminarInfo .seminarInfoImage img {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+}
+
+/*　セミナー情報 - 下にボタンがある場合の調整 */
+.seminarInfoBtn {
+    padding: 30px 0;
+    border-top: 1px dotted #484848;
+}
+
+/*　セミナー情報 - テーブル上の全て選択ボタン用 */
+.selectAllList {
+    display: flex;
+    align-items: center;
+}
+.selectAllList.mb-ajust {
+    margin-bottom: 30px;
+}
+.selectAllList li:nth-child(2),
+.selectAllList li:nth-child(3) {
+    width: 17.65%;
+    max-width: 150px;
+}
+.selectAllList li:not(:last-child) {
+    margin-right: 20px;
+}
+
+/*/////////////////////////////
+ マイページ
+/////////////////////////////*/
+.inforamtion-container {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #707070;
+    line-height: 1.6;
+}
+.inforamtion-container:last-of-type {
+    margin-bottom: 0;
+}
+.inforamtion-container .date {
+    width: 100px;
+    margin-right: 30px;
+    font-weight: 700;
+}
+.inforamtion-container .text {
+    flex: 1;
+    line-height: 1.6;
+}
+
+/*/////////////////////////////
+ ユーザー詳細
+/////////////////////////////*/
+.userDetailInner {
+    position: relative;
+}
+.userDetailMain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+}
+.userDetailMain .name {
+    margin-right: 20px;
+    font-size: 20px;
+}
+.userDetailMain .name {
+    margin-right: 20px;
+    font-size: 20px;
+}
+.userDetailMain .status {
+    font-size: 12px;
+}
+.status span {
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+.status .on { 
+    border: 1px solid #707070;
+}
+.status .off { 
+    background-color: #707070;
+    color: #fff;
+}
+/*　ユーザー詳細 アコーディオン */
+.memo-accordion {
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: 0;
+    position: relative;
+    width: 100%;
+}
+.memo-accordion h3 {
+    display: block;
+    position: relative;
+    width: 100px;
+    margin-left: auto;
+    margin-right: 0;
+    background-color: #F5F5F5;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+.memo-accordion-content {
+    display: none;
+    padding: 20px;
+    background-color: #F5F5F5;
+}
+.memo-accordion h3::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: calc(50% - 5px);
+    width: 8px;
+    height: 8px;
+    border-right: solid 2px #484848;
+    border-top: solid 2px #484848;
+    transform: rotate(135deg);
+    transition: .3s;
+}
+.memo-accordion h3.open::after {
+    top: 45%;
+    transform: rotate(-45deg);
+}
+
+.memo-container {
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    line-height: 1.6;
+}
+.memo-container.txtArea {
+    background-color: none;
+    padding: 0;
+}
+.memo-container-title {
+    display: flex;
+    margin-bottom: 10px;
+}
+.memo-container-title .name {
+    margin-right: 10px;
+}
+
+/*/////////////////////////////
+ contents - タイトル -- add0408
+/////////////////////////////*/
+.companyTtl {
+    margin-bottom: 40px;
+}
+.title-company {
+    background-color: #707070;
+    padding: 30px 40px;
+    font-size: 34px;
+    color: #fff;
+}
+
+/*/////////////////////////////
+ 請求情報 -- add0408
+/////////////////////////////*/
+.yearTotalPriceSelect {
+    width: 150px;
+    margin-bottom: 20px;
+}
+.yearTotalPriceTxt {
+    font-size: 20px;
+}
+
+/* 月別リスト */
+.monthTotalList {
+    display: flex;
+    width: 900px;
+    margin: 0 auto 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #707070;
+}
+.monthTotalList:last-of-type {
+    margin-bottom: 0;
+}
+.monthTotalList .month { width: 20%; margin-right: 20px; font-size: 18px; }
+.monthTotalList .total { width: 30%; margin-right: 20px; font-size: 18px; }
+.monthTotalList .price { width: 50%; }
+.monthTotalList .price .item li { 
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.6;
+}
+.monthTotalList .price .item li:not(:last-child) { 
+    margin-bottom: 10px;
+}
+.monthTotalList .price .item li a { 
+    text-decoration: underline;
+}
+.monthTotalList .price .item li span { 
+    display: block;
+    margin-left: 10px;
+}
+
+.secContentsContainer {
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+.settingListItem li {
+    font-weight: 700;
+}
+.settingListItem li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+/* 項目が7つでボタンが1つ */
+.tbl-8th-Claim {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-8th-Claim tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-8th-Claim th:nth-child(1) {
+	width: 5%;
+}
+.tbl-8th-Claim th:nth-child(2) {
+	width: 8%;
+}
+.tbl-8th-Claim th:nth-child(3) {
+	width: 8%;
+}
+.tbl-8th-Claim th:nth-child(4) {
+	width: 23%;
+}
+.tbl-8th-Claim th:nth-child(5) {
+	width: 15%;
+}
+.tbl-8th-Claim th:nth-child(6) {
+	width: 20%;
+}
+.tbl-8th-Claim th:nth-child(7) {
+	width: 12%;
+}
+.tbl-8th-Claim th:nth-child(8) {
+	width: 8%;
+}
+.tbl-8th-Claim th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-8th-Claimh th, .tbl-8th-Claim td {
+    padding: 5px 10px;
+}

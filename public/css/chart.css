@@ -1,0 +1,246 @@
+@charset "UTF-8";
+
+.star5_rating{
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+    white-space: nowrap;
+    color: #CCCCCC; /* グレーカラー 自由に設定化 */
+    font-size: 26px; /* フォントサイズ 自由に設定化 */
+}
+
+.star5_rating:before, .star5_rating:after{
+    content: '★★★★★';
+}
+
+.star5_rating:after{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ffcf32; /* イエローカラー 自由に設定化 */
+}
+
+.star5_rating:after{ width: var(--rate); }
+
+.eval-item {
+  width: 100%;
+  margin: 0 auto;
+
+  border-top: 1px dashed #DDDDDD;
+/*  padding: 16px 20px;*/
+  padding: 4px 20px;
+}
+
+.eval-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+/*  transition: ease-in-out 100ms;*/
+  font-size: 1.6rem;
+  padding-right: 40px;
+}
+
+.eval-detail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 300;
+  padding-right: 40px;
+  transform: rotate(0.03deg);
+}
+
+
+.eval-txt {
+  width: 100%;
+/*  padding-top: 8px;*/
+  padding-top: 4px;
+  transform: rotate(0.03deg);
+ }
+
+
+.blur{
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.eval-txt .login{
+	z-index: 2;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  text-align:center;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  padding:2em 2em;
+  background:#FFFFEE;
+  }
+
+.eval-button{
+  background:#3366CC;
+  padding:0.2em 1em;
+  border:black 1px solid;
+  text-decoration:none;
+  font-size:1.0em;
+}
+.eval-button2{
+  background:#FFFF99;
+  padding:0.2em 4.8em;
+  border:black 1px solid;
+  text-decoration:none;
+  font-size:1.0em;
+}
+
+.button-eval {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto;
+}
+
+.button-eval a {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #4AA5CE;
+/*  background: #fff;*/
+  padding: 10px 10px;
+  border-radius: 20px;
+  border:#4AA5CE 2px solid;
+  max-width: 180px;
+  width: 100%;
+  text-align: center;
+}
+.button-eval2 {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto;
+}
+
+.button-eval2 a {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  background: #4AA5CE;
+  padding: 10px 10px;
+  border-radius: 20px;
+  max-width: 180px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.button-chart {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto;
+}
+
+.button-chart a {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  background: #4AA5CE;
+  padding: 10px 10px;
+  border-radius: 20px;
+  max-width: 180px;
+  width: 100%;
+  text-align: center;
+}
+
+.button-chart2 {
+  display: flex;
+  justify-content: center;
+  margin: 2px auto;
+  transform: rotate(0.03deg);
+}
+
+.button-chart2 a {
+  display: inline-block;
+  font-size: 1.4rem;
+  color:#4AA5CE;
+  border-radius: 20px;
+  max-width: 240px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.pane-main .eval .inner > ul > li {
+  background: #fff;
+  border: 4px solid #E5AF24;
+  border-radius: 20px;
+  background:#4AA5CE;
+  overflow: hidden;
+  width: 48%;
+}
+
+
+
+.tbl-cat {
+/*    width: 100%;*/
+    font-size: 12px;
+}
+.tbl-cat th, .tbl-cat td {
+    padding: 4px 4px;
+}
+
+
+
+.pane-main .eval .inner > ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.pane-main .eval .inner > ul > li {
+  background: #fff;
+  border: 1px solid #4AA5CE;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 48%;
+  padding: 4px 10px;
+  margin: 8px auto;
+  text-align: center;
+}
+
+.canClass {
+  display: flex;
+}
+.canClass div {
+  margin: auto;
+  width: 100%;
+}
+
+
+
+@media screen and (max-width: 821px) {
+
+.pane-main .eval .inner > ul {
+  display: block;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.pane-main .eval .inner > ul > li {
+  background: #fff;
+  border: 1px solid #4AA5CE;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 80%;
+  padding: 4px 10px;
+  margin-top: 10px;
+}
+
+.canClass {
+  display: block;
+}
+.canClass div {
+  text-align: center;
+}
+
