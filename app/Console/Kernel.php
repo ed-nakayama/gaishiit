@@ -61,6 +61,9 @@ class Kernel extends ConsoleKernel
 		$schedule->command('command:SendNewJob')->weeklyOn(1, '3:00');     // 月曜 3:00
 		$schedule->command('command:SendNewJob')->weeklyOn(4, '3:00');     // 木曜 3:00
 
+		// ログ削除
+		$schedule->command('command:del_old_log')->weeklyOn(0 '3:00');     // 日曜 3:00
+
 		// サイトマップ作成
 		$schedule->command('sitemap:generate')->dailyAt('04:00');     // 毎日 4:00
 
