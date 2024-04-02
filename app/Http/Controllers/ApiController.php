@@ -29,6 +29,7 @@ class ApiController extends Controller
 						->orWhere('name_kana' , 'like', '%' . $word . '%')
 						->orWhere('name_english' , 'like', '%' . $word . '%');
 						})
+					->where('open_flag' ,'1') 
 					->selectRaw('id , name')
 					->get();
 
