@@ -15,18 +15,10 @@
 <body class="bg-admin">
 
     <header class="header">
-			@if ( config('app.env') == 'Staging')
-				<center>
-				<div style="background-color:blue;color:white;font-weight:bolder">
-					{{ config('app.env') }}
-				</div>
-				</center>
-			@endif
         <div class="headInner">
             <h1 class="logo"><a href="/admin/login"><img src="/images/logo_on_admin.png" width="150"></a></h1>
         </div><!-- /.headInner -->
     </header>
-
 
     <main class="main">
         <div class="mainContents">

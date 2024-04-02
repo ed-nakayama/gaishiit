@@ -14,13 +14,6 @@
 <body class="bg-admin">
     
     <header class="header" style="position: fixed;width: 100%;z-index:1;">
-			@if ( config('app.env') == 'Staging')
-				<center>
-				<div style="background-color:blue;color:white;font-weight:bolder">
-					{{ config('app.env') }}
-				</div>
-				</center>
-			@endif
         <div class="headInner">
             <div class="headMain">
                 <h1 class="logo"><a href="/comp/mypage"><img src="/images/logo_on_comp.png" width="150"></a></h1>

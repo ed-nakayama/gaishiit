@@ -228,8 +228,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<div class="inner">
 		<ul>
 			<li><a href="/corporate">運営会社</a></li>
+{{--
 			<li><a href="/blog">お役立ちコラム</a></li>
 			<li><a href="/kiyaku">利用規約</a></li>
+--}}
 			<li><a href="/privacy">プライバシーポリシー</a></li>
 			<li><a href="/adminfaq">お問い合わせ</a></li>
 		</ul>
