@@ -1,3 +1,0 @@
-@extends('layouts.user.app')
-
-@extends('user.auth.register0')
