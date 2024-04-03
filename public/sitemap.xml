@@ -1286,6 +1286,11 @@
         <priority>0.5</priority>
             </url>
     <url>
+        <loc>https://gaishiit.com/company/10000001/23309</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.5</priority>
+            </url>
+    <url>
         <loc>https://gaishiit.com/company/10000004/21546</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -1336,11 +1341,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/company/10000004/21556</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/company/10000004/21557</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -1372,11 +1372,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/company/10000004/21563</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/company/10000004/21564</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -1471,16 +1466,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/company/10000004/21583</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/company/10000004/21584</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/company/10000004/21585</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -1507,11 +1492,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/company/10000004/21590</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/company/10000004/21591</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -1691,11 +1671,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/company/10000004/22508</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/company/10000004/22509</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -1871,6 +1846,26 @@
         <priority>0.5</priority>
             </url>
     <url>
+        <loc>https://gaishiit.com/company/10000004/23313</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.5</priority>
+            </url>
+    <url>
+        <loc>https://gaishiit.com/company/10000004/23314</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.5</priority>
+            </url>
+    <url>
+        <loc>https://gaishiit.com/company/10000004/23315</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.5</priority>
+            </url>
+    <url>
+        <loc>https://gaishiit.com/company/10000004/23316</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.5</priority>
+            </url>
+    <url>
         <loc>https://gaishiit.com/company/10000006/15415</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -1892,11 +1887,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/company/10000006/15420</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/company/10000006/15423</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -2611,51 +2601,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/occupation101</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation102</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation104</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation106</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation107</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation115</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation117</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/occupation122</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -2676,16 +2621,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/occupation133</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation135</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/occupation143</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -2696,42 +2631,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/occupation148</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation152</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation155</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation157</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/occupation160</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation165</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation170</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation173</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -2741,22 +2641,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/occupation177</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/occupation204</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation206</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation228</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -2767,11 +2652,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/occupation234</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation236</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -3006,51 +2886,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation102</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation104</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation106</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation107</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation115</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation117</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/occupation122</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -3071,16 +2906,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation133</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation135</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/occupation143</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -3091,42 +2916,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation152</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation155</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation157</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/occupation160</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation165</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation170</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation173</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -3136,22 +2926,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation177</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/occupation204</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation206</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation228</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -3162,11 +2937,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location1/occupation234</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation236</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -3401,51 +3171,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation102</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation104</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation106</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation107</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation115</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation117</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/occupation122</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -3466,16 +3191,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation133</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation135</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/occupation143</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -3486,42 +3201,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation152</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation155</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation157</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/occupation160</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation165</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation170</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation173</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -3531,22 +3211,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation177</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/occupation204</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation206</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation228</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -3557,11 +3222,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location2/occupation234</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation236</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -3796,51 +3456,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation102</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation104</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation106</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation107</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation115</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation117</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/occupation122</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -3861,16 +3476,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation133</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation135</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/occupation143</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -3881,42 +3486,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation152</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation155</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation157</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/occupation160</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation165</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation170</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation173</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -3926,22 +3496,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation177</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/occupation204</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation206</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation228</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -3952,11 +3507,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location3/occupation234</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation236</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -4191,51 +3741,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation102</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation104</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation106</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation107</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation115</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation117</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/occupation122</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -4256,16 +3761,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation133</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation135</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/occupation143</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -4276,42 +3771,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation152</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation155</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation157</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/occupation160</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation165</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation170</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation173</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -4321,22 +3781,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation177</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/occupation204</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation206</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation228</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -4347,11 +3792,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location4/occupation234</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation236</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -4586,51 +4026,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation102</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation104</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation106</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation107</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation115</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation117</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/occupation122</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -4651,16 +4046,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation133</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation135</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/occupation143</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -4671,42 +4056,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation152</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation155</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation157</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/occupation160</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation165</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation170</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation173</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -4716,22 +4066,7 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation177</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/occupation204</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation206</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation228</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -4742,11 +4077,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location99/occupation234</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation236</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -5516,301 +4846,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/occupation101/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation101/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation101/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation101/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation101/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation101/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation101/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation101/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation101/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation103/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation104/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation104/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation104/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation104/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation104/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation104/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation104/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation104/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation106/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation106/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation106/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation106/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation106/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation106/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation106/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation106/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation107/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation107/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation107/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation107/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation107/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation107/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation107/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation107/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation113/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation117/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation117/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation117/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation117/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation117/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation117/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation117/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation117/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/occupation122/indcat6</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -5907,26 +4942,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/occupation122/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation125/indcat1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation125/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation125/industory3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation125/industory4</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -6121,46 +5136,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/occupation135/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation135/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation135/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation135/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation135/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation135/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation135/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation135/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/occupation143/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -6241,171 +5216,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/occupation148/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation148/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation148/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation148/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation148/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation148/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation148/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation148/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation148/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation152/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation152/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation152/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation152/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation152/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation152/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation152/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation152/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation165/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation165/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation165/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation165/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation165/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation165/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation165/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation165/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation170/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation170/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation170/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation170/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation170/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation170/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation170/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation170/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/occupation176/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -6446,46 +5256,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/occupation177/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation177/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation177/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation177/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation177/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation177/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation177/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation177/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/occupation204/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -6522,46 +5292,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/occupation204/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation206/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation206/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation206/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation206/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation206/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation206/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation206/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation206/commit35</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -6766,46 +5496,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/occupation236/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation236/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation236/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation236/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation236/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation236/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation236/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/occupation236/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/jobcategory10/industory1</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -6891,11 +5581,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/jobcategory11/buscat12</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/jobcategory11/buscat14</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -6932,11 +5617,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location1/jobcategory13/industory2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/jobcategory13/buscat12</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -7076,301 +5756,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation101/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation103/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation104/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation104/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation104/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation104/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation104/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation104/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation104/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation104/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation106/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation106/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation106/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation106/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation106/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation106/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation106/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation106/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation107/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation107/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation107/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation107/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation107/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation107/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation107/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation107/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation113/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation117/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation117/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation117/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation117/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation117/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation117/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation117/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation117/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/occupation122/indcat6</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -7467,26 +5852,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location1/occupation122/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation125/indcat1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation125/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation125/industory3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation125/industory4</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -7681,46 +6046,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation135/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation135/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation135/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation135/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation135/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation135/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation135/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation135/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/occupation143/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -7801,171 +6126,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation148/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation152/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation152/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation152/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation152/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation152/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation152/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation152/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation152/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation165/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation165/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation165/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation165/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation165/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation165/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation165/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation165/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation170/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation170/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation170/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation170/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation170/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation170/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation170/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation170/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/occupation176/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -8006,46 +6166,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation177/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation177/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation177/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation177/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation177/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation177/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation177/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation177/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location1/occupation204/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -8082,46 +6202,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location1/occupation204/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation206/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation206/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation206/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation206/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation206/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation206/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation206/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation206/commit35</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -8326,46 +6406,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation236/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation236/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation236/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation236/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation236/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation236/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation236/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location1/occupation236/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/jobcategory10/industory1</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -8451,11 +6491,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/jobcategory11/buscat12</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/jobcategory11/buscat14</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -8492,11 +6527,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location2/jobcategory13/industory2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/jobcategory13/buscat12</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -8636,301 +6666,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation101/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation103/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation104/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation104/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation104/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation104/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation104/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation104/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation104/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation104/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation106/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation106/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation106/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation106/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation106/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation106/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation106/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation106/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation107/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation107/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation107/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation107/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation107/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation107/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation107/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation107/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation113/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation117/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation117/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation117/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation117/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation117/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation117/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation117/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation117/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/occupation122/indcat6</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -9027,26 +6762,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location2/occupation122/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation125/indcat1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation125/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation125/industory3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation125/industory4</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -9241,46 +6956,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation135/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation135/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation135/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation135/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation135/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation135/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation135/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation135/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/occupation143/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -9361,171 +7036,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation148/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation152/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation152/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation152/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation152/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation152/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation152/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation152/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation152/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation165/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation165/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation165/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation165/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation165/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation165/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation165/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation165/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation170/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation170/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation170/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation170/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation170/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation170/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation170/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation170/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/occupation176/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -9566,46 +7076,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation177/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation177/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation177/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation177/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation177/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation177/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation177/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation177/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location2/occupation204/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -9642,46 +7112,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location2/occupation204/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation206/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation206/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation206/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation206/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation206/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation206/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation206/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation206/commit35</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -9886,46 +7316,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation236/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation236/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation236/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation236/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation236/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation236/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation236/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location2/occupation236/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/jobcategory10/industory1</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -10011,11 +7401,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/jobcategory11/buscat12</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/jobcategory11/buscat14</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -10052,11 +7437,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location3/jobcategory13/industory2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/jobcategory13/buscat12</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -10196,301 +7576,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation101/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation103/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation104/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation104/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation104/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation104/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation104/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation104/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation104/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation104/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation106/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation106/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation106/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation106/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation106/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation106/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation106/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation106/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation107/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation107/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation107/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation107/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation107/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation107/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation107/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation107/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation113/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation117/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation117/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation117/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation117/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation117/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation117/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation117/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation117/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/occupation122/indcat6</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -10587,26 +7672,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location3/occupation122/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation125/indcat1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation125/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation125/industory3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation125/industory4</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -10801,46 +7866,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation135/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation135/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation135/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation135/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation135/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation135/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation135/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation135/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/occupation143/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -10921,171 +7946,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation148/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation152/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation152/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation152/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation152/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation152/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation152/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation152/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation152/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation165/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation165/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation165/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation165/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation165/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation165/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation165/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation165/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation170/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation170/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation170/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation170/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation170/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation170/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation170/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation170/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/occupation176/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -11126,46 +7986,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation177/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation177/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation177/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation177/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation177/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation177/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation177/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation177/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location3/occupation204/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -11202,46 +8022,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location3/occupation204/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation206/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation206/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation206/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation206/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation206/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation206/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation206/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation206/commit35</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -11446,46 +8226,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation236/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation236/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation236/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation236/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation236/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation236/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation236/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location3/occupation236/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/jobcategory10/industory1</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -11571,11 +8311,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/jobcategory11/buscat12</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/jobcategory11/buscat14</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -11612,11 +8347,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location4/jobcategory13/industory2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/jobcategory13/buscat12</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -11756,301 +8486,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation101/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation103/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation104/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation104/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation104/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation104/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation104/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation104/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation104/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation104/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation106/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation106/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation106/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation106/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation106/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation106/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation106/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation106/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation107/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation107/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation107/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation107/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation107/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation107/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation107/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation107/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation113/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation117/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation117/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation117/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation117/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation117/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation117/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation117/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation117/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/occupation122/indcat6</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -12147,26 +8582,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location4/occupation122/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation125/indcat1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation125/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation125/industory3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation125/industory4</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -12361,46 +8776,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation135/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation135/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation135/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation135/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation135/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation135/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation135/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation135/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/occupation143/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -12481,171 +8856,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation148/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation152/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation152/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation152/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation152/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation152/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation152/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation152/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation152/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation165/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation165/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation165/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation165/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation165/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation165/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation165/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation165/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation170/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation170/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation170/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation170/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation170/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation170/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation170/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation170/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/occupation176/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -12686,46 +8896,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation177/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation177/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation177/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation177/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation177/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation177/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation177/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation177/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location4/occupation204/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -12762,46 +8932,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location4/occupation204/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation206/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation206/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation206/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation206/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation206/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation206/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation206/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation206/commit35</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -13006,46 +9136,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation236/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation236/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation236/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation236/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation236/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation236/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation236/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location4/occupation236/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/jobcategory10/industory1</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -13131,11 +9221,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location99/jobcategory11/buscat12</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/jobcategory11/buscat14</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -13172,11 +9257,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location99/jobcategory13/industory2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/jobcategory13/buscat12</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -13316,301 +9396,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation101/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation103/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation104/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation104/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation104/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation104/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation104/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation104/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation104/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation104/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation106/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation106/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation106/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation106/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation106/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation106/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation106/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation106/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation107/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation107/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation107/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation107/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation107/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation107/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation107/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation107/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation113/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation117/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation117/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation117/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation117/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation117/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation117/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation117/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation117/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/occupation122/indcat6</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -13707,26 +9492,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location99/occupation122/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation125/indcat1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation125/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation125/industory3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation125/industory4</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -13921,46 +9686,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation135/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation135/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation135/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation135/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation135/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation135/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation135/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation135/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/occupation143/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -14041,171 +9766,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148/indcat2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation148/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation152/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation152/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation152/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation152/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation152/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation152/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation152/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation152/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation165/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation165/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation165/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation165/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation165/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation165/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation165/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation165/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation170/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation170/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation170/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation170/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation170/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation170/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation170/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation170/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/occupation176/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -14246,46 +9806,6 @@
         <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation177/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation177/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation177/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation177/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation177/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation177/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation177/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation177/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
         <loc>https://gaishiit.com/job/list/location99/occupation204/buscat13</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
@@ -14322,46 +9842,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location99/occupation204/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation206/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation206/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation206/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation206/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation206/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation206/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation206/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation206/commit35</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>
@@ -14562,46 +10042,6 @@
             </url>
     <url>
         <loc>https://gaishiit.com/job/list/location99/occupation234/commit35</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation236/buscat13</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation236/business109</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation236/commit3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation236/commit23</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation236/commit29</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation236/commit33</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation236/commit34</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.5</priority>
-            </url>
-    <url>
-        <loc>https://gaishiit.com/job/list/location99/occupation236/commit35</loc>
             <changefreq>daily</changefreq>
         <priority>0.5</priority>
             </url>

@@ -88,6 +88,7 @@
 
 					{{ html()->form('POST', '/agent/request/send')->attribute('name', 'reqform')->open() }}
 					{{ html()->hidden('comp_id', $comp->id) }}
+					{{ html()->hidden('int_type', '3') }}
 					@if(!empty($unit))
 						{{ html()->hidden('unit_id', $unit->id) }}
 					@endif

@@ -640,7 +640,7 @@ class InterviewController extends Controller
 
 		Mail::send(new AgentRequest($loginUser ,$comp ,$unit ,$job));
 
-		return redirect()->route('user.agent.request', ['comp_id' => $comp->id ,'unit_id' => $unit_id ,'job_id' => $job_id ] )->with('send_success', '送信完了しました。');
+		return redirect()->route('user.agent.request', ['comp_id' => $comp->id ,'unit_id' => $unit_id ,'job_id' => $job_id, 'int_type' => '3' ] )->with('send_success', '送信完了しました。');
 
 	}
 

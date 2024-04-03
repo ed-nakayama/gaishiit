@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+/* @font-face{ 
+  font-family: 'mplus-1p-regular';
+  src: url('http://mplus-webfonts.sourceforge.jp/mplus-1p-regular.eot');
+  src: url('http://mplus-webfonts.sourceforge.jp/mplus-1p-regular.eot?#iefix') format('embedded-opentype'),
+       url('http://mplus-webfonts.sourceforge.jp/mplus-1p-regular.woff') format('woff'),
+       url('http://mplus-webfonts.sourceforge.jp/mplus-1p-regular.ttf') format('truetype');
+} */
+
+* {
+  box-sizing:border-box;
+  
+}
+
+html {font-size:62.5%;}
+ol, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, h7, form, p { margin:0; padding:0; }
+img { border:0; }
+li { list-style-type:none; }
+
+body {
+  width:100%;
+  margin:0;
+  padding:0;
+  color: #484848;  
+  /* font-family: 'Hiragino Sans','ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN', 'M PLUS 1p' ,  "メイリオ", "ＭＳ Ｐゴシック", Meiryo, sans-serif; */
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  background-color: #FAFAFA;
+  letter-spacing: 0.05em;
+  -webkit-text-size-adjust: 100%;
+  font-family: 'Hiragino Sans','ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN', 'M PLUS 1p' ,  "メイリオ", "ＭＳ Ｐゴシック", Meiryo, sans-serif;
+}
+
+a { overflow:hidden; -webkit-transition:.2s linear; transition:.2s linear;}
+a:link		{color:#1e1e1e; text-decoration: none;}
+a:visited	{color:#1e1e1e;}
+a:hover		{opacity:0.8;}
+a:active	{opacity:0.8;}
+a img {-webkit-transition:.2s linear; transition:.2s linear;}
+a:hover img {opacity:0.8;}
+a.underline {text-decoration:underline;}
+a[href^="tel:"] {pointer-events: none;}
+
+button { overflow:hidden; -webkit-transition:.2s linear; transition:.2s linear;
+  font-family: 'Hiragino Sans','ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN', 'M PLUS 1p' ,  "メイリオ", "ＭＳ Ｐゴシック", Meiryo, sans-serif;
+}
+button:hover		{opacity:0.8;}
+
+
+img {
+  max-width:100%;
+  height:auto;
+  /* width: 100%; */
+  vertical-align:top;
+}
+
+img.sp_img {display: none !important;}
+
+figure {margin: 0;}
+
+.br-tab {display: none;}
+.br-sp {display: none;}
+
+/* clearfix */
+.clearfix:after {
+  visibility:hidden;
+  display:block;
+  font-size:0;
+  content:"";
+  clear:both;
+  height:0;
+}
+* html .clearfix { zoom: 1;} /* IE6 */
+*:first-child+html .clearfix { zoom: 1;} /* IE7 */
+
+textarea {line-height: 1.6;}
+
+@media (max-width: 1000px) {
+  .br-tab {display: block;}
+}
+
+@media (max-width: 820px) {
+  body {font-size: 1.6rem; line-height: 1.7;}
+
+  a[href^="tel:"] {pointer-events: auto;}
+
+  img.pc_img {display: none !important;}
+  img.sp_img {display: block !important;}
+
+  .br-pc {display: none;}
+  .br-sp {display: block;}
+}

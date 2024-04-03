@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
+use Spatie\Sitemap\SitemapIndex;
 
 use App\Models\Company;
 use App\Models\Unit;
@@ -39,6 +40,12 @@ class GenerateSitemap extends Command
      */
     protected $description = 'Generate the sitemap.';
 
+	private $sitemapIndex;
+	private $sitemap;
+	private $num = 0;
+	private $line_count = 0;
+	private $max_count = 10000;
+	
     /**
      * Execute the console command.
      *
@@ -46,11 +53,13 @@ class GenerateSitemap extends Command
      */
     public function handle()
     {
-        $sitemap = Sitemap::create('https://gaishiit.com/')
-			->add(Url::create('/')->setPriority(0.5))
+		$this->sitemapIndex = SitemapIndex::create();
+
+        $this->sitemap = Sitemap::create('https://gaishiit.com/')
+			->add(Url::create('/')->setPriority(1))
 			->add(Url::create('/corporate')->setPriority(0.5))
 			->add(Url::create('/privacy')->setPriority(0.5))
-			->add(Url::create('/kiyaku')->setPriority(0.5))
+//			->add(Url::create('/kiyaku')->setPriority(0.5))
 			->add(Url::create('/adminfaq')->setPriority(0.5))
 			->add(Url::create(route('user.register'))->setPriority(0.5))
 			->add(Url::create('/company')->setPriority(0.5))
@@ -58,410 +67,455 @@ class GenerateSitemap extends Command
 			->add(Url::create('/job')->setPriority(0.5))
 			->add(Url::create('/job/list')->setPriority(0.5));
 
-			$compList = Company::where('open_flag' ,'1')->get();
-			foreach ($compList as $comp) {
-				$sitemap->add(Url::create("/company/{$comp->id}")->setPriority(0.5));
-			}
+		// 企業
+		$compList = Company::where('open_flag' ,'1')->get();
+		foreach ($compList as $comp) {
+			$this->sitemap->add(Url::create("/company/{$comp->id}")->setPriority(0.5));
+		}
+
+		// 部署
+		$unitList = Unit::join('companies', 'units.company_id', '=', 'companies.id')
+			->selectRaw('units.*')
+			->where('units.open_flag' ,'1')
+			->where('companies.open_flag' ,'1')
+			->get();
+
+		foreach ($unitList as $unit) {
+			$this->sitemap->add(Url::create("/company/{$unit->company_id}/unit/{$unit->id}")->setPriority(0.5));
+		}
 
 
-			$unitList = Unit::join('companies', 'units.company_id', '=', 'companies.id')
-				->selectRaw('units.*')
-				->where('units.open_flag' ,'1')
-				->where('companies.open_flag' ,'1')
+		// イベント
+		$eventList = Event::join('companies', 'events.company_id', '=', 'companies.id')
+			->selectRaw('events.*')
+			->where('events.open_flag' ,'1')
+			->where('companies.open_flag' ,'1')
+			->get();
+
+		foreach ($eventList as $event) {
+			$this->sitemap->add(Url::create("/company/{$event->company_id}/unit/{$event->id}")->setPriority(0.5));
+		}
+
+		// 求人
+		$jobList = Job::join('companies', 'jobs.company_id', '=', 'companies.id')
+			->selectRaw('jobs.*')
+			->where('jobs.open_flag' ,'1')
+			->where('companies.open_flag' ,'1')
 				->get();
 
-			foreach ($unitList as $unit) {
-				$sitemap->add(Url::create("/company/{$unit->company_id}/unit/{$unit->id}")->setPriority(0.5));
+		foreach ($jobList as $job) {
+			$this->sitemap->add(Url::create("/company/{$job->company_id}/{$job->id}")->setPriority(0.5));
+		}
+
+		$this->sitemap->writeToFile(public_path('sitemap_detail.xml'));
+		$this->sitemapIndex->add('sitemap_detail.xml');
+
+
+
+		// 内部リンク
+		$locList = ConstLocation::where('del_flag','0')->get();
+		$jobcatList = JobCat::where('del_flag','0')->get();
+		$jobcatDetailList = JobCatDetail::where('del_flag','0')->get();
+		$indcatList = IndustoryCat::where('del_flag','0')->get();
+		$indcatDetailList = IndustoryCat::where('del_flag','0')->get();
+		$buscatList = BusinessCat::where('del_flag','0')->get();
+		$buscatDetailList = BusinessCatDetail::where('del_flag','0')->get();
+		$incomeList = Income::where('del_flag','0')->get();
+		$commitList = CommitCatDetail::where('del_flag','0')->get();
+
+
+		$this->sitemap = Sitemap::create();
+
+		// 1語パターン
+		foreach ($locList as $loc) {
+			$job = $this->findJob($loc->id);
+
+			if (!empty($job)) {
+				$this->add_url("/job/list/location{$loc->id}");
 			}
+		}
 
+		foreach ($jobcatList as $cat) {
+			$job = $this->findJob(null, $cat->id);
 
-			$eventList = Event::join('companies', 'events.company_id', '=', 'companies.id')
-				->selectRaw('events.*')
-				->where('events.open_flag' ,'1')
-				->where('companies.open_flag' ,'1')
-				->get();
-
-			foreach ($eventList as $event) {
-				$sitemap->add(Url::create("/company/{$event->company_id}/unit/{$event->id}")->setPriority(0.5));
+			if (!empty($job)) {
+				$this->add_url("/job/list/jobcategory{$cat->id}");
 			}
+		}
 
+		foreach ($jobcatDetailList as $cat) {
+			$job = $this->findJob(null, null, $cat->id);
 
-			$jobList = Job::join('companies', 'jobs.company_id', '=', 'companies.id')
-				->selectRaw('jobs.*')
-				->where('jobs.open_flag' ,'1')
-				->where('companies.open_flag' ,'1')
-				->get();
-
-			foreach ($jobList as $job) {
-				$sitemap->add(Url::create("/company/{$job->company_id}/{$job->id}")->setPriority(0.5));
+			if (!empty($job)) {
+				$this->add_url("/job/list/occupation{$cat->id}");
 			}
+		}
 
+		foreach ($indcatList as $cat) {
+			$job = $this->findJob(null, null, null, $cat->id);
 
-			$locList = ConstLocation::where('del_flag','0')->get();
-			$jobcatList = JobCat::where('del_flag','0')->get();
-			$jobcatDetailList = JobCatDetail::where('del_flag','0')->get();
-			$indcatList = IndustoryCat::where('del_flag','0')->get();
-			$indcatDetailList = IndustoryCat::where('del_flag','0')->get();
-			$buscatList = BusinessCat::where('del_flag','0')->get();
-			$buscatDetailList = BusinessCatDetail::where('del_flag','0')->get();
-			$incomeList = Income::where('del_flag','0')->get();
-			$commitList = CommitCatDetail::where('del_flag','0')->get();
-
-
-			// 1語パターン
-			foreach ($locList as $loc) {
-				$job = $this->findJob($loc->id);
-
-				if (!empty($job)) {
-					$sitemap->add(Url::create("/job/list/location{$loc->id}")->setPriority(0.5));
-				}
+			if (!empty($job)) {
+				$this->add_url("/job/list/indcat{$cat->id}");
 			}
+		}
+
+		foreach ($indcatDetailList as $cat) {
+			$job = $this->findJob(null, null, null, null, $cat->id);
+
+			if (!empty($job)) {
+				$this->add_url("/job/list/industory{$cat->id}");
+			}
+		}
+
+		foreach ($buscatList as $cat) {
+			$job = $this->findJob(null, null, null, null, null, $cat->id);
+
+			if (!empty($job)) {
+				$this->add_url("/job/list/buscat{$cat->id}");
+			}
+		}
+
+		foreach ($buscatDetailList as $cat) {
+			$job = $this->findJob(null, null, null, null, null, null, $cat->id);
+
+			if (!empty($job)) {
+				$this->add_url("/job/list/business{$cat->id}");
+			}
+		}
+
+		foreach ($commitList as $commit) {
+			$job = $this->findJob(null, null, null, null, null, null, null, $commit->id);
+
+			if (!empty($job)) {
+				$this->add_url("/job/list/commit{$commit->id}");
+			}
+		}
+
+		foreach ($incomeList as $income) {
+			$job = $this->findJob(null, null, null, null, null, null, null, null, $income->id);
+
+			if (!empty($job)) {
+				$this->add_url("/job/list/income{$income->id}");
+			}
+		}
+
+
+		// ２語パターン
+		foreach ($locList as $param1) {
 			foreach ($jobcatList as $cat) {
-				$job = $this->findJob(null, $cat->id);
+				$job = $this->findJob($param1->id, $cat->id);
 
 				if (!empty($job)) {
-					$sitemap->add(Url::create("/job/list/jobcategory{$cat->id}")->setPriority(0.5));
+					$this->add_url("/job/list/location{$param1->id}/jobcategory{$cat->id}");
 				}
 			}
 
 			foreach ($jobcatDetailList as $cat) {
-				$job = $this->findJob(null, null, $cat->id);
+				$job = $this->findJob($param1->id, null, $cat->id);
 
 				if (!empty($job)) {
-					$sitemap->add(Url::create("/job/list/occupation{$cat->id}")->setPriority(0.5));
+					$this->add_url("/job/list/location{$param1->id}/occupation{$cat->id}");
 				}
 			}
 
 			foreach ($indcatList as $cat) {
-				$job = $this->findJob(null, null, null, $cat->id);
+				$job = $this->findJob($param1->id, null, null, $cat->id);
 
 				if (!empty($job)) {
-					$sitemap->add(Url::create("/job/list/indcat{$cat->id}")->setPriority(0.5));
+					$this->add_url("/job/list/location{$param1->id}/indcat{$cat->id}");
 				}
 			}
 
 			foreach ($indcatDetailList as $cat) {
-				$job = $this->findJob(null, null, null, null, $cat->id);
+				$job = $this->findJob($param1->id, null, null, null, $cat->id);
 
 				if (!empty($job)) {
-					$sitemap->add(Url::create("/job/list/industory{$cat->id}")->setPriority(0.5));
+					$this->add_url("/job/list/location{$param1->id}/industory{$cat->id}");
 				}
 			}
 
 			foreach ($buscatList as $cat) {
-				$job = $this->findJob(null, null, null, null, null, $cat->id);
+				$job = $this->findJob($param1->id, null, null, null, null, $cat->id);
 
 				if (!empty($job)) {
-					$sitemap->add(Url::create("/job/list/buscat{$cat->id}")->setPriority(0.5));
+					$this->add_url("/job/list/location{$param1->id}/buscat{$cat->id}");
 				}
 			}
 
 			foreach ($buscatDetailList as $cat) {
-				$job = $this->findJob(null, null, null, null, null, null, $cat->id);
+				$job = $this->findJob($param1->id, null, null, null, null, null, $cat->id);
 
 				if (!empty($job)) {
-					$sitemap->add(Url::create("/job/list/business{$cat->id}")->setPriority(0.5));
+					$this->add_url("/job/list/location{$param1->id}/business{$cat->id}");
 				}
 			}
 
-			foreach ($commitList as $commit) {
-				$job = $this->findJob(null, null, null, null, null, null, null, $commit->id);
-
-				if (!empty($job)) {
-					$sitemap->add(Url::create("/job/list/commit{$commit->id}")->setPriority(0.5));
-				}
-			}
-
-			foreach ($incomeList as $income) {
-				$job = $this->findJob(null, null, null, null, null, null, null, null, $income->id);
-
-				if (!empty($job)) {
-					$sitemap->add(Url::create("/job/list/income{$income->id}")->setPriority(0.5));
-				}
-			}
-
-
-			// ２語パターン
-			foreach ($locList as $param1) {
-				foreach ($jobcatList as $cat) {
-					$job = $this->findJob($param1->id, $cat->id);
+			foreach ($commitList as $cat) {
+				if ($commit->index_flag == '1') {
+					$job = $this->findJob($param1->id, null, null, null, null, null, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/location{$param1->id}/jobcategory{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/commit{$cat->id}");
 					}
 				}
+			}
 
-				foreach ($jobcatDetailList as $cat) {
-					$job = $this->findJob($param1->id, null, $cat->id);
+			foreach ($incomeList as $cat) {
+				$job = $this->findJob($param1->id, null, null, null, null, null, null, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/location{$param1->id}/income{$cat->id}");
+				}
+			}
+		}
+
+
+		foreach ($jobcatList as $param1) {
+			foreach ($indcatList as $cat) {
+				$job = $this->findJob(null, $param1->id, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/jobcategory{$param1->id}/indcat{$cat->id}");
+				}
+			}
+
+			foreach ($indcatDetailList as $cat) {
+				$job = $this->findJob(null, $param1->id, null, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/jobcategory{$param1->id}/industory{$cat->id}");
+				}
+			}
+
+			foreach ($buscatList as $cat) {
+				$job = $this->findJob(null, $param1->id, null, null, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/jobcategory{$param1->id}/buscat{$cat->id}");
+				}
+			}
+
+			foreach ($buscatDetailList as $cat) {
+				$job = $this->findJob(null, $param1->id, null, null, null, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/jobcategory{$param1->id}/business{$cat->id}");
+				}
+			}
+
+			foreach ($commitList as $cat) {
+				if ($commit->index_flag == '1') {
+					$job = $this->findJob(null, $param1->id, null, null, null, null, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/location{$param1->id}/occupation{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/jobcategory{$param1->id}/commit{$cat->id}");
 					}
 				}
+			}
 
+			foreach ($incomeList as $cat) {
+				$job = $this->findJob(null, $param1->id, null, null, null, null, null, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/jobcategory{$param1->id}/income{$cat->id}");
+				}
+			}
+		}
+
+
+		foreach ($jobcatDetailList as $param1) {
+			foreach ($indcatList as $cat) {
+				$job = $this->findJob(null, null, $param1->id, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/occupation{$param1->id}/indcat{$cat->id}");
+				}
+			}
+
+			foreach ($indcatDetailList as $cat) {
+				$job = $this->findJob(null, null, $param1->id, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/occupation{$param1->id}/industory{$cat->id}");
+				}
+			}
+
+			foreach ($buscatList as $cat) {
+				$job = $this->findJob(null, null, $param1->id, null, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/occupation{$param1->id}/buscat{$cat->id}");
+				}
+			}
+
+			foreach ($buscatDetailList as $cat) {
+				$job = $this->findJob(null, null, $param1->id, null, null, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/occupation{$param1->id}/business{$cat->id}");
+				}
+			}
+
+			foreach ($commitList as $cat) {
+				if ($commit->index_flag == '1') {
+					$job = $this->findJob(null, null, $param1->id, null, null, null, null, $cat->id);
+
+					if (!empty($job)) {
+						$this->add_url("/job/list/occupation{$param1->id}/commit{$cat->id}");
+					}
+				}
+			}
+
+			foreach ($incomeList as $cat) {
+				$job = $this->findJob(null, null, $param1->id, null, null, null, null, null, $cat->id);
+
+				if (!empty($job)) {
+					$this->add_url("/job/list/occupation{$param1->id}/income{$cat->id}");
+				}
+			}
+		}
+
+
+		// ３語パターン
+		foreach ($locList as $param1) {
+			foreach ($jobcatList as $param2) {
 				foreach ($indcatList as $cat) {
-					$job = $this->findJob($param1->id, null, null, $cat->id);
+					$job = $this->findJob($param1->id, $param2->id, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/location{$param1->id}/indcat{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/jobcategory{$param2->id}/indcat{$cat->id}");
 					}
 				}
 
 				foreach ($indcatDetailList as $cat) {
-					$job = $this->findJob($param1->id, null, null, null, $cat->id);
+					$job = $this->findJob($param1->id, $param2->id, null, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/location{$param1->id}/industory{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/jobcategory{$param2->id}/industory{$cat->id}");
 					}
 				}
 
 				foreach ($buscatList as $cat) {
-					$job = $this->findJob($param1->id, null, null, null, null, $cat->id);
+					$job = $this->findJob($param1->id, $param2->id, null, null, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/location{$param1->id}/buscat{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/jobcategory{$param2->id}/buscat{$cat->id}");
 					}
 				}
 
 				foreach ($buscatDetailList as $cat) {
-					$job = $this->findJob($param1->id, null, null, null, null, null, $cat->id);
+					$job = $this->findJob($param1->id, $param2->id, null, null, null, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/location{$param1->id}/business{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/jobcategory{$param2->id}/business{$cat->id}");
 					}
 				}
 
 				foreach ($commitList as $cat) {
 					if ($commit->index_flag == '1') {
-						$job = $this->findJob($param1->id, null, null, null, null, null, null, $cat->id);
+						$job = $this->findJob($param1->id, $param2->id, null, null, null, null, null, $cat->id);
 
 						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/commit{$cat->id}")->setPriority(0.5));
+							$this->add_url("/job/list/location{$param1->id}/jobcategory{$param2->id}/commit{$cat->id}");
 						}
 					}
 				}
 
 				foreach ($incomeList as $cat) {
-					$job = $this->findJob($param1->id, null, null, null, null, null, null, null, $cat->id);
+					$job = $this->findJob($param1->id, $param2->id, null, null, null, null, null, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/location{$param1->id}/income{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/jobcategory{$param2->id}/income{$cat->id}");
 					}
 				}
 			}
 
-
-			foreach ($jobcatList as $param1) {
+			foreach ($jobcatDetailList as $param2) {
 				foreach ($indcatList as $cat) {
-					$job = $this->findJob(null, $param1->id, $cat->id);
+					$job = $this->findJob($param1->id, null, $param2->id, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/jobcategory{$param1->id}/indcat{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/occupation{$param2->id}/indcat{$cat->id}");
 					}
 				}
 
 				foreach ($indcatDetailList as $cat) {
-					$job = $this->findJob(null, $param1->id, null, $cat->id);
+					$job = $this->findJob($param1->id, null, $param2->id, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/jobcategory{$param1->id}/industory{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/occupation{$param2->id}/industory{$cat->id}");
 					}
 				}
 
 				foreach ($buscatList as $cat) {
-					$sitemap->add(Url::create("/job/list/jobcategory{$param1->id}/buscat{$cat->id}")->setPriority(0.5));
+					$job = $this->findJob($param1->id, null, $param2->id, null, null, $cat->id);
+
+					if (!empty($job)) {
+						$this->add_url("/job/list/location{$param1->id}/occupation{$param2->id}/buscat{$cat->id}");
+					}
 				}
 
 				foreach ($buscatDetailList as $cat) {
-					$job = $this->findJob(null, $param1->id, null, null, $cat->id);
+					$job = $this->findJob($param1->id, null, $param2->id, null, null, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/jobcategory{$param1->id}/business{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/occupation{$param2->id}/business{$cat->id}");
 					}
 				}
 
 				foreach ($commitList as $cat) {
 					if ($commit->index_flag == '1') {
-						$job = $this->findJob(null, $param1->id, null, null, null, $cat->id);
+						$job = $this->findJob($param1->id, null, $param2->id, null, null, null, null, $cat->id);
 
 						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/jobcategory{$param1->id}/commit{$cat->id}")->setPriority(0.5));
+							$this->add_url("/job/list/location{$param1->id}/occupation{$param2->id}/commit{$cat->id}");
 						}
 					}
 				}
 
 				foreach ($incomeList as $cat) {
-					$job = $this->findJob(null, $param1->id, null, null, null, null, $cat->id);
+					$job = $this->findJob($param1->id, null, $param2->id, null, null, null, null, null, $cat->id);
 
 					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/jobcategory{$param1->id}/income{$cat->id}")->setPriority(0.5));
+						$this->add_url("/job/list/location{$param1->id}/occupation{$param2->id}/income{$cat->id}");
 					}
 				}
 			}
+		}
 
 
-			foreach ($jobcatDetailList as $param1) {
-				foreach ($indcatList as $cat) {
-					$job = $this->findJob(null, null, $param1->id, $cat->id);
+		if ($this->line_count > 0) {
+			$fileName = "sitemap_list{$this->num}.xml";
+			
+			$this->sitemap->writeToFile(public_path($fileName));
+			$this->sitemapIndex->add($fileName);
+		}
 
-					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/occupation{$param1->id}/indcat{$cat->id}")->setPriority(0.5));
-					}
-				}
-
-				foreach ($indcatDetailList as $cat) {
-					$job = $this->findJob(null, null, $param1->id, null, $cat->id);
-
-					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/occupation{$param1->id}/industory{$cat->id}")->setPriority(0.5));
-					}
-				}
-
-				foreach ($buscatList as $cat) {
-					$job = $this->findJob(null, null, $param1->id, null, null, $cat->id);
-
-					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/occupation{$param1->id}/buscat{$cat->id}")->setPriority(0.5));
-					}
-				}
-
-				foreach ($buscatDetailList as $cat) {
-					$job = $this->findJob(null, null, $param1->id, null, null, null, $cat->id);
-
-					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/occupation{$param1->id}/business{$cat->id}")->setPriority(0.5));
-					}
-				}
-
-				foreach ($commitList as $cat) {
-					if ($commit->index_flag == '1') {
-						$job = $this->findJob(null, null, $param1->id, null, null, null, null, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/occupation{$param1->id}/commit{$cat->id}")->setPriority(0.5));
-						}
-					}
-				}
-
-				foreach ($incomeList as $cat) {
-					$job = $this->findJob(null, null, $param1->id, null, null, null, null, null, $cat->id);
-
-					if (!empty($job)) {
-						$sitemap->add(Url::create("/job/list/occupation{$param1->id}/income{$cat->id}")->setPriority(0.5));
-					}
-				}
-			}
+		$this->sitemapIndex->writeToFile(public_path('sitemap.xml'));
+    }
 
 
-			// ３語パターン
-			foreach ($locList as $param1) {
-				foreach ($jobcatList as $param2) {
-					foreach ($indcatList as $cat) {
-						$job = $this->findJob($param1->id,$param2->id, $cat->id);
+	/********************************************
+	 * URL追加
+	 ********************************************/
+    private function add_url($url)
+    {
+		$this->sitemap->add(Url::create($url)->setPriority(0.5));
 
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/jobcategory{$param2->id}/indcat{$cat->id}")->setPriority(0.5));
-						}
-					}
+        if ($this->line_count >= $this->max_count) {
 
-					foreach ($indcatDetailList as $cat) {
-						$job = $this->findJob($param1->id,$param2->id, null, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/jobcategory{$param2->id}/industory{$cat->id}")->setPriority(0.5));
-						}
-					}
-
-					foreach ($buscatList as $cat) {
-						$job = $this->findJob($param1->id,$param2->id, null, null, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/jobcategory{$param2->id}/buscat{$cat->id}")->setPriority(0.5));
-						}
-					}
-
-					foreach ($buscatDetailList as $cat) {
-						$job = $this->findJob($param1->id,$param2->id, null, null, null, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/jobcategory{$param2->id}/business{$cat->id}")->setPriority(0.5));
-						}
-					}
-
-					foreach ($commitList as $cat) {
-						if ($commit->index_flag == '1') {
-							$job = $this->findJob($param1->id,$param2->id, null, null, null, null, $cat->id);
-
-							if (!empty($job)) {
-								$sitemap->add(Url::create("/job/list/location{$param1->id}/jobcategory{$param2->id}/commit{$cat->id}")->setPriority(0.5));
-							}
-						}
-					}
-
-					foreach ($incomeList as $cat) {
-						$job = $this->findJob($param1->id,$param2->id, null, null, null, null, null, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/jobcategory{$param2->id}/income{$cat->id}")->setPriority(0.5));
-						}
-					}
-				}
-
-				foreach ($jobcatDetailList as $param2) {
-					foreach ($indcatList as $cat) {
-						$job = $this->findJob($param1->id, null, $param2->id, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/occupation{$param2->id}/indcat{$cat->id}")->setPriority(0.5));
-						}
-					}
-
-					foreach ($indcatDetailList as $cat) {
-						$job = $this->findJob($param1->id, null, $param2->id, null, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/occupation{$param2->id}/industory{$cat->id}")->setPriority(0.5));
-						}
-					}
-
-					foreach ($buscatList as $cat) {
-						$job = $this->findJob($param1->id, null, $param2->id, null, null, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/occupation{$param2->id}/buscat{$cat->id}")->setPriority(0.5));
-						}
-					}
-
-					foreach ($buscatDetailList as $cat) {
-						$job = $this->findJob($param1->id, null, $param2->id, null, null, null, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/occupation{$param2->id}/business{$cat->id}")->setPriority(0.5));
-						}
-					}
-
-					foreach ($commitList as $cat) {
-						if ($commit->index_flag == '1') {
-							$job = $this->findJob($param1->id, null, $param2->id, null, null, null, null, $cat->id);
-
-							if (!empty($job)) {
-								$sitemap->add(Url::create("/job/list/location{$param1->id}/occupation{$param2->id}/commit{$cat->id}")->setPriority(0.5));
-							}
-						}
-					}
-
-					foreach ($incomeList as $cat) {
-						$job = $this->findJob($param1->id, null, $param2->id, null, null, null, null, null, $cat->id);
-
-						if (!empty($job)) {
-							$sitemap->add(Url::create("/job/list/location{$param1->id}/occupation{$param2->id}/income{$cat->id}")->setPriority(0.5));
-						}
-					}
-				}
-			}
-
-
-		$sitemap->writeToFile(public_path('sitemap.xml'));
+			$fileName = "sitemap_list{$this->num}.xml";
+			
+			$this->sitemap->writeToFile(public_path($fileName));
+			$this->sitemapIndex->add($fileName);
+			
+			$this->num++;
+			$this->line_count = 0;
+			
+			$this->sitemap = new Sitemap();
+        } else {
+			$this->line_count++;
+        }
     }
 
 
