@@ -62,7 +62,6 @@
 
 </style>
 
-@isset($randomJobList[0])
 
 	<div class="job">
 		<div class="inner">
@@ -71,6 +70,7 @@
 
 				<div class="job-item" style="width:100%;">
 					<div class="inner">
+@if (!empty($randomJobList[0]))
 						@foreach ($randomJobList as $job)
 							@if ($loop->index == 0)
 								@include ('user/partials/job_format_header')
@@ -82,14 +82,15 @@
 								<hr>
 							@endif
 						@endforeach
+@else
+						<p style="text-align:center;">現在募集中の求人はございません</p>
+@endif
 					</div>
 				</div>
-
 			</ul>
 		</div>
 	</div>
 
-@endisset
 
 {{-- END 求人一覧 --}}
 

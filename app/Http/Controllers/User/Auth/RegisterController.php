@@ -131,7 +131,6 @@ class RegisterController extends Controller
 ********************************************************/
     public function postRegister(Request $request)
     {
-dd($request);
 		$validatedData = $request->validate([
 	    	'business_cats'    => ['required'],
 	    	'job_cat_details'  => ['required'],
