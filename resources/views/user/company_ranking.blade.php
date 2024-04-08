@@ -7,7 +7,7 @@
 
 @section('addheader')
 	<title>企業の評判・クチコミランキング｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="外資IT企業のクチコミ総合評価ランキングです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。採用が決まるまで完全無料、興味のある企業の担当者とは直接コミュニケーションも可能です。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。採用が決まるまで完全無料、興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<meta name="description" content="外資IT企業のクチコミ総合評価ランキングです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>

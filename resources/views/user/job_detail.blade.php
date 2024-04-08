@@ -7,7 +7,7 @@
 
 @section('addheader')
 	<title>{{ $job->name }}-{{ $comp->name }}｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="{{ $comp->name }}の{{ $job->name }}の求人です。募集要項には給与・雇用形態・勤務地・給与・勤務時間といった基本的な情報から、休暇制度・待遇・福利厚生・リモートワークの有無などの詳細情報も記載しております。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。採用が決まるまで完全無料、興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<meta name="description" content="{{ $comp->name }}の{{ $job->name }}の求人です。募集要項には給与・雇用形態・勤務地・給与・勤務時間といった基本的な情報から、休暇制度・待遇・福利厚生・リモートワークの有無などの詳細情報も記載しております。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
 @endsection
 

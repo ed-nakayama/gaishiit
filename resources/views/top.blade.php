@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。採用が決まるまで完全無料、興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<meta name="description" content="外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
     <link rel="canonical" href="{{ url()->current() }}" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
