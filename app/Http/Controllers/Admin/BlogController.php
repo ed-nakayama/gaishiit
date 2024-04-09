@@ -151,4 +151,71 @@ class BlogController extends Controller
 	}
 
 
+
+
+/*************************************
+* カテゴリ一覧
+**************************************/
+	public function blogIndex()
+	{
+		$catList = BlogCat::get();
+    
+		return view('admin.blogcat_list' ,compact('catList'));
+	}
+
+
+	/*************************************
+	* インダストリデータ追加
+	**************************************/
+	public function blogCatAdd( Request $request ){
+
+
+		$validatedData = $request->validate([
+			'name'     => ['required', 'string', 'max:60'],
+		]);
+
+		$cat = new BlogCat();
+
+        $retCat = BlogCat::create([
+            'name' => $request->name,
+        ]);
+
+		return redirect('admin/blogcat');
+    }
+
+
+	/*************************************
+	* インダストリ保存
+	**************************************/
+	public function blogCatStore(Request $request)
+	{
+
+		$validatedData = $request->validate([
+			'name'     => ['required', 'string', 'max:60'],
+   		]);
+
+		$cat = BlogCat::find($request->cat_id);
+
+		$cat->name =  $request->name;
+
+		if (!empty($request->order_num)) {
+			$cat->order_num = $request->order_num;
+		} else {
+			$cat->order_num = null;
+		}
+		
+		if (!empty($request->del_flag)) {
+			$cat->del_flag = '1';
+		} else {
+			$cat->del_flag = '0';
+		}
+		
+		$cat->save();
+
+		return redirect('admin/blogcat');
+	}
+
+
+
+
 }

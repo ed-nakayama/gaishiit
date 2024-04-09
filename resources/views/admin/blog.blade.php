@@ -3,7 +3,7 @@
 @section('content')
 
 <head>
-	<title>>ブログ｜{{ config('app.name', 'Laravel') }}</title>
+	<title>ブログ｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
 	<div class="mainContentsInner-oneColumn">

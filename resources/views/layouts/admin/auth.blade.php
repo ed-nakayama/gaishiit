@@ -14,6 +14,14 @@
 <body class="bg-admin">
     
     <header class="header">
+			@if ( config('app.env') == 'Staging')
+				<center>
+				<div style="background-color:blue;color:white;font-weight:bolder">
+					{{ config('app.env') }}
+				</div>
+				</center>
+			@endif
+
         <div class="headInner">
             <div class="headMain">
                 <h1 class="logo"><a href="/admin/mypage"><img src="/images/logo_on_admin.png" width="150"></a></h1>
@@ -36,6 +44,7 @@
                         <li><a href="/admin/buscatdetail">業種詳細管理</a></li>
                         <li><a href="/admin/jobcat">職種管理</a></li>
                         <li><a href="/admin/jobcatdetail">職種詳細管理</a></li>
+                        <li><a href="/admin/blogcat">ブログカテゴリ管理</a></li>
                         <li><a href="/admin/blog/list">ブログ管理</a></li>
                     </ul><br>
                     <ul class="menu">　　　　　　　

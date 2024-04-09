@@ -256,3 +256,8 @@ Route::post('/blog',        'BlogController@store');
 Route::get ('/blog/change', 'BlogController@edit')->name('blog.change');
 Route::post('/blog/change', 'BlogController@change');
 
+Route::get ('/blogcat',       'BlogController@blogIndex');
+Route::get ('/blogcat/add',   'BlogController@blogCatAdd');
+Route::post('/blogcat/add',   'BlogController@blogCatAdd');
+Route::get ('/blogcat/store', 'BlogController@blogCatStore');
+Route::post('/blogcat/store', 'BlogController@blogCatStore');
