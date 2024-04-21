@@ -6,8 +6,14 @@
 
 
 @section('addheader')
-	<title>企業を探す｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="クチコミのある外資系IT企業の一覧ページです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<title>企業を探す｜{{ config('app.title') }}</title>
+	<meta name="description" content="クチコミのある外資系IT企業の一覧ページです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="企業を探す｜{{ config('app.title') }}" />
+	<meta property="og:description" content="クチコミのある外資系IT企業の一覧ページです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
 	<link href="{{ asset('css/seek.css') }}" rel="stylesheet">
 @endsection
 

@@ -6,8 +6,14 @@
 
 
 @section('addheader')
-	<title>{{ $comp->name }}の求人一覧｜外資IT企業のクチコミ・評価・求人なら外資IT.com</title>
-	<meta name="description" content="">
+	<title>{{ $comp->name }}の求人一覧｜{{ config('app.title') }}</title>
+	<meta name="description" content="{{ $comp->name }}の求人一覧｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="{{ $comp->name }}の求人一覧｜{{ config('app.title') }}" />
+	<meta property="og:description" content="{{ $comp->name }}の求人一覧｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/job.css') }}" rel="stylesheet">
 @endsection
 
@@ -34,11 +40,9 @@
 				</div>
 @else
 				<div class="item info job">
-					<ul>
-						{{-- ジョブフォーマット $jobList --}}
-							@include ('user/partials/job_format_loop')
-						{{-- END ジョブフォーマット --}}
-					</ul>
+					{{-- ジョブフォーマット $jobList --}}
+						@include ('user/partials/job_format_loop')
+					{{-- END ジョブフォーマット --}}
 				</div>
 				
 				<div class="pager">

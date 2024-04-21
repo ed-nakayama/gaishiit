@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>お気に入り求人｜{{ config('app.name', 'Laravel') }}</title>
+	<title>お気に入り求人｜{{ config('app.title') }}</title>
+	<meta name="description" content="お気に入り求人｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="お気に入り求人｜{{ config('app.title') }}" />
+	<meta property="og:description" content="お気に入り求人｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/job.css') }}" rel="stylesheet">
 @endsection
 
@@ -26,11 +33,9 @@
 				</div>
 			@else
 				<div class="item info job">
-					<ul>
-						{{-- ジョブフォーマット $jobList --}}
-							@include ('user/partials/job_format_loop')
-						{{-- END ジョブフォーマット --}}
-					</ul>
+					{{-- ジョブフォーマット $jobList --}}
+						@include ('user/partials/job_format_loop')
+					{{-- END ジョブフォーマット --}}
 				</div>
 
 				<div class="pager">

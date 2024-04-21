@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Blog;
+
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
@@ -33,8 +35,15 @@ class LoginController extends Controller
 	 ***********************************/
     public function top()
     {
-// T.N       return view('user.auth.login');
-        return view('top');
+		$blogList = Blog::where('open_flag' , '1')
+			->orderBy('open_date', 'DESC')
+			->orderBy('updated_at', 'DESC')
+			->limit(3)
+			->get();
+
+        return view('top' ,compact(
+			'blogList',
+			));
     }
 
 

@@ -25,7 +25,7 @@
                         @if ($page == $paginator->currentPage())
                             <li class="page__numbers active"><span>{{ $page }}</span></li>
                         @else
-                            <li class="page__numbers"><a href="{{ $url }}" style="display: block;">{{ $page }}</a></li>
+                            <li class="page__numbers"><a href="{{ $url }}" style="display:inline-block; position:rerative; margin:-10px; padding:10px;">{{ $page }}</a></li>
                         @endif
                     @endforeach
                 @endif

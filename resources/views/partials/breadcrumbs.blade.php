@@ -3,13 +3,21 @@
 <style>
     .breadcrumb {
 		list-style: none;
+		background-color:#FAFAFA;
     }
 
-    .breadcrumb-item {
+    .breadcrumb-item+.breadcrumb-item::before {
     	display: inline;/*横に並ぶように*/
         list-style: none;
         margin-left: 12px;
+		content: '';
     }
+
+    .breadcrumb li {
+		display: inline;
+		list-style: none;
+	}
+
     .breadcrumb li:after {
     /* >を表示*/
     font-family: "Font Awesome 5 Free";
@@ -17,6 +25,10 @@
     font-weight: 900;
     padding-left: 5px;
     /*color: gray;*/
+	}
+
+	.breadcrumb li:last-child:before {
+	    content: '';
 	}
 
 	.breadcrumb li:last-child:after {
@@ -31,6 +43,7 @@
 	.breadcrumb li a:hover {
 	    text-decoration: underline;
 	}
+
 
 </style>
 

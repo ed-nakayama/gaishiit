@@ -233,12 +233,12 @@ Route::post('/adminfaq/store', 'FAQController@admin_faq_store');
 
 
 // ¥Ö¥í¥°
-Route::get ('/blog',   'BlogController@index');
+Route::get ('/blog',   'BlogController@index')->name('blog');
 
-Route::get ('/blog/{cat}',   'BlogController@category');
+Route::get ('/blog/{cat}',   'BlogController@category')->name('blog.cat');
 Route::post('/blog/{cat}',   'BlogController@category');
 
-Route::get ('/blog/{cat}/{detail}',   'BlogController@detail');
+Route::get ('/blog/{cat}/{detail}',   'BlogController@detail')->name('blog.detail');
 Route::post('/blog/{cat}/{detail}',   'BlogController@detail');
 
 

@@ -6,8 +6,14 @@
 
 
 @section('addheader')
-    <title>外資IT企業の口コミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="外資IT.comは外資系IT企業に特化した口コミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+    <title>基本情報（登録完了）| {{ config('app.title') }}</title>
+	<meta name="description" content="基本情報（登録完了）| {{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="基本情報（登録完了）｜{{ config('app.title') }}" />
+	<meta property="og:description" content="基本情報（登録完了）｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/career0.css') }}" rel="stylesheet">
 @endsection
 

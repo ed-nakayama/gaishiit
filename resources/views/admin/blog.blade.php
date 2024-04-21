@@ -3,7 +3,7 @@
 @section('content')
 
 <head>
-	<title>ブログ｜{{ config('app.name', 'Laravel') }}</title>
+	<title>ブログ管理</title>
 </head>
 
 	<div class="mainContentsInner-oneColumn">
@@ -32,6 +32,10 @@
 							</div>
 						</li>
 						<li>
+							<label><span>公開日</span>
+							<input type="date" name="open_date" value="{{ old('open_date' ,$blog->open_date) }}" style="border: solid 1px"></label>
+						</li>
+						<li>
 							<label id="del_lavel" for=""><span>削除する</span><input type="checkbox"  name="del_flag" id="del_flag" value="1"  onchange="clearMsg()"/></label>
 						</li>
 							<a href="javascript:changeform.submit()" class="squareBtn btn-short">保存</a>
@@ -44,10 +48,11 @@
 					<div class="btnContainer">
 						{{-- 更新成功メッセージ --}}
 						@if (session('option_success'))
-							<div id="success1"  class="alert alert-success"  style="color:#0000ff;text-align: center;">
-								{{session('option_success')}}
-							</div>
+							<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">{{session('option_success')}}</p>
 						@endif
+						@error('open_date')
+							<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+						@enderror
 					</div><!-- /.btn-container -->
                             
 				</div><!-- /.secContentsInner -->
@@ -83,13 +88,32 @@
 
 						<div class="formContainer mg-ajust-midashi">
 							<div class="item-name">
+								<p>meta description</p>
+							</div><!-- /.item-name -->
+							<div class="item-input">
+								<textarea class="form-mt" name="meta_desc" id="" cols="30" rows="2"  placeholder="[記事ディスクリプション文]">{{ old('meta_desc' ,$blog->meta_desc) }}</textarea>
+							</div><!-- /.item-input -->
+						</div>
+						<div class="formContainer mg-ajust-midashi">
+							@error('meta_desc')
+								<div class="item-name">
+									<p></p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								</div><!-- /.item-input -->
+							@enderror
+						</div>
+
+						<div class="formContainer mg-ajust-midashi">
+							<div class="item-name">
 								<p>カテゴリ</p>
 							</div><!-- /.item-name -->
 							<div class="item-input">
 								<div class="selectWrap">
 									<select name="cat_id"  class="select-no" onchange="this.form.submit()">
 										@foreach ($blogCatList as $cat)
-											<option value="{{ $cat->id }}" @if ( $blog->cat_id == $cat->id)  selected @endif>{{ $cat->name }}</option>
+											<option value="{{ $cat->id }}" @if (old('meta_desc' ,$blog->cat_id) == $cat->id)  selected @endif>{{ $cat->name }}</option>
 										@endforeach
 									</select>
 								</div><!-- /.selectWrap -->
@@ -105,25 +129,6 @@
 								</div><!-- /.item-input -->
 							@enderror
 						</div>
-								
-						<div class="formContainer al-item-none">
-							<div class="item-name">
-								<p>内容</p>
-							</div><!-- /.item-name -->
-							<div class="item-input">
-								<textarea class="form-mt" name="content" id="" cols="30" rows="30" placeholder="本文" >{{ old('content' ,$blog->content) }}</textarea>
-							</div><!-- /.item-input -->
-						</div>
-						<div class="formContainer mg-ajust-midashi">
-							@error('content')
-								<div class="item-name">
-									<p></p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-								</div><!-- /.item-input -->
-							@enderror
-						</div>
 
 						<div class="formContainer mg-ajust-midashi">
 							<div class="item-name">
@@ -131,17 +136,17 @@
 							</div><!-- /.item-name -->
 							<div class="item-input">
 								@if ( isset($blog->image) )
-									<img src="{{ $blog->image }}" class="css-class" alt="image" width="250">
+									<img src="{{ $blog->image }}" class="css-class" alt="" width="250">
 								@endif
 {{--
 								@if ( isset($blog->thumb) )
-									<img src="{{ $blog->thumb }}" class="css-class" alt="image">
+									<img src="{{ $blog->thumb }}" class="css-class" alt="">
 									<br>サムネイル
 								@endif
 --}}
 							</div><!-- /.item-input -->
 							<div class="item-input">
-								{{ Form::file('image', ['class'=>'form-control']) }}
+								{{ html()->file('image') }}
 							</div>
 							<div class="item-input">
 								<p> ※jpg、png、500KB以内</p>
@@ -160,7 +165,91 @@
 							</div>
 						</div>
 
+						<div class="formContainer al-item-none">
+							<div class="item-name">
+								<p>イントロ</p>
+							</div><!-- /.item-name -->
+							<div class="item-input">
+								<textarea class="form-mt" name="intro" id="" cols="30" rows="5" placeholder="イントロ" >{{ old('intro' ,$blog->intro) }}</textarea>
+							</div><!-- /.item-input -->
+						</div>
+						<div class="formContainer mg-ajust-midashi">
+							@error('intro')
+								<div class="item-name">
+									<p></p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								</div><!-- /.item-input -->
+							@enderror
+						</div>
 
+						<div class="formContainer al-item-none">
+							<div class="item-name">
+								<p>目次</p>
+							</div><!-- /.item-name -->
+							<div class="item-input">
+								{!! e($blog->contents_table) !!}
+							</div><!-- /.item-input -->
+						</div>
+						<div class="formContainer mg-ajust-midashi">
+						</div>
+
+						<div class="formContainer mg-ajust-midashi">
+							<div class="item-name">
+								<p>監修者</p>
+							</div><!-- /.item-name -->
+							<div class="item-input">
+								<div class="selectWrap">
+									<select name="supervisor"  class="selectWrap">
+										@foreach ($superList as $super)
+											<option value="{{ $super->id }}" @if (old('supervisor' ,$blog->supervisor) == $super->id)  selected @endif>{{$super->name }}</option>
+										@endforeach
+									</select>
+								</div>
+							</div><!-- /.item-input -->
+						</div>
+						<div class="formContainer mg-ajust-midashi">
+						</div>
+
+						<div id="content_box">
+						@foreach ($blogContentList as $cont)
+							{{ html()->hidden('idList[]' ,$cont->id) }}
+							<div class="formContainer mg-ajust-midashi">
+								<div class="item-name">
+									<p>タグ</p>
+								</div><!-- /.item-name -->
+								<div class="selectWrap harf" style="width:120px;">
+									<select name="tag[]"  class="select-no">
+										<option value="0"></option>
+										<option value="2" @if ($cont->tag == '2')  selected @endif>見出し２</option>
+										<option value="3" @if ($cont->tag == '3')  selected @endif>見出し３</option>
+										<option value="4" @if ($cont->tag == '4')  selected @endif>見出し４</option>
+										<option value="5" @if ($cont->tag == '5')  selected @endif>表</option>
+										<option value="6" @if ($cont->tag == '6')  selected @endif>テキスト</option>
+									</select>
+								</div><!-- /.item-input -->
+
+								<div class="item-name">
+									<p>見出し</p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									<input type="text" name="sub_title[]" value="{{ $cont->sub_title }}">
+								</div><!-- /.item-input -->
+							</div>
+
+							<div class="formContainer al-item-none">
+								<div class="item-name">
+									<p>内容</p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									<textarea class="form-mt" name="content[]" id="" cols="30" rows="5" placeholder="本文" >{{ $cont->content }}</textarea>
+								</div><!-- /.item-input -->
+							</div>
+							<br>
+						@endforeach
+</div>
+	<a href="javascript:addForm()" class="squareBtn btn-short">項目追加</a>
 						<br>
 						<div class="btnContainer">
 							{{-- 更新成功メッセージ --}}
@@ -180,59 +269,48 @@
 
 <script>
 
-/////////////////////////////////////////////////////////
-// 成功メッセージクリア
-/////////////////////////////////////////////////////////
-function clearMsg() {
+function addForm() {
+	// id属性で要素を取得
+	let content_element = document.getElementById('content_box');
 
-	const p1 = document.getElementById("success1");
-	const p2 = document.getElementById("success2");
+	let text =
+		'{{ html()->hidden('idList[]') }}' +
+		'<div class="formContainer mg-ajust-midashi">' +
+		'<div class="item-name">' +
+		'<p>タグ</p>' +
+		'</div>' +
+		'<div class="selectWrap harf" style="width:120px;">' +
+		'<select name="tag[]"  class="select-no">' +
+		'<option value="0"></option>' +
+		'<option value="2">見出し２</option>' +
+		'<option value="3">見出し３</option>' +
+		'<option value="4">見出し４</option>' +
+		'<option value="5">表</option>' +
+		'<option value="6">テキスト</option>' +
+		'</select>' +
+		'</div>' +
 
-	if (p1) p1.style.display ="none";
-	if (p2) p2.style.display ="none";
+		'<div class="item-name">' +
+		'<p>見出し</p>' +
+		'</div>' +
+		'<div class="item-input">' +
+		'<input type="text" name="sub_title[]" value="">' +
+		'</div>' +
+		'</div>' +
 
+		'<div class="formContainer al-item-none">' +
+		'<div class="item-name">' +
+		'<p>内容</p>' +
+		'</div>' +
+		'<div class="item-input">' +
+		'<textarea class="form-mt" name="content[]" id="" cols="30" rows="5" placeholder="本文" ></textarea>' +
+		'</div>' +
+		'</div>' +
+		'<br>';
+	
+	content_element.insertAdjacentHTML('afterend', text);
 }
-
-
-/////////////////////////////////////////////////////////
-// 削除　表示／非表示
-/////////////////////////////////////////////////////////
-function delDisp() {
-
-	var open_flag = document.getElementById("c_ch1");
-	var del_flag = document.getElementById("del_flag");
-
-	if (open_flag) {
-		if (open_flag.checked) {
-			del_flag.checked = false;
-			del_lavel.style.display = "none";
-		} else {
-			del_lavel.style.display = "";
-		}
-	}
-}
-
-
-/////////////////////////////////////////////////////////
-// 公開フラグチェック
-/////////////////////////////////////////////////////////
-function checkOpen() {
-
-	clearMsg();
-	delDisp();
-}
-
-
-/////////////////////////////////////////////////////////
-// 初回起動
-/////////////////////////////////////////////////////////
-$(document).ready(function() {
-
-	delDisp();
-
-});
 
 </script>
-
 
 @endsection

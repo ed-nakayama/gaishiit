@@ -6,7 +6,14 @@
 
 
 @section('addheader')
-	<title>マイページ｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
+	<title>マイページ｜{{ config('app.title') }}</title>
+	<meta name="description" content="マイページ｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="マイページ｜{{ config('app.title') }}" />
+	<meta property="og:description" content="マイページ｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/mypage.css') }}" rel="stylesheet">
 @endsection
 
@@ -111,19 +118,17 @@
 					</div>        
 					<div class="item-inner" style="padding: 0px 0px;">
 						@if (!empty($favoriteList[0]))
-							<ul>
-								@foreach ($favoriteList as $job)
-							@if ($loop->index == 0)
-								@include ('user/partials/job_format_header')
-							@endif
+							@foreach ($favoriteList as $job)
+								@if ($loop->index == 0)
+									@include ('user/partials/job_format_header')
+								@endif
 
-							@include ('user/partials/job_format_content')
+								@include ('user/partials/job_format_content')
 							
-							@if (!empty($favoriteList[$loop->index + 1]) )
-								<hr>
-							@endif
-								@endforeach
-							</ul>
+								@if (!empty($favoriteList[$loop->index + 1]) )
+									<hr>
+								@endif
+							@endforeach
 						@else
 							設定なし
 						@endif

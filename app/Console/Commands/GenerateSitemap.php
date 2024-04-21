@@ -22,6 +22,8 @@ use App\Models\BusinessCat;
 use App\Models\BusinessCatDetail;
 use App\Models\Income;
 use App\Models\CommitCatDetail;
+use App\Models\Blog;
+use App\Models\BlogCat;
 
 
 class GenerateSitemap extends Command
@@ -105,6 +107,36 @@ class GenerateSitemap extends Command
 
 		foreach ($jobList as $job) {
 			$this->sitemap->add(Url::create("/company/{$job->company_id}/{$job->id}")->setPriority(0.5));
+		}
+
+		// ブログTOP
+		$this->sitemap->add(Url::create("/blog")->setPriority(0.5));
+
+		// ブログカテゴリ
+		$catList = Blog::where('open_flag' , '1')
+			->distinct()
+			->select('cat_id')
+			->get();
+
+		foreach ($catList as $cat) {
+			$bArray[] = $cat->cat_id;
+		}
+
+		$blogCatLlist = BlogCat::orderBy('order_num')
+			->whereIn('id' ,$bArray)
+			->orderBy('id')
+			->get();
+
+		foreach ($blogCatLlist as $cat) {
+			$this->sitemap->add(Url::create("/blog/{$cat->cat_id}")->setPriority(0.5));
+		}
+
+		// ブログ記事
+		$blogList = Blog::where('open_flag' , '1')
+			->get();
+
+		foreach ($blogList as $blog) {
+			$this->sitemap->add(Url::create("/blog/{$blog->cat_id}/{$blog->id}")->setPriority(0.5));
 		}
 
 		$this->sitemap->writeToFile(public_path('sitemap_detail.xml'));

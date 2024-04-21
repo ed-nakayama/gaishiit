@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>企業評価 ｜{{ config('app.name', 'Laravel') }}</title>
+	<title>企業評価 送信完了｜{{ config('app.title') }}</title>
+	<meta name="description" content="企業評価 送信完了｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="企業評価 送信完了｜{{ config('app.title') }}" />
+	<meta property="og:description" content="企業評価 送信完了｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/eval.css') }}" rel="stylesheet">
 @endsection
 

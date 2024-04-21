@@ -42,7 +42,7 @@
                                     <a href="javascript:form1.submit()" class="squareBtn btn-large">送信</a>
                         		</div><br>
 
-                        	{{ Form::close() }}
+							{{ html()->form()->close() }}
 
 						</div><!-- /.secContentsInner -->
 					</section><!-- /.secContents-mb -->

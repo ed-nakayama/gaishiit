@@ -27,18 +27,22 @@
 
 					<table class="tbl-blogList mb-ajust">
 						<tr>
+							<th>ブログID</th>
 							<th>カテゴリ</th>
 							<th>タイトル</th>
 							<th>内容</th>
 							<th>公開</th>
+							<th>公開日</th>
 							<th></th>
 						</tr>
 						@foreach ($blogList as $blog)
 						<tr>
-							<td>{{ $blog->category }}</td>
+							<td>{{ $blog->id }}</td>
+							<td>{{ $blog->getCatName() }}</td>
 							<td>{{ mb_strimwidth( $blog->title, 0, 50, "...") }}</td>
 							<td>{{ mb_strimwidth( $blog->content, 0, 50, "...") }}</td>
 							<td>@if ($blog->open_flag == '1')公開@endif</td>
+							<td>{{ $blog->open_date }}</td>
 							<td>
 								<div class="btnContainer">
 									{{ html()->form('GET', '/admin/blog')->attribute('name', "editform{$blog->id}")->open() }}

@@ -6,8 +6,15 @@
 
 
 @section('addheader')
-	<title>{{ $comp->name }}]の{{ $unit->name }}紹介｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="{{ $comp->name }}の {{ $unit->name }}のご紹介ページです。部署がもつ特色や業務内容、業務範囲を確認していただくことができます。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<title>{{ $comp->name }}]の{{ $unit->name }}紹介｜{{ config('app.title') }}</title>
+	<meta name="description" content="{{ $comp->name }}の {{ $unit->name }}のご紹介ページです。部署がもつ特色や業務内容、業務範囲を確認していただくことができます。｜{{ config('app.description') }}">
+	<meta name="description" content="マイページ｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="{{ $comp->name }}]の{{ $unit->name }}紹介｜{{ config('app.title') }}" />
+	<meta property="og:description" content="{{ $comp->name }}の {{ $unit->name }}のご紹介ページです。部署がもつ特色や業務内容、業務範囲を確認していただくことができます。｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
 	<link href="{{ asset('css/department.css') }}" rel="stylesheet">
 @endsection
 
@@ -147,13 +154,11 @@
 				<div class="job">
 					<div class="inner">
 						<h2>{{ $comp->name }}の{{ $unit->name }}求人一覧</h2>
-						<ul>
-							@foreach ($jobList as $job)
-								{{-- ジョブフォーマット $job --}}
-									@include ('user/partials/job_format')
-								{{-- END ジョブフォーマット --}}
-							@endforeach
-						</ul>
+						@foreach ($jobList as $job)
+							{{-- ジョブフォーマット $job --}}
+								@include ('user/partials/job_format')
+							{{-- END ジョブフォーマット --}}
+						@endforeach
 					</div>
 				</div>
 @endif
@@ -188,13 +193,11 @@
 				<div class="job">
 					<div class="inner">
 						<h2>{{ $comp->name }}のその他部署求人一覧</h2>
-						<ul>
-							@foreach ($elseJobList as $job)
-								{{-- ジョブフォーマット $job --}}
-									@include ('user/partials/job_format')
-								{{-- END ジョブフォーマット --}}
-							@endforeach
-						</ul>
+						@foreach ($elseJobList as $job)
+							{{-- ジョブフォーマット $job --}}
+								@include ('user/partials/job_format')
+							{{-- END ジョブフォーマット --}}
+						@endforeach
 					</div>
 				</div>
 @endif

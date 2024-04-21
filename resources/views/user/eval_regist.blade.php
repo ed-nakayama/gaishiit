@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>口コミ投稿｜外資IT企業の口コミ評価・求人なら外資IT.com</title>
+	<title>口コミ投稿｜{{ config('app.title') }}</title>
+	<meta name="description" content="口コミ投稿｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="口コミ投稿｜{{ config('app.title') }}" />
+	<meta property="og:description" content="口コミ投稿｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/eval.css') }}" rel="stylesheet">
 @endsection
 
@@ -175,7 +182,6 @@
 									<div class="form-wrap">
 										<div class="contact-list">
 											<div class="select-wrap" id="changeTimeSelect">
-												<ul>
 													<label for="">
 														<select name="retire_year" id="retirement_year" class="select-no">
 															<option value="" disabled selected style="display:none;"></option>
@@ -185,7 +191,6 @@
 																<option value="9999"  @if (old('retire_year', $eval->retire_year) == '9999')  selected @endif>在籍中</option>
 														</select>
 													</label>
-												</ul>
 												<ul class="oneRow">
 													@error('retire_year')
 														<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>

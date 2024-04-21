@@ -6,25 +6,20 @@
 
 
 @section('addheader')
-	<title>{{ $job->name }}-{{ $comp->name }}｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="{{ $comp->name }}の{{ $job->name }}の求人です。募集要項には給与・雇用形態・勤務地・給与・勤務時間といった基本的な情報から、休暇制度・待遇・福利厚生・リモートワークの有無などの詳細情報も記載しております。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<title>{{ $job->name }}-{{ $comp->name }}｜{{ config('app.title') }}</title>
+	<meta name="description" content="{{ $comp->name }}の{{ $job->name }}の求人です。募集要項には給与・雇用形態・勤務地・給与・勤務時間といった基本的な情報から、休暇制度・待遇・福利厚生・リモートワークの有無などの詳細情報も記載しております。｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="{{ $job->name }}-{{ $comp->name }}｜{{ config('app.title') }}" />
+	<meta property="og:description" content="{{ $comp->name }}の{{ $job->name }}の求人です。募集要項には給与・雇用形態・勤務地・給与・勤務時間といった基本的な情報から、休暇制度・待遇・福利厚生・リモートワークの有無などの詳細情報も記載しております。｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
 @endsection
 
 
 @section('content')
 
-
-<style>
-.corp-name figure {
-  border-radius: 50%;
-  overflow: hidden;
-  width: 70px;
-  border: 1px solid #D6D6D6;
-  background: #D6D6D6;
-}
-
-</style>
 
 @if (Auth::guard('user')->check())
 @include('user.user_activity')
@@ -35,22 +30,6 @@
 		<div class="ttl">
 			<h1>{{ $comp->name }}の{{ $job->name }}求人</h1>
 		</div>
-{{--
-		<div class="item thumb">
-			<div class="inner">
-				<figure class="corp_icon">
-					<img src="{{ $comp->logo_file }}" alt="" style="vertical-align: middle;">
-				</figure>
-				<figure class="corp_bg">
-					@if ($comp->image_file == '')
-						<img src="/img/corp_img_01.jpg" alt="">
-					@else
-						<img src="{{ $comp->image_file }}" alt="">
-					@endif
-				</figure>
-			</div>
-		</div>
---}}
 
  		<div class="con-wrap">
 			<div class="item info">
@@ -84,7 +63,7 @@
 				<table style="margin-left:20px; margin-right:20px; font-size: 16px;">
 					<tr>
 						<td style="display:flex; align-items: center;">
-							<div class="corp-name">
+							<div class="expand-job-corp-name">
 								<figure>
 									@if(!empty($comp->logo_file))
 										<img src="{{ $comp->logo_file }}" alt="" style="vertical-align: middle;">

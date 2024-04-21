@@ -6,8 +6,14 @@
 
 
 @section('addheader')
-	<title>{{ $comp->name }}のクチコミ評価・求人｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="{{ $comp->name }}の社員クチコミを掲載。給与・福利厚生・育成・法令遵守の意識・社員のモチベーション・ワークライフバランス・リモート勤務・定年という8つのテーマに分かれたクチコミをご覧いただけます。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<title>{{ $comp->name }}のクチコミ評価・求人｜{{ config('app.title') }}</title>
+	<meta name="description" content="{{ $comp->name }}の社員クチコミを掲載。給与・福利厚生・育成・法令遵守の意識・社員のモチベーション・ワークライフバランス・リモート勤務・定年という8つのテーマに分かれたクチコミをご覧いただけます。｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="{{ $comp->name }}のクチコミ評価・求人｜{{ config('app.title') }}" />
+	<meta property="og:description" content="{{ $comp->name }}の社員クチコミを掲載。給与・福利厚生・育成・法令遵守の意識・社員のモチベーション・ワークライフバランス・リモート勤務・定年という8つのテーマに分かれたクチコミをご覧いただけます。｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
 @endsection
 

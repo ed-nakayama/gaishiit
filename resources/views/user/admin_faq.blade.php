@@ -2,8 +2,14 @@
 
 
 @section('addheader')
-	<title>お問い合わせ｜{{ config('app.name', 'Laravel') }}</title>
+	<title>お問い合わせ｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">-
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="お問い合わせ｜｜外資IT企業のクチコミ評価・求人なら外資IT.com" />
+	<meta property="og:description" content="お問い合わせ｜外資IT.comは外資系IT企業に特化した口コミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
 @endsection
 
 

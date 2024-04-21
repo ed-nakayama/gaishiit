@@ -1,6 +1,6 @@
 @extends('layouts.admin.auth')
 <head>
-    <title>ブログカテゴリ管理 | {{ config('app.name', 'Laravel') }}</title>
+    <title>監修者管理 | {{ config('app.name', 'Laravel') }}</title>
 </head>
 
 @section('content')
@@ -9,7 +9,7 @@
 
                 <div class="secTitle">
                     <div class="title-main">
-                        <h2>ブログカテゴリ管理</h2>
+                        <h2>監修者管理</h2>
                     </div><!-- /.mainTtl -->
                 </div><!-- /.sec-title -->
 
@@ -22,10 +22,10 @@
 							@if (auth()->user()->cat_priv == '1')
                             <div class="secBtnHead">
                                 <div class="secBtnHead-btn">
-                                   {{ Form::open(['url' => '/admin/blogcat/add', 'name' => 'addform' , 'id' => 'addform']) }}
+									{{ html()->form('POST', '/admin/supervisor/add')->id('addform')->attribute('name', 'addform')->open() }}
                                     <ul class="item-btn">
                                        <li></li>
-                                       <li style="width: 300px;"><input type="text" name="name" value="{{ old('name') }}" placeholder="ブログカテゴリ名"></li>
+                                       <li style="width: 300px;"><input type="text" name="name" value="{{ old('name') }}" placeholder="監修者名"></li>
                                         <li><a href="javascript:addform.submit()" class="squareBtn">追加</a></li>
                                     </ul><!-- /.item -->
                                     <ul class="item-btn">
@@ -42,30 +42,40 @@
                            </div>
 							@endif
 
-                             <table class="tbl-cat-5th mb-ajust" id="memberTable">
+                             <table class="tbl-supervisor mb-ajust" id="memberTable">
                                 <tr>
                                     <th>ID</th>
-                                    <th>表示順</th>
-                                    <th>カテゴリ名</th>
+                                    <th>監修者</th>
+                                    <th>写真</th>
+                                    <th>コメント</th>
                                     <th>削除</th>
                                     <th></th>
                                 </tr>
-                                @foreach ($catList as $cat)
+                                @foreach ($superList as $super)
                                 <tr>
-                               {{ Form::open(['url' => '/admin/blogcat/store', 'name' => 'catform' . $cat->id ]) }}
-                               {{ Form::hidden('cat_id', $cat->id ) }}
-                                    <td>{{ $cat->id  }}</td>
-                                    <td><input type="text" name="order_num" value="{{ $cat['order_num'] }}" oninput="catChange('{{ 'catsave' . $cat->id  }}')"></td>
-                                    <td><input type="text" name="name" value="{{ $cat->name }}" oninput="catChange('{{ 'catsave' . $cat->id  }}')"></td>
-                                    <td><input type="checkbox" name="del_flag" value="1" @if ($cat->del_flag == '1') checked @endif   onchange="catChange('{{ 'catsave' . $cat->id  }}')"></td>
+									{{ html()->form('POST', '/admin/supervisor/store')->attribute('name', "catform{$super->id}")->acceptsFiles()->open() }}
+									{{ html()->hidden('id', $super->id ) }}
+                                    <td>{{ $super->id  }}</td>
+                                    <td><input type="text" name="name" value="{{ $super->name }}"></td>
+									<td>
+										@if ( isset($super->image) )
+											<img src="{{ $super->image }}" class="css-class" alt="">
+										@endif
+										{{ html()->file('image') }}
+										<p> ※jpg、png、500KB以内</p>
+									</td>
                                     <td>
-                                        <div class="btnContainer"  style="display: none;" id="{{ 'catsave' .$cat->id  }}">
+									<textarea class="form-mt" name="content" cols="30" rows="4" placeholder="監修者　コメント" >{{ old('content' ,$super->content) }}</textarea>
+									</td>
+                                    <td><input type="checkbox" name="del_flag" value="1" @if ($super->del_flag == '1') checked @endif></td>
+                                    <td>
+                                        <div class="btnContainer"  id="{{ 'catsave' .$super->id  }}">
 										@if (auth()->user()->cat_priv == '1')
-                                        	<a href="javascript:catform{{ $cat->id  }}.submit();" class="squareBtn btn-medium">保存</a>
+                                        	<a href="javascript:catform{{ $super->id  }}.submit();" class="squareBtn btn-medium">保存</a>
                                         @endif
                                         </div><!-- /.btn-container -->
                                     </td>
-								{{ html()->form()->close() }}
+									{{ html()->form()->close() }}
                                 </tr>
                                 @endforeach
                             </table>

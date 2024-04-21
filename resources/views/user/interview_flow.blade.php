@@ -3,14 +3,30 @@
 
 @section('addheader')
 	@if ($interview->interview_type == '0')
-		<title>カジュアル面談｜{{ config('app.name', 'Laravel') }}</title>
+		<title>カジュアル面談｜{{ config('app.title') }}</title>
+		<meta name="description" content="カジュアル面談｜{{ config('app.description') }}">
+		<meta property="og:title" content="カジュアル面談｜{{ config('app.title') }}">
+		<meta property="og:description" content="カジュアル面談｜{{ config('app.description') }}">
 	@elseif ($interview->interview_type == '1')
-		<title>正式応募｜{{ config('app.name', 'Laravel') }}</title>
+		<title>正式応募｜{{ config('app.title') }}</title>
+		<meta name="description" content="正式応募｜{{ config('app.description') }}">
+		<meta property="og:title" content="正式応募｜{{ config('app.title') }}">
+		<meta property="og:description" content="正式応募｜{{ config('app.description') }}">
 	@elseif ($interview->interview_type == '2')
-		<title>イベント｜{{ config('app.name', 'Laravel') }}</title>
+		<title>イベント｜{{ config('app.title') }}</title>
+		<meta name="description" content="イベント｜{{ config('app.description') }}">
+		<meta property="og:title" content="イベント｜{{ config('app.title') }}">
+		<meta property="og:description" content="イベント｜{{ config('app.description') }}">
 	@else
-		<title>？？？？｜{{ config('app.name', 'Laravel') }}</title>
+		<title>？？？？｜{{ config('app.title') }}</title>
+		<meta name="description" content="？？？？｜{{ config('app.description') }}">
+		<meta property="og:title" content="？？？？｜{{ config('app.title') }}">
+		<meta property="og:description" content="？？？？｜{{ config('app.description') }}">
 	@endif
+
+	<meta property="og:type" content="article" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
 
 	<link href="{{ asset('css/interview.css') }}" rel="stylesheet">
 @endsection

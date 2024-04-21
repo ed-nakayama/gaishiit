@@ -48,6 +48,7 @@
                         <li><a href="/admin/blog/list">ブログ管理</a></li>
                     </ul><br>
                     <ul class="menu">　　　　　　　
+                        <li><a href="/admin/supervisor">監修者管理</a></li>
                         <li><a href="/admin/industorycat">インダストリ管理</a></li>
                         <li><a href="/admin/industorycatdetail">インダストリ詳細管理</a></li>
                         <li><a href="/admin/commitcat">こだわり管理</a></li>

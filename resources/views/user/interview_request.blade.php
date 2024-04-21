@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>メッセージ一覧｜{{ config('app.name', 'Laravel') }}</title>
+	<title>メッセージリクエスト｜{{ config('app.title') }}</title>
+	<meta name="description" content="メッセージリクエスト｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="メッセージリクエスト｜{{ config('app.title') }}" />
+	<meta property="og:description" content="メッセージリクエスト｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/interview.css') }}" rel="stylesheet">
     <link href="{{ asset('css/interview_request.css') }}" rel="stylesheet">
 @endsection

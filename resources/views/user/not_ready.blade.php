@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>ただいま準備中｜{{ config('app.name', 'Laravel') }}</title>
+	<title>ただいま準備中｜{{ config('app.title') }}</title>
+	<meta name="description" content="ただいま準備中｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="ただいま準備中｜{{ config('app.title') }}" />
+	<meta property="og:description" content="ただいま準備中｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/privacy.css') }}" rel="stylesheet">
 @endsection
 

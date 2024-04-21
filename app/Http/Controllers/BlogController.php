@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\Blog;
 use App\Models\BlogCat;
+use App\Models\Ranking;
 
 
 class BlogController extends Controller
@@ -20,13 +21,43 @@ class BlogController extends Controller
 
 
 /*************************************
-* 一覧
+* ブログTOP
 **************************************/
 	public function index()
 	{
-		$blogList = Blog::get();
-    
-		return view('user.blog' ,compact('blogList'));
+		$blogList = Blog::where('open_flag' , '1')
+			->orderBy('open_date', 'DESC')
+			->orderBy('updated_at', 'DESC')
+			->paginate(18);
+
+		$catList = Blog::where('open_flag' , '1')
+			->distinct()
+			->select('cat_id')
+			->get();
+
+		foreach ($catList as $cat) {
+			$bArray[] = $cat->cat_id;
+		}
+
+		$blogCatLlist = BlogCat::orderBy('order_num')
+			->whereIn('id' ,$bArray)
+			->orderBy('id')
+			->get();
+
+		$blogRankList = Blog::where('open_flag' , '1')
+			->orderBy('article_count', 'DESC')
+			->limit(5)
+			->get();
+
+    	$rankingList = $this->ranking();
+
+
+		return view('user.blog' ,compact(
+			'blogList',
+			'blogRankList',
+			'blogCatLlist',
+			'rankingList',
+			));
 	}
 
 
@@ -36,29 +67,110 @@ class BlogController extends Controller
 	public function category(Request $request, $cat = '1')
 	{
 		$blogCat = BlogCat::find($cat);
-		$blogList = Blog::get();
+
+		$blogList = Blog::where('open_flag' , '1')
+			->where('cat_id' ,$cat)
+			->orderBy('open_date', 'DESC')
+			->orderBy('updated_at', 'DESC')
+			->paginate(18);
+
+		$catList = Blog::where('open_flag' , '1')
+			->distinct()
+			->select('cat_id')
+			->get();
+
+		foreach ($catList as $cat) {
+			$bArray[] = $cat->cat_id;
+		}
+
+		$blogCatLlist = BlogCat::orderBy('order_num')
+			->whereIn('id' ,$bArray)
+			->orderBy('id')
+			->get();
+
+		$blogRankList = Blog::where('open_flag' , '1')
+			->orderBy('article_count', 'DESC')
+			->limit(5)
+			->get();
+
+    	$rankingList = $this->ranking();
     
 		return view('user.blog_list' ,compact(
 			'blogCat',
+			'blogRankList',
+			'blogList',
+			'blogCatLlist',
+			'rankingList',
+		));
+	}
+
+
+/*************************************
+* 詳細
+**************************************/
+	public function detail(Request $request, $cat = '1', $detail = '1')
+	{
+		$blogCat = BlogCat::find($cat);
+
+		$blog = Blog::find($detail);
+		$blog->article_count++;
+		$blog->save();
+
+		$catList = Blog::where('open_flag' , '1')
+			->distinct()
+			->select('cat_id')
+			->get();
+
+		foreach ($catList as $cat) {
+			$bArray[] = $cat->cat_id;
+		}
+
+		$blogCatLlist = BlogCat::orderBy('order_num')
+			->whereIn('id' ,$bArray)
+			->orderBy('id')
+			->get();
+
+		$blogRankList = Blog::where('open_flag' , '1')
+			->orderBy('article_count', 'DESC')
+			->limit(5)
+			->get();
+
+		$blogList = Blog::where('open_flag' , '1')
+			->where('cat_id' ,$cat)
+			->where('id', '<>', $detail)
+			->orderBy('open_date', 'DESC')
+			->orderBy('updated_at', 'DESC')
+			->get();
+
+
+
+    	$rankingList = $this->ranking();
+
+		return view('user.blog_detail' ,compact(
+			'blog',
+			'blogRankList',
+			'blogCat',
+			'blogCatLlist',
+			'rankingList',
 			'blogList',
 		));
 	}
 
 
 /*************************************
-* 編集
+* 企業クチコランキング
 **************************************/
-	public function detail(Request $request, $cat = '1', $detail = '1')
+	public function ranking()
 	{
-		$blogCat = BlogCat::find($cat);
-		$blog = Blog::find($detail);
 
-		return view('user.blog_detail' ,compact(
-			'blog',
-			'blogCat',
-		));
+		$rankingList = Ranking::Join('companies','rankings.company_id','=','companies.id')
+			->where('companies.open_flag' ,'1')
+			->selectRaw('rankings.*, companies.name as company_name ,companies.logo_file as logo_file ,companies.image_file as image_file')
+			->orderBy('total_point', 'DESC')
+			->paginate(5);
+
+		return $rankingList;
 	}
-
 
 
 }

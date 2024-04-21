@@ -6,7 +6,14 @@
 
 
 @section('addheader')
-	<title>メッセージ一覧｜外資IT企業の口コミ評価・求人なら外資IT.com</title>
+	<title>メッセージ一覧｜{{ config('app.title') }}</title>
+	<meta name="description" content="メッセージ一覧｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="メッセージ一覧｜{{ config('app.title') }}" />
+	<meta property="og:description" content="メッセージ一覧｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/message.css') }}" rel="stylesheet">
 @endsection
 

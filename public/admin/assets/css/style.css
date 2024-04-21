@@ -772,19 +772,25 @@ table.mb-ajust {
 	background-color:#F5F5F5;
 }
 .tbl-blogList th:nth-child(1) {
-	width:  10%;
+	width:  8%;
 }
 .tbl-blogList th:nth-child(2) {
-	width: 15;
+	width:  10%;
 }
 .tbl-blogList th:nth-child(3) {
-	width: auto%;
+	width: 15;
 }
 .tbl-blogList th:nth-child(4) {
-	width: 5%;
+	width: auto%;
 }
 .tbl-blogList th:nth-child(5) {
-	width: 10%;
+	width: 5%;
+}
+.tbl-blogList th:nth-child(6) {
+	width: 8%;
+}
+.tbl-blogList th:nth-child(7) {
+	width: 8%;
 }
 .tbl-blogList th {
     border-bottom: 1px solid #707070;
@@ -2733,6 +2739,42 @@ select {
     padding: 5px 10px;
 }
 .tbl-jobsfc tr:hover td {
+	background-color: #ffffcc;
+}
+
+ /* 項目が6つでボタンが1つ */
+.tbl-supervisor {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-supervisor tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-supervisor th:nth-child(1) {
+	width: 5%;
+}
+.tbl-supervisor th:nth-child(2) {
+	width: 15%;
+}
+.tbl-supervisor th:nth-child(3) {
+	width: 30%;
+}
+.tbl-supervisor th:nth-child(4) {
+	width: auto;
+}
+.tbl-supervisor th:nth-child(5) {
+	width: 5%;
+}
+.tbl-supervisor th:nth-child(6) {
+	width: 10%;
+}
+.tbl-supervisor th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-supervisor th, .tbl-supervisor td {
+    padding: 5px 10px;
+}
+.tbl-supervisor tr:hover td {
 	background-color: #ffffcc;
 }
 

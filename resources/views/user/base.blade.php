@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>基本情報｜{{ config('app.name', 'Laravel') }}</title>
+	<title>基本情報｜{{ config('app.title') }}</title>
+	<meta name="description" content="基本情報｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="基本情報｜{{ config('app.title') }}" />
+	<meta property="og:description" content="基本情報｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
 	<link href="{{ asset('css/career0.css') }}" rel="stylesheet">
 @endsection
 
@@ -70,7 +77,6 @@
 														<div class="form-wrap">
 															<div class="contact-list">
 																<div class="select-wrap">
-																	<ul>
 																	<label for="">
 																		<select id="js_year" name="selectYear" class="select-no" onchange="yearMonthChange()">
 																			@foreach ($yearList as $year)
@@ -88,7 +94,6 @@
 																	<label for="">
 																		<select id="js_day" name="selectDate" class="select-no"></select>
 																	</label>
-																	</ul>
 																</div>
 																@error('birthday')
 																	<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
@@ -135,7 +140,6 @@
 
                                                     		<div class="contact-list">
                                                         		<div class="select-wrap" id="changeTimeSelect">
-                                                            	    <ul>
                                                             		<label for="">
                                                 						<select name="change_year" id="change_year" class="select-no">
                                                     						<option value="" disabled selected style="display:none;">年</option>
@@ -155,7 +159,6 @@
                                                 						</select>
                                                             		</label>
                                                             	     頃
-                                                            	    </ul>
                                                             	    <ul class="oneRow">
                                     								@error('change_time')
                                         								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>

@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>よくあるお問合せ｜{{ config('app.name', 'Laravel') }}</title>
+	<title>よくあるお問合せ｜{{ config('app.title') }}</title>
+	<meta name="description" content="よくあるお問合せ｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="よくあるお問合せ｜{{ config('app.title') }}" />
+	<meta property="og:description" content="よくあるお問合せ｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
 @endsection
 

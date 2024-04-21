@@ -266,7 +266,6 @@ form .select-wrap label::before {
 									<div class="form-wrap">
 										<div class="contact-list">
 											<div class="select-wrap" id="changeTimeSelect">
-												<ul>
 													<label for="">
 														<select name="retire_year" id="retirement_year" class="select-no">
 															<option value="" disabled selected style="display:none;"></option>
@@ -276,7 +275,6 @@ form .select-wrap label::before {
 																<option value="9999"  @if (old('retire_year', $eval->retire_year) == '9999')  selected @endif>在籍中</option>
 														</select>
 													</label>
-												</ul>
 												<ul class="oneRow">
 													@error('retire_year')
 														<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
@@ -714,7 +712,7 @@ form .select-wrap label::before {
                     <div id="cate-g" class="block">
                         <p class="block-ttl">G</p>
                         <ul class="cate-list">
-                            @foreach ($comp_XG as $omp)
+                            @foreach ($comp_XG as $cmp)
                                  <li>
 	                                <label style="transform: rotate(0.03deg);"><input type="checkbox"  id="comp_select" name="comp_sel" title="{{$cmp['name']}}" value="{{$cmp['id']}}" onclick="GetComp({{ $cmp['id'] }})" @if ($cmp['id'] == $comp->id) checked @endif><span>{{$cmp['name']}}</span></label>
                                  </li>

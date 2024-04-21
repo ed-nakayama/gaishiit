@@ -8,8 +8,14 @@
 
 
 @section('addheader')
-	<title>{{ $comp->name }}の{{ $cat['name'] }}クチコミ評価一覧｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="{{ $comp->name }}の元社員・在籍社員による{{ $cat['name'] }}のクチコミ・評価レビューの一覧ページです。採用活動中にはなかなか耳にすることができない生の声を転職活動に役立てていただけます。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<title>{{ $comp->name }}の{{ $cat['name'] }}クチコミ評価一覧｜{{ config('app.title') }}</title>
+	<meta name="description" content="{{ $comp->name }}の元社員・在籍社員による{{ $cat['name'] }}のクチコミ・評価レビューの一覧ページです。採用活動中にはなかなか耳にすることができない生の声を転職活動に役立てていただけます。｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="{{ $comp->name }}の{{ $cat['name'] }}クチコミ評価一覧｜{{ config('app.title') }}" />
+	<meta property="og:description" content="{{ $comp->name }}の元社員・在籍社員による{{ $cat['name'] }}のクチコミ・評価レビューの一覧ページです。採用活動中にはなかなか耳にすることができない生の声を転職活動に役立てていただけます。｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
 @endsection
 

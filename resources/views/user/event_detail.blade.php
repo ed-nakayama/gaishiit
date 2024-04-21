@@ -6,7 +6,14 @@
 
 
 @section('addheader')
-	<title>{{ $event->name }}-{{ $comp->name }}｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
+	<title>{{ $event->name }}-{{ $comp->name }}｜{{ config('app.title') }}</title>
+	<meta name="description" content="{{ $event->name }}-{{ $comp->name }}｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="{{ $event->name }}-{{ $comp->name }}｜{{ config('app.title') }}" />
+	<meta property="og:description" content="{{ $event->name }}-{{ $comp->name }}｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
 @endsection
 

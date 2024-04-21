@@ -6,19 +6,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+    <title>{{ config('app.title') }}</title>
+	<meta name="description" content="{{ config('app.description') }}">
     <link rel="canonical" href="{{ url()->current() }}" />
+
+	<meta property="og:url" content="{{ url()->current() }}" />
+	<meta property="og:site_name" content="{{ config('app.name') }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="{{ config('app.title') }}" />
+	<meta property="og:description" content="{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 {{--    <link href="https://fonts.googleapis.comcss2?family=M+PLUS+1p:wght@400;700&display=swap" rel="stylesheet">--}}
     <link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
-    <link rel="stylesheet" href="top/css/slick.css">
-    <link rel="stylesheet" href="top/css/base.css">
-    <link rel="stylesheet" href="top/css/common.css">
-    <link rel="stylesheet" href="top/css/top.css">
-    <link rel="stylesheet" href="top/css/job.css">
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/top.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/job.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/new_common.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -144,7 +151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="title_block">		
                 <div class="inner">
 					<div class="signup-login">
-						<p><a href="https://gaishiit.com/register">新規会員登録</a></p>
+						<p><a href="/register">新規会員登録</a></p>
 						<p><a href="/login">ログイン</a></p>
 					</div>
 					<div class="search_container">
@@ -260,45 +267,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<h2>外資IT転職ガイド</h2>
 			</div>
             <div class="blog_block">
-                <div class="blog_box fadein">
-					<div class="blog_img"><a href="#"><img src="img/top/blogimg01.jpg" alt="" class="v-pc"><img src="img/top/blogimg01.jpg" alt="Gaishi IT.com" class="v-sp"></a></div>
-                    <h3>タイトルタイトルタイトルタイトルタイトルタイトルタイトル</h3>
-					<div class="blog_info">
-						<p class="tag">英語</p>
-						<p class="date">2024.12.12</p>
+				@foreach ($blogList as $blog)
+					<div class="blog_box fadein">
+						<div class="blog_img">
+							<a href="/blog/{{ $blog->cat_id }}/{{ $blog->id }}">
+								@if (!empty($blog->thumb))
+									<img src="{{ $blog->thumb }}" alt="" class="v-pc"><img src="{{ $blog->thumb }}" alt="Gaishi IT.com" class="v-sp">
+								@else
+									<img src="/storage/blog/thumb/h_logo.png" alt="" class="v-pc"><img src="/storage/blog/thumb/h_logo.png" alt="Gaishi IT.com" class="v-sp">
+								@endif
+							</a>
+						</div>
+						<h3><a href="/blog/{{ $blog->cat_id }}/{{ $blog->id }}">{{ $blog->title }}</a></h3>
+						<div class="blog_info">
+							<p class="tag">{{ $blog->getCatName() }}</p>
+							<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
+						</div>
+						<p>{!! mb_strimwidth($blog->intro, 0, 70, "...") !!}</p>
+						<div class="blog_button02">
+							<a href="/blog/{{ $blog->cat_id }}/{{ $blog->id }}">この記事を読む</a>
+						</div>
 					</div>
-                    <p>本文の冒頭より引用します本文の冒頭より引用します。本文の冒頭より引用します本文の冒頭より引用します。本文の冒頭より引用します本文の冒頭より引用します。本文の冒頭より引用します本文の冒頭より引用します。</p>
-					<div class="blog_button02">
-						<a href="">この記事を読む</a>
-					</div>
-                </div>
-                <div class="blog_box fadein">
-					<div class="blog_img"><a href="#"><img src="img/top/blogimg01.jpg" alt="" class="v-pc"><img src="img/top/blogimg01.jpg" alt="Gaishi IT.com" class="v-sp"></a></div>
-                    <h3>タイトルタイトルタイトルタイトルタイトルタイトルタイトル</h3>
-					<div class="blog_info">
-						<p class="tag">英語</p>
-						<p class="date">2024.12.12</p>
-					</div>
-                    <p>本文の冒頭より引用します本文の冒頭より引用します。本文の冒頭より引用します本文の冒頭より引用します。本文の冒頭より引用します本文の冒頭より引用します。本文の冒頭より引用します本文の冒頭より引用します。</p>
-					<div class="blog_button02">
-						<a href="">この記事を読む</a>
-					</div>
-                </div>
-				<div class="blog_box fadein">
-					<div class="blog_img"><a href="#"><img src="img/top/blogimg01.jpg" alt="" class="v-pc"><img src="img/top/blogimg01.jpg" alt="Gaishi IT.com" class="v-sp"></a></div>
-                    <h3>タイトルタイトルタイトルタイトルタイトルタイトルタイトル</h3>
-					<div class="blog_info">
-						<p class="tag">英語</p>
-						<p class="date">2024.12.12</p>
-					</div>
-                    <p>本文の冒頭より引用します本文の冒頭より引用します。本文の冒頭より引用します本文の冒頭より引用します。本文の冒頭より引用します本文の冒頭より引用します。本文の冒頭より引用します本文の冒頭より引用します。</p>
-					<div class="blog_button02">
-						<a href="">この記事を読む</a>
-					</div>
-                </div>
+				@endforeach
             </div>
 			<div class="blog_button01">
-				<a href="">一覧を見る</a>
+				<a href="/blog">一覧を見る</a>
 			</div>
         </section>
 --}}
@@ -311,10 +304,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <footer id="footer">
             <div class="footer_inner">
 				<p><a href="/corporate">運営会社</a></p>
-{{--
                 <p><a href="/blog">お役立ちコラム</a></p>
                 <p><a href="/kiyaku">利用規約</a></p>
---}}
                 <p><a href="/privacy">プライバシーポリシー</a></p>
                 <p><a href="/adminfaq">お問い合わせ</a></p>
 				<p>(c) Gaishi-IT.com</p>
@@ -345,11 +336,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {{-- END 企業選択モーダル  --}}
 
 
-    <script src="/top/js/jquery-3.5.1.min.js"></script>
-    <script src="/top/js/rellax.min.js"></script>
-    <script src="/top/js/slick.min.js"></script>
-    <script src="/top/js/common.js"></script>
-    <script src="/top/js/top.js"></script>
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <script src="/js/rellax.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/top.js"></script>
     <script src="/js/job.js"></script>
 </body>
 

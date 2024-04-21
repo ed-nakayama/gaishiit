@@ -230,6 +230,7 @@ return [
         'retire_year' => '退社年',
         'occupation' => '職種',
         'input_len' => '全項目の合計',
+        'open_date' => '公開日',
 
     ],
 

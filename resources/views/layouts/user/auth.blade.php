@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<head>
+<head prefix="og: http://ogp.me/ns#">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-@yield('addheader')
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +15,19 @@
 	@else
 		<link rel="canonical" href="{{ $canonical }}" />
 	@endif
-
 	<link href="{{ asset('css/base.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/common.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/expand.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{ asset('css/chart.css') }}" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.js" defer></script>
+
+	<meta property="og:url" content="{{ url()->current() }}" />
+	<meta property="og:site_name" content="{{ config('app.name') }}" />
+
+@yield('addheader')
 
 {{--
 <!-- Google tag (gtag.js) -->
@@ -58,22 +61,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-PQ27GXX7');</script>
 <!-- End Google Tag Manager -->
 
-<body>
+<body style="background-color:#FAFAFA;">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ27GXX7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <div id="wrapper">
 		<header>
-			@if ( config('app.env') == 'Staging')
-				<center>
-				<div style="background-color:blue;color:white;font-weight:bolder">
-					{{ config('app.env') }}
-				</div>
-				</center>
-			@endif
 
 			<div id="menu">
+				@if ( config('app.env') == 'Staging')
+					<center>
+					<div style="background-color:blue;color:white;font-weight:bolder;font-size:16px;">
+						{{ config('app.env') }}
+					</div>
+					</center>
+				@endif
+
 				<div id="menu-inner">
 					<div class="logo">
 						<a href="/mypage"><figure><img src="/img/h_logo.png" alt="外資IT.com" style="width:100%;"></figure></a>
@@ -96,14 +100,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 									<label for="toggle" onclick=""  style="transform: rotate(0.03deg);">{{ Auth::guard('user')->user()->name }}</label>  
 									<ul id="menu">  
 {{--										<li style="transform: rotate(0.03deg);"><a href="/mypage">マイページ　　</a></li>--}}
-										<li style="transform: rotate(0.03deg);"><a href="/setting">個人設定　　　</a></li>
+										<li style="transform: rotate(0.03deg);"><a href="/setting" style="font-size:1.6rem;">個人設定　　　</a></li>
 										<li style="transform: rotate(0.03deg);white-space:nowrap;">
-											<a href=""{{ route('user.password.edit') }}" onclick="event.preventDefault(); document.getElementById('password_edit-form').submit();">パスワード変更</a>
+											<a href=""{{ route('user.password.edit') }}" onclick="event.preventDefault(); document.getElementById('password_edit-form').submit();" style="font-size:1.6rem;">パスワード変更</a>
 											<form id="password_edit-form" action="{{ route('user.password.edit') }}" method="GET" style="display: none;">
 											</form>
 										</li>
 										<li style="transform: rotate(0.03deg);">
-											<a href="{{ route('user.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト　　</a>
+											<a href="{{ route('user.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="font-size:1.6rem;">ログアウト　　</a>
 											<form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
 											@csrf
 											</form>
@@ -134,25 +138,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 @endif
 								<ul id="menu-content">
 @if (Auth::guard('user')->check())
-									<li><a href="/mypage">マイページ</a></li>
-									<li><a href="/interview/list">メッセージ</a></li>
+									<li style="font-size:1.6rem;"><a href="/mypage">マイページ</a></li>
+									<li style="font-size:1.6rem;"><a href="/interview/list">メッセージ</a></li>
 @endif
-									<li><a href="/company">企業を探す</a></li>
-									<li><a href="/job">求人を探す</a></li>
+									<li style="font-size:1.6rem;"><a href="/company">企業を探す</a></li>
+									<li style="font-size:1.6rem;"><a href="/job">求人を探す</a></li>
 @if (Auth::guard('user')->check())
-									<li><a href="/setting">個人設定</a></li>
-{{--									<li><a href="/event">イベントを探す</a></li>--}}
-									<li>
+									<li style="font-size:1.6rem;"><a href="/setting">個人設定</a></li>
+{{--								<li style="font-size:1.6rem;"><a href="/event">イベントを探す</a></li>--}}
+									<li style="font-size:1.6rem;">
 										<a href=""{{ route('user.password.edit') }}" onclick="event.preventDefault(); document.getElementById('password_edit-form').submit();"">パスワード変更</a>
 									</li>
-									<li>
+									<li style="font-size:1.6rem;">
 										<a href="{{ route('user.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
 									</li>
 @else
-									<li>
+									<li style="font-size:1.6rem;">
 										<a href="{{ route('user.register') }}">新規会員登録</a>
 									</li>
-									<li>
+									<li style="font-size:1.6rem;">
 										<a href="/login">ログイン</a>
 									</li>
 
@@ -190,11 +194,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</header>
 
 <style>
+
 .breadcrumbs-contents {
   display: flex;
-  width: 100%;
+  width: 96%;
   margin: 0 auto;
   padding-top: 20px;
+  font-size:16px;
+  backgroud-color:#fff;
 }
 
 @media screen and (max-width: 820px) {
@@ -218,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div class="breadcrumbs-contents">
 			@yield('breadcrumbs')
 		</div>
-		<div class="pane-contents">
+		<div class="pane-contents" style="padding:0 0;">
 			@yield('content')
 		</div>
 	</div>
@@ -227,15 +234,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="pane-footer">
 	<div class="inner">
 		<ul>
-			<li><a href="/corporate">運営会社</a></li>
+			<li style="font-size:14px;"><a href="/corporate">運営会社</a></li>
 {{--
-			<li><a href="/blog">お役立ちコラム</a></li>
-			<li><a href="/kiyaku">利用規約</a></li>
+			<li style="font-size:14px;"><a href="/blog">お役立ちコラム</a></li>
+			<li style="font-size:14px;"><a href="/kiyaku">利用規約</a></li>
 --}}
-			<li><a href="/privacy">プライバシーポリシー</a></li>
-			<li><a href="/adminfaq">お問い合わせ</a></li>
+			<li style="font-size:14px;"><a href="/privacy">プライバシーポリシー</a></li>
+			<li style="font-size:14px;"><a href="/adminfaq">お問い合わせ</a></li>
 		</ul>
-		<p>Copyright ARK All Rights Reserved.</p>
+		<p style="font-size:14px;">Copyright ARK All Rights Reserved.</p>
 	</div>
 </footer>
 

@@ -261,3 +261,10 @@ Route::get ('/blogcat/add',   'BlogController@blogCatAdd');
 Route::post('/blogcat/add',   'BlogController@blogCatAdd');
 Route::get ('/blogcat/store', 'BlogController@blogCatStore');
 Route::post('/blogcat/store', 'BlogController@blogCatStore');
+
+Route::get ('/supervisor',       'BlogController@superIndex');
+Route::get ('/supervisor/add',   'BlogController@superAdd');
+Route::post('/supervisor/add',   'BlogController@superAdd');
+Route::get ('/supervisor/store', 'BlogController@superStore');
+Route::post('/supervisor/store', 'BlogController@superStore');
+

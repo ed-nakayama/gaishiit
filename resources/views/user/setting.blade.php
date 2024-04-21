@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>個人設定｜{{ config('app.name', 'Laravel') }}</title>
+	<title>個人設定｜{{ config('app.title') }}</title>
+	<meta name="description" content="個人設定｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="個人設定｜{{ config('app.title') }}" />
+	<meta property="og:description" content="個人設定｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/setting.css') }}" rel="stylesheet">
 @endsection
 

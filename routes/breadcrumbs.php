@@ -116,12 +116,12 @@ Breadcrumbs::for('blog', function ($trail) {
 // ブログカテゴリ
 Breadcrumbs::for('blog_list', function ($trail, $cat) {
 	$trail->parent('blog');
-	$trail->push("{$cat->name}", url("/blog/{$cat->id}"));
+	$trail->push("{$cat->name}");
 });
 
 // ブログ詳細（記事ページ）
-Breadcrumbs::for('blog_detail', function ($trail, $cat, $detail) {
-	$trail->parent('blog', $cat);
+Breadcrumbs::for('blog_detail', function ($trail, $detail) {
+	$trail->parent('blog');
 	$trail->push("{$detail->title}");
 });
 

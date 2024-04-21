@@ -6,7 +6,14 @@
 
 
 @section('addheader')
-	<title>基本情報（確認）｜{{ config('app.name', 'Laravel') }}</title>
+	<title>基本情報（確認）｜{{ config('app.title') }}</title>
+	<meta name="description" content=">基本情報（確認）| {{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content=">基本情報（確認）｜{{ config('app.title') }}" />
+	<meta property="og:description" content=">基本情報（確認）｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/career0.css') }}" rel="stylesheet">
 @endsection
 

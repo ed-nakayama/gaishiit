@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>プライバシーポリシー｜{{ config('app.name', 'Laravel') }}</title>
+	<title>プライバシーポリシー｜{{ config('app.title') }}</title>
+	<meta name="description" content="プライバシーポリシー｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="プライバシーポリシー｜{{ config('app.title') }}" />
+	<meta property="og:description" content="プライバシーポリシー｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/privacy.css') }}" rel="stylesheet">
 @endsection
 

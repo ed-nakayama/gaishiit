@@ -22,8 +22,8 @@ Auth::routes([
     'verify'   => false
 ]);
 
-Route::get('/', 'User\Auth\LoginController@top')->name('users.index');
 
+Route::get('/', 'User\Auth\LoginController@top')->name('users.index');
 
 Route::get('/comps', 'Comp\Auth\LoginController@showLoginForm')->name('comps.index');
 Route::post('/comps', 'Comp\Auth\LoginController@login');

@@ -6,8 +6,14 @@
 
 
 @section('addheader')
-	<title>求人を探す｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="外資IT.comに掲載中のすべての求人情報を検索いただけます。絞り込み条件としてエリアや年収や企業名だけではなく、細かな職種やこだわり条件もご用意しております。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<title>求人を探す｜{{ config('app.title') }}</title>
+	<meta name="description" content="外資IT.comに掲載中のすべての求人情報を検索いただけます。絞り込み条件としてエリアや年収や企業名だけではなく、細かな職種やこだわり条件もご用意しております。｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="求人を探す｜{{ config('app.title') }}" />
+	<meta property="og:description" content="外資IT.comに掲載中のすべての求人情報を検索いただけます。絞り込み条件としてエリアや年収や企業名だけではなく、細かな職種やこだわり条件もご用意しております。｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/job.css') }}" rel="stylesheet">
 @endsection
 
@@ -192,11 +198,9 @@
 				</div>
 @else
 				<div class="item info job">
-					<ul>
-						{{-- ジョブフォーマット $jobList --}}
-							@include ('user/partials/job_format_loop')
-						{{-- END ジョブフォーマット --}}
-					</ul>
+					{{-- ジョブフォーマット $jobList --}}
+						@include ('user/partials/job_format_loop')
+					{{-- END ジョブフォーマット --}}
 				</div>
 
 				<div class="pager">
@@ -214,21 +218,10 @@
 	@include ('user/partials/job_search_3type')
 {{-- END 3種 求人検索ボタン --}}
 
-{{--         
-	@include ('user/partials/job_search_business')
-	@include ('user/partials/job_search_commit')
---}}
 			</div><!-- con-wrap -->
 		</div><!-- inner -->
 	</main>
 
-
-
-<style>
-.cate-list label input:disabled + span {
-  background: #EEEEEE;
-}
-</style>
 
 {{-- 企業選択モーダル  --}}
 	@include ('user/partials/job_company_modal')

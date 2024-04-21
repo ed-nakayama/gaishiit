@@ -6,8 +6,14 @@
 
 
 @section('addheader')
-	<title>企業の評判・クチコミランキング｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="外資IT企業のクチコミ総合評価ランキングです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜外資IT.comは外資系IT企業に特化したクチコミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<title>企業の評判・クチコミランキング｜{{ config('app.title') }}</title>
+	<meta name="description" content="外資IT企業のクチコミ総合評価ランキングです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="企業の評判・クチコミランキング｜{{ config('app.title') }}" />
+	<meta property="og:description" content="外資IT企業のクチコミ総合評価ランキングです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>

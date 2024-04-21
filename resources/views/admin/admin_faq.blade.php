@@ -17,8 +17,8 @@
 		<div class="containerContents">
 @if ( isset($faq->id) )
  <!--  修正  -->
-			{{ Form::open(['url' => '/admin/faq/change', 'name' => 'changeform' , 'id' => 'changeform']) }}
-			{{Form::hidden('faq_id', old('faq_id' ,$faq->id), ['class' => 'form-control', 'id'=>'faq_id' ] )}}
+			{{ html()->form('POST', '/admin/faq/change')->id('changeform')->attribute('name', 'changeform')->open() }}
+			{{ html()->hidden('faq_id' ,old('faq_id' ,$faq->id)) }}
  			<section class="secContents-mb">
 				<div class="secContentsInner">
                             

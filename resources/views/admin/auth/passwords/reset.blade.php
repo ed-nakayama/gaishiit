@@ -64,7 +64,7 @@
                          			<a href="javascript:regform.submit()" class="squareBtn btn-large">{{ __('Reset Password') }}</a>
                     			</div>
 
-                        	{{ Form::close() }}
+							{{ html()->form()->close() }}
                     
                         </div><!-- /.secContentsInner -->
                     </section><!-- /.secContents -->

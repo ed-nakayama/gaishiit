@@ -2,7 +2,14 @@
 
 
 @section('addheader')
-	<title>企業評価｜{{ config('app.name', 'Laravel') }}</title>
+	<title>企業評価 参照｜{{ config('app.title') }}</title>
+	<meta name="description" content="企業評価 参照｜{{ config('app.description') }}">
+
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="企業評価 参照｜{{ config('app.title') }}" />
+	<meta property="og:description" content="企業評価 参照｜{{ config('app.description') }}" />
+	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
+
     <link href="{{ asset('css/eval.css') }}" rel="stylesheet">
     <link href="{{ asset('css/chart.css') }}" rel="stylesheet">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>
