@@ -145,7 +145,7 @@ class BlogController extends Controller
 				$cont->blog_id = $blog->id;
 			}
 			
-			$cont->tag       = !empty($request->tag[$i]) ? $request->tag[$i] : null;
+			$cont->tag       = $request->tag[$i];
 			$cont->sub_title = $request->sub_title[$i];
 			$cont->content   = $request->content[$i];
 				

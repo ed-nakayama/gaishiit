@@ -221,7 +221,7 @@
 								</div><!-- /.item-name -->
 								<div class="selectWrap harf" style="width:120px;">
 									<select name="tag[]"  class="select-no">
-										<option value="0"></option>
+										<option value="99"></option>
 										<option value="2" @if ($cont->tag == '2')  selected @endif>見出し２</option>
 										<option value="3" @if ($cont->tag == '3')  selected @endif>見出し３</option>
 										<option value="4" @if ($cont->tag == '4')  selected @endif>見出し４</option>
@@ -281,7 +281,7 @@ function addForm() {
 		'</div>' +
 		'<div class="selectWrap harf" style="width:120px;">' +
 		'<select name="tag[]"  class="select-no">' +
-		'<option value="0"></option>' +
+		'<option value="99"></option>' +
 		'<option value="2">見出し２</option>' +
 		'<option value="3">見出し３</option>' +
 		'<option value="4">見出し４</option>' +
