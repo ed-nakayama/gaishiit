@@ -31,7 +31,8 @@ class BlogController extends Controller
 **************************************/
 	public function index()
 	{
-		$blogList = Blog::get();
+		$blogList = Blog::orderBy('id', 'DESC')
+			->paginate(10);
     
 		return view('admin.blog_list' ,compact(
 			'blogList',
@@ -202,12 +203,12 @@ class BlogController extends Controller
 				foreach ($result2[1] as $index2 => $res2) {
 					if ($res == $res2) {
 						preg_match('@<h2 id="(.*?)">@', $result2[0][$index2] ,$tag);
-						$contents_table .= "<h3><a href=\"#{$tag[1]}\">{$res}</a></h3>";
+						$contents_table .= "<p class=\"heading-primary\"><a href=\"#{$tag[1]}\">{$res}</a></p>";
 						break;
 					}
 					if ($index2 === array_key_last($result2[1])) {
 						preg_match('@<h3 id="(.*?)">@', $result[0][$index] ,$tag);
-						$contents_table .= "<h4><a href=\"#{$tag[1]}\">{$res}</a></h4>";
+						$contents_table .= "<p class=\"heading-secondary\"><a href=\"#{$tag[1]}\">{$res}</a></p>";
 					}
 				}
 			}
@@ -381,8 +382,9 @@ class BlogController extends Controller
 
 		$super = BlogSupervisor::find($request->id);
 
-		$super->name =  $request->name;
-		$super->content =$request->content;
+		$super->name    =  $request->name;
+		$super->content = $request->content;
+		$super->url     = $request->url;
 
 		if (!empty($request->del_flag)) {
 			$super->del_flag = '1';

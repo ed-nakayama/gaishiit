@@ -48,6 +48,7 @@
                                     <th>監修者</th>
                                     <th>写真</th>
                                     <th>コメント</th>
+                                    <th>URL</th>
                                     <th>削除</th>
                                     <th></th>
                                 </tr>
@@ -67,6 +68,7 @@
                                     <td>
 									<textarea class="form-mt" name="content" cols="30" rows="4" placeholder="監修者　コメント" >{{ old('content' ,$super->content) }}</textarea>
 									</td>
+                                    <td><input type="text" name="url" value="{{ $super->url }}"></td>
                                     <td><input type="checkbox" name="del_flag" value="1" @if ($super->del_flag == '1') checked @endif></td>
                                     <td>
                                         <div class="btnContainer"  id="{{ 'catsave' .$super->id  }}">

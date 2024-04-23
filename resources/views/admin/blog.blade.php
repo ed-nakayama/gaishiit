@@ -38,6 +38,7 @@
 						<li>
 							<label id="del_lavel" for=""><span>削除する</span><input type="checkbox"  name="del_flag" id="del_flag" value="1"  onchange="clearMsg()"/></label>
 						</li>
+							<a href="/blog/{{ $blog->cat_id }}/{{ $blog->id }}" class="squareBtn btn-short" target="_blank">プレビュー</a>　　
 							<a href="javascript:changeform.submit()" class="squareBtn btn-short">保存</a>
 						<li>
 							<div class="btnContainer">
@@ -256,7 +257,8 @@
 							@if (session('update_success'))
 								<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">{{session('update_success')}}</p>
 							@endif
-							<a href="javascript:blogform{{ $blog->id }}.submit()" class="squareBtn btn-large">保存</a>
+							<a href="/blog/{{ $blog->cat_id }}/{{ $blog->id }}" class="squareBtn btn-large" target="_blank">プレビュー</a>　　
+ 							<a href="javascript:blogform{{ $blog->id }}.submit()" class="squareBtn btn-large">保存</a>
 						</div><!-- /.btn-container -->
 						{{ html()->form()->close() }}
 					</div>
@@ -265,7 +267,6 @@
 			</section><!-- /.secContents -->
 		</div><!-- /.containerContents -->
 	</div><!-- /.mainContentsInner -->
-
 
 <script>
 

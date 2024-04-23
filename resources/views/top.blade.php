@@ -261,7 +261,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
         </section>
-{{--
+
 		<section id="blog" class="items">
 			<div class="blog_ttl">
 				<h2>外資IT転職ガイド</h2>
@@ -280,7 +280,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 						<h3><a href="/blog/{{ $blog->cat_id }}/{{ $blog->id }}">{{ $blog->title }}</a></h3>
 						<div class="blog_info">
-							<p class="tag">{{ $blog->getCatName() }}</p>
+							<p class="tag"><a href="/blog/{{ $blog->cat_id }} }}">{{ $blog->getCatName() }}</a></p>
 							<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
 						</div>
 						<p>{!! mb_strimwidth($blog->intro, 0, 70, "...") !!}</p>
@@ -294,7 +294,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<a href="/blog">一覧を見る</a>
 			</div>
         </section>
---}}
+
 
 		{{-- トップ内部リンク --}}
 			@include ('user/partials/job_search_top')
@@ -305,7 +305,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="footer_inner">
 				<p><a href="/corporate">運営会社</a></p>
                 <p><a href="/blog">お役立ちコラム</a></p>
+{{--
                 <p><a href="/kiyaku">利用規約</a></p>
+--}}
                 <p><a href="/privacy">プライバシーポリシー</a></p>
                 <p><a href="/adminfaq">お問い合わせ</a></p>
 				<p>(c) Gaishi-IT.com</p>

@@ -2751,22 +2751,25 @@ select {
 	background-color:#F5F5F5;
 }
 .tbl-supervisor th:nth-child(1) {
-	width: 5%;
+	width: 3%;
 }
 .tbl-supervisor th:nth-child(2) {
-	width: 15%;
+	width: 10%;
 }
 .tbl-supervisor th:nth-child(3) {
-	width: 30%;
+	width: 20%;
 }
 .tbl-supervisor th:nth-child(4) {
 	width: auto;
 }
 .tbl-supervisor th:nth-child(5) {
-	width: 5%;
+	width: 28%;
 }
 .tbl-supervisor th:nth-child(6) {
-	width: 10%;
+	width: 4%;
+}
+.tbl-supervisor th:nth-child(7) {
+	width: 8%;
 }
 .tbl-supervisor th {
     border-bottom: 1px solid #707070;

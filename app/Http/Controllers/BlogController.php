@@ -142,6 +142,11 @@ class BlogController extends Controller
 			->orderBy('updated_at', 'DESC')
 			->get();
 
+		$newBlogList = Blog::where('open_flag' , '1')
+			->orderBy('open_date', 'DESC')
+			->orderBy('updated_at', 'DESC')
+			->limit(3)
+			->get();
 
 
     	$rankingList = $this->ranking();
@@ -153,6 +158,7 @@ class BlogController extends Controller
 			'blogCatLlist',
 			'rankingList',
 			'blogList',
+			'newBlogList',
 		));
 	}
 

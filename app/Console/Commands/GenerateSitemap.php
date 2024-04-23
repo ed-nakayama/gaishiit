@@ -119,15 +119,6 @@ class GenerateSitemap extends Command
 			->get();
 
 		foreach ($catList as $cat) {
-			$bArray[] = $cat->cat_id;
-		}
-
-		$blogCatLlist = BlogCat::orderBy('order_num')
-			->whereIn('id' ,$bArray)
-			->orderBy('id')
-			->get();
-
-		foreach ($blogCatLlist as $cat) {
 			$this->sitemap->add(Url::create("/blog/{$cat->cat_id}")->setPriority(0.5));
 		}
 

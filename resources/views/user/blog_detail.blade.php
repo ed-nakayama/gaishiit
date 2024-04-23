@@ -27,10 +27,11 @@
 
 @section('content')
 
-@auth
+{{--
+@if (Auth::guard('user')->check())
 @include('user.user_activity')
-@endauth
-
+@endif
+--}}
 
 <main class="pane-main" style="line-height:1.8;">
 	<section id="blog" class="items">
@@ -43,11 +44,11 @@
 				 <div class="article_date">
 					 <p class="timestamp">公開：{{ str_replace('-', '.', $blog->open_date) }}</p>
 					 <p class="timestamp">最終更新：{{ str_replace('-', '.', substr($blog->updated_at, 0, 10)) }}</p>
-					 <p class="tag">{{ $blog->getCatName() }}</p>
+					 <p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
 				 </div>
 				 <p>{!! nl2br($blog->intro) !!}</p>
 				 <div class="article_index">
-					 <h2 class="index_ttl">目次</h2>
+					  <p class="index_ttl">目次</p>
 					 <div class="index_content" style="display: block;">
 					 	{!! $blog->contents_table !!}
 					 </div>
@@ -70,11 +71,15 @@
 								 {!! nl2br($super->content) !!}
 							 </p>
 						 </div>
+						 @if (!empty($super->url))
+							<p class="corp-button" style="text-align: center;width:100%;"><a href="{{ $super->url }}" target="_blank">プロフィールを見る</a></p>
+						@endif
 					 </div>
 				 @endif
 					 
 				 {!! nl2br($blog->content) !!}
 
+@if(!empty($blogList[0]))
 				<h2>関連記事</h2>
 				<div class="related-articles">
 					@foreach ($blogList as $blog)
@@ -89,14 +94,42 @@
 								</figure>
 								<p class="blog_ttl">{{ $blog->title }}</p>
 								<div class="blog_info">
-									<p class="tag">{{ $blog->getCatName() }}</p>
+									<p class="tag">><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
 									<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
 								</div>
 							</a>
 						</div>
 					@endforeach
 				</div>
+@endif
+
+<div class="extend-nav-pc">
+				<h2>新着記事</h2>
+				<div class="content">
+					@foreach ($newBlogList as $blog)
+					<div class="content_block">
+						<a href="/blog/{{ $blog->cat_id }}/{{ $blog->id }}">
+							<figure>
+								@if (!empty($blog->thumb))
+									<img src="{{ $blog->thumb }}" alt="">
+								@else
+									<img src="/storage/blog/thumb/h_logo.png" alt="">
+								@endif
+							</figure>
+							<p class="blog_ttl">{{ $blog->title }}</p>
+						</a>
+						<div class="blog_info"">
+							<p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
+							<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
+						</div>
+					</div>
+					@endforeach
+				</div>
+
 			</div>
+</div>
+
+
 			<div class="blog_menu">
 				<div class="item">
 					<h2>カテゴリ</h2>
@@ -145,10 +178,10 @@
 							</div>
 						</div>
 					@endforeach
-				</div>
-				<div class="con-wrap">
-					<div class="expand-button-flex">
-						<a href="/company/ranking" style="font-size: 1.6rem;">クチコミ企業ランキングへ</a>
+					<div class="con-wrap">
+						<div class="expand-button-flex">
+							<a href="/company/ranking" style="font-size: 1.6rem;">クチコミ企業ランキングへ</a>
+						</div>
 					</div>
 				</div>
 

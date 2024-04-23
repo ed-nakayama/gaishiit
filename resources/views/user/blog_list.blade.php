@@ -23,10 +23,12 @@
 
 @section('content')
 
+{{--
 
 @if (Auth::guard('user')->check())
 @include('user.user_activity')
 @endif
+--}}
 
 <main class="pane-main">
 	<div class="main" style="padding:15px;">
@@ -49,11 +51,11 @@
 								@endif
 							</figure>
 							<p class="blog_ttl">{{ $blog->title }}</p>
+						</a>
 							<div class="blog_info">
-								<p class="tag">{{ $blog->getCatName() }}</p>
+								<p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
 								<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
 							</div>
-						</a>
 					</div>
 					@endforeach
 				</div>
@@ -110,13 +112,13 @@
 							</div>
 						</div>
 					@endforeach
-				</div>
-
-				<div class="con-wrap">
-					<div class="expand-button-flex">
-						<a href="/company/ranking" style="font-size: 1.6rem;">クチコミ企業ランキングへ</a>
+					<div class="con-wrap">
+						<div class="expand-button-flex">
+							<a href="/company/ranking" style="font-size: 1.6rem;">クチコミ企業ランキングへ</a>
+						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>

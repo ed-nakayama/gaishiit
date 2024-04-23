@@ -54,7 +54,10 @@
 						</tr>
 						@endforeach
 					</table>
- 
+ 	<div class="pager">
+		{{ $blogList->appends(request()->query())->links('pagination.admin') }}
+	</div>
+
 				</div><!-- /.secContentsInner -->
 			</section><!-- /.secContents -->
                    
