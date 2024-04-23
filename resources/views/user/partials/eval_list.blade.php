@@ -52,7 +52,7 @@
 							回答者：{{ $eval->occupation }}、
 							在籍@if ($eval->retire_year == '9999'){{ \Carbon\Carbon::today()->format('Y') - $eval->join_year}}@else{{ $eval->retire_year - $eval->join_year }}@endif年、
 							@if ($eval->sex == '1')男性@elseif ($eval->sex == '2')女性@elseif ($eval->sex == '0')性別なし@else @if ($eval->id % 5 == '2')女性@else男性@endif @endif 
-							 - 回答日:{{ str_replace('-','/',substr($eval->updated_at,0,10)) }}
+							 - 回答日:@if (!empty($eval->answer_date)){{ str_replace('-','/',$eval->answer_date) }}@else{{ str_replace('-','/',substr($eval->updated_at,0,10)) }}@endif
 						</div>
 
 						<div class="eval-item">

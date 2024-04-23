@@ -604,6 +604,15 @@ form .select-wrap label::before {
 							</div>
 						</div>
 
+						<div class="item-block">
+							<p class="ttl">回答日<br>（空の場合は更新日が表示）</p>
+							<div class="form-inner contact">
+								<div class="contact-list">
+									<div class="input-wrap"><input type="date" name="answer_date" value="{{  old('answer_date', $eval->answer_date) }}"></div>
+								</div>
+							</div>
+						</div>
+
 						<div class="btn-wrap">
 							@error('input_len')
 								<span class="invalid-feedback" role="alert" style="color:#ff0000;"><p style="transform: rotate(0.03deg);">全項目の合計が、500文字以上になるように入力してください。</p></span>

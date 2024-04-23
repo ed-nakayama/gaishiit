@@ -976,6 +976,7 @@ class MypageController extends Controller
 				'retire_point'       => $request->retire_point,
 				'retire_content'     => $request->retire_content,
 				'approve_flag'       => $request->approve_flag,
+				'answer_date'        => $request->answer_date,
 			]);
 
 		} else {
@@ -1006,6 +1007,7 @@ class MypageController extends Controller
 			$eval->retire_point       = $request->retire_point;
 			$eval->retire_content     = $request->retire_content;
 			$eval->approve_flag       = $request->approve_flag;
+			$eval->answer_date        = $request->answer_date;
 
 			$eval->save();
 		}
