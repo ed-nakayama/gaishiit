@@ -86,7 +86,7 @@
 
 @if (empty($jobList[0]))
 				<div class="item info job">
-					<center>該当なし</center>
+					<center>該当する求人はございませんでした</center>
 				</div>
 @else
 				<div class="item info job">

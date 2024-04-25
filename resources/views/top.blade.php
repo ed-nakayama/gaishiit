@@ -147,6 +147,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div class="menu-content">
 				<p><a href="/company">企業を探す</a></p>
 				<p><a href="/job">求人を探す</a></p>
+				<p><a href="/blog">お役立ちコラム</a></p>
 			</div>
             <div class="title_block">		
                 <div class="inner">

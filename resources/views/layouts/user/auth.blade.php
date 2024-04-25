@@ -89,6 +89,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 								<ul id="menu-content">
 									<li style="transform: rotate(0.03deg);"><a href="/company"">企業を探す</a></li>
 									<li style="transform: rotate(0.03deg);"><a href="/job">求人を探す</a></li>
+									<li style="transform: rotate(0.03deg);"><a href="/blog">お役立ちコラム</a></li>
 @if (Auth::guard('user')->check())
 									<li style="transform: rotate(0.03deg);"><a href="/mypage">マイページ</a></li>
 									<li style="transform: rotate(0.03deg);"><a href="/interview/list">メッセージ</a></li>
@@ -143,6 +144,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 @endif
 									<li style="font-size:1.6rem;"><a href="/company">企業を探す</a></li>
 									<li style="font-size:1.6rem;"><a href="/job">求人を探す</a></li>
+									<li style="font-size:1.6rem;"><a href="/blog">お役立ちコラム</a></li>
 @if (Auth::guard('user')->check())
 									<li style="font-size:1.6rem;"><a href="/setting">個人設定</a></li>
 {{--								<li style="font-size:1.6rem;"><a href="/event">イベントを探す</a></li>--}}
@@ -236,9 +238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<ul>
 			<li style="font-size:14px;"><a href="/corporate">運営会社</a></li>
 			<li style="font-size:14px;"><a href="/blog">お役立ちコラム</a></li>
-{{--
 			<li style="font-size:14px;"><a href="/kiyaku">利用規約</a></li>
---}}
 			<li style="font-size:14px;"><a href="/privacy">プライバシーポリシー</a></li>
 			<li style="font-size:14px;"><a href="/adminfaq">お問い合わせ</a></li>
 		</ul>

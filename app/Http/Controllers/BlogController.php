@@ -121,8 +121,8 @@ class BlogController extends Controller
 			->select('cat_id')
 			->get();
 
-		foreach ($catList as $cat) {
-			$bArray[] = $cat->cat_id;
+		foreach ($catList as $catCont) {
+			$bArray[] = $catCont->cat_id;
 		}
 
 		$blogCatLlist = BlogCat::orderBy('order_num')
@@ -140,6 +140,7 @@ class BlogController extends Controller
 			->where('id', '<>', $detail)
 			->orderBy('open_date', 'DESC')
 			->orderBy('updated_at', 'DESC')
+			->limit(4)
 			->get();
 
 		$newBlogList = Blog::where('open_flag' , '1')
