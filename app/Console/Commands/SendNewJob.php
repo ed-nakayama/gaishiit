@@ -52,7 +52,7 @@ class SendNewJob extends Command
 			->whereNull('jobs.deleted_at')
 			->where('jobs.open_flag', '1')
 			->whereNull('jobs.job_cat_details')
-			->where('jobs.created_at', '>', $lastUpdate->last_date)
+//			->where('jobs.created_at', '>', $lastUpdate->last_date)
 			->selectRaw('companies.id as comp_id, companies.name as comp_name, jobs.id as job_id, jobs.name as job_name')
 			->get();
 
@@ -64,14 +64,14 @@ class SendNewJob extends Command
 		Storage::disk('local')->append($workName, $header);
 		
 		foreach ($jobList as $job) {
-			$content = str_replace("\n", '', $job->comp_name) . ",$job->job_name,https://gaishiit.com/admin/mypage/job/edit?company_id={$job->comp_id}&job_id={$job->job_id}";
+			$content = str_replace("\n", '', $job->comp_name) . ',"' . $job->job_name. '"' . ",https://gaishiit.com/admin/mypage/job/edit?company_id={$job->comp_id}&job_id={$job->job_id}";
 
 			$content = mb_convert_encoding($content, 'SJIS-WIN', 'UTF8');
 
 			Storage::disk('local')->append($workName, $content);
 		}
 
-		Mail::send(new SendNewJobMail($workName));
+//		Mail::send(new SendNewJobMail($workName));
 
 		$lastUpdate->last_date = date("Y-m-d H:i:s");
 		$lastUpdate->save();
