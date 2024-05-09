@@ -47,6 +47,11 @@
 					 <p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
 				 </div>
 				 <p>{!! nl2br($blog->intro) !!}</p>
+
+				{{--  ブログ求人リンク --}}
+					@include ('user/partials/blog_job_link')
+				{{--  END ブログ求人リンク --}}
+
 				 <div class="article_index">
 					  <p class="index_ttl">目次</p>
 					 <div class="index_content" style="display: block;">
@@ -78,6 +83,10 @@
 				 @endif
 					 
 				 {!! nl2br($blog->content) !!}
+
+				{{--  ブログ求人リンク --}}
+					@include ('user/partials/blog_job_link')
+				{{--  END ブログ求人リンク --}}
 
 @if(!empty($blogList[0]))
 				<h2>関連記事</h2>
@@ -118,7 +127,7 @@
 							</figure>
 							<p class="blog_ttl">{{ $blog->title }}</p>
 						</a>
-						<div class="blog_info"">
+						<div class="blog_info">
 							<p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
 							<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
 						</div>

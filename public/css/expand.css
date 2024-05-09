@@ -186,6 +186,29 @@
 }
 
 
+.expand-job-link {
+  width:100%;
+  background: #E5AF24;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+}
+
+.expand-job-link .boxtop {
+  display:flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.expand-job-link .boxtop div {
+  background: #EBEBEB;
+  width:220px;
+  padding-top:10px;
+  padding-bottom:10px;
+  border:solid 1px;
+  border-color: #E5AF24;
+}
 
 /*************************************************************
 /* ‚»‚Ì‘¼’Ç‰Á 
