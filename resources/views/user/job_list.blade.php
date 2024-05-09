@@ -85,7 +85,7 @@
 			<div class="con-wrap">
 
 @if (empty($jobList[0]))
-				<div class="item info job">
+				<div class="item info job" style="font-size:20px;margin:50px 0px;">
 					<center>該当する求人はございませんでした</center>
 				</div>
 @else

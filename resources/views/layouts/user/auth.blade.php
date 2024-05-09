@@ -129,7 +129,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</nav>
 					</div>
 
-					<div class="nav-sp">
+					<div class="nav-sp" style="margin-right:0;padding-right:0;">
 						<nav>
 							<div class="inner">
 @if (Auth::guard('user')->check())
@@ -141,7 +141,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 @if (Auth::guard('user')->check())
 									<li style="font-size:1.6rem;"><a href="/mypage">マイページ</a></li>
 									<li style="font-size:1.6rem;"><a href="/interview/list">メッセージ</a></li>
+@else
+									<li style="font-size:1.6rem;">
+										<p style="font-size:1.1rem;color:white;letter-spacing: 0em;white-space:nowrap;">\ 求人、クチコミがすべて見放題！ /</p>
+										<a href="{{ route('user.register') }}" style="font-size:1.4rem;width:100%;color: #E5AF24;background: #fff;padding-top:5px;padding-bottom:5px;padding-left:10px;border-radius: 20px;white-space:nowrap;">新規で会員登録する ▶</a>
+									</li>
 @endif
+									<li style="font-size:1.6rem;">
+										<a href="/login">ログイン</a>
+									</li>
 									<li style="font-size:1.6rem;"><a href="/company">企業を探す</a></li>
 									<li style="font-size:1.6rem;"><a href="/job">求人を探す</a></li>
 									<li style="font-size:1.6rem;"><a href="/blog">お役立ちコラム</a></li>
@@ -154,14 +162,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 									<li style="font-size:1.6rem;">
 										<a href="{{ route('user.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
 									</li>
-@else
-									<li style="font-size:1.6rem;">
-										<a href="{{ route('user.register') }}">新規会員登録</a>
-									</li>
-									<li style="font-size:1.6rem;">
-										<a href="/login">ログイン</a>
-									</li>
-
 @endif
 								</ul>
 							</div>
