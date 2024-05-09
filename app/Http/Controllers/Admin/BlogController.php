@@ -51,22 +51,12 @@ class BlogController extends Controller
 			if ( !isset($blog) ) {
 				abort(404);
 			}
+			
 		} else {
 			$blog = new Blog();
 		}
 
 		$blogContentList = BlogContent::where('blog_id', $request->blog_id)->get();
-
-		if (empty($blogContentList[0])) {
-			for ($i = 0; $i < 20; $i++) {
-				$cont = BlogContent::create([
-					'blog_id' => $request->blog_id,
-	        	]);
-			}
-		}
-
-		$blogContentList = BlogContent::where('blog_id', $request->blog_id)->get();
-
 	
 		$blogCatList = BlogCat::get();
 		$superList = BlogSupervisor::get();

@@ -214,6 +214,7 @@
 						</div>
 
 						<div id="content_box">
+@if (!empty($blogContentList[0]))
 						@foreach ($blogContentList as $cont)
 							{{ html()->hidden('idList[]' ,$cont->id) }}
 							<div class="formContainer mg-ajust-midashi">
@@ -249,6 +250,43 @@
 							</div>
 							<br>
 						@endforeach
+@else
+						@for ($i = 0; $i < 20; $i++)
+							{{ html()->hidden('idList[]') }}
+							<div class="formContainer mg-ajust-midashi">
+								<div class="item-name">
+									<p>タグ</p>
+								</div><!-- /.item-name -->
+								<div class="selectWrap harf" style="width:120px;">
+									<select name="tag[]"  class="select-no">
+										<option value="99"></option>
+										<option value="2">見出し２</option>
+										<option value="3">見出し３</option>
+										<option value="4">見出し４</option>
+										<option value="5">表</option>
+										<option value="6">テキスト</option>
+									</select>
+								</div><!-- /.item-input -->
+
+								<div class="item-name">
+									<p>見出し</p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									<input type="text" name="sub_title[]" value="">
+								</div><!-- /.item-input -->
+							</div>
+
+							<div class="formContainer al-item-none">
+								<div class="item-name">
+									<p>内容</p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									<textarea class="form-mt" name="content[]" id="" cols="30" rows="5" placeholder="本文" ></textarea>
+								</div><!-- /.item-input -->
+							</div>
+							<br>
+						@endfor
+@endif
 </div>
 	<a href="javascript:addForm()" class="squareBtn btn-short">項目追加</a>
 						<br>
