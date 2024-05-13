@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -19,18 +18,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-{{--    <link href="https://fonts.googleapis.comcss2?family=M+PLUS+1p:wght@400;700&display=swap" rel="stylesheet">--}}
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap" rel="stylesheet">
     <link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
     <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/top.css') }}">
     <link rel="stylesheet" href="{{ asset('css/job.css') }}">
     <link rel="stylesheet" href="{{ asset('css/new_common.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/top.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://gaishiit.com/css/chart.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('css/chart.css') }}">
 </head>
 
 <script>
@@ -143,13 +141,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="wrapper">
         <div class="mv"></div>
         <section id="sec-title" class="items">
-            <div class="title_logo"><a href="#"><img src="img/top/logo.png" alt="Gaishi IT.com" class="v-pc"><img src="img/top/logo_sp.png" alt="Gaishi IT.com" class="v-sp"></a></div>
-			<div class="menu-content">
-				<p><a href="/company">企業を探す</a></p>
-				<p><a href="/job">求人を探す</a></p>
-				<p><a href="/blog">お役立ちコラム</a></p>
+		<header>
+			<div id="menu">			
+				<div id="menu-inner">
+					<div class="logo">
+						<a href="/mypage">
+							<a href="#"><img src="img/top/logo.png" alt="Gaishi IT.com" class="v-pc"><img src="img/top/logo_sp.png" alt="Gaishi IT.com" class="v-sp">
+						</a>
+					</div>
+
+					<div class="nav-pc">
+						<nav>
+							<div class="inner">
+								<ul id="menu-content">
+									<li style="transform: rotate(0.03deg);"><a href="/company">企業を探す</a></li>
+									<li style="transform: rotate(0.03deg);"><a href="/job">求人を探す</a></li>
+									<li style="transform: rotate(0.03deg);"><a href="/blog">お役立ちコラム</a></li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+
+					<div class="nav-sp" style="margin-right:0;padding-right:0;">
+						<nav>
+							<div class="inner">
+								<ul calss="menu-content">
+									<li style="font-size:1.6rem;">
+										<p style="font-size:1.1rem;color:white;letter-spacing: 0em;white-space:nowrap;">＼ 求人、クチコミがすべて見放題！ ／</p>
+										<a href="/register" style="font-size:1.4rem;width:100%;color: #E5AF24;background: #fff;padding-top:5px;padding-bottom:5px;padding-left:10px;border-radius: 20px;white-space:nowrap;">新規で会員登録する ▶</a>
+									</li>
+									<li style="font-size:1.6rem;">
+										<a href="/login">ログイン</a>
+									</li>
+									<li style="font-size:1.6rem;"><a href="/company">企業を探す</a></li>
+									<li style="font-size:1.6rem;"><a href="/job">求人を探す</a></li>
+									<li style="font-size:1.6rem;"><a href="/blog">お役立ちコラム</a></li>
+								</ul>
+							</div>
+						</nav>
+    
+						<div class="toggle-btn">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+						<div id="mask"></div>
+					</div><!-- nav-sp -->
+
+				</div><!-- menu-inner -->
+
 			</div>
-            <div class="title_block">		
+		</header>
+            <div class="title_block">
                 <div class="inner">
 					<div class="signup-login">
 						<p><a href="/register">新規会員登録</a></p>
@@ -262,7 +305,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
         </section>
-
+		
 		<section id="blog" class="items">
 			<div class="blog_ttl">
 				<h2>外資IT転職ガイド</h2>
@@ -296,11 +339,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
         </section>
 
-
 		{{-- トップ内部リンク --}}
 			@include ('user/partials/job_search_top')
 		{{-- END トップ内部リンク --}}
-
 
         <footer id="footer">
             <div class="footer_inner">
@@ -315,7 +356,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </footer>
     </div>
-
 
 
 {{-- 企業選択モーダル  --}}
