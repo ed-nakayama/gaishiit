@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/job.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/new_common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/top.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -30,6 +31,26 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/chart.css') }}">
 </head>
+
+<style>
+
+#menu #menu-content > li {
+  margin-bottom: 0px;
+}
+
+#menu #menu-content > li > a {
+  font-size: 1.6rem;
+}
+
+@media screen and (max-width: 500px) {
+
+  #menu #menu-content > li > a {
+    font-size: 1.2rem;
+  }
+}
+
+
+</style>
 
 <script>
 
@@ -165,17 +186,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<div class="nav-sp" style="margin-right:0;padding-right:0;">
 						<nav>
 							<div class="inner">
-								<ul calss="menu-content">
-									<li style="font-size:1.6rem;">
-										<p style="font-size:1.1rem;color:white;letter-spacing: 0em;white-space:nowrap;">＼ 求人、クチコミがすべて見放題！ ／</p>
-										<a href="/register" style="font-size:1.4rem;width:100%;color: #E5AF24;background: #fff;padding-top:5px;padding-bottom:5px;padding-left:10px;border-radius: 20px;white-space:nowrap;">新規で会員登録する ▶</a>
+								<ul id="menu-content">
+									<li>
+										<p style="font-size:1.0rem;color:white;letter-spacing: 0em;white-space:nowrap;">＼ 求人、クチコミがすべて見放題！ ／</p>
+										<a href="/register" style="width:100%;color: #E5AF24;background: #fff;padding-top:5px;padding-bottom:5px;padding-left:10px;border-radius: 20px;white-space:nowrap;">新規で会員登録する ▶</a>
 									</li>
-									<li style="font-size:1.6rem;">
+									<li>
 										<a href="/login">ログイン</a>
 									</li>
-									<li style="font-size:1.6rem;"><a href="/company">企業を探す</a></li>
-									<li style="font-size:1.6rem;"><a href="/job">求人を探す</a></li>
-									<li style="font-size:1.6rem;"><a href="/blog">お役立ちコラム</a></li>
+									<li><a href="/company">企業を探す</a></li>
+									<li><a href="/job">求人を探す</a></li>
+									<li><a href="/blog">お役立ちコラム</a></li>
 								</ul>
 							</div>
 						</nav>

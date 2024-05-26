@@ -51,6 +51,18 @@
   color:#666666;
 }
 
+#menu #menu-content > li {
+  margin-bottom: 0px;
+}
+
+@media screen and (max-width: 500px) {
+
+  #menu #menu-content > li > a {
+    font-size: 1.2rem;
+  }
+}
+
+
 </style>
 
 <!-- Google Tag Manager -->
@@ -137,29 +149,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 									<p style="transform: rotate(0.03deg);">{{ Auth::guard('user')->user()->name }}</p>
 								</div>
 @endif
-								<ul class="menu-content">
+								<ul id="menu-content">
 @if (Auth::guard('user')->check())
-									<li style="font-size:1.6rem;"><a href="/mypage">マイページ</a></li>
-									<li style="font-size:1.6rem;"><a href="/interview/list">メッセージ</a></li>
+									<li><a href="/mypage">マイページ</a></li>
+									<li><a href="/interview/list">メッセージ</a></li>
 @else
-									<li style="font-size:1.6rem;">
-										<p style="font-size:1.1rem;color:white;letter-spacing: 0em;white-space:nowrap;">＼ 求人、クチコミがすべて見放題！ ／</p>
-										<a href="{{ route('user.register') }}" style="font-size:1.4rem;width:100%;color: #E5AF24;background: #fff;padding-top:5px;padding-bottom:5px;padding-left:10px;border-radius: 20px;white-space:nowrap;">新規で会員登録する ▶</a>
+									<li>
+										<p style="font-size:1.0rem;color:white;letter-spacing: 0em;white-space:nowrap;">＼ 求人、クチコミがすべて見放題！ ／</p>
+										<a href="{{ route('user.register') }}" style="width:100%;color: #E5AF24;background: #fff;padding-top:5px;padding-bottom:5px;padding-left:10px;border-radius: 20px;white-space:nowrap;">新規で会員登録する ▶</a>
 									</li>
 @endif
-									<li style="font-size:1.6rem;">
+									<li>
 										<a href="/login">ログイン</a>
 									</li>
-									<li style="font-size:1.6rem;"><a href="/company">企業を探す</a></li>
-									<li style="font-size:1.6rem;"><a href="/job">求人を探す</a></li>
-									<li style="font-size:1.6rem;"><a href="/blog">お役立ちコラム</a></li>
+									<li><a href="/company">企業を探す</a></li>
+									<li><a href="/job">求人を探す</a></li>
+									<li><a href="/blog">お役立ちコラム</a></li>
 @if (Auth::guard('user')->check())
-									<li style="font-size:1.6rem;"><a href="/setting">個人設定</a></li>
-{{--								<li style="font-size:1.6rem;"><a href="/event">イベントを探す</a></li>--}}
-									<li style="font-size:1.6rem;">
+									<li><a href="/setting">個人設定</a></li>
+{{--								<li><a href="/event">イベントを探す</a></li>--}}
+									<li>
 										<a href=""{{ route('user.password.edit') }}" onclick="event.preventDefault(); document.getElementById('password_edit-form').submit();"">パスワード変更</a>
 									</li>
-									<li style="font-size:1.6rem;">
+									<li>
 										<a href="{{ route('user.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
 									</li>
 @endif
