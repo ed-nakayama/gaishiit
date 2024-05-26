@@ -113,6 +113,8 @@
 -------------------- */
 #sec-title {
   min-height: 80vh;
+  position: relative;
+  z-index: 10;
 }
 #sec-title .title_logo {
   position: absolute;
@@ -755,9 +757,8 @@
 @media screen and (max-width: 820px) {
 header {
   background: none;
-
-}
-
+	}
+	
 @media (max-width: 767px) {
   /* view */
   .v-sp {display: block;}
