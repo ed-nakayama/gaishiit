@@ -42,11 +42,37 @@
   font-size: 1.6rem;
 }
 
+#menu #menu-content > li .exp-msg {
+  font-size:1.0rem;
+  color:white;
+  letter-spacing: 0em;
+  white-space:nowrap;
+}
+
+#menu #menu-content > li .exp-button {
+  color: #E5AF24;
+  background: #fff;
+  padding:5px 10px 5px 10px;  /* 上 | 右 | 下 | 左 */
+  border-radius: 20px;
+  white-space:nowrap;
+}
+
 @media screen and (max-width: 500px) {
 
   #menu #menu-content > li > a {
     font-size: 1.2rem;
   }
+
+  #menu #menu-content > li .exp-msg {
+    font-size:0.9rem;
+  }
+
+  #menu #menu-content > li .exp-button {
+    padding-top:3px;
+    padding-bottom:3px;
+    white-space:nowrap;
+  }
+
 }
 
 
@@ -188,8 +214,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 							<div class="inner">
 								<ul id="menu-content">
 									<li>
-										<p style="font-size:1.0rem;color:white;letter-spacing: 0em;white-space:nowrap;">＼ 求人、クチコミがすべて見放題！ ／</p>
-										<a href="/register" style="width:100%;color: #E5AF24;background: #fff;padding-top:5px;padding-bottom:5px;padding-left:10px;border-radius: 20px;white-space:nowrap;">新規で会員登録する ▶</a>
+										<p class="exp-msg">＼ 求人、クチコミがすべて見放題！ ／</p>
+										<a href="/register" class="exp-button">新規で会員登録する ▶</a>
 									</li>
 									<li>
 										<a href="/login">ログイン</a>
