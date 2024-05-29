@@ -1264,3 +1264,23 @@ form .select-wrap2 label::before {
   border-left: 24px solid  #003366;
 }
 
+.remainTerm {
+  display:flex;
+  align-items: flex-end;
+  width: fit-content;
+  background:#ffc0cb;
+  padding:4px 10px;
+  font-size:1.4rem;
+  font-weight:600;
+  margin: 0 0 0 auto;
+}
+
+.remainTerm .rowRemain {
+  color:#8b0000;
+  font-size:2.0rem;
+}
+
+.remainTerm .rowCount {
+  color:#8b0000;
+}
+

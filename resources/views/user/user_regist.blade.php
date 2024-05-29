@@ -17,6 +17,58 @@
 
 @section('content')
 
+
+<script>
+/////////////////////////////////////////////////////////
+// 残り項目チェック
+/////////////////////////////////////////////////////////
+function ShowTerm() {
+
+	var user_name        = document.getElementById('user_name').value;
+	var email            = document.getElementById('email').value;
+	var sex              = document.getElementById('sex').value;
+	var graduation       = document.getElementById('graduation').value;
+	var company          = document.getElementById('company').value;
+	var job              = document.getElementsByName('job')
+	var occupation       = document.getElementById('occupation').value;
+	var change_time      = document.getElementById('change_time').value;
+	var request_location = document.getElementsByName('request_location[]');
+	var business_cats    = document.getElementById('business_cats').value;
+	var job_cat_details  = document.getElementById('job_cat_details').value;
+	var income           = document.getElementById('income').value;
+	
+	var total = 0;
+
+	if (user_name.length == 0)       total++;
+	if (email.length == 0)           total++;
+	if (sex.length == 0)             total++;
+	if (graduation.length == 0)      total++;
+	if (company.length == 0)         total++;
+	if (occupation.length == 0)      total++;
+	if (change_time.length == 0)     total++;
+	if (business_cats.length == 0)   total++;
+	if (job_cat_details.length == 0) total++;
+	if (income.length == 0)          total++;
+
+	flag = false;
+	for (var i = 0; i < job.length; i++) {
+		if (job[i].checked) flag = true;
+	}
+	if (flag == false) total++;
+
+	flag = false;
+	for (var i = 0; i < request_location.length; i++) {
+		if (request_location[i].checked) flag = true;
+	}
+	if (flag == false) total++;
+
+
+   document.getElementById('remain').innerHTML = total;
+}
+
+</script>
+
+
 <main class="pane-main">
 
 	<div class="inner">
@@ -33,6 +85,7 @@
 		{{ html()->form('POST', '/register/confirm')->id('regform')->attributes(['name' => 'regform','onsubmit' => 'return formSubmit();'])->open() }}
 
 		<div class="con-wrap">
+			<div class="remainTerm"><p>残り未完了項目　</p><p id="remain" class="rowRemain"></p><p  class="rowCount">箇所</p></div>
 
 			<div class="item setting">
 				<div class="item-inner">
@@ -46,7 +99,7 @@
 							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
 								<div class="contact-list">
 									<div class="input-wrap">
-										{{ html()->text('user_name')->placeholder('山田　太郎')->style($errors->has('user_name') ? 'background:#ffc0cb;' : '')->attribute('autofocus'); }}
+										{{ html()->text('user_name')->placeholder('山田　太郎')->style($errors->has('user_name') ? 'background:#ffc0cb;' : '')->attributes(['autofocus', 'onChange' => 'ShowTerm();']) }}
 									</div>
 								</div>
 								@error('user_name')
@@ -62,7 +115,7 @@
 							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
 								<div class="contact-list">
 									<div class="input-wrap">
-										{{ html()->text('email')->class('long')->placeholder('you@example.com')->style($errors->has('email') ? 'background:#ffc0cb;' : '') }}
+										{{ html()->text('email')->class('long')->placeholder('you@example.com')->style($errors->has('email') ? 'background:#ffc0cb;' : '')->attributes(['onChange' => 'ShowTerm();']) }}
 									</div>
 								</div>
 								@error('email')
@@ -123,7 +176,7 @@
 									<div class="form-inner">
 										<div class="select-wrap">
 											<label for="">
-												<select id="sex" name="sex" @error('sex') style='background:#ffc0cb;' @enderror >
+												<select id="sex" name="sex" @error('sex') style='background:#ffc0cb;' @enderror onChange="ShowTerm();">
 													<option disabled selected value>ご選択ください</option>
 													{{ html()->option("男性", '1', (old('sex') == '1')) }}
 													{{ html()->option("女性", '2', (old('sex') == '2')) }}
@@ -155,7 +208,7 @@
 							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
 								<div class="contact-list">
 									<div class="input-wrap">
-										{{ html()->text('graduation')->class('long')->placeholder('〇〇大学　〇〇学部')->style($errors->has('graduation') ? 'background:#ffc0cb;' : '') }}
+										{{ html()->text('graduation')->class('long')->placeholder('〇〇大学　〇〇学部')->style($errors->has('graduation') ? 'background:#ffc0cb;' : '')->attributes(['onChange' => 'ShowTerm();']); }}
 									</div>
 								</div>
 								@error('graduation')
@@ -172,7 +225,7 @@
 							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
 								<div class="contact-list">
 									<div class="input-wrap">
-										{{ html()->text('company')->class('long')->placeholder('〇〇株式会社')->style($errors->has('company') ? 'background:#ffc0cb;' : '') }}
+										{{ html()->text('company')->class('long')->placeholder('〇〇株式会社')->style($errors->has('company') ? 'background:#ffc0cb;' : '')->attributes(['onChange' => 'ShowTerm();']); }}
 									</div>
 								</div>
 								@error('company')
@@ -192,8 +245,8 @@
 										<div class="form-block">
 											<div class="form-inner">
 												<div class="check-box-btn">
-													<label><input type="checkbox" value="1" onclick="changeJobDisabled(1);" name="job" @if (old('job') == '1')  checked="checked" @endif><span>IC</span></label>
-													<label><input type="checkbox" value="2" onclick="changeJobDisabled(2);" name="job" @if (old('job') == '2')  checked="checked" @endif><span>Management</span></label>
+													<label><input type="checkbox" value="1" onclick="changeJobDisabled(1);" name="job" @if (old('job') == '1')  checked="checked" @endif  onChange="ShowTerm();"><span>IC</span></label>
+													<label><input type="checkbox" value="2" onclick="changeJobDisabled(2);" name="job" @if (old('job') == '2')  checked="checked" @endif  onChange="ShowTerm();"><span>Management</span></label>
 												</div>
 											</div>
 										</div>
@@ -214,7 +267,7 @@
 												</ul>
 											</div>
 											<div class="input-wrap">
-												{{ html()->text('occupation')->class('long')->placeholder('ITコンサルタントなど')->style($errors->has('occupation') ? 'background:#ffc0cb;' : '') }}
+												{{ html()->text('occupation')->class('long')->placeholder('ITコンサルタントなど')->style($errors->has('occupation') ? 'background:#ffc0cb;' : '')->attributes(['onChange' => 'ShowTerm();']); }}
 											</div>
 										</div>
 										<ul class="oneRow">
@@ -395,7 +448,7 @@
 								<div class="contact-list">
 									<div class="select-wrap">
 										<label for="">
-											<select id="change_time" name="change_time" @error('change_time') style='background:#ffc0cb;' @enderror >
+											<select id="change_time" name="change_time" @error('change_time') style='background:#ffc0cb;' @enderror  onChange="ShowTerm();">
 												<option disabled selected value>ご選択ください</option>
 												@foreach ($constJobChange as $jobChange)
 													{{ html()->option($jobChange->name,  $jobChange->id, (old('change_time') ==  $jobChange->id)) }}
@@ -491,7 +544,7 @@
 										<div class="contact-list">
 											<div class="select-wrap">
 												<label for="">
-													<select id="income" name="income" @error('income') style='background:#ffc0cb;' @enderror >
+													<select id="income" name="income" @error('income') style='background:#ffc0cb;' @enderror  onChange="ShowTerm();">
 														<option disabled selected value>ご選択ください</option>
 														@foreach ($incomeList as $income)
 															@if ($income->id < 99)
@@ -980,6 +1033,7 @@ function changeElse() {
 		changeElseLocation.style.display = "none";
 	}
 
+	ShowTerm();
 }
 
 
@@ -1082,6 +1136,7 @@ function putJob() {
     	$("#jobcat_list").html(titleList);
         document.getElementById( "job_cat_details" ).value = valList;
     }
+	ShowTerm();
 }
 
 
@@ -1139,6 +1194,9 @@ function putBus() {
     	$("#buscat_list").html(titleList);
         document.getElementById( "business_cats" ).value = valList;
     }
+
+	ShowTerm();
+
 }
 
 
@@ -1347,6 +1405,7 @@ $(document).ready(function() {
 		$('select[name="selectYear"] option[value="' + year + '"]').prop('selected', true);
 	}
 	
+	ShowTerm();
 });
 
 
