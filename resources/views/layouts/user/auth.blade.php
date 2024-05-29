@@ -276,7 +276,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<ul>
 			<li style="font-size:14px;"><a href="/corporate">運営会社</a></li>
 			<li style="font-size:14px;"><a href="/blog">お役立ちコラム</a></li>
+{{--
 			<li style="font-size:14px;"><a href="/kiyaku">利用規約</a></li>
+--}}
 			<li style="font-size:14px;"><a href="/privacy">プライバシーポリシー</a></li>
 			<li style="font-size:14px;"><a href="/adminfaq">お問い合わせ</a></li>
 		</ul>
