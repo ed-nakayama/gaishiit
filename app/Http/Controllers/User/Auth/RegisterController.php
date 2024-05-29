@@ -92,34 +92,39 @@ class RegisterController extends Controller
 ********************************************************/
     public function confirm(Request $request)
     {
-		$validatedData = $request->validate([
-	    	'business_cats'    => ['required'],
-	    	'job_cat_details'  => ['required'],
+		if ($_SERVER["REQUEST_METHOD"] === "POST") {
+			$validatedData = $request->validate([
+				'user_name'        => ['required', 'string', 'max:60'],
+				'email'            => ['required', 'string', 'email', 'max:60', 'unique:users'],
+				'selectYear'       => ['required'],
+				'selectMonth'      => ['required'],
+				'selectDate'       => ['required'],
+				'sex'              => ['required'],
 
-    		'user_name'        => ['required', 'string', 'max:60'],
-	    	'email'            => ['required', 'string', 'email', 'max:40', 'unique:users'],
-	    	'birthday'         => ['required'],
-	    	'sex'              => ['required'],
+				'graduation'       => ['required', 'string', 'max:100'],
+				'company'          => ['required', 'string', 'max:80'],
+				'job'              => ['required'],
+				'mgr_year'         => ['required_if:job,2', 'integer' ,'nullable'],
+				'mgr_member'       => ['required_if:job,2', 'integer' ,'nullable'],
+				'occupation'       => ['required', 'string'],
 
-		    'change_time'      => ['required'],
-		    'change_year'      => ['required_if:change_time,2'],
-		    'change_month'     => ['required_if:change_time,2'],
-//		    'change_day'       => ['required_if:change_time,2'],
+				'section'          => ['nullable', 'string', 'max:200'],
+				'job_title'        => ['nullable','string', 'max:40'],
+				'job_content'      => ['nullable','string'],
+				'actual_income'    => ['nullable','integer'],
+	    		'ote_income'       => ['nullable','integer'],
+				'old_company'      => ['nullable','string', 'max:80'],
+				'request_carrier'  => ['nullable','string'],
 
-    		'graduation'       => ['required', 'string', 'max:100'],
-	    	'company'          => ['required', 'string', 'max:80'],
-	    	'job_title'        => ['required', 'string', 'max:40'],
-	    	'job'              => ['required'],
-	    	'mgr_year'         => ['required_if:job,2', 'integer' ,'nullable'],
-	    	'mgr_member'       => ['required_if:job,2', 'integer' ,'nullable'],
-	    	'job_content'      => ['required', 'string'],
+				'change_time'      => ['required'],
 
-	    	'actual_income'    => ['required', 'integer'],
-    		'ote_income'       => ['required', 'integer'],
-	    	'request_location' => ['required'],
-	    	'request_carrier'  => ['required', 'string'],
-   		]);
-
+				'request_location' => ['required'],
+				'business_cats'    => ['required'],
+				'job_cat_details'  => ['required'],
+				'income'           => ['required'],
+			]);
+		}
+	
 		$reg = $request;
 
         return view('user.user_regist_confirm', compact('reg'));
@@ -132,36 +137,40 @@ class RegisterController extends Controller
     public function postRegister(Request $request)
     {
 		$validatedData = $request->validate([
-	    	'business_cats'    => ['required'],
-	    	'job_cat_details'  => ['required'],
+			'user_name'        => ['required', 'string', 'max:60'],
+			'email'            => ['required', 'string', 'email', 'max:60', 'unique:users'],
+			'selectYear'       => ['required'],
+			'selectMonth'      => ['required'],
+			'selectDate'       => ['required'],
+			'sex'              => ['required'],
 
-    		'user_name'        => ['required', 'string', 'max:60'],
-	    	'email'            => ['required', 'string', 'email', 'max:40', 'unique:users'],
-	    	'birthday'         => ['required'],
-	    	'sex'              => ['required'],
+			'graduation'       => ['required', 'string', 'max:100'],
+			'company'          => ['required', 'string', 'max:80'],
+			'job'              => ['required'],
+			'mgr_year'         => ['required_if:job,2', 'integer' ,'nullable'],
+			'mgr_member'       => ['required_if:job,2', 'integer' ,'nullable'],
+			'occupation'       => ['required', 'string'],
 
-		    'change_time'      => ['required'],
-		    'change_year'      => ['required_if:change_time,2'],
-		    'change_month'     => ['required_if:change_time,2'],
-//		    'change_day'       => ['required_if:change_time,2'],
+			'section'          => ['nullable', 'string', 'max:200'],
+			'job_title'        => ['nullable','string', 'max:40'],
+			'job_content'      => ['nullable','string'],
+			'actual_income'    => ['nullable','integer'],
+    		'ote_income'       => ['nullable','integer'],
+			'old_company'      => ['nullable','string', 'max:80'],
+			'request_carrier'  => ['nullable','string'],
 
-    		'graduation'       => ['required', 'string', 'max:100'],
-	    	'company'          => ['required', 'string', 'max:80'],
-	    	'job_title'        => ['required', 'string', 'max:40'],
-	    	'job'              => ['required'],
-	    	'mgr_year'         => ['required_if:job,2', 'integer' ,'nullable'],
-	    	'mgr_member'       => ['required_if:job,2', 'integer' ,'nullable'],
-	    	'job_content'      => ['required', 'string'],
+			'change_time'      => ['required'],
 
-	    	'actual_income'    => ['required', 'integer'],
-    		'ote_income'       => ['required', 'integer'],
-	    	'request_location' => ['required'],
-	    	'request_carrier'  => ['required', 'string'],
-   		]);
+			'request_location' => ['required'],
+			'business_cats'    => ['required'],
+			'job_cat_details'  => ['required'],
+			'income'           => ['required'],
+		]);
 
 		$location = null;
 		if (!empty($request->request_location)) $location = implode(',', $request->request_location);
 
+		$birthday = $request->selectYear . '-' . $request->selectMonth . '-' . $request->selectDate;
 
 		$job_cats = null;
 		if (!empty($request->job_cat_details)) {
@@ -180,35 +189,37 @@ class RegisterController extends Controller
 
 		// ユーザ登録
         $retUser = User::create([
-            'business_cats'    => $request->business_cats,
-            'job_cats'         => $job_cats,
-            'job_cat_details'  => $request->job_cat_details,
-            'no_company'       => $request->no_company,
-            'old_company'      => $request->old_company,
-            
             'name'             => $request->user_name,
             'email'            => $request->email,
-            'birthday'         => $request->birthday,
+            'birthday'         => $birthday,
             'sex'              => $request->sex,
 
-            'change_time'      => $request->change_time,
-            'change_year'      => $request->change_year,
-            'change_month'     => $request->change_month,
-//            'change_day'       => $request->change_day,
-            
             'graduation'       => $request->graduation,
             'company'          => $request->company,
-            'job_title'        => $request->job_title,
             'job'              => $request->job,
             'mgr_year'         => $request->mgr_year,
             'mgr_member'       => $request->mgr_member,
-            'job_content'      => $request->job_content,
+            'occupation'       => $request->occupation,
 
+            'section'          => $request->section,
+            'job_title'        => $request->job_title,
+            'job_content'      => $request->job_content,
             'actual_income'    => $request->actual_income,
             'ote_income'       => $request->ote_income,
+            'old_company'      => $request->old_company,
+            'request_carrier'  => $request->request_carrier,
+
+            'change_time'      => $request->change_time,
+
             'request_location' => $location,
             'else_location'    => $request->else_location,
-            'request_carrier'  => $request->request_carrier,
+
+            'business_cats'    => $request->business_cats,
+            'job_cats'         => $job_cats,
+            'job_cat_details'  => $request->job_cat_details,
+            'income'           => $request->income,
+            'no_company'       => $request->no_company,
+            
         ]);
 
 

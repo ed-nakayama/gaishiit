@@ -1081,3 +1081,186 @@ form .select-wrap2 label::before {
 
 
 }
+
+
+
+
+.exp-required-label {
+  font-size:1.4em;
+  text-align: center;
+  font-weight:bold;
+  margin-bottom: 10px;
+}
+.exp-required-block {
+  display: flex;
+}
+.exp-required {
+  background:#cd5c5c;
+  color:white;
+  font-weight:bold;
+  font-size:1.4em;
+  padding: 0 20px;
+  text-align: center;
+  white-space:nowrap;
+  margin: auto 0;
+}
+.exp-any {
+  background:#87ceeb;
+  color:white;
+  font-weight:bold;
+  font-size:1.4em;
+  padding: 0 20px;
+  text-align: center;
+  white-space:nowrap;
+  margin: auto 0;
+}
+
+.exp-required-title {
+  vertical-align:middle;
+  font-size:1.2em;
+  font-weight:bold;
+  white-space: nowrap;
+  margin: auto 0;
+}
+
+.button-flex button {
+  display: inline-block;
+/*  display: flex;*/
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: #4AA5CE;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  max-width: 380px;
+  width: 300px;
+  text-align: center;
+}
+
+
+@media screen and (max-width: 960px) {
+.exp-required {
+  font-size:1.0em;
+}
+.exp-any {
+  font-size:1.0em;
+}
+.exp-required-title {
+  font-size:1.0em;
+}
+.button-flex button {
+  width: 200px;
+}
+
+}
+
+/* Stepnav
+-----------------------------------------*/
+ 
+.Stepnav ol {
+  margin-top: 40px;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  height: 48px;
+  border-left: solid 1px #FFF;
+  border-right: solid 1px #FFF;
+}
+ 
+.Stepnav ol li {
+  position: relative;
+  display: table-cell;
+  box-sizing: border-box;
+  padding-left: 25px;
+  text-align: center;
+  vertical-align: middle;
+  color: #FFF;
+  font-size: 1.0em;
+  background-color: #DDDDDD;
+  font-weight: bold;
+  border-top: solid 1px #DDDDDD;
+  border-bottom: solid 1px #DDDDDD;
+}
+
+.Stepnav ol li p {
+	display:flex;
+	justify-content: center;
+}
+
+.Stepnav ol li p label {
+  font-size:0.7em;
+  text-decoration:underline;
+  text-underline-offset: 5px;
+  margin:auto 0;
+  padding-right:2px;
+}
+ 
+ 
+.Stepnav ol li:first-child {
+  padding-left: 0;
+}
+ 
+@media screen and (max-width: 960px) {
+  .Stepnav ol li {
+    font-size: 11px;
+  }
+.Stepnav ol li p label {
+  font-size:0.6em;
+}
+}
+ 
+.Stepnav ol li.current {
+  background-color: #003366;
+  color: #FFF;
+}
+ 
+ 
+.Stepnav ol li:before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -26px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 24px solid transparent;
+  border-bottom: 24px solid transparent;
+  border-left: 24px solid #FFF;
+  z-index: 99;
+}
+ 
+.Stepnav ol li:nth-child(3):before {
+  display: none;
+}
+ 
+.Stepnav ol li:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -24px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 24px solid transparent;
+  border-bottom: 24px solid transparent;
+  border-left: 24px solid #DDDDDD;
+  z-index: 99;
+}
+ 
+.Stepnav ol li:last-child:after {
+  display: none;
+}
+ 
+ 
+ 
+.Stepnav ol li.current {
+  border-top: solid 1px #003366;
+  border-bottom: solid 1px #003366;
+}
+ 
+.Stepnav ol li.current:after {
+  border-left: 24px solid  #003366;
+}
+

@@ -18,421 +18,507 @@
 
 @include('user.user_activity')
 
-			<main class="pane-main">
+<main class="pane-main">
 
-				<div class="inner">
-					<div class="ttl">
-						<h1>基本情報</h1>
-					</div>
+	<div class="inner">
+		<div class="ttl">
+			<h1>基本情報</h1>
+		</div>
 
-						<div class="con-wrap">
+		<div class="con-wrap">
 
-							@if (session('status') === 'success-update')
-								<center>
-									<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">登録／変更が完了しました。</p>
-								</center>
-							@endif
-							@if (session('status') === 'success-update2')
-								<center>
-									<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">登録が完了しました。</p>
-								</center>
-							@endif
-{{-- 基本２ --}}
-							<div class="item setting">
-								<div class="item-inner">
-									{{ html()->form('POST', "/base/store")->attribute('name', "baseform")->attribute('onsubmit', 'return formSubmit();')->open() }}
+			@if (session('status') === 'success-update')
+				<center>
+					<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">登録／変更が完了しました。</p>
+				</center>
+			@endif
+			@if (session('status') === 'success-update2')
+				<center>
+					<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">登録が完了しました。</p>
+				</center>
+			@endif
 
-										<div class="setting-list">
+			{{ html()->form('POST', "/base/store")->attribute('name', "baseform")->attribute('onsubmit', 'return formSubmit();')->open() }}
 
-											<div class="item-block">
-												<p class="ttl">氏名</p>
-												<div class="form-inner contact">
-													<div class="contact-list">
-														<div class="input-wrap"><input type="text" name="user_name" value="{{ old('user_name' ,$user->name) }}"></div>
-													</div>
-													@error('user_name')
-														<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-													@enderror
-												</div>
-											</div>
+			<div class="item setting">
+				<div class="item-inner">
+					<p class="exp-required-label">お客様情報のご入力</p>
 
-											<div class="item-block">
-												<p class="ttl">メールアドレス</p>
-												<div class="form-wrap">
-													<div class="form-block">
-														<div class="form-inner">
-															<div class="check-box-btn">
-																<span>{{ $user->email }}</span>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
- 
-											<div class="item-block">
-												<p class="ttl">生年月日</p>
-												<input type="hidden" id="birthday" name="birthday">
-												<div class="form-inner contact">
-													<div class="contact-list">
-														<div class="form-wrap">
-															<div class="contact-list">
-																<div class="select-wrap">
-																	<label for="">
-																		<select id="js_year" name="selectYear" class="select-no" onchange="yearMonthChange()">
-																			@foreach ($yearList as $year)
-																				<option value="{{$year}}" @if (old('selectYear' ,substr($user->birthday,0,4) ) == $year)  selected @endif>{{$year}}年</option>
-																			@endforeach
-																		</select>
-																	</label>
-																	<label for="">
-																		<select id="js_month" name="selectMonth" class="select-no" onchange="yearMonthChange()">
-																			@foreach ($monthList as $mon)
-																				<option value="{{$mon}}"   @if (old('selectMonth' ,intval(substr($user->birthday,5,2)) ) == $mon)  selected @endif>{{$mon}}月</option>
-																			@endforeach
-																		</select>
-																	</label>
-																	<label for="">
-																		<select id="js_day" name="selectDate" class="select-no"></select>
-																	</label>
-																</div>
-																@error('birthday')
-																	<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-																@enderror
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-
-
-											<div class="item-block">
-												<p class="ttl">性別</p>
-												<div class="form-wrap">
-													<div class="form-block">
-														<div class="form-inner">
-															<div class="check-box-btn">
-																<label><input type="checkbox" value="1" name="sex" @if (old('sex' ,$user->sex) == '1') checked @endif><span>男性</span></label>
-																<label><input type="checkbox" value="2" name="sex" @if (old('sex' ,$user->sex) == '2') checked @endif><span>女性</span></label>
-																<label><input type="checkbox" value="3" name="sex" @if (old('sex' ,$user->sex) == '0') checked @endif><span>選択しない</span></label>
-															</div>
-															@error('sex')
-																<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-															@enderror
-														</div>
-													</div>
-												</div>
-											</div>
-
-
-											<div class="item-block">
-												<p class="ttl">転職希望時期</p>
-												<div class="form-inner contact">
-                                                    <div class="contact-list">
-                                                		<div class="form-wrap">
-                                                    		<div class="form-block">
-                                                        		<div class="form-inner">
-                                                            		<div class="check-box-btn">
-                                                                		<label><input type="checkbox" value="1" name="change_time" onclick="changeTimeDisabled(1);" @if (old('change_time' ,$user->change_time) == '1') checked @endif><span>今すぐ</span></label>
-                                                                		<label><input type="checkbox" value="2" name="change_time" onclick="changeTimeDisabled(2);" @if (old('change_time' ,$user->change_time) == '2') checked @endif><span>希望の転職時期がある</span></label>
-                                                            		</div>
-                                                        		</div>
-                                                    		</div>
-
-                                                    		<div class="contact-list">
-                                                        		<div class="select-wrap" id="changeTimeSelect">
-                                                            		<label for="">
-                                                						<select name="change_year" id="change_year" class="select-no">
-                                                    						<option value="" disabled selected style="display:none;">年</option>
-                                                 							@foreach ($startYearList as $year)
-                                                    							<option value="{{$year}}"   @if (old('change_year' ,$user->change_year) == $year)  selected @endif>{{$year}}年</option>
-                                                 							@endforeach
-                                                						</select>
-                                                                    		
-                                                            		</label>
-                                                            		
-                                                            	    <label for="">
-                                                						<select name="change_month" id="change_month" class="select-no">
-                                                    						<option value="" disabled selected style="display:none;">月</option>
-                                                 							@foreach ($monthList as $mon)
-                                                    							<option value="{{$mon}}"   @if (old('change_month' ,$user->change_month) == $mon)  selected @endif>{{$mon}}月</option>
-                                                 							@endforeach
-                                                						</select>
-                                                            		</label>
-                                                            	     頃
-                                                            	    <ul class="oneRow">
-                                    								@error('change_time')
-                                        								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-                                    								@enderror
-                                    								@error('change_year')
-                                        								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-                                    								@enderror
-                                    								@error('change_month')
-                                        								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-                                    								@enderror
-                                									</ul>
-
-                                                        		</div>
-                                                    		</div>
-                                                		</div>
-                                            		</div>
-												</div>
-											</div>
-
-											<div class="item-block">
-												<p class="ttl">最終学歴</p>
-												<div class="form-inner contact">
-                                                    <div class="contact-list">
-                                                        <div class="input-wrap"><input type="text" name="graduation" value="{{ old('graduation' ,$user->graduation) }}"  class="long"></div>
-                                                    </div>
-                                    				@error('graduation')
-                                        				<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-                                    				@enderror
-												</div>
-											</div>
-
-											<div class="item-block">
-												<p class="ttl">現在の勤務先</p>
-												<div class="form-inner contact">
-                                                    <div class="contact-list">
-                                                        <div class="input-wrap"><input type="text" name="company"  value="{{ old('company' ,$user->company) }}"  class="long"></div>
-                                                    </div>
-                                     				@error('company')
-                                        				<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-                                    				@enderror
-												</div>
-											</div>
-
-											<div class="item-block">
-												<p class="ttl">役職</p>
-												<div class="form-inner contact">
-                                                    <div class="contact-list">
-                                                        <div class="input-wrap"><input type="text" name="job_title" value="{{  old('job_title' ,$user->job_title) }}"  class="long"></div>
-                                                    </div>
-                                     				@error('job_title')
-                                        				<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-                                    				@enderror
-												</div>
-											</div>
-
-											<div class="item-block">
-												<p class="ttl">職務内容</p>
-												<div class="form-inner contact">
-                                                    <div class="contact-list">
-                                                		<div class="form-wrap">
-                                                    		<div class="form-block">
-                                                        		<div class="form-inner">
-                                                            		<div class="check-box-btn">
-                                                                		<label><input type="checkbox" value="1" onclick="changeJobDisabled(1);" name="job" @if (old('job' ,$user->job) == '1')  checked="checked" @endif><span>IC</span></label>
-                                                                		<label><input type="checkbox" value="2" onclick="changeJobDisabled(2);" name="job" @if (old('job' ,$user->job) == '2')  checked="checked" @endif><span>Management</span></label>
-                                                            		</div>
-                                                       			</div>
-                                                    		</div>
-
-															<div class="contact-list">
-																<div class="select-wrap" id="changeJobSelect">
-																	<ul>
-																		<li style="display: inline-block;">
-																			<div class="input-wrap"><input type="text" name="mgr_year" value="{{  old('mgr_year' ,$user->mgr_year) }}"  class="short"> 年　</div>
-																		</li>
-																		<li style="display: inline-block;">
-																			<div class="input-wrap"><input type="text" name="mgr_member" value="{{  old('mgr_member' ,$user->mgr_member) }}"  class="short"> 人</div>
-																		</li>
-																	</ul>
-																</div>
-
-																<div class="input-wrap">
-																	<textarea name="job_content" id="" cols="30" rows="4">{{ old('job_content' ,$user->job_content) }}</textarea>
-																</div>
-															</div>
-															<ul class="oneRow">
-																@error('job')
-																	<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-																@enderror
-																@error('mgr_year')
-																	<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-																@enderror
-																@error('mgr_member')
-																	<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-																@enderror
-																@error('job_content')
-																	<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-																@enderror
-															</ul>
-
-														</div>
-													</div>
-												</div>
-											</div>
-
-
-											<div class="item-block">
-												<p class="ttl">過去3年の平均実績（Actual Earnings）</p>
-												<div class="form-inner contact">
-													<div class="contact-list">
-														<div class="input-wrap"><input type="text" name="actual_income" value="{{  old('actual_income' ,$user->actual_income) }}"  class="short"> 万円</div>
-													</div>
-													@error('actual_income')
-														<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-													@enderror
-												</div>
-											</div>
-
-											<div class="item-block">
-												<p class="ttl">理論年収（OTE）</p>
-												<div class="form-inner contact">
-													<div class="contact-list">
-														<div class="input-wrap"><input type="text" name="ote_income" value="{{  old('ote_income' ,$user->ote_income) }}"  class="short"> 万円</div>
-													</div>
-													@error('ote_income')
-														<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-													@enderror
-												</div>
-											</div>
-
-
-											<div class="item-block">
-												<p class="ttl">過去の勤務先</p>
-												<div class="form-inner contact">
-													<div class="contact-list">
-														<div class="input-wrap"><input type="text" name="old_company" value="{{ old('old_company' ,$user->old_company) }}"  class="long"></div>
-													</div>
-												</div>
-											</div>
-
-
-											<div class="item-block">
-												<p class="ttl">希望勤務地</p>
-												<div class="form-wrap">
-													<div class="form-block">
-														<div class="form-inner">
-															<div class="check-box-btn">
-																@foreach ($constLocation as $loc)
-																	<label><input type="checkbox" value="{{ $loc->id }}" name="request_location[]"  @if (strpos($user->request_location ,$loc->id) !== false) checked @endif  onclick="changeElse();"><span>{{$loc->name}}</span></label>
-																@endforeach
-															</div>
-															<div class="input-wrap" id="changeElseLocation">
-																<input type="text" name="else_location" id="else_location" value="{{  old('else_location',$user->else_location) }}"  class="long"  placeholder="その他希望勤務地">
-															</div>
-															@error('request_location')
-																<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-															@enderror
-														</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="item-block">
-												<p class="ttl">キャリアに関する希望</p>
-												<div class="form-inner contact">
-                                                    <div class="contact-list">
-                                                        <div class="input-wrap">
-                                                            <textarea name="request_carrier" id="" cols="30" rows="10">{{  old('request_carrier' ,$user->request_carrier) }}</textarea>
-                                                        </div>
-                                        				@error('request_carrier')
-                                        					<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-                                    					@enderror
-                                                    </div>
-												</div>
-											</div>
-
-											<div class="btn-wrap">
-												<button type="submit">登録 / 変更</button>
-												@if (session('status') === 'success-update')
-													<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">登録／変更が完了しました。</p>
-												@endif
-											</div>
-
-										</div>
-									{{ html()->form()->close() }}
+					<div class="setting-list">
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　お名前</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('user_name' ,old('user_name' ,$user->name))->placeholder('山田　太郎')->style($errors->has('user_name') ? 'background:#ffc0cb;' : '') }}
+									</div>
 								</div>
-							</div><!-- item setting -->
-{{-- 基本２ --}}
+								@error('user_name')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
 
-{{-- 基本１ --}}
-							<div class="item setting">
-                                <div class="item-inner">
-									{{ html()->form('POST', "/option")->attribute('name', "optionform")->open() }}
-                                    	<div class="setting-list">
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　メールアドレス</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('email', $user->email)->class('long')->disabled() }}
+									</div>
+								</div>
+							</div>
+						</div>
+ 
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　生年月日</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="form-wrap">
+										<div class="contact-list">
+											<div class="select-wrap">
+												<label for="">
+													<select id="js_year" name="selectYear" class="select-no" onchange="yearMonthChange()">
+														@foreach ($yearList as $year)
+															{{ html()->option("{$year}年", $year, (old('selectYear' ,substr($user->birthday,0,4)) == $year)) }}
+														@endforeach
+													</select>
+												</label>
+												<label for="">
+													<select id="js_month" name="selectMonth" class="select-no" onchange="yearMonthChange()">
+														@foreach ($monthList as $mon)
+															{{ html()->option("{$mon}月", $mon, (old('selectMonth' ,intval(substr($user->birthday,5,2))) == $mon)) }}
+														@endforeach
+													</select>
+												</label>
+												<label for="">
+													<select id="js_day" name="selectDate" class="select-no"></select>
+												</label>
+											</div>
+											@error('selectYear')
+												<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+											@enderror
+											@error('selectMonth')
+												<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+											@enderror
+											@error('selectDate')
+												<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+											@enderror
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                                            <div class="item-block">
-                                                <p class="ttl">転職を希望する業種</p>
-                                                <div class="form-wrap">
-                                                    <div class="form-block">
-                                                        <div class="form-inner">
-                                                            <div class="check-box-btn">
-                                                          		<input type="hidden" name="business_cats" id="business_cats" value="{{ $user->business_cats }}">
-                                                                <ul id="buscat_list">
-                                                                </ul>
-                                                                <a  class="openModalIndustry button-modal" href="#modalAreaIndustry">変更</a>
-                                                            </div>
-                                              				@error('business_cats')
-                                       							<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-                                    						@enderror
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　性別</p>
+							</div>
+							<div class="form-wrap">
+								<div class="form-block" style="margin-top:10px;margin-bottom:20px;">
+									<div class="form-inner">
+										<div class="select-wrap">
+											<label for="">
+												<select id="sex" name="sex" @error('sex') style='background:#ffc0cb;' @enderror >
+													<option disabled selected value>ご選択ください</option>
+													{{ html()->option("男性", '1', (old('sex' ,$user->sex) == '1')) }}
+													{{ html()->option("女性", '2', (old('sex' ,$user->sex) == '2')) }}
+													{{ html()->option("選択しない", '0', (old('sex' ,$user->sex) == '0')) }}
+												</select>
+											</label>
+										</div>
+										@error('sex')
+											<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+										@enderror
+									</div>
+								</div>
+							</div>
+						</div>
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+					</div>
+				</div>
+			</div>
+
+			<div class="item setting">
+				<div class="item-inner">
+					<p class="exp-required-label">キャリア情報のご入力</p>
+					<div class="setting-list">
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　最終学歴</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('graduation', old('graduation' ,$user->graduation))->class('long')->placeholder('〇〇大学　〇〇学部')->style($errors->has('graduation') ? 'background:#ffc0cb;' : '') }}
+									</div>
+								</div>
+								@error('graduation')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　勤務先（現在または在籍していた）</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('company' ,$user->company)->class('long')->placeholder('〇〇株式会社')->style($errors->has('company') ? 'background:#ffc0cb;' : '') }}
+									</div>
+								</div>
+								@error('company')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　職種</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="form-wrap">
+										<div class="form-block">
+											<div class="form-inner">
+												<div class="check-box-btn">
+													<label><input type="checkbox" value="1" onclick="changeJobDisabled(1);" name="job" @if (old('job' ,$user->job) == '1')  checked="checked" @endif><span>IC</span></label>
+													<label><input type="checkbox" value="2" onclick="changeJobDisabled(2);" name="job" @if (old('job' ,$user->job) == '2')  checked="checked" @endif><span>Management</span></label>
+												</div>
+											</div>
+										</div>
+
+										<div class="contact-list">
+											<div class="select-wrap" id="changeJobSelect">
+												<ul>
+													<li style="display: inline-block;">
+														<div class="input-wrap">
+															{{ html()->text('mgr_year', old('mgr_year' ,$user->mgr_year))->class('short')->style($errors->has('mgr_year') ? 'background:#ffc0cb;' : '') }} 年　
+														</div>
+													</li>
+													<li style="display: inline-block;">
+														<div class="input-wrap">
+															{{ html()->text('mgr_member', old('mgr_member' ,$user->mgr_member))->class('short')->style($errors->has('mgr_member') ? 'background:#ffc0cb;' : '') }} 人
+														</div>
+													</li>
+												</ul>
+											</div>
+
+											<div class="input-wrap">
+												{{ html()->text('occupation' ,old('occupation' ,$user->occupation))->class('long')->placeholder('ITコンサルタントなど')->style($errors->has('occupation') ? 'background:#ffc0cb;' : '') }}
+											</div>
+										</div>
+										<ul class="oneRow">
+											@error('job')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+											@error('mgr_year')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+											@error('mgr_member')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+											@error('occupation')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-any">任意</p><p class="ttl exp-required-title">　事業部・部門</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('section', old('section' ,$user->section))->class('long')->placeholder('〇〇事業部')->style($errors->has('section') ? 'background:#ffc0cb;' : '') }}
+									</div>
+								</div>
+								@error('section')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-any">任意</p><p class="ttl exp-required-title">　役職</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('job_title', old('job_title' ,$user->job_title))->class('long')->placeholder('リーダー,部長など')->style($errors->has('job_title') ? 'background:#ffc0cb;' : '') }}
+								</div>
+								</div>
+								@error('job_title')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-any">任意</p><p class="ttl exp-required-title">　職務内容</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="form-wrap">
+										<div class="input-wrap">
+											{{ html()->textarea('job_content', old('job_content' ,$user->job_content))->rows('4')->style($errors->has('job_content') ? 'background:#ffc0cb;' : '')->placeholder('【仕事の詳細内容】
+【実績】') }}
+										</div>
+										<p>※仕事の詳細内容、実績などをご記入ください。</p>
+										<ul class="oneRow">
+											@error('job_content')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-any">任意</p><p class="ttl exp-required-title">　過去3年の平均実績（Actual Earnings）</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('actual_income', old('actual_income' ,$user->actual_income))->class('short')->style($errors->has('actual_income') ? 'background:#ffc0cb;' : '') }} 万円
+									</div>
+								</div>
+								@error('actual_income')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-any">任意</p><p class="ttl exp-required-title">　理論年収（OTE）</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('ote_income', old('ote_income' ,$user->ote_income))->class('short')->style($errors->has('ote_income') ? 'background:#ffc0cb;' : '') }} 万円
+									</div>
+								</div>
+								@error('ote_income')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-any">任意</p><p class="ttl exp-required-title">　上記以外の過去の勤務先</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('old_company', old('old_company' ,$user->old_company))->class('long')->placeholder('〇〇株式会社')->style($errors->has('old_company') ? 'background:#ffc0cb;' : '') }}
+									</div>
+									<p>※複数社ご経験がある場合は、全てご記入ください。</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-any">任意</p><p class="ttl exp-required-title">　キャリアに関する希望</p>
+							</div>
+							<div class="form-inner contact"  style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->textarea('request_carrier', old('request_carrier' ,$user->request_carrier))->rows('10')->placeholder('希望の職務内容、希望の役職についてなど')->style($errors->has('request_carrier') ? 'background:#ffc0cb;' : '') }}
+									</div>
+									<p>※複数社ご経験がある場合は、全てご記入ください。</p>
+									@error('request_carrier')
+										<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+									@enderror
+								</div>
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-any">任意</p><p class="ttl exp-required-title">　非表示企業</p>
+							</div>
+							<div class="form-wrap" style="margin-top:10px;margin-bottom:20px;">
+								<div class="form-block">
+									<div class="form-inner">
+										<div class="check-box-btn">
+											{{ html()->hidden('no_company', $user->no_company) }}
+											<ul id="comp_list">
+											</ul>
+											<a  class="openModalName button-modal" href="#modalAreaName">選択</a>
+										</div>
+									</div>
+								</div>
+								<font color="red">※あなたの転職情報を開示したくない企業（現在の在籍企業や、過去に在籍していた企業など）がある場合は選択してください。</font>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="item setting">
+				<div class="item-inner">
+					<p class="exp-required-label">転職のご希望について</p>
+					<div class="setting-list">
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　転職希望時期</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="select-wrap">
+										<label for="">
+											<select id="change_time" name="change_time" @error('change_time') style='background:#ffc0cb;' @enderror >
+												@foreach ($constJobChange as $jobChange)
+													{{ html()->option($jobChange->name,  $jobChange->id, (old('change_time', $user->change_time) ==  $jobChange->id)) }}
+												@endforeach
+											</select>
+										</label>
+									</div>
+									<ul class="oneRow">
+										@error('change_time')
+											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+										@enderror
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　希望勤務地</p>
+							</div>
+							<div class="form-wrap" style="margin-top:10px;margin-bottom:20px;">
+								<div class="form-block">
+									<div class="form-inner">
+										<div class="check-box-btn">
+										@php
+											$locs = explode(',', $user->request_location);
+										@endphp
+											@foreach ($constLocation as $loc)
+												<label><input type="checkbox" value="{{ $loc->id }}" name="request_location[]" {{ in_array($loc->id, (array)old('request_location', $locs)) ? 'checked' : '' }}  onclick="changeElse();"><span>{{$loc->name}}</span></label>
+											@endforeach
+										</div>
+										<div class="input-wrap" id="changeElseLocation">
+											{{ html()->text('else_location', old('else_location',$user->else_location))->id('else_location')->class('long')->placeholder("その他希望勤務地")->style($errors->has('else_location') ? 'background:#ffc0cb;' : '') }}
+										</div>
+										@error('request_location')
+											<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+										@enderror
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　希望業種</p>
+							</div>
+							<div class="form-wrap" style="margin-top:10px;margin-bottom:20px;">
+								<div class="form-block">
+									<div class="form-inner">
+										<div class="check-box-btn">
+											<input type="hidden" name="business_cats" id="business_cats" value="{{ $user->business_cats }}">
+											<ul id="buscat_list">
+											</ul>
+											<a  class="openModalIndustry button-modal" href="#modalAreaIndustry">選択</a>
+										</div>
+										@error('business_cats')
+											<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+										@enderror
+
+									</div>
+								</div>
+							</div>
+						</div>
 
 
-                                            <div class="item-block">
-                                                <p class="ttl">転職を希望する職種</p>
-                                                <div class="form-wrap">
-                                                    <div class="form-block">
-                                                        <div class="form-inner">
-                                                            <div class="check-box-btn">
-                                                          		<input type="hidden" name="job_cat_details"  id="job_cat_details" value="{{ $user->job_cat_details }}">
-                                                                <ul id="jobcat_list">
-                                                                </ul>
-                                                                <a  class="openModalJob button-modal" href="#modalAreaJob">変更</a>
-                                                            </div>
-                                              				@error('job_cat_details')
-                                       							<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-                                    						@enderror
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　希望職種</p>
+							</div>
+							<div class="form-wrap" style="margin-top:10px;margin-bottom:20px;">
+								<div class="form-block">
+									<div class="form-inner">
+										<div class="check-box-btn">
+											<input type="hidden" name="job_cat_details"  id="job_cat_details" value="{{ $user->job_cat_details }}">
+											<ul id="jobcat_list">
+											</ul>
+											<a  class="openModalJob button-modal" href="#modalAreaJob">選択</a>
+										</div>
+										@error('job_cat_details')
+											<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+										@enderror
                                                             
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+									</div>
+								</div>
+							</div>
+						</div>
 
- 
- 
-                                            <div class="item-block">
-                                                <p class="ttl">非表示企業</p>
-                                                <div class="form-wrap">
-                                                    <div class="form-block">
-                                                        <div class="form-inner">
-                                                            <div class="check-box-btn">
-                                                          		<input type="hidden" name="no_company" id="no_company" value="{{ $user->no_company }}">
-                                                                <ul id="comp_list">
-                                                                </ul>
-                                                                <a  class="openModalName button-modal" href="#modalAreaName">変更</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <font color="red">※あなたの転職情報を開示したくない企業（現在の在籍企業や、過去に在籍していた企業など）がある場合は選択してください。</font>
-                                                </div>
-                                            </div>
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　希望年収</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="form-wrap">
+										<div class="contact-list">
+											<div class="select-wrap">
+												<label for="">
+													<select id="income" name="income" @error('income') style='background:#ffc0cb;' @enderror >
+														<option disabled selected value>ご選択ください</option>
+														@foreach ($incomeList as $income)
+															@if ($income->id < 99)
+																{{ html()->option("{$income->name}",  $income->id, (old('income',$user->income) ==  $income->id)) }}
+															@endif
+														@endforeach
+													</select>
+												</label>
+											</div>
+											@error('income')
+												<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+											@enderror
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                                            <div class="btn-wrap">
-                                                <button id="button1" type="submit" style="background:#fff;color:#4AA5CE;border:1px solid #4AA5CE;">登録</button>
-												@if (session('status') === 'success-update2')
-													<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">登録が完了しました。</p>
-												@endif
-                                            </div>
-                                        
-	                                    </div><!-- setting-list -->
-									{{ html()->form()->close() }}
-                                </div><!-- item-inner -->
-                            </div> <!-- item setting -->
-{{-- END 基本１ --}}
+					</div>
+				</div>
+			</div>
 
+			<div class="button-flex">
+				<button type="submit" >登録 / 変更</button>
+			</div>
 
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
+			{{ html()->form()->close() }}
+		</div>
+	</div>
+
+</main>
 
 
 {{-- 職種選択モーダル  --}}
@@ -863,28 +949,10 @@ $("[name='job']").on("click", function(){
 });
             
             
-function changeTimeDisabled(val) {
-
-  if (val == 2) {
-      changeTimeSelect.style.display = "";
-  } else{ 
-      changeTimeSelect.style.display = "none";
-  }
-}
-
-
-
 function changeJobDisabled(val) {
 
   if (val == 2) {
       changeJobSelect.style.display = "";
-
-	if (document.getElementById( "change_year" ).value == "") {
-		var dt = new Date();
-		dt.getFullYear();
-		document.getElementById( "change_year" ).value = dt.getFullYear();
-    }
-
   } else{ 
       changeJobSelect.style.display = "none";
   }
@@ -1177,20 +1245,6 @@ function createOptionElements(num ,parentId){
 
 
 /*****************************************************************
-* 年月日を yyyymmdd に整形
-* @param {Number} y 
-* @param {Number} m 
-* @param {Number} d 
-******************************************************************/
-function toBirthday(y, m, d) {
-	var y0 = ('000' + y).slice(-4);
-	var m0 = ('0' + m).slice(-2);
-	var d0 = ('0' + d).slice(-2);
-	return y0 + '-' + m0 + '-' + d0;
-}
-
-
-/*****************************************************************
 * 年 or 月変更時
 ******************************************************************/
 function yearMonthChange() {
@@ -1247,20 +1301,6 @@ function yearMonthChange() {
 }
 
 
-/*****************************************************************
-* submit時
-******************************************************************/
-function formSubmit() {
-
-	document.getElementById("birthday").value
-		= toBirthday(document.getElementById("js_year").value,
-			document.getElementById("js_month").value,
-			document.getElementById("js_day").value);
-
-	return true;
-}
-
-
 var selectDate = @json(old('selectDate'));
 var selectBirth = @json($user->birthday);
 
@@ -1284,25 +1324,16 @@ $(document).ready(function() {
 	var change_time = @json(old('change_time' ,$user->change_time));
 	var job = @json(old('job' ,$user->job));
 
-	changeTimeDisabled(change_time);
 	changeJobDisabled(job);
 
 	changeElse();
 
-
-	// 日付の最大値の初期値
-	let lastDay = 31;
-
-	// 年月日それぞれのselectタグに初期option生成
-	for (let i = 1; i <= lastDay; i++) {
-		createOptionElements(i,'js_day');
-	}
+	yearMonthChange();
 
 	if (!selectDate) {
 		selectDate = Number(selectBirth.substr(8,2));
 	}
 	$('select[name="selectDate"] option[value="' + selectDate + '"]').prop('selected', true);
-
 
 });
 

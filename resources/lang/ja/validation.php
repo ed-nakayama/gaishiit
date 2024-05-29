@@ -164,7 +164,7 @@ return [
         
         'graduation' => '最終学歴',
         'department' => '学部',
-        'company' => '現在の勤務先',
+        'company' => '勤務先',
         'job' => '職務',
         'mgr_year' => '年数',
         'mgr_member' => '人数',
@@ -175,7 +175,7 @@ return [
         'request_location' => '希望勤務地',
         'request_carrier' => 'キャリアに関する希望',
 
-        'unit' => '部門',
+        'unit' => '事業部・部門',
         'name' => '名称',
         'intro' => '紹介',
         'job_code' => 'ジョブID',
@@ -206,7 +206,7 @@ return [
 
         'business_cats' => '業種',
         'job_cats' => '職種',
-        'user_name' => '氏名',
+        'user_name' => 'お名前',
         'job_title' => '役職',
         'qa_kind' => 'お問合せの種類',
         'aprove_flag' => '承認／否認',
@@ -231,6 +231,7 @@ return [
         'occupation' => '職種',
         'input_len' => '全項目の合計',
         'open_date' => '公開日',
+        'income' => '年収',
 
     ],
 

@@ -267,52 +267,70 @@ class UserController extends Controller
 	public function base_store( Request $request )
 	{
 		$validatedData = $request->validate([
-    		'user_name'        => ['required', 'string', 'max:60'],
-    		'birthday'         => ['required'],
-		    'sex'              => ['required'],
-		    'change_time'      => ['required'],
-		    'change_year'      => ['required_if:change_time,2'],
-		    'change_month'     => ['required_if:change_time,2'],
-// 		    'change_day'       => ['required_if:change_time,2'],
+			'user_name'        => ['required', 'string', 'max:60'],
+			'selectYear'       => ['required'],
+			'selectMonth'      => ['required'],
+			'selectDate'       => ['required'],
+			'sex'              => ['required'],
 
-	   		'graduation'       => ['required', 'string', 'max:100'],
-	    	'company'          => ['required', 'string', 'max:80'],
-	    	'job_title'        => ['required', 'string', 'max:40'],
-   			'job'              => ['required'],
-	    	'mgr_year'         => ['required_if:job,2', 'integer'],
-	    	'mgr_member'       => ['required_if:job,2', 'integer'],
-   			'job_content'      => ['required', 'string'],
+			'graduation'       => ['required', 'string', 'max:100'],
+			'company'          => ['required', 'string', 'max:80'],
+			'job'              => ['required'],
+			'mgr_year'         => ['required_if:job,2', 'integer' ,'nullable'],
+			'mgr_member'       => ['required_if:job,2', 'integer' ,'nullable'],
+			'occupation'       => ['required', 'string'],
 
-   			'actual_income'    => ['required', 'integer'],
-   			'ote_income'       => ['required', 'integer'],
-   			'request_location' => ['required'],
-   			'request_carrier'  => ['required', 'string'],
+			'section'          => ['nullable', 'string', 'max:200'],
+			'job_title'        => ['nullable','string', 'max:40'],
+			'job_content'      => ['nullable','string'],
+			'actual_income'    => ['nullable','integer'],
+    		'ote_income'       => ['nullable','integer'],
+			'old_company'      => ['nullable','string', 'max:80'],
+			'request_carrier'  => ['nullable','string'],
+
+			'change_time'      => ['required'],
+
+			'request_location' => ['required'],
+			'business_cats'    => ['required'],
+			'job_cat_details'  => ['required'],
+			'income'           => ['required'],
    		]);
+
+		$birthday = $request->selectYear . '-' . $request->selectMonth . '-' . $request->selectDate;
 
 		$loginUser = Auth::user();
 
 		$user = User::find($loginUser->id);
 
 		$user->name = $request->user_name;
-		$user->birthday = $request->birthday;
+		$user->birthday = $birthday;
 		$user->sex = $request->sex;
-		$user->change_time = $request->change_time;
-		$user->change_year = $request->change_year;
-		$user->change_month= $request->change_month;
-//		$user->change_day = $request->change_day;
+
 		$user->graduation = $request->graduation;
 		$user->company = $request->company;
-		$user->job_title = $request->job_title;
 		$user->job = $request->job;
 		$user->mgr_year = $request->mgr_year;
 		$user->mgr_member = $request->mgr_member;
+		$user->occupation = $request->occupation;
+
+		$user->section = $request->section;
+		$user->job_title = $request->job_title;
 		$user->job_content = $request->job_content;
 		$user->actual_income = $request->actual_income;
 		$user->ote_income = $request->ote_income;
-		$user->old_company = $request->old_company;
+		$user->actual_income = $request->actual_income;
+		$user->ote_income = $request->ote_income;
+		$user->request_carrier = $request->request_carrier;
+
+		$user->change_time = $request->change_time;
+
 		$user->request_location = implode(',', $request->request_location);
 		$user->else_location =  $request->else_location;
-		$user->request_carrier = $request->request_carrier;
+
+		$user->business_cats = $request->business_cats;
+		$user->job_cat_details = $request->job_cat_details;
+		$user->income = $request->income;
+		$user->no_company = $request->no_company;
 
 		$user->save();
 

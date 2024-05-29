@@ -10,6 +10,10 @@ use Illuminate\Notifications\Notifiable;
 use App\Notifications\User\PasswordResetNotification;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\ConstJobChange;
+use App\Models\Income;
+use App\Models\Company;
+
 class User extends Authenticatable
 {
 
@@ -53,4 +57,61 @@ class User extends Authenticatable
     {
       $this->notify(new PasswordResetNotification($token));
     }
+
+	/*
+	* 転職希望時期 取得
+	*/
+    public function getChangeTime()
+    {
+        $ret = '';
+        
+        if (!empty($this->change_time)) {
+			$jobChange = ConstJobChange::find($this->change_time);
+
+			$ret = $jobChange->name;
+		}
+	
+		return $ret;
+    }
+
+
+	/*
+	* 希望年収 取得
+	*/
+    public function getIncome()
+    {
+        $ret = '';
+        
+        if (!empty($this->income)) {
+			$income = Income::find($this->income);
+
+			$ret = $income->name;
+		}
+	
+		return $ret;
+    }
+
+
+	/*
+	* 非表示企業 取得
+	*/
+    public function getNoCompany()
+    {
+        $ret = '';
+
+        if (!empty($this->no_company)) {
+
+			$compName = array();
+			$comps = explode(",", $this->no_company);
+			$compList = Company::select('name')->whereIn('id' ,$comps)->get();
+			foreach ($compList as $comp) {
+				$compName[] = $comp->name;
+			}
+			$ret = implode("/", $compName);
+		}
+	
+		return $ret;
+    }
+
+
 }

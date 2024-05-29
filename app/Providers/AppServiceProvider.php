@@ -17,6 +17,7 @@ use App\Models\ConstStage;
 use App\Models\ConstStatus;
 use App\Models\ConstResult;
 use App\Models\ConstEnglish;
+use App\Models\ConstJobChange;
 use App\Models\BusinessCat;
 use App\Models\BusinessCatDetail;
 use App\Models\JobCat;
@@ -140,6 +141,7 @@ class AppServiceProvider extends ServiceProvider
 		view()->share('constResult', ConstResult::orderBy('id')->where('del_flag','0')->get());
 		view()->share('constEnglish', ConstEnglish::orderBy('id')->where('del_flag','0')->get());
 		view()->share('constPref', ConstPref::orderBy('id')->where('del_flag','0')->get());
+		view()->share('constJobChange', ConstJobChange::orderBy('id')->where('del_flag','0')->get());
 		view()->share('businessCat', BusinessCat::where('del_flag','0')->orderBy('order_num')->orderBy('id')->get());
 		view()->share('businessCatDetail', BusinessCatDetail::orderBy('order_num')->orderBy('id')->where('del_flag','0')->get());
 		view()->share('jobCat', JobCat::where('del_flag','0')->orderBy('order_num')->orderBy('id')->get());
