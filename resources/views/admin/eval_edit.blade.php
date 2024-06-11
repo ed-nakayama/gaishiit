@@ -380,7 +380,7 @@ form .select-wrap label::before {
 								<span>
 									<input id="review5_5" type="radio" value="5" name="motivation_point" @if (old('motivation_point' ,$eval->motivation_point) == '5') checked @endif><label for="review5_5">★</label>
 									<input id="review5_4" type="radio" value="4" name="motivation_point" @if (old('motivation_point' ,$eval->motivation_point) == '4') checked @endif><label for="review5_4">★</label>
-									<input id="review5_3" type="radio" value="3" name="motivation_point" @if (old('motivation_point' ,$eval->motivation_point) == '3' || old('motivation_point' ,$eval->cmotivation_point) == '') checked @endif><label for="review5_3">★</label>
+									<input id="review5_3" type="radio" value="3" name="motivation_point" @if (old('motivation_point' ,$eval->motivation_point) == '3' || old('motivation_point' ,$eval->motivation_point) == '') checked @endif><label for="review5_3">★</label>
 									<input id="review5_2" type="radio" value="2" name="motivation_point" @if (old('motivation_point' ,$eval->motivation_point) == '2') checked @endif><label for="review5_2">★</label>
 									<input id="review5_1" type="radio" value="1" name="motivation_point" @if (old('motivation_point' ,$eval->motivation_point) == '1') checked @endif><label for="review5_1">★</label>
 								</span>
