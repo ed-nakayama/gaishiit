@@ -17,7 +17,7 @@
 	<div class="modalWrapper">
 	  <div class="modalContents">
 		<h3>企業名を選ぶ</h3>    
-		<form  onsubmit="return false" >
+		<form  onsubmit="return false"  style="width:100%;">
 			<div class="pager sort_name">
 				<ul class="page">
 					<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-a">A-G</a></li>
@@ -33,7 +33,7 @@
 					@foreach ($comp_A as $comp)
 						 <li>
 							<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 							</label>
 						 </li>
@@ -47,7 +47,7 @@
 					@foreach ($comp_B as $comp)
 						 <li>
 							<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 							</label>
 						 </li>
@@ -61,7 +61,7 @@
 					@foreach ($comp_C as $comp)
 						 <li>
 							<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 							</label>
 						 </li>
@@ -75,7 +75,7 @@
 					@foreach ($comp_D as $comp)
 						 <li>
 							<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 							</label>
 						 </li>
@@ -89,7 +89,7 @@
 					@foreach ($comp_E as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -103,7 +103,7 @@
 					@foreach ($comp_F as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -117,7 +117,7 @@
 					@foreach ($comp_G as $comp)
 						 <li>
 				 			<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 				 			</label>
 						 </li>
@@ -131,7 +131,7 @@
 					@foreach ($comp_H as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -144,7 +144,7 @@
 					@foreach ($comp_I as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -158,7 +158,7 @@
 					@foreach ($comp_J as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -172,7 +172,7 @@
 					@foreach ($comp_K as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -186,7 +186,7 @@
 					@foreach ($comp_L as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -200,7 +200,7 @@
 					@foreach ($comp_M as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -214,7 +214,7 @@
 					@foreach ($comp_N as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -228,7 +228,7 @@
 					@foreach ($comp_O as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -242,7 +242,7 @@
 					@foreach ($comp_P as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -256,7 +256,7 @@
 					@foreach ($comp_Q as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -270,7 +270,7 @@
 					@foreach ($comp_R as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -284,7 +284,7 @@
 					@foreach ($comp_S as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -298,7 +298,7 @@
 					@foreach ($comp_T as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -312,7 +312,7 @@
 					@foreach ($comp_U as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -326,7 +326,7 @@
 					@foreach ($comp_V as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -340,7 +340,7 @@
 					@foreach ($comp_W as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -354,7 +354,7 @@
 					@foreach ($comp_X as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -368,7 +368,7 @@
 					@foreach ($comp_Y as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>
@@ -382,7 +382,7 @@
 					@foreach ($comp_Z as $comp)
 						 <li>
 						 	<label>
-								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name) }}
+								{{ html()->checkbox("comp_sel[]", 0, $comp->id)->id('comp_select')->attribute('title', $comp->name)->style('appearance: none;') }}
 								<span>{{ $comp->name }}</span>
 						 	</label>
 						 </li>

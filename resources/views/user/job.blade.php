@@ -14,7 +14,7 @@
 	<meta property="og:description" content="外資IT.comに掲載中のすべての求人情報を検索いただけます。絞り込み条件としてエリアや年収や企業名だけではなく、細かな職種やこだわり条件もご用意しております。｜{{ config('app.description') }}" />
 	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
 
-    <link href="{{ asset('css/job.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/job2.css') }}" rel="stylesheet">
 @endsection
 
 
@@ -101,6 +101,7 @@
 								</div>
 							</div>
 
+
 						</div>
 
 						<br>
@@ -179,8 +180,6 @@
 							</div><!-- setting-list -->
 						</div><!-- internal item-inner -->
                                            
-						{{ html()->hidden('save_flag') }}
-
 						<div class="button-flex">
 							<a href="javascript:void(0);" onclick="onSearchClick();">検索</a>
 @if (Auth::guard('user')->check())
@@ -191,6 +190,7 @@
 
 					</div><!-- item-inner -->
 				</div><!-- item setting -->
+
 
 @if (empty($jobList[0]))
 				<div class="item info job">
@@ -229,21 +229,24 @@
 
 
 {{-- 職種選択モーダル  --}}
-	@include ('user/partials/job_category_modal')
+	@include ('user/partials/job_category_modal2')
 {{-- END 職種選択モーダル --}}
 
+
 {{-- インダストリ選択モーダル  --}}
-	@include ('user/partials/job_industory_modal')
+	@include ('user/partials/job_industory_modal2')
 {{-- END インダストリ選択モーダル  --}}
 
 
 {{-- 業種選択モーダル  --}}
-	@include ('user/partials/job_business_modal')
+	@include ('user/partials/job_business_modal2')
 {{-- END 業種選択モーダル  --}}
 
 {{-- こだわり選択モーダル  --}}
-	@include ('user/partials/job_commit_modal')
+	@include ('user/partials/job_commit_modal2')
 {{-- END こだわり選択モーダル  --}}
+
+
 
 <script>
 
@@ -332,7 +335,7 @@ function onSearchClick() {
 		commit_cat_details_cnt = commit_cat_details.split(',').length;
 	}
 
-	{{-- ************* 1語検索 ************ --}}
+	
 	// エリア
 	if        ( (locations_cnt == 1) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0)&& (commit_cat_details_cnt == 0) && (incomes_cnt == 0) ) {
 		action_url = action_url + '/location' + locations_val;
@@ -370,8 +373,8 @@ function onSearchClick() {
 		action_url = action_url + '/income' + incomes_val;
 
 
-	{{-- ************* 2語検索 ************ --}}
-	{{-- *** エリア *** --}}
+	
+	
 	// エリア x 職種１
 	} else if ( (locations_cnt == 1) && (job_cats_cnt == 1) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 0) ) {
 		action_url = action_url + '/location' + locations_val + '/jobcategory' + job_cats;
@@ -404,7 +407,7 @@ function onSearchClick() {
 	} else if ( (locations_cnt == 1) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 1) ) {
 		action_url = action_url + '/location' + locations_val + '/income' + incomes_val;
 
-	{{-- ***  職種１ *** --}}
+	
 	// 職種１ x インダストリ１
 	} else if ( (locations_cnt == 0) && (job_cats_cnt == 1) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 1) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 0) ) {
 		action_url = action_url + '/jobcategory' + job_cats + '/indcat' + industory_cats;
@@ -429,7 +432,7 @@ function onSearchClick() {
 	} else if ( (locations_cnt == 0) && (job_cats_cnt == 1) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 1) ) {
 		action_url = action_url + '/jobcategory' + job_cats + '/income' + incomes_val;
 
-	{{-- ***  職種2 *** --}}
+	
 	// 職種２ x インダストリ１
 	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 1) && (industory_cats_cnt == 1) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 0) ) {
 		action_url = action_url + '/occupation' + job_cat_details + '/indcat' + industory_cats;
@@ -454,72 +457,7 @@ function onSearchClick() {
 	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 1) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 1) ) {
 		action_url = action_url + '/occupation' + job_cat_details + '/income' + incomes_val;
 
-	{{-- ***  インダストリ１ *** --}}
-{{--
-	// インダストリ１ x 業種１
- 	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 1) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 1) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 0) ) {
-		action_url = action_url + '/indcat' + industory_cats + '/buscat' + business_cats;
-
-	// インダストリ１ x 業種２
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 1) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 1) && (commit_cat_details_cnt == 0) && (incomes_cnt == 0) ) {
-		action_url = action_url + '/indcat' + industory_cats + '/business' + business_cat_details;
-
-	// インダストリ１ x こだわり
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 1) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 1) && (incomes_cnt == 0) ) {
-		action_url = action_url + '/indcat' + industory_cats + '/commit' + commit_cat_details;
-
-	// インダストリ１ x 年収
-	// 職種２ x 年収
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 1) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 1) ) {
-		action_url = action_url + '/indcat' + industory_cats + '/income' + incomes_val;
---}}
-	{{-- ***  インダストリ２ *** --}}
-{{--
-	// インダストリ２ x 業種１
- 	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 1) && (business_cats_cnt == 1) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 0) ) {
-		action_url = action_url + '/industory' + industory_cat_details + '/buscat' + business_cats;
-
-	// インダストリ２ x 業種２
- 	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 1) && (business_cats_cnt == 0) && (business_cat_details_cnt == 1) && (commit_cat_details_cnt == 0) && (incomes_cnt == 0) ) {
-		action_url = action_url + '/industory' + industory_cat_details + '/business' + business_cat_details;
-
-	// インダストリ２ x こだわり
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 1) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 1) && (incomes_cnt == 0) ) {
-		action_url = action_url + '/industory' + industory_cat_details + '/commit' + commit_cat_details;
-
-	// インダストリ２ x 年収
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 1) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 1) ) {
-		action_url = action_url + '/industory' + industory_cat_details + '/income' + incomes_val;
---}}
-	{{-- ***  業種１ *** --}}
-{{--
-	// 業種１ x こだわり
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 1) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 1) && (incomes_cnt == 0) ) {
-		action_url = action_url + '/indcat' + industory_cats + '/commit' + commit_cat_details;
-
-	// 業種１ x 年収
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 1) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 1) ) {
-		action_url = action_url + '/indcat' + industory_cats + '/income' + incomes_val;
---}}
-
-	{{-- ***  業種２ *** --}}
-{{--
-	// 業種２ x こだわり
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 1) && (commit_cat_details_cnt == 1) && (incomes_cnt == 0) ) {
-		action_url = action_url + '/business' + business_cat_details + '/commit' + commit_cat_details;
-
-	// 業種２ x 年収
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 1) && (commit_cat_details_cnt == 0) && (incomes_cnt == 1) ) {
-		action_url = action_url + '/business' + business_cat_details + '/income' + incomes_val;
---}}
-	{{-- ***  こだわり *** --}}
-{{--
-	// こだわり x 年収
-	} else if ( (locations_cnt == 0) && (job_cats_cnt == 0) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 0) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 1) && (incomes_cnt == 1) ) {
-		action_url = action_url + '/commit' + commit_cat_details + '/income' + incomes_val;
---}}
-
-	{{-- ************* 3語検索 ************ --}}
+	
 	// エリア x 職種１ x インダストリ１
 	} else if ( (locations_cnt == 1) && (job_cats_cnt == 1) && (job_cat_details_cnt == 0) && (industory_cats_cnt == 1) && (industory_cat_details_cnt == 0) && (business_cats_cnt == 0) && (business_cat_details_cnt == 0) && (commit_cat_details_cnt == 0) && (incomes_cnt == 0) ) {
 		action_url = action_url + '/location' + locations_val + '/jobcategory' + job_cats + '/indcat' + industory_cats;
@@ -642,7 +580,10 @@ $(document).ready(function() {
 
 </script>
 
-
 <script src="{{ asset('js/job.js') }}"></script>
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/jobfilter.js"></script>
 
 @endsection
+
