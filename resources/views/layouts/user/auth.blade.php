@@ -19,6 +19,7 @@
 	<link href="{{ asset('css/common.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/expand.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link href="{{ asset('css/chart.css') }}" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>
@@ -89,6 +90,33 @@
 }
 
 
+.breadcrumbs-contents {
+  display: flex;
+  width: 96%;
+  margin: 0 auto;
+  padding-top: 20px;
+  font-size:16px;
+  backgroud-color:#fff;
+}
+
+@media screen and (max-width: 820px) {
+
+  .pane-contents {
+    padding-top: 10px;
+  }
+
+  .breadcrumbs-contents {
+    position: relative;
+    width: 94%;
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 0px;
+  }
+
+
+}
+
+
 </style>
 
 <!-- Google Tag Manager -->
@@ -104,8 +132,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ27GXX7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-    <div id="wrapper">
-		<header>
+    <div id="wrapper" style="padding:0px 0px;">
+		<header style="padding:0px;">
 
 			<div id="menu">
 				@if ( config('app.env') == 'Staging')
@@ -117,8 +145,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				@endif
 
 				<div id="menu-inner">
-					<div class="logo">
-						<a href="/mypage"><figure><img src="/img/h_logo.png" alt="外資IT.com" style="width:100%;"></figure></a>
+					<div class="logo" style="width:auto">
+						<a href="/mypage"><figure style="margin:0px 0px;"><img src="/img/h_logo.png" alt="外資IT.com" style="vertical-align:top;"></figure></a>
 					</div>
 
 					<div class="nav-pc">
@@ -230,45 +258,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					</div>
 				</div>
 @endif
-			</div>
+			</div><!-- menu -->
 		</header>
 
-<style>
-
-.breadcrumbs-contents {
-  display: flex;
-  width: 96%;
-  margin: 0 auto;
-  padding-top: 20px;
-  font-size:16px;
-  backgroud-color:#fff;
-}
-
-@media screen and (max-width: 820px) {
-
-  .pane-contents {
-    padding-top: 10px;
-  }
-
-  .breadcrumbs-contents {
-    position: relative;
-    width: 94%;
-    margin: 0 auto;
-    padding-top: 80px;
-    padding-bottom: 0px;
-  }
-
-
-}
-</style>
 
 		<div class="breadcrumbs-contents">
 			@yield('breadcrumbs')
 		</div>
-		<div class="pane-contents" style="padding:0 0;">
+		<div class="pane-contents" style="padding:0px;">
 			@yield('content')
 		</div>
-	</div>
+	</div><!-- wrapper -->
 
 
 <footer class="pane-footer">
