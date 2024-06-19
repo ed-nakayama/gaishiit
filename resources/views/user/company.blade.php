@@ -32,7 +32,7 @@
 		</div>
 				
 {{-- 広告エリア --}}
-		@isset($pickup)
+		@isset ($pickup)
 			<div class="con-wrap">
 				<div class="item">
 					<a href="/company/{{ $pickup->id }}">
@@ -515,6 +515,7 @@
 			</div>
 		</div>
 	</div>
+</main>
 {{-- END 企業選択モーダル  --}}
 
 <script src="{{ asset('js/seek.js') }}"></script>

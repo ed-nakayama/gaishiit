@@ -65,11 +65,13 @@ class CompanyController extends Controller
 
 		$pickupList = Pickup::whereNotNull('company_id')->where('company_id','!=','')->get();
 		$len = count($pickupList);
+
 	 	if ($len == 0) {
-			$pickup = '';
+			$pickup = null;
 			
 		} else {
 		 	$arg = mt_rand(1, $len) - 1;
+
 		 	$comp_id = $pickupList[$arg]->company_id;
 		 	
 		 	$pickup = Company::selectRaw('companies.* ')
