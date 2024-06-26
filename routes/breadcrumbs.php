@@ -110,7 +110,7 @@ Breadcrumbs::for('comp_ranking', function ($trail) {
 // ブログトップ
 Breadcrumbs::for('blog', function ($trail) {
 	$trail->parent('top');
-	$trail->push('ブログ', url("/blog"));
+	$trail->push('外資IT転職ガイド', url("/blog"));
 });
 
 // ブログカテゴリ

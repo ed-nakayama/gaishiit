@@ -203,7 +203,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 								<ul id="menu-content">
 									<li style="transform: rotate(0.03deg);"><a href="/company">企業を探す</a></li>
 									<li style="transform: rotate(0.03deg);"><a href="/job">求人を探す</a></li>
-									<li style="transform: rotate(0.03deg);"><a href="/blog">お役立ちコラム</a></li>
+									<li style="transform: rotate(0.03deg);"><a href="/blog">外資IT転職ガイド</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -222,7 +222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 									</li>
 									<li><a href="/company">企業を探す</a></li>
 									<li><a href="/job">求人を探す</a></li>
-									<li><a href="/blog">お役立ちコラム</a></li>
+									<li><a href="/blog">外資IT転職ガイド</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -393,7 +393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <footer id="footer">
             <div class="footer_inner">
 				<p><a href="/corporate">運営会社</a></p>
-                <p><a href="/blog">お役立ちコラム</a></p>
+                <p><a href="/blog">外資IT転職ガイド</a></p>
 {{--
                 <p><a href="/kiyaku">利用規約</a></p>
 --}}
