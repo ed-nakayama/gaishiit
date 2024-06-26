@@ -52,7 +52,7 @@
 </style>
 
 	<div class="con-wrap">
-		<h2>クチコミ数ランキング</h2>
+		<h2>クチコミ評価ランキング</h2>
 		<div class="form-wrap">
 
 			@foreach ($rankingList as $ranking)
