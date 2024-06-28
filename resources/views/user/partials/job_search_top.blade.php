@@ -12,7 +12,7 @@
 
 @endphp
                  <div class="kodawari_box fadein">
-                    <h3>クチコミ数ランキング</h3>
+                    <h3>クチコミ評価ランキング</h3>
 					@foreach ($rankingList as $ranking)
 						<div class="ranking">
 							<div class="corp">
