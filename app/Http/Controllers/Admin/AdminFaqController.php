@@ -61,8 +61,8 @@ class AdminFaqController extends Controller
 
 		$validatedData = $request->validate([
 	  		'question' => ['required', 'string'],
-	  		'answer'   => ['required', 'string'],
-	  		'exp'      => ['required', 'string'],
+//	  		'answer'   => ['required', 'string'],
+//	  		'exp'      => ['required', 'string'],
    		]);
 
 		if (isset($request->faq_id)) {

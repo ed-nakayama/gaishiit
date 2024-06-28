@@ -40,6 +40,11 @@
 	border: 1px solid #B1B1B1;
 }
 
+
+.ac-txt .ac-exp a {
+ border-bottom: 1px solid #000;
+}
+
 </style>
 
 @if (Auth::guard('user')->check())
@@ -71,8 +76,8 @@
 									<p class="ac-header">
 										A. {!! nl2br(e($qa->answer)) !!}
 									</p>
-									<p>
-										{!! nl2br(e($qa->exp)) !!}
+									<p class="ac-exp">
+										{!! nl2br($qa->exp) !!}
 									</p>
 								</div>
 							</div>
