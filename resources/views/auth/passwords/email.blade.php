@@ -3,7 +3,7 @@
 @section('content')
 
 <head>
-    <title>パパスワードリセット | {{ config('app.name', 'Laravel') }}</title>
+    <title>パスワードリセット | {{ config('app.name', 'Laravel') }}</title>
     <link href="{{ asset('css/job.css') }}" rel="stylesheet">
 </head>
 

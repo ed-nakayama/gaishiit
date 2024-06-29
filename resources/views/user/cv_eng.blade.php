@@ -128,7 +128,7 @@
 								<div class="form-inner contact">
 									<div class="contact-list">
 										<div class="input-wrap">
-											<textarea name="en_job_detail" id="en_job_detail" cols="60" rows="10" >{{ $user->en_job_detail }}</textarea>
+											<textarea name="en_job_detail" id="en_job_detail" cols="60" rows="10" style="font-family:initial;">{{ $user->en_job_detail }}</textarea>
 										</div>
 									</div>
 								</div>

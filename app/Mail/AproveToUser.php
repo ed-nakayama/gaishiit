@@ -41,7 +41,7 @@ class AproveToUser extends Mailable
     public function build()
     {
 	    return $this->to($this->user->email)       // 送信先アドレス
-    	    ->subject('【【ガイシIT】承認のお知らせ')        // 件名
+    	    ->subject('【ガイシIT】承認のお知らせ')        // 件名
         	->text('mail_templates.aprove_to_user') // 本文
         	->with(['user' => $this->user
         		]);       // 本文に送る値

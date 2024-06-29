@@ -130,7 +130,7 @@
 								@endif
 							@endforeach
 						@else
-							設定なし
+							<p style="padding: 0px 20px;">設定なし</p>
 						@endif
 					</div>
 

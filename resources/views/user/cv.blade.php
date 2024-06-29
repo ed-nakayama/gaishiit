@@ -16,7 +16,6 @@
 
 @section('content')
 
-
 @include('user.user_activity')
 
 <main class="pane-main">
@@ -128,7 +127,7 @@
 								<div class="form-inner contact">
 									<div class="contact-list">
 										<div class="input-wrap">
-											<textarea name="job_detail" id="job_detail" cols="60" rows="10" >{{ $user->job_detail }}</textarea>
+											<textarea name="job_detail" id="job_detail" cols="60" rows="10" style="font-family:initial;">{{ $user->job_detail }}</textarea>
 										</div>
 									</div>
 								</div>
