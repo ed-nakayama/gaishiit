@@ -53,25 +53,24 @@ class SetRanking extends Command
 
 		$rankingList = Evaluation::where('approve_flag' ,8)
 			->selectRaw('company_id' .
-				',sum(salary_point) / count(salary_point) as salary_point' .
-				',sum(welfare_point) / count(welfare_point) as welfare_point' .
-				',sum(upbring_point) / count(upbring_point) as upbring_point' .
+				',sum(salary_point)     / count(salary_point)    as salary_point' .
+				',sum(welfare_point)    / count(welfare_point)    as welfare_point' .
+				',sum(upbring_point)    / count(upbring_point)    as upbring_point' .
 				',sum(compliance_point) / count(compliance_point) as compliance_point' .
 				',sum(motivation_point) / count(motivation_point) as motivation_point' .
-				',sum(work_life_point) /  count(work_life_point) as work_life_point ' .
-				',sum(remote_point) /  count(remote_point) as remote_point' .
-				',sum(retire_point) /  count(retire_point) as retire_point' .
+				',sum(work_life_point)  / count(work_life_point)  as work_life_point ' .
+				',sum(remote_point)     / count(remote_point)     as remote_point' .
+				',sum(retire_point)     / count(retire_point)     as retire_point' .
 
-				',count(salary_content) as salary_count' .
-				',count(welfare_content) as welfare_count' .
-				',count(upbring_content) as upbring_count' .
+				',count(salary_content)    as salary_count' .
+				',count(welfare_content)    as welfare_count' .
+				',count(upbring_content)    as upbring_count' .
 				',count(compliance_content) as compliance_count' .
 				',count(motivation_content) as motivation_count' .
-				',count(work_life_content) as work_life_count' .
-				',count(remote_content) as remote_count' .
-				',count(retire_content) as retire_count' .
-				
-				',count(salary_point) as answer_count')
+				',count(work_life_content)  as work_life_count' .
+				',count(remote_content)     as remote_count' .
+				',count(retire_content)     as retire_count'
+				)
 			->groupBy('company_id')
 			->get();
 
@@ -110,7 +109,8 @@ class SetRanking extends Command
 
 					'total_point'      => $total_point,
 					'total_rate'       => $total_rate,
-					'answer_count'     => $ranking->answer_count,
+					'answer_count'     => $ranking->salary_count     + $ranking->welfare_count   + $ranking->upbring_count + $ranking->compliance_count
+										+ $ranking->motivation_count + $ranking->work_life_count + $ranking->remote_count  + $ranking->retire_count,
 				]
 			);
 		}

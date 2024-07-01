@@ -156,7 +156,7 @@
 						</div>
 
 						<div class="item-block" style="margin: 0 0;">
-							<p class="ttl">リモート勤務</p>
+							<p class="ttl">勤務体系</p>
 							<p><span class="star5_rating"  style="--rate: {{ $eval->remote_point * 100 / 5  . '%' }};"></span></p>
 							<input type="hidden" name="remote_point" value="{{ $eval->remote_point }}">
 						</div>
@@ -286,7 +286,7 @@
 						</div>
 
 						<div class="item-block">
-							<p class="ttl">リモート勤務</p>
+							<p class="ttl">勤務体系<br>(リモートの有無、満足度等)</p>
 							<div class="form-inner contact">
 								<div class="contact-list">
 									<div class="form-wrap">

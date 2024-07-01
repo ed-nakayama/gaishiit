@@ -83,7 +83,7 @@
 							@elseif ($eval->cat_sel == '4')法令遵守の意識
 							@elseif ($eval->cat_sel == '5')社員のモチベーション
 							@elseif ($eval->cat_sel == '6')ワークライフバランス
-							@elseif ($eval->cat_sel == '7')リモート勤務
+							@elseif ($eval->cat_sel == '7')勤務体系
 							@elseif ($eval->cat_sel == '8')定年
 							@endif
 							</span><span class="star5_rating" style="--rate: {{ $eval->salary_point * 100 / 5  . '%' }};"></span>

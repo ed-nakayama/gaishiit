@@ -39,7 +39,7 @@
 						</li>
 						<li @if ($cat['sel'] == '7') style="background:#4AA5CE;" @endif>
 							<div class="button-chart2">
-								<a href="/company/{{ $comp->id }}/remote" @if ($cat['sel'] == '7') style="color:#ffffff;" @endif>リモート勤務（{{ $ranking->remote_count }}件）</a>
+								<a href="/company/{{ $comp->id }}/remote" @if ($cat['sel'] == '7') style="color:#ffffff;" @endif>勤務体系（{{ $ranking->remote_count }}件）</a>
 							</div>
 						</li>
 						<li @if ($cat['sel'] == '8') style="background:#4AA5CE;" @endif>

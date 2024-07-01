@@ -322,7 +322,7 @@
 						</div>
 
 						<div class="item-block" style="margin: 0 0;">
-							<p class="ttl" style="padding-top: 10px;">リモート勤務</p>
+							<p class="ttl" style="padding-top: 10px;">勤務体系 (リモートの有無、満足度等)</p>
 							<div class="stars">
 								<span>
 									<input id="review7_5" type="radio" value="5" name="remote_point" @if (old('remote_point' ,$eval->remote_point) == '5') checked @endif><label for="review7_5">★</label>
@@ -479,7 +479,7 @@
 						<div class="inputlength"><p id="inputlength6">全項目の合計：現在 0文字</p></div>
 
 						<div class="item-block">
-							<p class="ttl">リモート勤務</p>
+							<p class="ttl">勤務体系<br>(リモートの有無、満足度等)</p>
 							<div class="form-inner contact">
 								<div class="contact-list">
 									<div class="form-wrap">

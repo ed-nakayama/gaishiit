@@ -47,7 +47,7 @@
 				['法令遵守の意識',       '{{ number_format($ranking->compliance_point, 1) }}' ],
 				['社員のモチベーション', '{{ number_format($ranking->motivation_point, 1) }}' ],
 				['ワークライフバランス', '{{ number_format($ranking->work_life_point,  1) }}' ],
-				['リモート勤務',         '{{ number_format($ranking->remote_point,     1) }}' ],
+				['勤務体系',         '{{ number_format($ranking->remote_point,     1) }}' ],
 				['定年',                 '{{ number_format($ranking->retire_point,     1) }}' ],
 			],
 			datasets: [{

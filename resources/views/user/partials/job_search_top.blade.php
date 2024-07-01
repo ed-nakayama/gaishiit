@@ -1,7 +1,7 @@
 		<section id="kodawari" class="items">
             <div class="kodawari_block">
 
-{{-- クチコミ数ランキング --}}
+{{-- クチコミ評価ランキング --}}
 @php
 	$rankingList = App\Models\Ranking::Join('companies','rankings.company_id','=','companies.id')
 		->where('companies.open_flag' ,'1')
