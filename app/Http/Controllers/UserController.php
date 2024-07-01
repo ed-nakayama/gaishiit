@@ -564,7 +564,11 @@ class UserController extends Controller
 		// 職務経歴書完成度チェック
 		if ( !empty($user->unit_name)
 			&& !empty($user->enroll_from_year) && !empty($user->enroll_from_month) && !empty($user->enroll_from_day)
-			&& !empty($user->enroll_to_year) && !empty($user->enroll_to_month) && !empty($user->enroll_to_day) ) {
+			&& (
+				 ( !empty($user->enroll_to_year) && !empty($user->enroll_to_month) && !empty($user->enroll_to_day) )
+			  || ( empty($user->enroll_to_year) && empty($user->enroll_to_month) && empty($user->enroll_to_day) )
+				)
+		) {
 			$rate += 25;
 			$cv_comp--;
 		}
@@ -573,7 +577,6 @@ class UserController extends Controller
 			$cv_comp--;
 		}
 		
-//		if ( !empty($user->award) && !empty($user->english) && !empty($user->toeic) && !empty($user->japanese) ) {
 		if ( !empty($user->english) && !empty($user->japanese) ) {
 			$rate += 25;
 			$cv_comp--;
@@ -583,14 +586,16 @@ class UserController extends Controller
 		if ( !empty($user->en_company) && !empty($user->en_unit_name)
 			&& !empty($user->en_job_title) && !empty($user->en_job_detail)
 			&& !empty($user->enroll_from_year) && !empty($user->enroll_from_month) && !empty($user->enroll_from_day)
-			&& !empty($user->enroll_to_year) && !empty($user->enroll_to_month) && !empty($user->enroll_to_day)
-//			&& !empty($user->award) && !empty($user->english) && !empty($user->toeic) && !empty($user->japanese) ) {
+			&& (
+				 ( !empty($user->enroll_to_year) && !empty($user->enroll_to_month) && !empty($user->enroll_to_day) )
+			  || ( empty($user->enroll_to_year) && empty($user->enroll_to_month) && empty($user->enroll_to_day) )
+				)
+
 			&& !empty($user->english) && !empty($user->japanese) ) {
 			$cv_eng_comp = 1;
 		}
 		
 		// 履歴書完成度チェック
-//		if ( !empty($user->name_kana) && !empty($user->pref) && !empty($user->address) && !empty($user->hist_email) 
 		if ( !empty($user->name_kana) && !empty($user->pref) && !empty($user->address)
 			&& !empty($user->job_hist) && !empty($user->motivation) && !is_null($user->dependents)
 			&& !empty($user->spouse) && !empty($user->obligation) ) {

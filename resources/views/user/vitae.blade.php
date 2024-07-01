@@ -130,7 +130,7 @@
 							<div class="form-inner contact">
 								<div class="contact-list">
 									<div class="input-wrap">
-										<textarea name="job_hist" id="job_hist" cols="30" rows="10">{{ old('job_hist' ,$user->job_hist) }}</textarea>
+										<textarea name="job_hist" id="job_hist" cols="30" rows="10" style="font-family:initial;">{{ old('job_hist' ,$user->job_hist) }}</textarea>
 									</div>
 								</div>
 							</div>
@@ -141,7 +141,7 @@
 							<div class="form-inner contact">
 								<div class="contact-list">
 									<div class="input-wrap">
-										<textarea name="motivation" id="motivation" cols="30" rows="10">{{ old('motivation' ,$user->motivation) }}</textarea>
+										<textarea name="motivation" id="motivation" cols="30" rows="10" style="font-family:initial;">{{ old('motivation' ,$user->motivation) }}</textarea>
 									</div>
 								</div>
 							</div>

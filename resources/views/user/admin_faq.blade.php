@@ -91,7 +91,7 @@
 
 					{{ html()->form('POST', '/adminfaq/store')->attribute('name', 'qaform')->open() }}
 					<div class="item-block">
-						<div class="ttl"><h2>お問い合わせ内容</h2></div>
+						<div class="ttl"><h2>お問い合わせフォーム</h2></div>
 						<div class="form-inner contact">
 @if (!Auth::guard('user')->check())
 							<div class="contact-list">
