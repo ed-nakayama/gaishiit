@@ -57,7 +57,7 @@
                                     <p>新規候補者承認権限</p>
                                 </div><!-- /.item-name -->
                                 <div class="item-input">
-                                    <input type="checkbox" name="aprove_priv" value="1" @if (old('aprove_priv' ,$admin->aprove_priv) == '1')  checked="checked" @endif>
+                                    <input type="checkbox" id="aprove_priv" name="aprove_priv" value="1" @if (old('aprove_priv' ,$admin->aprove_priv) == '1')  checked="checked" @endif  onchange="foo2();">
                                 </div><!-- /.item-input -->
                              </div>
 
@@ -66,7 +66,7 @@
                                     <p>企業管理権限</p>
                                 </div><!-- /.item-name -->
                                 <div class="item-input">
-                                    <input type="checkbox" name="comp_priv" value="1" @if (old('comp_priv' ,$admin->comp_priv) == '1')  checked="checked" @endif>
+                                    <input type="checkbox" id="comp_priv" name="comp_priv" value="1" @if (old('comp_priv' ,$admin->comp_priv) == '1')  checked="checked" @endif  onchange="foo2();">
                                 </div><!-- /.item-input -->
                              </div>
 
@@ -75,7 +75,7 @@
                                     <p>請求管理権限</p>
                                 </div><!-- /.item-name -->
                                 <div class="item-input">
-                                    <input type="checkbox" name="bill_priv" value="1" value="1" @if (old('bill_priv' ,$admin->bill_priv) == '1')  checked="checked" @endif>
+                                    <input type="checkbox" id="bill_priv" name="bill_priv" value="1" value="1" @if (old('bill_priv' ,$admin->bill_priv) == '1')  checked="checked" @endif  onchange="foo2();">
                                 </div><!-- /.item-input -->
                              </div>
 
@@ -84,7 +84,7 @@
                                     <p>設定変更権限</p>
                                 </div><!-- /.item-name -->
                                 <div class="item-input">
-                                    <input type="checkbox" name="cat_priv" value="1" @if (old('cat_priv' ,$admin->cat_priv) == '1')  checked="checked" @endif>
+                                    <input type="checkbox" id="cat_priv" name="cat_priv" value="1" @if (old('cat_priv' ,$admin->cat_priv) == '1')  checked="checked" @endif  onchange="foo2();">
                                 </div><!-- /.item-input -->
                              </div>
 
@@ -93,7 +93,7 @@
                                     <p>お知らせ管理権限</p>
                                 </div><!-- /.item-name -->
                                 <div class="item-input">
-                                    <input type="checkbox" name="info_priv" value="1" @if (old('info_priv' ,$admin->info_priv) == '1')  checked="checked" @endif>
+                                    <input type="checkbox" id="info_priv" name="info_priv" value="1" @if (old('info_priv' ,$admin->info_priv) == '1')  checked="checked" @endif  onchange="foo2();">
                                 </div><!-- /.item-input -->
                              </div>
                              
@@ -102,7 +102,7 @@
                                     <p>ピックアップ管理権限</p>
                                 </div><!-- /.item-name -->
                                 <div class="item-input">
-                                    <input type="checkbox" name="pickup_priv" value="1" @if (old('pickup_priv' ,$admin->pickup_priv) == '1')  checked="checked" @endif>
+                                    <input type="checkbox" id="pickup_priv" name="pickup_priv" value="1" @if (old('pickup_priv' ,$admin->pickup_priv) == '1')  checked="checked" @endif  onchange="foo2();">
                                 </div><!-- /.item-input -->
                              </div>
 
@@ -111,7 +111,7 @@
                                     <p>メンバー管理権限</p>
                                 </div><!-- /.item-name -->
                                 <div class="item-input">
-                                    <input type="checkbox" name="account_priv" value="1" @if (old('account_priv' ,$admin->account_priv) == '1')  checked="checked" @endif>
+                                    <input type="checkbox" id="account_priv" name="account_priv" value="1" @if (old('account_priv' ,$admin->account_priv) == '1')  checked="checked" @endif  onchange="foo2();">
                                 </div><!-- /.item-input -->
                              </div>
 
@@ -120,7 +120,16 @@
                                     <p>クチコミ承認</p>
                                 </div><!-- /.item-name -->
                                 <div class="item-input">
-                                    <input type="checkbox" name="eval_priv" value="1" @if (old('eval_priv' ,$admin->eval_priv) == '1')  checked="checked" @endif>
+                                    <input type="checkbox" id="eval_priv" name="eval_priv" value="1" @if (old('eval_priv' ,$admin->eval_priv) == '1')  checked="checked" @endif  onchange="foo2();">
+                                </div><!-- /.item-input -->
+                             </div>
+
+                             <div class="formContainer mg-ajust-midashi">
+                                <div class="item-name">
+                                    <p>エージェント機能のみ</p>
+                                </div><!-- /.item-name -->
+                                <div class="item-input">
+                                    <input type="checkbox" id="agent_priv" name="agent_priv" value="1" @if (old('agent_priv' ,$admin->agent_priv) == '1')  checked="checked" @endif  onchange="foo();">
                                 </div><!-- /.item-input -->
                              </div>
 
@@ -139,5 +148,51 @@
             </div><!-- /.mainContentsInner -->
 
 
+<script>
+function foo() {
+
+let aprove_priv  = document.getElementById('aprove_priv');
+let comp_priv    = document.getElementById('comp_priv');
+let bill_priv    = document.getElementById('bill_priv');
+let cat_priv     = document.getElementById('cat_priv');
+let info_priv    = document.getElementById('info_priv');
+let pickup_priv  = document.getElementById('pickup_priv');
+let account_priv = document.getElementById('account_priv');
+let eval_priv    = document.getElementById('eval_priv');
+let agent_priv   = document.getElementById('agent_priv');
+
+
+	if (agent_priv.checked) {
+		aprove_priv.checked  = false;
+		comp_priv.checked    = false;
+		bill_priv.checked    = false;
+		cat_priv.checked     = false;
+		info_priv.checked    = false;
+		pickup_priv.checked  = false;
+		account_priv.checked = false;
+		eval_priv.checked    = false;
+	}
+}
+
+
+function foo2() {
+
+let aprove_priv  = document.getElementById('aprove_priv');
+let comp_priv    = document.getElementById('comp_priv');
+let bill_priv    = document.getElementById('bill_priv');
+let cat_priv     = document.getElementById('cat_priv');
+let info_priv    = document.getElementById('info_priv');
+let pickup_priv  = document.getElementById('pickup_priv');
+let account_priv = document.getElementById('account_priv');
+let eval_priv    = document.getElementById('eval_priv');
+let agent_priv   = document.getElementById('agent_priv');
+
+
+	if (aprove_priv.checked || comp_priv.checked || bill_priv.checked || cat_priv.checked || info_priv.checked || pickup_priv.checked || account_priv.checked || eval_priv.checked) {
+		agent_priv.checked  = false;
+	}
+
+}
+</script>
 
 @endsection

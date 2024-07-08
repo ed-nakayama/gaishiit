@@ -117,6 +117,12 @@ class AdminController extends Controller
 			$eval_priv = 0;
 		}
 
+		if (!empty($request->agent_priv)) {
+			$agent_priv = 1;
+		} else {
+			$agent_priv = 0;
+		}
+
 		$retAdmin = Admin::updateOrCreate(
 			['id' => $request->admin_id],
 			['name'          => $request->name,
@@ -129,6 +135,7 @@ class AdminController extends Controller
 			'pickup_priv'    => $pickup_priv,
 			'account_priv'   => $account_priv,
 			'eval_priv'      => $eval_priv,
+			'agent_priv'     => $agent_priv,
 			]
 		);
 

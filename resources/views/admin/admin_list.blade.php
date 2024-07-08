@@ -43,6 +43,7 @@
 							<th>ピックアップ<br>管理</th>
 							<th>メンバー管理</th>
 							<th>クチコミ承認</th>
+							<th>Agent権限</th>
 						</tr>
                                
 						@foreach ($adminList as $admin)
@@ -57,6 +58,7 @@
 								<td align="center">@if ($admin->pickup_priv == '1')●@endif</td>
 								<td align="center">@if ($admin->account_priv == '1')●@endif</td>
 								<td align="center">@if ($admin->eval_priv == '1')●@endif</td>
+								<td align="center">@if ($admin->agent_priv == '1')●@endif</td>
 								{{ html()->form('GET', '/admin/admin/edit')->attribute('name', "editform{$admin->id}")->open() }}
 								{{ html()->hidden('admin_id', $admin->id) }}
 								{{ html()->form()->close() }}
