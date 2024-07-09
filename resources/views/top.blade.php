@@ -259,7 +259,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 							</ul>
 						</div>
 					</div>
-					<h1><img src="img/top/ttl_main.png" alt="外資IT・外資コンサル企業へのハイクラスな転職なら"></h1>
+					<h1><img src="img/top/ttl_main2.png" alt="外資IT・外資コンサル企業へのハイクラスな転職なら"></h1>
                 </div>
             </div>
         </section>
