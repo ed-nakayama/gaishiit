@@ -43,6 +43,12 @@ class MypageController extends Controller
 
 		$sel_aprove = '';
 
+		$user = \Auth::user();
+
+		if ($user->agent_priv == '1') {
+			return redirect('/admin/candidate');
+		}
+
 		return view('admin.mypage' ,compact(
 			'userList',
 			'sel_aprove',
@@ -1367,5 +1373,32 @@ class MypageController extends Controller
 		}
 
 	}
+
+
+
+/*************************************
+*  候補者一覧
+**************************************/
+	public function users(Request $request)
+	{
+		$subSQL0 = \DB::table('users')
+			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
+		
+		$userQuery = \DB::table('users')
+			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
+			->leftJoin('const_locations', 'users.request_location','=','const_locations.id')
+			->where('aprove_flag' , '1')
+			->selectRaw("users.*, age ,const_locations.name as location_name");
+		
+		$userList = $userQuery
+			->orderBy('created_at' ,'desc')
+			->paginate(20);
+
+		return view('admin.mypage_userlist' ,compact(
+			'userList',
+		));
+
+	}
+
 
 }

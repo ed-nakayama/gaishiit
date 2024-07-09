@@ -67,6 +67,11 @@ Route::post('/mypage/eval/edit',  'MypageController@eval_edit');
 Route::get ('/mypage/eval/store', 'MypageController@eval_store')->name('mypage.eval.store');
 Route::post('/mypage/eval/store', 'MypageController@eval_store');
 
+// 候補者一覧
+Route::get ('/mypage/user', 'MypageController@users');
+Route::get ('/mypage/userlist', 'MypageController@userlist')->name('mypage.userlist');
+Route::post('/mypage/userlist', 'MypageController@userlist');
+
 // パスワード変更
 Route::get ('/password/edit', 'AdminController@editPassword')->name('password.edit');
 Route::post('/password/',     'AdminController@updatePassword')->name('password.update');
@@ -102,6 +107,7 @@ Route::post('/user/histback', 'AdminUserController@histBack');
 	
 Route::get ('/user/detail', 'AdminUserController@detail');
 Route::post('/user/detail', 'AdminUserController@detail')->name('user.detail');
+Route::post('/user/send',   'AdminUserController@send')->name('user.send');
 
 Route::get ('/user/change', 'AdminUserController@change');
 Route::post('/user/change', 'AdminUserController@change');

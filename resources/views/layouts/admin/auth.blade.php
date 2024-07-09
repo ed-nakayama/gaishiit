@@ -26,19 +26,20 @@
             <div class="headMain">
                 <h1 class="logo"><a href="/admin/mypage"><img src="/images/logo_on_admin.png" width="150"></a></h1>
                 <div class="containerMenu">
-{{--
-                    <ul class="menu">
-                        <li><a href="/admin/user/list">新規候補者の承認</a></li>
-                        <li><a href="javascript:void(0);" onClick="openWin({{ Auth::id() }})">企業代理ログイン</a></li>
-                    </ul><br>
---}}
+
                     <ul class="menu">【アカウント管理】　
+@if (Auth::user()->agent_priv == '0')
                         <li><a href="/admin/comp/list">企業登録</a></li>
+@endif
                         <li><a href="/admin/candidate">候補者管理</a></li>
+@if (Auth::user()->agent_priv == '0')
                         <li><a href="/admin/ownership">オーナーシップ管理</a></li>
                         <li><a href="/admin/admin/list">メンバー管理</a></li>
                         <li><a href="/admin/log/list">ログイン履歴</a></li>
-                    </ul><br>
+@endif
+                    </ul>
+@if (Auth::user()->agent_priv == '0')
+					<br>
                     <ul class="menu">【設定変更】　
                         <li><a href="/admin/buscat">業種管理</a></li>
                         <li><a href="/admin/buscatdetail">業種詳細管理</a></li>
@@ -63,6 +64,7 @@
                         <li><a href="/admin/faq/list">FAQ</a></li>
                         <li><a href="/admin/ask">お問合せ一覧</a></li>
                     </ul><br>
+@endif
                 </div><!-- /.containerMenu -->
             </div><!-- /.menu -->
 

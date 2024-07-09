@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 
+use Validator;
+use Redirect;
+use URL;
+
 use App\Models\User;
 use App\Models\JobCat;
 use App\Models\JobCatDetail;
@@ -18,10 +22,12 @@ use App\Models\Unit;
 use App\Models\Job;
 use App\Models\ConstLocation;
 use App\Models\BusinessCatDetail;
+use App\Models\AgentMailHist;
 
 use App\Mail\AproveToUser;
 use App\Mail\AproveToComp;
 use App\Mail\RejectToUser;
+use App\Mail\AgentToUser;
 
 class AdminUserController extends UserController
 {
@@ -273,11 +279,16 @@ class AdminUserController extends UserController
 
 		$parent_id = $request->parent_id;
 
+		$agentHist = AgentMailHist::where('user_id' ,$user_id)
+			->orderBy('created_at', 'DESC')
+			->get();
+
 		return view('admin.user_detail' ,compact(
 			'userInfo',
 			'interviewList',
 			'ownerList',
 			'parent_id',
+			'agentHist',
 		));
 	}
 
@@ -454,6 +465,43 @@ class AdminUserController extends UserController
 
 	}	
 
+
+/*************************************
+* メール送信
+**************************************/
+	public function send( Request $request )
+	{
+		$validator = Validator::make($request->all(), [
+			'parent_id' => ['required','string'],
+			'user_id'   => ['required','string'],
+			'from_mail' => ['required','string','email'],
+			'to_mail'   => ['required','string','email'],
+			'title'     => ['required','string'],
+			'content'   => ['required','string'],
+		]);
+
+		if($validator->fails()) {
+			return Redirect::to(URL::previous() . "#inquiry")->withInput()->with('errors', $validator->messages());
+		}
+
+		$parent_id = $request->parent_id;
+		$user_id   = $request->user_id;
+		$from_mail = $request->from_mail;
+		$to_mail   = $request->to_mail;
+		$title     = $request->title;
+		$content   = $request->content;
+
+		Mail::send(new AgentToUser($from_mail, $to_mail, $title, $content));
+
+		$loginUser = Auth::user();
+
+		$agentMailHist = AgentMailHist::create([
+			'user_id'  => $user_id,
+			'agent_id' => $loginUser->id,
+		]);
+
+		return redirect()->route('admin.user.detail', ['parent_id'=>$parent_id, 'user_id'=>$user_id] );
+	}
 
 
 }

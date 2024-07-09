@@ -30,11 +30,11 @@
 
 <div class="mainContentsInner-oneColumn">
 
-	<div style="display:flex;">
+	<div style="display:flex;justify-content: space-between;">
 		<div class="mainTtl title-main">
 			<h2>マイページ</h2>
 		</div><!-- /.mainTtl -->
-		<div style="margin-left: 40px;margin-bottom: 10px;"><a href="javascript:void(0);" onClick="openWin({{ Auth::id() }})" class="squareBtn" style="width: 140px;height: 30px;padding: 5px 0;">企業代理ログイン</a></div>
+		<div style="text-align: right;margin-bottom: 10px;"><a href="javascript:void(0);" onClick="openWin({{ Auth::id() }})" class="squareBtn" style="width: 140px;height: 30px;padding: 5px 0;">企業代理ログイン</a></div>
  	</div>
                
 	<div class="containerContents">
