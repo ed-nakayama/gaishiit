@@ -5,12 +5,12 @@
 @endsection
 
 @section('addheader')
-	<title>{{ $blogCat->name }}記事一覧｜外資IT企業のクチコミ・評価・求人なら外資IT.com</title>
-	<meta name="description" content="外資IT企業への転職に関する{{ $blogCat->name }}カテゴリのお役立ち情報を発信しております。外資IT企業への転職なら外資IT.com｜外資IT.comは外資系IT企業に特化した口コミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<title>{{ $blogCat->name }}記事一覧｜{{ config('app.title') }}</title>
+	<meta name="description" content="外資IT・外資コンサル企業への転職に関する{{ $blogCat->name }}カテゴリのお役立ち情報を発信しております。外資IT・外資コンサル企業への転職なら外資IT.com｜{{ config('app.description') }}">
 
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content="{{ $blogCat->name }}記事一覧｜外資IT企業のクチコミ・評価・求人なら外資IT.com" />
-	<meta property="og:description" content="外資IT企業への転職に関する{{ $blogCat->name }}カテゴリのお役立ち情報を発信しております。外資IT企業への転職なら外資IT.com｜外資IT.comは外資系IT企業に特化した口コミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。" />
+	<meta property="og:title" content="{{ $blogCat->name }}記事一覧｜{{ config('app.title') }}" />
+	<meta property="og:description" content="外資IT・外資コンサル企業への転職に関する{{ $blogCat->name }}カテゴリのお役立ち情報を発信しております。外資IT・外資コンサル企業への転職なら外資IT.com｜{{ config('app.description') }}" />
 	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
 
 	<link rel="stylesheet" href="{{ asset('css/blog.css') }}">

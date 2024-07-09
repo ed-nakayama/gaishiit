@@ -7,11 +7,11 @@
 
 @section('addheader')
 	<title>企業の評判・クチコミランキング｜{{ config('app.title') }}</title>
-	<meta name="description" content="外資IT企業のクチコミ総合評価ランキングです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}">
+	<meta name="description" content="外資IT・外資コンサル企業のクチコミ総合評価ランキングです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}">
 
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content="企業の評判・クチコミランキング｜{{ config('app.title') }}" />
-	<meta property="og:description" content="外資IT企業のクチコミ総合評価ランキングです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}" />
+	<meta property="og:description" content="外資IT・外資コンサル企業のクチコミ総合評価ランキングです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}" />
 	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
 
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
@@ -32,7 +32,7 @@
 	<div class="inner">
 
 		<div class="ttl">
-			<h1>外資IT企業クチコミ評価ランキング</h1>
+			<h1>外資IT・外資コンサル企業クチコミ評価ランキング</h1>
 		</div>
 
 		<div class="con-wrap">

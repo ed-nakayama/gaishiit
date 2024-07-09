@@ -203,7 +203,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 								<ul id="menu-content">
 									<li style="transform: rotate(0.03deg);"><a href="/company">企業を探す</a></li>
 									<li style="transform: rotate(0.03deg);"><a href="/job">求人を探す</a></li>
-									<li style="transform: rotate(0.03deg);"><a href="/blog">外資IT転職ガイド</a></li>
+									<li style="transform: rotate(0.03deg);"><a href="/blog">外資IT・外資コンサル転職ガイド</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -222,7 +222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 									</li>
 									<li><a href="/company">企業を探す</a></li>
 									<li><a href="/job">求人を探す</a></li>
-									<li><a href="/blog">外資IT転職ガイド</a></li>
+									<li><a href="/blog">外資IT・外資コンサル転職ガイド</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -259,7 +259,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 							</ul>
 						</div>
 					</div>
-					<h1><img src="img/top/ttl_main.png" alt="外資IT企業へのハイクラスな転職なら"></h1>
+					<h1><img src="img/top/ttl_main.png" alt="外資IT・外資コンサル企業へのハイクラスな転職なら"></h1>
                 </div>
             </div>
         </section>
@@ -322,9 +322,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="items_detail">
                 <h2 class="items_h2 fadein"><img src="img/top/ttl_global.png" alt="Global IT"></h2>
                 <div class="items_box fadein">
-                    <h3>外資系 IT企業に特化</h3>
+                    <h3>外資IT・外資コンサル企業に特化</h3>
                     <p>
-                        ガイシITは外資系のIT企業に特化した転職支援サービス。<br>
+                        ガイシITは外資IT・外資コンサル企業に特化した転職支援サービス。<br>
                         自分に合ったジョブ探しから、条件の交渉、採用までを、豊富なマッチング経験でサポートします。
                     </p>
                 </div>
@@ -355,7 +355,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		
 		<section id="blog" class="items">
 			<div class="blog_ttl">
-				<h2>外資IT転職ガイド</h2>
+				<h2>外資IT・外資コンサル転職ガイド</h2>
 			</div>
             <div class="blog_block">
 				@foreach ($blogList as $blog)
@@ -393,7 +393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <footer id="footer">
             <div class="footer_inner">
 				<p><a href="/corporate">運営会社</a></p>
-                <p><a href="/blog">外資IT転職ガイド</a></p>
+                <p><a href="/blog">外資IT・外資コンサル転職ガイド</a></p>
 {{--
                 <p><a href="/kiyaku">利用規約</a></p>
 --}}

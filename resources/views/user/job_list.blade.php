@@ -26,24 +26,24 @@
 
 	@if ($param_count == 1)
 		<title>{{ $param1_name }}の求人一覧｜{{ config('app.title') }}</title>
-		<meta name="description" content="{{ $param1_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の外資系IT企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+		<meta name="description" content="{{ $param1_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の外資IT・外資コンサル企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
 
 		<meta property="og:title" content=">{{ $param1_name }}の求人一覧｜{{ config('app.title') }}" />
-		<meta property="og:description" content="{{ $param1_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の外資系IT企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。" />
+		<meta property="og:description" content="{{ $param1_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の外資IT・外資コンサル企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。" />
 
 	@elseif  ($param_count == 2)
 		<title>{{ $param1_name }}の{{ $param2_name }}の求人一覧｜{{ config('app.title') }}</title>
-		<meta name="description" content="{{ $param1_name }}の{{ $param2_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の{{ $param2_name }}の外資系IT企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+		<meta name="description" content="{{ $param1_name }}の{{ $param2_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の{{ $param2_name }}の外資IT・外資コンサル企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
 
 		<meta property="og:title" content=">{{ $param1_name }}の{{ $param2_name }}の求人一覧｜{{ config('app.title') }}" />
-		<meta property="og:description" content="{{ $param1_name }}の{{ $param2_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の{{ $param2_name }}の外資系IT企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。" />
+		<meta property="og:description" content="{{ $param1_name }}の{{ $param2_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の{{ $param2_name }}の外資IT・外資コンサル企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。" />
 
 	@elseif  ($param_count == 3)
 		<title>{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の求人一覧｜{{ config('app.title') }}</title>
-		<meta name="description" content="{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の外資系IT企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+		<meta name="description" content="{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の外資IT・外資コンサル企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
 
 		<meta property="og:title" content=">{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の求人一覧｜{{ config('app.title') }}" />
-		<meta property="og:description" content="{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の外資系IT企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。" />
+		<meta property="og:description" content="{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の求人情報一覧ページです。外資IT.comは、{{ $param1_name }}の{{ $param2_name }}の{{ $param3_name }}の外資IT・外資コンサル企業への転職希望者に役立つ口コミを掲載した求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。" />
 
 	@else
 		<title>求人一覧｜{{ config('app.title') }}</title>

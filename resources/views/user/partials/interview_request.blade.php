@@ -52,17 +52,17 @@
 				</div>
 				<div class="button-flex">
 					@if (Auth::guard('user')->check())
-						<a href="javascript:agentform.submit()">外資IT特化の転職エージェントに相談する</a>
+						<a href="javascript:agentform.submit()">外資IT・外資コンサル特化の<br>転職エージェントに相談する</a>
 					@else
-						<a class="openModal button-modal" href="#modalLogin">外資IT特化の転職エージェントに相談する</a>
+						<a class="openModal button-modal" href="#modalLogin">外資IT・外資コンサル特化の<br>転職エージェントに相談する</a>
 					@endif
 				</div>
 				@if ($job->backg_flag == '1' && !empty($user_act['cv_comp']))
-					<center><font color="red">※「正式に応募する」と「外資IT特化の転職エージェントに相談」は@if ($job->backg_flag == '1')、職務経歴書 @endif @if ($job->backg_eng_flag == '1')、職務経歴書（英文）@endif @if ($job->personal_flag == '1')、履歴書 @endifが必要です。<a href="/setting" style="color:#4AA5CE;text-decoration: underline;">個人設定</a>よりご登録をお願いします。</font></center>
+					<center><font color="red">※「正式に応募する」と「外資IT・外資コンサル特化の転職エージェントに相談」は@if ($job->backg_flag == '1')、職務経歴書 @endif @if ($job->backg_eng_flag == '1')、職務経歴書（英文）@endif @if ($job->personal_flag == '1')、履歴書 @endifが必要です。<a href="/setting" style="color:#4AA5CE;text-decoration: underline;">個人設定</a>よりご登録をお願いします。</font></center>
 				@elseif ($job->backg_eng_flag == '1' && !empty($user_act['cv_eng_comp']))
-					<center><font color="red">※「正式に応募する」と「外資IT特化の転職エージェントに相談」は@if ($job->backg_flag == '1')、職務経歴書 @endif @if ($job->backg_eng_flag == '1')、職務経歴書（英文）@endif @if ($job->personal_flag == '1')、履歴書 @endifが必要です。<a href="/setting" style="color:#4AA5CE;text-decoration: underline;">個人設定</a>よりご登録をお願いします。</font></center>
+					<center><font color="red">※「正式に応募する」と「外資IT・外資コンサル特化の転職エージェントに相談」は@if ($job->backg_flag == '1')、職務経歴書 @endif @if ($job->backg_eng_flag == '1')、職務経歴書（英文）@endif @if ($job->personal_flag == '1')、履歴書 @endifが必要です。<a href="/setting" style="color:#4AA5CE;text-decoration: underline;">個人設定</a>よりご登録をお願いします。</font></center>
 				@elseif ($job->personal_flag == '1' && !empty($user_act['vitae_comp']))
-					<center><font color="red">※「正式に応募する」と「外資IT特化の転職エージェントに相談」は@if ($job->backg_flag == '1')、職務経歴書 @endif @if ($job->backg_eng_flag == '1')、職務経歴書（英文）@endif @if ($job->personal_flag == '1')、履歴書 @endifが必要です。<a href="/setting" style="color:#4AA5CE;text-decoration: underline;">個人設定</a>よりご登録をお願いします。</font></center>
+					<center><font color="red">※「正式に応募する」と「外資IT・外資コンサル特化の転職エージェントに相談」は@if ($job->backg_flag == '1')、職務経歴書 @endif @if ($job->backg_eng_flag == '1')、職務経歴書（英文）@endif @if ($job->personal_flag == '1')、履歴書 @endifが必要です。<a href="/setting" style="color:#4AA5CE;text-decoration: underline;">個人設定</a>よりご登録をお願いします。</font></center>
 				@endif
 			</div>
 {{-- END 面談リクエストボタン --}}

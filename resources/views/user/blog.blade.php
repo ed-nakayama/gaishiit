@@ -5,17 +5,19 @@
 @endsection
 
 @section('addheader')
-	<title>企業を探す｜外資IT企業のクチコミ評価・求人なら外資IT.com</title>
-	<meta name="description" content="外資IT企業への転職に関するお役立ち情報を発信しております。外資IT企業への転職なら外資IT.com｜外資IT.comは外資系IT企業に特化した口コミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。">
+	<title>企業を探す｜{{ config('app.title') }}</title>
+	<meta name="description" content="外資IT・外資コンサル企業への転職に関するお役立ち情報を発信しております。外資IT・外資コンサル企業への転職なら外資IT.com｜{{ config('app.description') }}">
 
 	<meta property="og:type" content="blog" />
-	<meta property="og:title" content="企業を探す｜外資IT企業のクチコミ評価・求人なら外資IT.com" />
-	<meta property="og:description" content="外資IT企業への転職に関するお役立ち情報を発信しております。外資IT企業への転職なら外資IT.com｜外資IT.comは外資系IT企業に特化した口コミ・求人サイトです。興味のある企業の担当者とは直接コミュニケーションも可能です。" />
+	<meta property="og:title" content="企業を探す｜{{ config('app.title') }}" />
+	<meta property="og:description" content="外資IT・外資コンサル企業への転職に関するお役立ち情報を発信しております。外資IT・外資コンサル企業への転職なら外資IT.com｜{{ config('app.description') }}" />
 	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
 
 	<link rel="stylesheet" href="{{ asset('css/blog.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+{{--
     <link rel="stylesheet" href="{{ asset('css/new_common.css') }}">
+--}}
 	<link href="{{ asset('css/expand.css') }}" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 @endsection
@@ -31,9 +33,9 @@
 
 <main class="pane-main">
 	<div class="main" style="padding:15px;">
-		<h1>外資IT転職ガイド</h1>
+		<h1>外資IT・外資コンサル転職ガイド</h1>
 	</div>
-		
+
 	<section id="blog" class="items">
 		<div class="blog_block">
 			<div class="blog_main">
@@ -122,6 +124,6 @@
 		</div>
 	</section>
 
-</div>
+</main>
 
 @endsection

@@ -7,11 +7,11 @@
 
 @section('addheader')
 	<title>企業を探す｜{{ config('app.title') }}</title>
-	<meta name="description" content="クチコミのある外資系IT企業の一覧ページです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}">
+	<meta name="description" content="クチコミのある外資IT・外資コンサル企業の一覧ページです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}">
 
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content="企業を探す｜{{ config('app.title') }}" />
-	<meta property="og:description" content="クチコミのある外資系IT企業の一覧ページです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}" />
+	<meta property="og:description" content="クチコミのある外資IT・外資コンサル企業の一覧ページです。転職に役立つ社員クチコミを集め、スコアを集計して提供しております。｜{{ config('app.description') }}" />
 	<meta property="og:image" content="{{ url('/img/h_logo.png') }}" />
 
 	<link href="{{ asset('css/seek.css') }}" rel="stylesheet">
@@ -28,7 +28,7 @@
 <main class="pane-main">
 	<div class="inner">
 		<div class="ttl">
-			<h1>外資IT企業一覧</h1>
+			<h1>外資IT・外資コンサル企業一覧</h1>
 		</div>
 				
 {{-- 広告エリア --}}
