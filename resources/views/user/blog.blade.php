@@ -53,7 +53,7 @@
 							</figure>
 							<p class="blog_ttl">{{ $blog->title }}</p>
 						</a>
-						<div class="blog_info"">
+						<div class="blog_info">
 							<p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
 							<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
 						</div>
@@ -95,7 +95,7 @@
 					</div>
 				</div>
 				<div class="item">
-					<h2>企業クチコミ数ランキング</h2>
+					<h2>企業クチコミ評価ランキング</h2>
 					
 					@foreach ($rankingList as $ranking)
 						<div class="ranking">

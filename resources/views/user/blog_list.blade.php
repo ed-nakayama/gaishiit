@@ -15,7 +15,9 @@
 
 	<link rel="stylesheet" href="{{ asset('css/blog.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+{{--
     <link rel="stylesheet" href="{{ asset('css/new_common.css') }}">
+--}}
 	<link href="{{ asset('css/expand.css') }}" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 @endsection
@@ -52,10 +54,10 @@
 							</figure>
 							<p class="blog_ttl">{{ $blog->title }}</p>
 						</a>
-							<div class="blog_info">
-								<p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
-								<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
-							</div>
+						<div class="blog_info">
+							<p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
+							<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
+						</div>
 					</div>
 					@endforeach
 				</div>
@@ -94,7 +96,7 @@
 					</div>
 				</div>
 				<div class="item">
-					<h2>企業クチコミ数ランキング</h2>
+					<h2>企業クチコミ評価ランキング</h2>
 					
 					@foreach ($rankingList as $ranking)
 						<div class="ranking">
@@ -117,12 +119,12 @@
 							<a href="/company/ranking" style="font-size: 1.6rem;">クチコミ企業ランキングへ</a>
 						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
 		</div>
 	</section>
 
-</div>
+</main>
 
 @endsection

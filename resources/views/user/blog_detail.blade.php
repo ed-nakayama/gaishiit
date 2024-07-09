@@ -18,7 +18,9 @@
 @endif
 	<link rel="stylesheet" href="{{ asset('css/blog.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/base.css') }}">
+{{--
     <link rel="stylesheet" href="{{ asset('css/new_common.css') }}">
+--}}
 	<link href="{{ asset('css/expand.css') }}" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 
@@ -170,7 +172,7 @@
 				</div>
 
 				<div class="item">
-					<h2>企業クチコミ数ランキング</h2>
+					<h2>企業クチコミ評価ランキング</h2>
 					@foreach ($rankingList as $ranking)
 						<div class="ranking">
 							<div class="corp">

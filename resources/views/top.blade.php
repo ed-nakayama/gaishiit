@@ -339,7 +339,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <section id="sec-other" class="items">
             <div class="other_block">
                 <div class="items_box fadein">
-                    <h3>採用が決まるまで<br>完全無料</h3>
+                    <h3>完全無料0円<br>で利用可能</h3>
                     <p>求人情報の検索から採用まで、費用をいただくことは一切ありません</p>
                 </div>
                 <div class="items_box fadein">
@@ -347,8 +347,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <p>興味のある企業の担当者とはエージェントを介さずに直接コミュニケーションをとっていただきます</p>
                 </div>
                 <div class="items_box fadein">
-                    <h3>採用が決まるまで<br>完全無料</h3>
-                    <p>求人情報の検索から採用まで、費用をいただくことは一切ありません</p>
+                    <h3>会員登録で<br>社員クチコミ見放題</h3>
+                    <p>会員登録することで、他の会員が投稿した企業評価のクチコミを見ることができます</p>
                 </div>
             </div>
         </section>
