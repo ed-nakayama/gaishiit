@@ -33,7 +33,7 @@
 
 <main class="pane-main">
 	<div class="main" style="padding:15px;">
-		<h1>外資IT・外資コンサル転職ガイド</h1>
+		<h1>転職ガイド</h1>
 	</div>
 
 	<section id="blog" class="items">
