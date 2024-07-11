@@ -138,6 +138,7 @@
 							<div class="item-input">
 								@if ( isset($blog->image) )
 									<img src="{{ $blog->image }}" class="css-class" alt="" width="250">
+									{{ pathinfo($blog->image, PATHINFO_BASENAME) }}
 								@endif
 {{--
 								@if ( isset($blog->thumb) )

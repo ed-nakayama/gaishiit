@@ -103,7 +103,10 @@ class BlogController extends Controller
 		$thumb = null;
 		if (!empty($request->file('image'))) {
 
-			$path = $request->file('image')->getClientOriginalName();
+			$filename = $request->file('image')->getClientOriginalName();
+
+			$path = date('Ymd_His.') . pathinfo($filename, PATHINFO_EXTENSION);
+
 			$request->file('image')->storeAs('public/blog/original/' ,$path);
 
 			$imgPath = storage_path('app/public/blog/original/' . $path);
