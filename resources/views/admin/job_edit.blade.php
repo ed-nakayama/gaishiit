@@ -6,18 +6,25 @@
 	<title>ジョブ管理｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
-
             <div class="mainContentsInner">
 
                 <div class="mainTtl title-main">
+@if (Auth::user()->agent_priv == '0')
                     <h2>ジョブ管理 - 編集</h2>
+@else
+                    <h2>ジョブ管理 - 参照</h2>
+@endif
                 </div><!-- /.mainTtl -->
 
                 <div class="containerContents">
-
-                    {{ Form::open(['url' => '/admin/mypage/job/change', 'name' => 'changeform' , 'id' => 'changeform']) }}
-					{{ Form::hidden('company_id', old('company_id' ,$job->company_id), ['class' => 'form-control', 'id'=>'company_id_id' ] )}}
-                    {{ Form::hidden('job_id', old('job_id' ,$job->id), ['class' => 'form-control', 'id'=>'job_id' ] )}}
+@if (Auth::user()->agent_priv == '1')
+<fieldset disabled>
+@else
+<fieldset>
+@endif
+					{{ html()->form('POST', '/admin/mypage/job/change')->id('changeform')->attribute('name', 'changeform')->open() }}
+					{{ html()->hidden('company_id', old('company_id' ,$job->company_id)) }}
+					{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
                     <section class="secContents-mb">
                         <div class="secContentsInner">
                             
@@ -31,55 +38,56 @@
 									</div>
 								</li>
 								<li>
-                                    <label id="del_lavel"  for=""><span>削除する</span><input type="checkbox"  name="del_flag" id="del_flag" value="1"  @if (old('dell_flag' ,$job->del_flag) == '1')  checked="checked" @endif  onchange="clearMsg()" /></label>
+                                    <label id="del_lavel"  for=""><span>削除する</span><input type="checkbox"  name="del_flag" id="del_flag" value="1"  @if (old('dell_flag' ,$job->del_flag) == '1')  checked="checked" @endif /></label>
 								</li>
+@if (Auth::user()->agent_priv == '0')
 								<li>
                             		<div class="btnContainer">
 									<a href="javascript:changeform.submit()" class="squareBtn btn-short">保存</a>
                             		</div><!-- /.btn-container -->
 								</li>
+@endif
 							</ul><!-- /.jobToggle -->
 			              	<div id="success1" class="alert alert-success"  style="color:#0000ff;text-align: center;">
 			               	{{-- 更新成功メッセージ --}}
 			               	@if (session('option_success'))
-			                  	<div id="success1" class="alert alert-success"  style="color:#0000ff;">
-			                   		{{session('option_success')}}
-			                  	</div>
+								<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">{{session('option_success')}}</p>
 			               	@endif
  		                   	</div>
                        </div><!-- /.secContentsInner -->
                     </section><!-- /.secContents-mb -->
 					{{ html()->form()->close() }}
+</fieldset>
 
-					{{ Form::open(['url' => '/admin/mypage/job/post', 'name' => 'regform' , 'id' => 'regform']) }}
-					{{ Form::hidden('company_id', old('company_id' ,$job->company_id), ['class' => 'form-control', 'id'=>'company_id_id' ] )}}
-					{{ Form::hidden('job_id', old('job_id' ,$job->id), ['class' => 'form-control', 'id'=>'job_id' ] )}}
+					{{ html()->form('POST', '/admin/mypage/job/post')->id('regform')->attribute('name', 'regform')->open() }}
+					{{ html()->hidden('company_id', old('company_id' ,$job->company_id)) }}
+					{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
 					<section class="secContents">
 
                         <div class="secContentsInner">
+@if (Auth::user()->agent_priv == '1')
+<fieldset disabled>
+@else
+<fieldset>
+@endif
 
-							@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false)
 								{{-- 更新成功メッセージ --}}
 								@if (session('update_success'))
 									<div class="formContainer mg-ajust">
 										<div class="item-name">
 											<p></p>
 										</div><!-- /.item-name -->
-
-										<div id="success2" class="alert alert-success"  style="color:#0000ff;">
-									 		{{session('update_success')}}
-										</div>
+										<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">{{session('update_success')}}</p>
 									</div><!-- END formContainer mg-ajuse -->
 								@endif
-							@endif
 
 							<ul class="jobToggleList">
 								<li  style="display:flex;">
 										<label for="c_ch1">このジョブ宛にカジュアル面談を受け付ける　</label>
 									<div class="button-radio">
-										<input id="cas_ch1" class="radiobutton" name="casual_flag" type="radio" value="1"  @if (old('casual_flag' ,$job->casual_flag) == '1')  checked="checked" @endif  onchange="clearMsg()" />
+										<input id="cas_ch1" class="radiobutton" name="casual_flag" type="radio" value="1"  @if (old('casual_flag' ,$job->casual_flag) == '1')  checked="checked" @endif />
 										<label for="cas_ch1" style="padding:3px 10px;">はい</label> /
-										<input id="cas_ch2" class="radiobutton" name="casual_flag" type="radio" value="0"  @if (old('casual_flag' ,$job->casual_flag) == '0')  checked="checked" @endif  onchange="clearMsg()" />
+										<input id="cas_ch2" class="radiobutton" name="casual_flag" type="radio" value="0"  @if (old('casual_flag' ,$job->casual_flag) == '0')  checked="checked" @endif />
 										<label for="cas_ch2" style="padding:3px 10px;">いいえ</label> 
 									</div>
 								</li>
@@ -92,7 +100,7 @@
 									</div><!-- /.item-name -->
 									<div class="item-input">
 										<div class="selectWrap harf">
-											<select name="unit"  class="select-no"  onchange="clearMsg()">
+											<select name="unit"  class="select-no">
 												<option value=""></option>
 												@foreach ($unitList as $un)
 													<option value="{{ $un->id }}" @if (old('unit' ,$job->unit_id) == $un->id)  selected @endif>{{ $un->name }}</option>
@@ -113,7 +121,7 @@
 									<p>名称<span>*</span></p>
 								</div><!-- /.item-name -->
 								<div class="item-input">
-									<input type="text"  name="name"  value="{{ old('name' ,$job->name) }}"  oninput="clearMsg()">
+									<input type="text"  name="name"  value="{{ old('name' ,$job->name) }}">
 									<ul class="oneRow">
 										@error('name')
 											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
@@ -127,7 +135,7 @@
 									<p>紹介<span>*</span></p>
 								</div><!-- /.item-name -->
 								<div class="item-input">
-									<textarea class="form-mt" name="intro" id="" cols="30" rows="10" placeholder="テキスト"  oninput="clearMsg()">{{ old('intro' ,$job->intro) }}</textarea>
+									<textarea class="form-mt" name="intro" id="" cols="30" rows="10" placeholder="テキスト">{{ old('intro' ,$job->intro) }}</textarea>
 									<ul class="oneRow">
 										@error('intro')
 										<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
@@ -141,7 +149,7 @@
 									<p>ジョブID</p>
 								</div><!-- /.item-name -->
 								<div class="item-input">
-									<input class="harf" name="job_code" type="text" value="{{ old('job_code' ,$job->job_code) }}"   oninput="clearMsg()">
+									<input class="harf" name="job_code" type="text" value="{{ old('job_code' ,$job->job_code) }}" >
 									<ul class="oneRow">
 										@error('job_code')
 											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
@@ -149,17 +157,18 @@
 									</ul>
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
+</fieldset>
 
-								<div class="formContainer mg-ajust-midashi">
-									<div class="item-name">
-										<p>職種カテゴリ</p>
-									</div><!-- /.item-name -->
-									<div class="item-input">
-										{{ $job->getJobCatName() }}
-										<hr>
-										<br>
-									</div><!-- /.item-input -->
-								</div>
+							<div class="formContainer mg-ajust-midashi">
+								<div class="item-name">
+									<p>職種カテゴリ</p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									{{ $job->getJobCatName() }}
+									<hr>
+									<br>
+								</div><!-- /.item-input -->
+							</div>
 
 							<div class="formContainer mg-ajust">
 								<div class="item-name">
@@ -173,9 +182,9 @@
 												@if ($cat->id == $detail->job_cat_id)
 													<div style="margin-left: 15px;">
 														@if (!empty($job->getJobCategory() ))
-															{{ html()->checkbox('jobCat[]', (in_array($detail->id, $job->getJobCategory() )), $detail->id) }}{{ $detail->name }}
+															{{ html()->checkbox('jobCat[]', (in_array($detail->id, $job->getJobCategory() )), $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
 														@else
-															{{ html()->checkbox('jobCat[]', false, $detail->id) }}{{ $detail->name }}
+															{{ html()->checkbox('jobCat[]', false, $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
 														@endif
 													</div>
 												@endif
@@ -215,9 +224,9 @@
 												@if ($cat->id == $detail->industory_cat_id)
 													<div style="margin-left: 15px;">
 														@if (!empty($job->getIndustory() ))
-															{{ html()->checkbox('indCat[]', (in_array($detail->id, $job->getIndustory() )), $detail->id) }}{{ $detail->name }}
+															{{ html()->checkbox('indCat[]', (in_array($detail->id, $job->getIndustory() )), $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
 														@else
-															{{ html()->checkbox('indCat[]', false, $detail->id) }}{{ $detail->name }}
+															{{ html()->checkbox('indCat[]', false, $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
 														@endif
 													</div>
 												@endif
@@ -234,13 +243,18 @@
 								</div><!-- /.item-input -->
 							</div>
 
+@if (Auth::user()->agent_priv == '1')
+<fieldset disabled>
+@else
+<fieldset>
+@endif
 							<div class="formContainer mg-ajust">
 								<div class="item-name">
 									<p>年収</p>
 								</div><!-- /.item-name -->
 								<div class="item-input">
 									<div class="selectWrap">
-										<select name="income_id"  class="select-no"  onchange="clearMsg()">
+										<select name="income_id"  class="select-no">
 											<option value=""></option>
 											@foreach ($incomeList as $income)
 												<option value="{{ $income->id }}" @if (old('income_id' ,$job->income_id) == $income->id)  selected @endif>{{ $income->name }}</option>
@@ -260,10 +274,11 @@
 									<p>補足カテゴリ</p>
 								</div><!-- /.item-name -->
 								<div class="item-input">
-									<input class="long"  name="sub_category" type="text" value="{{ old('sub_category' ,$job->sub_category) }}" oninput="clearMsg()">
+									<input class="long"  name="sub_category" type="text" value="{{ old('sub_category' ,$job->sub_category) }}">
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
-                                
+</fieldset>
+
 							<div class="formContainer mg-ajust-midashi">
 								<div class="item-name">
 									<p>ロケーション<span>*</span></p>
@@ -272,10 +287,10 @@
 
 									<ul class="radioList">
 										@foreach ($constLocation as $loc)
-											<li><label><input type="checkbox" value="{{ $loc->id }}" name="locations[]"  @if (strpos($job->locations ,$loc->id) !== false) checked @endif  onchange="elseChange()"><span>{{ $loc->name }}</span></label></li>
+											<li><label><input type="checkbox" value="{{ $loc->id }}" name="locations[]"  @if (strpos($job->locations ,$loc->id) !== false) checked @endif  onchange="elseChange()" @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif><span>{{ $loc->name }}</span></label></li>
 										@endforeach
-											<li><label>　／　<input type="checkbox" value="1" id="remote" name="remote"  @if ($job->remote_flag == '1') checked @endif onchange="locChange()"><span>リモート</span></label></li>
-											<li><label>　：　<input type="checkbox" value="1" id="no_auto_flag" name="no_auto_flag"  @if ($job->no_auto_flag == '1') checked @endif"><span>自動修正対象外</span></label></li>
+											<li><label>　／　<input type="checkbox" value="1" id="remote" name="remote"  @if ($job->remote_flag == '1') checked @endif onchange="locChange()" @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif><span>リモート</span></label></li>
+											<li><label>　：　<input type="checkbox" value="1" id="no_auto_flag" name="no_auto_flag"  @if ($job->no_auto_flag == '1') checked @endif  @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif><span>自動修正対象外</span></label></li>
 									</ul><!-- /.radioList -->
 
 									<ul class="oneRow">
@@ -286,12 +301,17 @@
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
                                 
+@if (Auth::user()->agent_priv == '1')
+<fieldset disabled>
+@else
+<fieldset>
+@endif
 							<div class="formContainer mg-ajust" id="changeElseLocation">
 								<div class="item-name">
 									<p>その他ロケーション</p>
 								</div><!-- /.item-name -->
 								<div class="item-input">
-									<input type="text" name="else_location" id="else_location" value="{{  old('else_location',$job->else_location) }}"  class="long">
+									<input type="text" name="else_location" id="else_location" value="{{  old('else_location',$job->else_location) }}"  class="long" >
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
 
@@ -303,16 +323,17 @@
 									<textarea class="form-mt" name="working_place" id="" cols="30" rows="3">{{ old('working_place' ,$job->working_place) }}</textarea>
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
-                                
+</fieldset>
+
 							<div class="formContainer bb-ajust">
 								<div class="item-name">
 									<p>正式応募に必要<br>な書類</p>
 								</div><!-- /.item-name -->
 								<div class="item-input">
 									<ul class="checkboxList">
-										<li><label><input type="checkbox" name="backg_flag" value="1" @if (old('backg_flag' ,$job->backg_flag) == '1')  checked="checked" @endif  onchange="clearMsg()">職務経歴書</label></li>
-										<li><label><input type="checkbox" name="backg_eng_flag" value="1" @if (old('backg_eng_flag',$job->backg_eng_flag) == '1')  checked="checked" @endif onchange="clearMsg()">職務経歴書（英文）</label></li>
-										<li><label><input type="checkbox" name="personal_flag" value="1" @if (old('personal_flag' ,$job->personal_flag) == '1')  checked="checked" @endif  onchange="clearMsg()">履歴書</label></li>
+										<li><label><input type="checkbox" name="backg_flag" value="1" @if (old('backg_flag' ,$job->backg_flag) == '1')  checked="checked" @endif  @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif>職務経歴書</label></li>
+										<li><label><input type="checkbox" name="backg_eng_flag" value="1" @if (old('backg_eng_flag',$job->backg_eng_flag) == '1')  checked="checked" @endif  @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif>職務経歴書（英文）</label></li>
+										<li><label><input type="checkbox" name="personal_flag" value="1" @if (old('personal_flag' ,$job->personal_flag) == '1') checked="checked" @endif  @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif>履歴書</label></li>
 									</ul><!-- /.checkboxList -->
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
@@ -323,10 +344,12 @@
                                     </div><!-- /.item-name -->
                                     <div class="item-input item-input-row">
                                         <div class="item-input-btn">
-                                            
+
+@if (Auth::user()->agent_priv == '0')
                                             <div class="modalContainer">
                                                 <a href="#modal" class="squareBtn btn-medium">選択</a>
                                             </div><!-- /.modalContainer -->
+@endif
                                         </div>
                                         {{Form::hidden('person', old('person' ,$job->person), ['class' => 'form-control', 'id'=>'person' ] )}}
                                         <span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
@@ -338,16 +361,17 @@
                                     </div><!-- /.item-input -->
                                 </div>
 
+@if (Auth::user()->agent_priv == '0')
                                 <div class="btnContainer">
 			                		{{-- 更新成功メッセージ --}}
 			                		@if (session('update_success'))
-		                    			<div id="success3" class="alert alert-success"  style="color:#0000ff;">
-		                      		 		{{session('update_success')}}
-		                    			</div>
+										<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">{{session('update_success')}}</p>
 			                		@endif
                                     <a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>
                                 </div><!-- /.btn-container -->
+@endif
 							{{ html()->form()->close() }}
+
 						</div><!-- /.secContentsInner -->
 					</section><!-- /.secContents -->
                    
@@ -382,13 +406,10 @@
 
 <script>
 
-
 /////////////////////////////////////////////////////////
 // その他ロケーション表示
 /////////////////////////////////////////////////////////
 function elseChange() {
-
-	clearMsg();
 
 	elseChangeCont();
 }
@@ -424,8 +445,6 @@ function elseChangeCont() {
 /////////////////////////////////////////////////////////
 function locChange() {
 
-	clearMsg();
-
 	let remote = document.getElementById("remote");
 	boxes = document.getElementsByName("locations[]");
 	var cnt = boxes.length;
@@ -436,22 +455,6 @@ function locChange() {
 		}
 		changeElseLocation.style.display = "";
     }
-
-}
-
-
-/////////////////////////////////////////////////////////
-// 成功メッセージクリア
-/////////////////////////////////////////////////////////
-function clearMsg() {
-
-	const p1 = document.getElementById("success1");
-	const p2 = document.getElementById("success2");
-	const p3 = document.getElementById("success3");
-
-	if (p1) p1.style.display ="none";
-	if (p2) p2.style.display ="none";
-	if (p3) p3.style.display ="none";
 
 }
 
@@ -480,7 +483,6 @@ function delDisp() {
 /////////////////////////////////////////////////////////
 function checkOpen() {
 
-	clearMsg();
 	delDisp();
 }
 
@@ -529,7 +531,6 @@ function putPerson() {
 /////////////////////////////////////////////////////////
 function GetPerson() {
 
-	clearMsg();
 	putPerson();
 	ResetPerson();
 
@@ -573,8 +574,7 @@ $(document).ready(function() {
 	putPerson();
 	delDisp();
 	elseChangeCont();
- 
-});
+ });
 
 </script>
 

@@ -46,7 +46,7 @@ class MypageController extends Controller
 		$user = \Auth::user();
 
 		if ($user->agent_priv == '1') {
-			return redirect('/admin/candidate');
+			return redirect('/admin/mypage/joblist');
 		}
 
 		return view('admin.mypage' ,compact(
@@ -580,7 +580,7 @@ class MypageController extends Controller
 		if ($request->del_flag == '1') {
 			return redirect('admin/mypage/joblist');
 		} else {
-			return redirect()->route('admin.mypage.job.edit', [ 'company_id' => $comp_id, 'job_id' => $job->id, ] )->with('update_success', 'ジョブ情報を保存しました。');
+			return redirect()->route('admin.mypage.job.edit', [ 'company_id' => $comp_id, 'job_id' => $job->id, ] )->with('option_success', '公開情報を保存しました。');
 		}
 	
 	}

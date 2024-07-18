@@ -12,7 +12,9 @@
 		<div class="mainTtl title-main">
 			<h2>マイページ</h2>
 		</div><!-- /.mainTtl -->
+@if (Auth::user()->agent_priv == '0')
 		<div style="text-align: right;margin-bottom: 10px;"><a href="javascript:void(0);" onClick="openWin({{ Auth::id() }})" class="squareBtn" style="width: 140px;height: 30px;padding: 5px 0;">企業代理ログイン</a></div>
+@endif
  	</div>
                
 	<div class="containerContents">
@@ -21,12 +23,16 @@
                     
 			<div class="tab_box_no">
 				<div class="btn_area">
+@if (Auth::user()->agent_priv == '0')
 					<p class="tab_btn"><a href="/admin/mypage">候補者承認</a></p>
 					<p class="tab_btn"><a href="/admin/mypage/progress">面談進捗管理</a></p>
 					<p class="tab_btn"><a href="/admin/mypage/enter">採用者一覧</a></p>
+@endif
 					<p class="tab_btn active"><a href="/admin/mypage/joblist">ジョブ一覧</a></p>
+@if (Auth::user()->agent_priv == '0')
 					<p class="tab_btn"><a href="/admin/mypage/jobsfc">CSVダウンロード</a></p>
 					<p class="tab_btn"><a href="/admin/mypage/eval">クチコミ一覧</a></p>
+@endif
 				</div>
 
 				<div class="secContentsInner">
@@ -86,6 +92,8 @@
 							</div><!-- /.secBtnHead-btn -->
 						</div>
 						{{ html()->form()->close() }}
+
+@if (Auth::user()->agent_priv == '0')
 						<div class="secBtnHead" style="display: flex;justify-content: flex-end;;margin-right: 10px;">
 							<div class="secBtnHead-btn">
 								<ul  class="item-btn" style="align-items: center;">
@@ -107,6 +115,7 @@
 								@endif
 							</div><!-- /.secBtnHead-btn -->
 						</div>
+@endif
 
 @if(!isset($jobList[0]))
 						<div>※データはありません。</div>
