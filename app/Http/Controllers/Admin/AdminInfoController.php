@@ -80,13 +80,11 @@ class AdminInfoController extends Controller
 			}
 			
 			$info->content = $request->content;
-//			$info->open_limit =$request->open_limit;
 			$info->save();
 			
 		} else {
 	        $faq = Information::create([
 			'content'        => $request->content,
-//			'open_limit'     => $request->open_limit,
         	]);
 		}
 

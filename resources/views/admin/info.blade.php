@@ -61,8 +61,8 @@
 @endif
 			<section class="secContents">
 				<div class="secContentsInner">
-				{{ Form::open(['url' => '/admin/info', 'name' => 'regform' , 'id' => 'regform']) }}
-				{{ Form::hidden('info_id', old('info_id' ,$info->id), ['class' => 'form-control', 'id'=>'info_id' ] )}}
+				{{ html()->form('POST', '/admin/info')->id('regform')->attribute('name', 'regform')->open() }}
+				{{ html()->hidden('info_id', old('info_id' ,$info->id)) }}
 {{--
 					<div class="formContainer mg-ajust-midashi">
 						<div class="item-name">
@@ -91,7 +91,7 @@
 							</ul>
 						</div><!-- /.item-input -->
 					</div>
-
+{{--
 					<div class="formContainer mg-ajust-midashi">
 						<div class="item-name">
 							<p>公開期限</p>
@@ -100,7 +100,7 @@
 							<label style="padding: 5px 5px;border: 1px solid #ccc;"><input type="date"  name="open_limit"  value="{{ old('open_limit' ,$info->open_limit) }}" ></label>
 						</div><!-- /.item-input -->
 					</div>                                
-{{--
+
 					<div class="formContainer mg-ajust">
 						<div class="item-name">
 							<p>公開範囲<span>*</span></p>

@@ -95,7 +95,7 @@
                 </div><!-- /.infoBarTitle -->
                 <div class="infoBarText">
                 	@if (!empty($information[0]))
-                    	<p>{{ $information[0]->created_at->format('Y/m/d') }} {{ $information[0]->content }}</p>
+                    	<p>{{ $information[0]->updated_at->format('Y/m/d') }} {{ $information[0]->content }}</p>
                     @endif
                 </div><!-- /.infoBarText -->
             </div><!-- /.infoBarInner -->

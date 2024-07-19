@@ -244,30 +244,26 @@
 
 
 {{-- モーダル --}}
-		<div class="remodal" data-remodal-id="modal">
-
-        <div class="modalContainer">
-           <div class="remodal" data-remodal-id="modal">
-              <div class="modalTitle">
-                 <h2 class="title-bb">ステータスを「終了」にしようとしています</h2>
-              </div><!-- /.modalTitle -->
-    
-              <div class="modalInner">
-                  <p class="mb-ajust">ステータスを「終了」に切り替えた候補者は<br>
+	<div class="remodal" data-remodal-id="modal">
+		<div class="modalContainer">
+			<div class="modalTitle">
+				<h2 class="title-bb">ステータスを「終了」にしようとしています</h2>
+  			</div><!-- /.modalTitle -->
+			<div class="modalInner">
+				<p class="mb-ajust">ステータスを「終了」に切り替えた候補者は<br>
                                     候補者管理 - 終了一覧に移動し<br>
                                     現在のページでは表示されません。<br>
                                     よろしいですか？</p>
                                   <p>採用が決定した候補者は<br>
                                      必ずステータスを「採用」に変更してください。<br>
                                      ガイシITより後程ご連絡させていただきます。</p>
-              </div><!-- /.modalInner -->
-                                                    
-              <div class="btnContainer">
-                    <a href="#" data-remodal-action="confirm" class="squareBtn btn-large">確認して変更する</a><br><br>
-                    <a href="#" data-remodal-action="close" class="squareBtn btn-large">キャンセル</a>
-              </div><!-- /.btn-container -->
-          </div><!-- /.modalContainer -->
-      </div>
+			</div><!-- /.modalInner -->
+			<div class="btnContainer">
+				<a href="#" data-remodal-action="confirm" class="squareBtn btn-large">確認して変更する</a><br><br>
+				<a href="#" data-remodal-action="close" class="squareBtn btn-large">キャンセル</a>
+			</div><!-- /.btn-container -->
+		</div><!-- /.modalContainer -->
+	</div>
 
 {{-- モーダル END --}}
 
