@@ -24,10 +24,18 @@
 	<link href="{{ asset('css/expand.css') }}" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 
+<style>
+#blog .blog_content a {
+  text-decoration:underline;
+}
+</style>
+
+
 @endsection
 
 
 @section('content')
+
 
 {{--
 @if (Auth::guard('user')->check())
@@ -84,7 +92,9 @@
 					 </div>
 				 @endif
 					 
-				 {!! nl2br($blog->content) !!}
+				 <div class="blog_content">
+					 {!! nl2br($blog->content) !!}
+				 </div>
 
 				{{--  ブログ求人リンク --}}
 					@include ('user/partials/blog_job_link')

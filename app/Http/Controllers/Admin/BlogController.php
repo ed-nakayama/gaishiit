@@ -157,12 +157,22 @@ class BlogController extends Controller
 				if (!empty($cont->content)) {
 					if ($cont->tag == '5') {
 						$tr_list = '';
+						if(strpos($cont->content, '|') !== false) {
+							$bar_flag = 1;
+						} else {
+							$bar_flag = 0;
+						}
+
 						$line = explode("\r\n", $cont->content);
 						if (!empty($line[0])) {
 							foreach ($line as $index => $tr) {
 
 								$td_all = '';
-								$tdList = explode("/", $tr);
+								if($bar_flag == 1){
+									$tdList = explode("|", $tr);
+								} else {
+									$tdList = explode("/", $tr);
+								}
 								foreach ($tdList as $index2 => $td) {
 									if ($index == '0') {
 										$td_all .= "<th>{$td}</th>";
