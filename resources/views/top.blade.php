@@ -394,9 +394,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="footer_inner">
 				<p><a href="/corporate">運営会社</a></p>
                 <p><a href="/blog">転職ガイド</a></p>
-{{--
                 <p><a href="/kiyaku">利用規約</a></p>
---}}
                 <p><a href="/privacy">プライバシーポリシー</a></p>
                 <p><a href="/adminfaq">お問い合わせ</a></p>
 				<p>(c) Gaishi-IT.com</p>
