@@ -95,10 +95,10 @@
                   <div class="selectWrap">
                       <select name="from_age"  class="select-no">
                           <option value="">指定しない</option>
-                          <option value="20" @if ($search['from_age'] == '20')  selected @endif>20代</option>
-                          <option value="30" @if ($search['from_age'] == '30')  selected @endif>30代</option>
-                          <option value="40" @if ($search['from_age'] == '40')  selected @endif>40代</option>
-                          <option value="50" @if ($search['from_age'] == '50')  selected @endif>50代</option>
+                          <option value="20" @if (!empty($search['from_age'])) @if ($search['from_age'] == '20')  selected @endif @endif>20代</option>
+                          <option value="30" @if (!empty($search['from_age'])) @if ($search['from_age'] == '30')  selected @endif @endif>30代</option>
+                          <option value="40" @if (!empty($search['from_age'])) @if ($search['from_age'] == '40')  selected @endif @endif>40代</option>
+                          <option value="50" @if (!empty($search['from_age'])) @if ($search['from_age'] == '50')  selected @endif @endif>50代</option>
                       </select>
                    </div>
                </div>
@@ -108,10 +108,10 @@
                   <div class="selectWrap">
                       <select name="to_age"  class="select-no">
                           <option value="">指定しない</option>
-                          <option value="20" @if ($search['to_age'] == '20')  selected @endif>20代</option>
-                          <option value="30" @if ($search['to_age'] == '30')  selected @endif>30代</option>
-                          <option value="40" @if ($search['to_age'] == '40')  selected @endif>40代</option>
-                          <option value="50" @if ($search['to_age'] == '50')  selected @endif>50代</option>
+                          <option value="20" @if (!empty($search['to_age'])) @if ($search['to_age'] == '20')  selected @endif @endif>20代</option>
+                          <option value="30" @if (!empty($search['to_age'])) @if ($search['to_age'] == '30')  selected @endif @endif>30代</option>
+                          <option value="40" @if (!empty($search['to_age'])) @if ($search['to_age'] == '40')  selected @endif @endif>40代</option>
+                          <option value="50" @if (!empty($search['to_age'])) @if ($search['to_age'] == '50')  selected @endif @endif>50代</option>
                       </select>
                    </div>
                </div><!-- /.item-input -->
@@ -131,7 +131,7 @@
                             @foreach ($businessCatDetail as $detail)
                             	@if ($detail->business_cat_id == $cat->id)
                             		<li style="display: inline-block;">
-                            			<label>　<input type="checkbox" value="{{ $detail->id }}"   name="buscat_sel[]" title="{{ $detail->name }}" id="buscat_select"   @if (strpos($search['request_bus_cats'] ,$detail->id) !== false) checked @endif><span>{{ $detail->name }}</span></label>
+                            			<label>　<input type="checkbox" value="{{ $detail->id }}"   name="buscat_sel[]" title="{{ $detail->name }}" id="buscat_select"  @if (!empty($search['request_bus_cats'])) @if (strpos($search['request_bus_cats'] ,$detail->id) !== false) checked @endif @endif><span>{{ $detail->name }}</span></label>
                             		</li>
                             	@endif
 			                @endforeach
@@ -155,7 +155,7 @@
                             @foreach ($jobCatDetail as $detail)
                             	@if ($detail->job_cat_id == $cat->id)
                             		<li style="display: inline-block;">
-                            			<label>　<input type="checkbox" value="{{ $detail->id }}" name="jobcat_sel[]" title="{{ $detail->name }}"  id="jobcat_select"  @if (strpos($search['request_job_cat_details'] ,$detail->id) !== false) checked @endif><span>{{ $detail->name }}</span></label>
+                            			<label>　<input type="checkbox" value="{{ $detail->id }}" name="jobcat_sel[]" title="{{ $detail->name }}"  id="jobcat_select"   @if (!empty($search['request_job_cat_details'])) @if (strpos($search['request_job_cat_details'] ,$detail->id) !== false) checked @endif @endif><span>{{ $detail->name }}</span></label>
                             		</li>
                             	@endif
 			                @endforeach
@@ -176,7 +176,7 @@
 					<div class="form-inner">
 						<div class="check-box-btn">
 							@foreach ($constLocation as $loc)
-								<label><input type="checkbox" value="{{ $loc->id }}" name="location[]"  @if (strpos($search['location'] ,$loc->id) !== false) checked @endif><span>{{$loc->name}}</span></label>
+								<label><input type="checkbox" value="{{ $loc->id }}" name="location[]"   @if (!empty($search['location'])) @if (strpos($search['location'] ,$loc->id) !== false) checked @endif @endif><span>{{$loc->name}}</span></label>
 							@endforeach
 						</div>
 					</div><!-- /.item-input -->
