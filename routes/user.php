@@ -178,6 +178,8 @@ Route::post('/company/{compId}/event/{eventId}', 'EventController@detail');
 // ジョブ
 Route::get ('/job', 'JobController@index')->name('comp.job');
 
+Route::get ('/job_test', 'JobTestController@index');
+
 Route::get ('/job/list', 'JobController@list')->name('job.job_list');
 Route::post('/job/list', 'JobController@list');
 
@@ -240,6 +242,11 @@ Route::post('/blog/{cat}',   'BlogController@category');
 
 Route::get ('/blog/{cat}/{detail}',   'BlogController@detail')->name('blog.detail');
 Route::post('/blog/{cat}/{detail}',   'BlogController@detail');
+
+
+// LP
+Route::get ('/lp/ad-lp1',   'LpController@index')->name('lp');
+
 
 
 // ログイン認証後

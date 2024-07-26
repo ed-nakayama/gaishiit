@@ -45,6 +45,7 @@ class AgentRequest extends Mailable
      */
     public function build()
     {
+/*
         $admins = Admin::where('aprove_priv','1')
         	->get();
 
@@ -53,6 +54,8 @@ class AgentRequest extends Mailable
         foreach ( $admins as $ad ) {
             $to[] = $ad['email'];
 		}
+*/
+		$to = config('mail.agent_mail');
 
 	    return $this->to($to)       // 送信先アドレス
     	    ->subject('【ガイシIT】転職エージェントに相談の申請')        // 件名
