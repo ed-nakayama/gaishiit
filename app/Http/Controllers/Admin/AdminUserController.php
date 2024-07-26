@@ -389,6 +389,7 @@ class AdminUserController extends UserController
 		$userQuery = \DB::table('users')
 			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->leftJoin('const_locations','users.request_location','=','const_locations.id')
+			->where('aprove_flag', '1')
 			->selectRaw("users.*, age ,const_locations.name as location_name");
 
 		if ($param['result'] != '') $userQuery = $userQuery->where('users.result_id' , $param['result']);
