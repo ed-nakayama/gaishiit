@@ -47,8 +47,9 @@ class VirtualLoginController extends Controller
 		$memberList = CompMember::where('ark_priv' ,'1')
 			->join('companies' ,'comp_members.company_id' ,'companies.id')
 			->selectRaw('comp_members.* ,companies.name as company_name')
+			->orderBy('name_english')
 			->get();
-		
+
 		return view('comp.virtual_login' ,compact(
 			'memberList',
 		));
