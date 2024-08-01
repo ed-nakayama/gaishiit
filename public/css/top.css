@@ -758,8 +758,6 @@
 header {
   background: none;
 	}
-	
-@media (max-width: 767px) {
   /* view */
   .v-sp {display: block;}
   .v-pc {display: none;}
