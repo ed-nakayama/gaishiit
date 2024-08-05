@@ -53,7 +53,7 @@
 				 </div>
 				 <div class="article_date">
 					 <p class="timestamp">公開：{{ str_replace('-', '.', $blog->open_date) }}</p>
-					 <p class="timestamp">最終更新：{{ str_replace('-', '.', substr($blog->updated_at, 0, 10)) }}</p>
+{{--					 <p class="timestamp">最終更新：{{ str_replace('-', '.', substr($blog->updated_at, 0, 10)) }}</p>--}}
 					 <p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
 				 </div>
 				 <p>{!! nl2br($blog->intro) !!}</p>
@@ -115,7 +115,7 @@
 								</figure>
 								<p class="blog_ttl">{{ $blog->title }}</p>
 								<div class="blog_info">
-									<p class="tag">><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
+									<p class="tag"><a href="/blog/{{ $blog->cat_id }}">{{ $blog->getCatName() }}</a></p>
 									<p class="date">{{ str_replace('-', '.', $blog->open_date) }}</p>
 								</div>
 							</a>

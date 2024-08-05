@@ -256,7 +256,7 @@
                                     よろしいですか？</p>
                                   <p>採用が決定した候補者は<br>
                                      必ずステータスを「採用」に変更してください。<br>
-                                     ガイシITより後程ご連絡させていただきます。</p>
+                                     外資IT.comより後程ご連絡させていただきます。</p>
 			</div><!-- /.modalInner -->
 			<div class="btnContainer">
 				<a href="#" data-remodal-action="confirm" class="squareBtn btn-large">確認して変更する</a><br><br>

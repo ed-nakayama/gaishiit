@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="items_box fadein">
                     <h3>外資IT・外資コンサル企業に特化</h3>
                     <p>
-                        ガイシITは外資IT・外資コンサル企業に特化した転職支援サービス。<br>
+                        外資IT.comは外資IT・外資コンサル企業に特化した転職支援サービス。<br>
                         自分に合ったジョブ探しから、条件の交渉、採用までを、豊富なマッチング経験でサポートします。
                     </p>
                 </div>
