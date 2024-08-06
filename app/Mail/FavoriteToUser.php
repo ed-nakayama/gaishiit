@@ -43,7 +43,7 @@ class FavoriteToUser extends Mailable
     public function build()
     {
 	    return $this->to($this->user->email)       // 送信先アドレス
-    	    ->subject('【ガイシIT】お気に入りジョブ更新のお知らせ')        // 件名
+    	    ->subject('【外資IT】お気に入りジョブ更新のお知らせ')        // 件名
         	->text('mail_templates.favorite_to_user') // 本文
         	->with(['user' => $this->user,
         			'jobList' => $this->jobList,

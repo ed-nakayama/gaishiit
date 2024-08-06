@@ -43,7 +43,7 @@ class JobClose extends Mailable
     public function build()
     {
 	    return $this->to($this->addr)       // 送信先アドレス
-    	    ->subject('【ガイシIT】自動ジョブ非公開設定')        // 件名
+    	    ->subject('【外資IT】自動ジョブ非公開設定')        // 件名
         	->text('mail_templates.close_log')
         	->attachFromStorage($this->close_log); // 添付ファイル
     }

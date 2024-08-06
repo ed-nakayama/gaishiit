@@ -41,7 +41,7 @@ class CompRejectToUser extends Mailable
     public function build()
     {
 	    return $this->to($this->user->email)       // 送信先アドレス
-    	    ->subject('【ガイシIT】お申込みお断りのお知らせ')        // 件名
+    	    ->subject('【外資IT】お申込みお断りのお知らせ')        // 件名
         	->text('mail_templates.comp_reject_to_user') // 本文
         	->with(['interview' => $this->interview,
 		        	'user' => $this->user,

@@ -48,7 +48,7 @@ class NewMessageToComp extends Mailable
     public function build()
     {
 	    return $this->to($this->member->email)       // 送信先アドレス
-    	    ->subject('【ガイシIT】新規応募の申請がありました。')        // 件名
+    	    ->subject('【外資IT】新規応募の申請がありました。')        // 件名
         	->text('mail_templates.message_to_comp') // 本文
         	->with(['user' => $this->user,
         			'comp' => $this->comp,

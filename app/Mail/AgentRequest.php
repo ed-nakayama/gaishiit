@@ -58,7 +58,7 @@ class AgentRequest extends Mailable
 		$to = config('mail.agent_mail');
 
 	    return $this->to($to)       // 送信先アドレス
-    	    ->subject('【ガイシIT】転職エージェントに相談の申請')        // 件名
+    	    ->subject('【外資IT】転職エージェントに相談の申請')        // 件名
         	->text('mail_templates.agent_request') // 本文
         	->with(['user' => $this->user,
         			'comp' => $this->comp,

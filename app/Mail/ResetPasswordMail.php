@@ -11,7 +11,7 @@ class ResetPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = '【ガイシIT】パスワード変更のご案内';  
+    public $subject = '【外資IT】パスワード変更のご案内';  
 
     public function __construct($user ,$url)
     {

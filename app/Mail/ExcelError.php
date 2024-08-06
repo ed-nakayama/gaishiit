@@ -43,7 +43,7 @@ class ExcelError extends Mailable
     public function build()
     {
 		$cmd =  $this->to($this->addr)       // 送信先アドレス
-    	    ->subject('【ガイシIT】RPAファイル取り込エラー')        // 件名
+    	    ->subject('【外資IT】RPAファイル取り込エラー')        // 件名
         	->text('mail_templates.rpa_error');
 
 		foreach ($this->files as $file) {

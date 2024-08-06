@@ -44,7 +44,7 @@ class SendNewJobMail extends Mailable
 //        $to[] = 't.nakayama@d-ark.co.jp';
 
 		return $this->to($to)       // 送信先アドレス
-    	    ->subject('【ガイシIT】新規ジョブ一覧')        // 件名
+    	    ->subject('【外資IT】新規ジョブ一覧')        // 件名
         	->text('mail_templates.send_new_job') // 本文
 			->attachFromStorage($this->fileName); // 添付ファイル
 

@@ -47,7 +47,7 @@ class RegisterToAdmin extends Mailable
 		}
 
 	    return $this->to($to)       // 送信先アドレス
-    	    ->subject('【ガイシIT】候補者新規登録のお知らせ')        // 件名
+    	    ->subject('【外資IT】候補者新規登録のお知らせ')        // 件名
         	->text('mail_templates.register_to_admin'); // 本文
     }
 

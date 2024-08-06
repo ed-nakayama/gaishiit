@@ -43,7 +43,7 @@ class OpenError extends Mailable
     public function build()
     {
 		$cmd =  $this->to($this->addr)       // 送信先アドレス
-    	    ->subject('【ガイシIT】一般情報なし：エージェントポータルJob')        // 件名
+    	    ->subject('【外資IT】一般情報なし：エージェントポータルJob')        // 件名
         	->text('mail_templates.open_error');
 
         $cmd = $cmd->attachFromStorage($this->file); // 添付ファイル

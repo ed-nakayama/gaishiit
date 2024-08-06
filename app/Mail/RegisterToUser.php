@@ -42,7 +42,7 @@ class RegisterToUser extends Mailable
     public function build()
     {
 	    return $this->to($this->user->email)       // 送信先アドレス
-    	    ->subject('【ガイシIT】登録/申請受付のお知らせ')        // 件名
+    	    ->subject('【外資IT】登録/申請受付のお知らせ')        // 件名
         	->text('mail_templates.register_to_user') // 本文
         	->with(['user' => $this->user]);       // 本文に送る値
     }

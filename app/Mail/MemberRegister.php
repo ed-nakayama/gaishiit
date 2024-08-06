@@ -43,9 +43,9 @@ class MemberRegister extends Mailable
     public function build()
     {
         if ($this->member->admin_flag == '1') {
-        	$title = '【ガイシIT】登録完了のお知らせ/企業登録について';
+        	$title = '【外資IT】登録完了のお知らせ/企業登録について';
         } else {
-        	$title = '【ガイシIT】登録完了のお知らせ';
+        	$title = '【外資IT】登録完了のお知らせ';
         }
         
 	    return $this->to($this->member->email)       // 送信先アドレス

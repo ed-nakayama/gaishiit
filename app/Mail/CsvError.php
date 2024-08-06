@@ -43,7 +43,7 @@ class CsvError extends Mailable
     public function build()
     {
 		$cmd =  $this->to($this->addr)       // 送信先アドレス
-    	    ->subject('【ガイシIT】更新CSVファイル取り込エラー')        // 件名
+    	    ->subject('【外資IT】更新CSVファイル取り込エラー')        // 件名
         	->text('mail_templates.csv_error');
 
 		foreach ($this->files as $file) {

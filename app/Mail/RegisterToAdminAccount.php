@@ -42,7 +42,7 @@ class RegisterToAdminAccount extends Mailable
     public function build()
     {
 	    return $this->to($this->admin->email)       // 送信先アドレス
-    	    ->subject('【ガイシIT】登録完了のお知らせ')        // 件名
+    	    ->subject('【外資IT】登録完了のお知らせ')        // 件名
         	->text('mail_templates.register_to_admin_account') // 本文
         	->with(['admin' => $this->admin]);       // 本文に送る値
     }

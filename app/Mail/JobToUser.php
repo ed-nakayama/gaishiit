@@ -42,7 +42,7 @@ class JobToUser extends Mailable
     public function build()
     {
 	    return $this->to($this->user->email)       // 送信先アドレス
-    	    ->subject('【ガイシIT】検索条件に一致したジョブのお知らせ')        // 件名
+    	    ->subject('【外資IT】検索条件に一致したジョブのお知らせ')        // 件名
         	->text('mail_templates.job_to_user') // 本文
         	->with(['user' => $this->user,
         			'jobList' => $this->jobList,

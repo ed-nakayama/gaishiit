@@ -43,7 +43,7 @@ class ExcelOk extends Mailable
     public function build()
     {
 		$cmd =  $this->to($this->addr)       // 送信先アドレス
-    	    ->subject('【ガイシIT】RPAファイル取込完了')        // 件名
+    	    ->subject('【外資IT】RPAファイル取込完了')        // 件名
         	->text('mail_templates.rpa_ok')
         	->with([
         		'comp_name' => $this->comp_name,

@@ -43,7 +43,7 @@ class AproveToComp extends Mailable
     public function build()
     {
 	    return $this->to($this->member->email)       // 送信先アドレス
-    	    ->subject('【ガイシIT】新規候補者登録のお知らせ')        // 件名
+    	    ->subject('【外資IT】新規候補者登録のお知らせ')        // 件名
         	->text('mail_templates.aprove_to_comp') // 本文
         	->with(['member' => $this->member,
         			'url' => $this->url

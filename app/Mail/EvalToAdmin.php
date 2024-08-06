@@ -50,7 +50,7 @@ class EvalToAdmin extends Mailable
 		}
 
 	    return $this->to($to)       // 送信先アドレス
-    	    ->subject('【ガイシIT】クチコミ申込みのお知らせ')        // 件名
+    	    ->subject('【外資IT】クチコミ申込みのお知らせ')        // 件名
         	->text('mail_templates.eval_to_admin') // 本文
         	->with([
         		'evalCount' => $this->evalCount,

@@ -57,7 +57,7 @@ class FaqToUser extends Mailable
 */
 	    return $this->to($this->email)       // 送信先アドレス
 //			->cc($cc)
-			->subject('【ガイシIT】お問合せ登録のお知らせ')        // 件名
+			->subject('【外資IT】お問合せ登録のお知らせ')        // 件名
 			->text('mail_templates.faq_to_user') // 本文
 			->with([
 				'user_name' => $this->user_name,
