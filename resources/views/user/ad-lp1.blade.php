@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <script src="/js/ad-lp.js"></script>
@@ -32,17 +32,15 @@
     <p><span class="f-red">1,000</span><span>万</span></p>
     <p>以上</p>
   </div>
-    <div class="cta-content cta-top">
-       <div class="cta-content-in hover-target">
-        <p class="hover-target">＼3分程度で簡単登録／</p>
-　　　   <a class="hover-target" href="/register"><button>会員登録してクチコミを見る</button><img src="/img/ad-lp-img/lp-button-icon.png" alt="ボタンアイコン"></a>
-       </div>
+  <div class="cta-content cta-top">
+   <div class="cta-content-in hover-target">
+     <p class="hover-target">＼3分程度で簡単登録／</p>
+      <a class="hover-target" href="/register"><button>会員登録してクチコミを見る</button><img src="/img/ad-lp-img/lp-button-icon.png" alt="ボタンアイコン"></a>
     </div>
+   </div>
  </div>
 </section>
-
-<!--　――――――――――――――――――――――――――――――――――ボタン――――――――――――――――――――――――――――――― -->
- <section class="ad-lp-cta01">
+<section class="ad-lp-cta01">
   <div class="ad-lp-cta-inner">
     <div class="cta-content">
        <div class="cta-content-in hover-target">
@@ -62,7 +60,6 @@
    </div>
 </section>
 <!--――――――――――――――――――――――――――――――――――悩み――――――――――――――――――――――――――――――― -->
-
 <section class="ad-lp-nayami">
   <div class="ad-lp-headline lp-nayami">
     <h2>こんなお悩み<br>ありませんか</h2> 
@@ -86,7 +83,7 @@
         <p>応募前に転職先の候補企業とカジュアル<br>面談をしてまず話を聞いてみたい</p>
       </div>       
     </div>  
-    <img src="/img/ad-lp-img/ad-lp-nayami.png" alt=""> 
+    <img src="/img/ad-lp-img/lp-nayami-image.png" alt="悩み画像"> 
   </div>    
 </section>
 <!--　――――――――――――――――――――――――――――――――――強み――――――――――――――――――――――――――――――― -->
@@ -127,6 +124,14 @@
      <p>「正式応募とは別のカジュアルな面談」を気軽に設定いただくことが可能なので、応募の前に、お互いの雰囲気を確認することができます。</p>
    </div>
   </div>
+  <div class="ad-lp-merit-content mc5">
+    <img  class="lp-merit-img" src="/img/ad-lp-img/merit5.png" alt="メリット画像4">
+    <div class="lp-merit-text">
+     <div class="ad-lp-merit-heading"><span>05</span><h3><p><span>企業から</span>スカウトが来る</p></h3></div>
+     <p>あなたの経歴をみて、企業の人事担当者から直接スカウトが来ることも。</p>
+     <p>スカウトがくる場合、書類選考は高い確率で通過するので一次選考からスタートすることも可能です。</p>
+   </div>
+  </div>
  </div>
 </section>
 <!--　――――――――――――――――――――――――――――――――――口コミ――――――――――――――――――――――――――――――― -->
@@ -141,7 +146,7 @@
       <span>給与</span>
       <p>裁量労働制なので、ぶっちゃけ時給換算するとさほど良くない。ただボーナスは評価次第では跳ね上がることもあるので、そこをモチベーションにしている。</p>
       <span>ワークライフバランス</span>
-      <p>全体的にコロナ渦で働き方も大きく変わり、労働環境は良くなったと思う。特にスタッフ層におけるそういった環境改善が積極的に取り入れられているため、若い子たちは昔ほどハードワークではない。</p>
+      <p>全体的にコロナ禍で働き方も大きく変わり、労働環境は良くなったと思う。特にスタッフ層におけるそういった環境改善が積極的に取り入れられているため、若い子たちは昔ほどハードワークではない。</p>
     </div>
     <div class="rate-text ar02">
       <img src="/img/ad-lp-img/review-sample.png" alt="クチコミ顔画像">
@@ -168,25 +173,25 @@
   </div>
   <div class="ad-lp-voice-inner">
    <div class="ad-lp-voice-content">
-    <div class="voice-head-image"><img src="/img/ad-lp-img/review-woman.png" alt="成功者の声女性"><img src="/img/ad-lp-img/lp-up-icon.png" alt="年収アップ矢印"><div><p><span>年収</span><span>800</span><span>万</span></p><p><span>1,500</span>万</p></div></div>
+    <div class="voice-head-image"><img src="/img/ad-lp-img/review-man.png" alt="成功者の声男性"><img src="/img/ad-lp-img/lp-up-icon.png" alt="年収アップ矢印"><div><p><span>年収</span><span>900</span><span>万</span></p><p><span>1,800</span>万</p></div></div>
      <p>実際の生の口コミを見てから、カジュアル面談に進みました。年収は約2倍まであがり大満足です。</p>
      <p>希望の業務内容にもなり、充実感をもって勤務しています。外資IT.comを利用して良かったです。</p>
      <span>S.T 男性35歳</span>
    </div>
    <div class="ad-lp-voice-content">
-    <div class="voice-head-image"><img src="/img/ad-lp-img/review-man.png" alt="成功者の声男性"><img src="/img/ad-lp-img/lp-up-icon.png" alt="年収アップ矢印"><div><p><span>年収</span><span>800</span><span>万</span></p><p><span>1,500</span>万</p></div></div>
+    <div class="voice-head-image"><img src="/img/ad-lp-img/review-man.png" alt="成功者の声男性"><img src="/img/ad-lp-img/lp-up-icon.png" alt="年収アップ矢印"><div><p><span>年収</span><span>1200</span><span>万</span></p><p><span>1,700</span>万</p></div></div>
      <p>シニアマネージャになりマネージメント業務が増えていましたが、給与もUpしたうえで技術職に近いポジションのオファーを頂き受諾。非常に満足しています。</p>
-     <span>S.T 男性35歳</span>
+     <span>K.A 男性45歳</span>
    </div>
    <div class="ad-lp-voice-content">
-    <div class="voice-head-image"><img src="/img/ad-lp-img/review-woman.png" alt="成功者の声女性"><img src="/img/ad-lp-img/lp-up-icon.png" alt="年収アップ矢印"><div><p><span>年収</span><span>800</span><span>万</span></p><p><span>1,500</span>万</p></div></div>
+    <div class="voice-head-image"><img src="/img/ad-lp-img/review-man.png" alt="成功者の声男性"><img src="/img/ad-lp-img/lp-up-icon.png" alt="年収アップ矢印"><div><p><span>年収</span><span>1600</span><span>万</span></p><p><span>2,400</span>万</p></div></div>
      <p>前職で縁がなかったメタバースを転職の軸として活動していましたが、大手コンサルのメタバースの部門からオファーを頂きました。経験がないので難しいと思っていましたが、今は充実した日々を過ごすことができています</p>
-     <span>S.T 男性35歳</span>
+     <span>I.S 男性38歳</span>
    </div>
    <div class="ad-lp-voice-content">
-    <div class="voice-head-image"><img src="/img/ad-lp-img/review-man.png" alt="成功者の声男性"><img src="/img/ad-lp-img/lp-up-icon.png" alt="年収アップ矢印"><div><p><span>年収</span><span>800</span><span>万</span></p><p><span>1,500</span>万</p></div></div>
+    <div class="voice-head-image"><img src="/img/ad-lp-img/review-man.png" alt="成功者の声男性"><img src="/img/ad-lp-img/lp-up-icon.png" alt="年収アップ矢印"><div><p><span>年収</span><span>900</span><span>万</span></p><p><span>1,350</span>万</p></div></div>
      <p>現在40歳のICですが、グローバルアカウントのセールスとして2500万円のオファーを頂きました。グローバルアカウントセールスとしては中程度の条件ではないかと思いますが、最近グローバルアカウントの募集が少ないのでしょうがないかな・・</p>
-     <span>S.T 男性35歳</span>
+     <span>T.Y 男性36歳</span>
    </div>
    
   </div>    
@@ -234,7 +239,7 @@
    <span>5</span>
      <div class="flow-explanation">
       <img src="/img/ad-lp-img/ad-flow5.png" alt="内定">
-      <p>内定がでた場合は、システム内でのCommucationから直接ご自身のメール等でやり取り頂くことになります。</p>
+      <p>内定がでた場合は、システム内でのCommunicationから直接ご自身のメール等でやり取り頂くことになります。</p>
      </div>
    </div> 
 </div>
@@ -298,7 +303,7 @@
     <div class="question-content-wrapper">
       <div class="question-content-inner">
         <div class="question-header"><p>日系企業が掲載されていたり、掲載されていない外資IT企業があります</p><img  id="ad-lp-arrow-up" src="/img/ad-lp-img/arrow-up.png" alt="質問アコーディオンアップボタン"><img id="ad-lp-arrow-down" src="/img/ad-lp-img/arrow-down.png" alt="質問アコーディオンダウンボタン"></div>
-        <p class="question-content">外資ITや外資コンサルがメインではありますが、日経企業も掲載されていたり、外資であっても未だ掲載されていない企業もございます</p>
+        <p class="question-content">外資ITや外資コンサルがメインではありますが、日系企業も掲載されていたり、外資であっても未だ掲載されていない企業もございます</p>
       </div>
     </div>
     <div class="question-content-wrapper">
