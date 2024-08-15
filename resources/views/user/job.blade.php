@@ -38,6 +38,7 @@
 					<div class="item-inner">
 
 						{{ html()->form('POST', '/job/list')->attribute('name', 'jobform')->open() }}
+						{{ html()->hidden('save_flag') }}
 						<div class="setting-list">
 							<div class="item-block">
 								<p class="ttl">フリーワード</p>
@@ -517,7 +518,6 @@ function onSearchClick() {
 
 
 function onLinkClick() {
-
 	document.jobform.save_flag.value = "1";
 	document.jobform.submit();
 }
