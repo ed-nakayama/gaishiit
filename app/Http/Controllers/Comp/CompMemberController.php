@@ -262,14 +262,8 @@ class CompMemberController extends Controller
 	    	->count();
 
 
-
 		// ジョブカジュアル
-		$job_casual = interview::Join('units', function ($join) use ($loginUser) {
-    		$join->on('interviews.unit_id', '=', 'units.id')
-				->where('units.company_id' , $loginUser->company_id)
-				->where('units.person' , 'like' ,"%$loginUser->id%");
-    		})
-    		->Join('interview_msg_statuses', function ($join) use ($loginUser) {
+		$job_casual = interview::Join('interview_msg_statuses', function ($join) use ($loginUser) {
     			$join->on('interview_msg_statuses.interview_id', '=', 'interviews.id')
 				->where('interview_msg_statuses.reader_id' ,$loginUser->id)
 				->where('interview_msg_statuses.read_flag', '0');
@@ -279,7 +273,6 @@ class CompMemberController extends Controller
 	    	->count();
 
 		$act['user_casual_cnt'] = $comp_casual + $unit_casual + $job_casual;
-
 
 		// ジョブ正式
 		$act['user_formal_cnt'] = interview::Join('jobs', function ($join) use ($loginUser) {
