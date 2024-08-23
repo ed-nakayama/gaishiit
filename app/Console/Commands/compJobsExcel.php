@@ -139,7 +139,7 @@ class CompJobsExcel extends Command
 				$data = $import->sheetData;
 
 			// コード変換
-				$data = mb_convert_encoding($data, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+//				$data = mb_convert_encoding($data, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
 
 				$comp_id = '';
 				$comp_name = '';
@@ -152,8 +152,8 @@ class CompJobsExcel extends Command
 						$comp_name = $job_arr['comp_name'];
 					}
 					
-					$this->jobDetail = $job_arr['job_detail'] . "\n\n" . $job_arr['job_detail_2'] . "\n\n" . $job_arr['job_detail_3'] . "\n\n" . $job_arr['job_detail_4'] . "\n\n" . $job_arr['job_detail_5'];
-					rtrim($this->jobDetail);
+					$tempJobDetail = $job_arr['job_detail'] . "\n\n" . $job_arr['job_detail_2'] . "\n\n" . $job_arr['job_detail_3'] . "\n\n" . $job_arr['job_detail_4'] . "\n\n" . $job_arr['job_detail_5'];
+					$this->jobDetail = rtrim($tempJobDetail);
 
 					$this->check_error($job_arr);
 
@@ -167,13 +167,16 @@ class CompJobsExcel extends Command
 						$this->set_location($job_arr);
 
 						if (!empty($job_arr['job_id'])) { // jobID あり
-							$job = Job::where('company_id' ,$job_arr['comp_id'])
+							$job = Job::withTrashed()
+								->where('company_id' ,$job_arr['comp_id'])
 								->where('job_code' ,$job_arr['job_id'])
+								->orderBy('id', 'DESC')
 								->first();
 				
 						} else { // job タイトル & URL
 
-							$cnt = Job::where('company_id' ,$job_arr['comp_id'])
+							$cnt = Job::withTrashed()
+								->where('company_id' ,$job_arr['comp_id'])
 								->where('url' ,$job_arr['url'])
 								->where('name' ,$job_arr['job_title'])
 								->where(function($query) {
@@ -186,7 +189,9 @@ class CompJobsExcel extends Command
 								$job = null;
 							
 							} elseif ($cnt == 1) {
-								$job = Job::where('company_id' ,$job_arr['comp_id'])
+								$job = Job::withTrashed()
+									->where('company_id' ,$job_arr['comp_id'])
+									->where('url' ,$job_arr['url'])
 									->where('name' ,$job_arr['job_title'])
 									->where(function($query) {
 										$query->whereNull('job_code')
@@ -195,13 +200,16 @@ class CompJobsExcel extends Command
 									->first();
 						
 							} else {
-								$job = Job::where('company_id' ,$job_arr['comp_id'])
+								$job = Job::withTrashed()
+									->where('company_id' ,$job_arr['comp_id'])
+									->where('url' ,$job_arr['url'])
 									->where('name' ,$job_arr['job_title'])
 									->where('intro' ,$this->jobDetail)
 									->where(function($query) {
 										$query->whereNull('job_code')
 										->orWhere('job_code' , '');
 									})
+									->orderBy('id', 'DESC')
 									->first();
 							}
 						}
@@ -352,7 +360,7 @@ end_proc:
 		$job->intro = $this->jobDetail;
 		$job->working_place = $job_arr['working_place'];
 
-		$job->job_cat_details = !empty($this->cat_id) ? "[{$this->cat_id}]" : null;
+//		$job->job_cat_details = !empty($this->cat_id) ? "[{$this->cat_id}]" : null;
 		$job->sub_category = $this->sub_category;
 		$job->url = $job_arr['url'];
 		$job->for_agent = $job_arr['agent'];
@@ -372,6 +380,7 @@ end_proc:
 		
 		$job->event_job = $this->event_job;
 		$job->updated_at = date("Y-m-d H:i:s");
+		$job->deleted_at = null;
 		$job->save();
 	}
 
