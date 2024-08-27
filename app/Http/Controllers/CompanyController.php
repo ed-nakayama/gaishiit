@@ -54,15 +54,15 @@ class CompanyController extends Controller
 	public function list(Request $request)
 	{
 		$loginUser = Auth::guard('user')->user();
-		
-		$compList = Company::selectRaw('companies.*');
 
+		$compList = Company::selectRaw('companies.*');
+/*
 		$comp_sel = $request->comp_sel;
 
 		if ( !empty($comp_sel) ) {
 			$compList = $compList->whereIn( 'companies.id',[ $comp_sel ] );
 		}
-
+*/
 		$pickupList = Pickup::whereNotNull('company_id')->where('company_id','!=','')->get();
 		$len = count($pickupList);
 
@@ -80,7 +80,7 @@ class CompanyController extends Controller
 		}
 
 		$compList = $compList->where('open_flag' ,'1')
-			->orderBy('companies.updated_at' ,'desc')
+			->orderBy('companies.name_english')
 			->paginate(10);
 
  		return view('user.company' ,compact(
