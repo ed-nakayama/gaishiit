@@ -232,6 +232,10 @@ class CompanyController extends Controller
 		} else {
 			$my_count = 0;
 		}
+
+		$qa_count = CompFaq::where('company_id' ,$comp->id)
+			->where('open_flag' ,'1')
+			->count();
 		
 		// クチコミカテゴリ取得
 		$cat = $this->get_cat();
@@ -248,6 +252,7 @@ class CompanyController extends Controller
  			'comp',
  			'jobList',
  			'interview',
+ 			'qa_count',
  			'cat',
 			'ranking',
 			'evalList',

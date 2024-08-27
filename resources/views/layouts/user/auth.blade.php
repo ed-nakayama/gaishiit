@@ -18,9 +18,10 @@
 	<link href="{{ asset('css/base.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/common.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/expand.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/chart.css') }}" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link href="{{ asset('css/chart.css') }}" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.js" defer></script>
@@ -29,6 +30,8 @@
 	<meta property="og:site_name" content="{{ config('app.name') }}" />
 
 @yield('addheader')
+
+	<link href="{{ asset('css/add_new.css') }}" rel="stylesheet">
 
 {{--
 <!-- Google tag (gtag.js) -->
@@ -173,6 +176,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 											<form id="password_edit-form" action="{{ route('user.password.edit') }}" method="GET" style="display: none;">
 											</form>
 										</li>
+										<li style="transform: rotate(0.03deg);white-space:nowrap;">
+											<a href="/cancellation" style="font-size:1.6rem;">退会のお手続き</a>
+										</li>
 										<li style="transform: rotate(0.03deg);">
 											<a href="{{ route('user.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="font-size:1.6rem;">ログアウト　　</a>
 											<form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
@@ -212,9 +218,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 										<p class="exp-msg">＼ 求人、クチコミがすべて見放題！ ／</p>
 										<a href="{{ route('user.register') }}" class="exp-button">新規で会員登録する ▶</a>
 									</li>
-@endif
 									<li>
 										<a href="/login">ログイン</a>
+@endif
 									</li>
 									<li><a href="/company">企業を探す</a></li>
 									<li><a href="/job">求人を探す</a></li>
@@ -223,7 +229,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 									<li><a href="/setting">個人設定</a></li>
 {{--								<li><a href="/event">イベントを探す</a></li>--}}
 									<li>
-										<a href=""{{ route('user.password.edit') }}" onclick="event.preventDefault(); document.getElementById('password_edit-form').submit();"">パスワード変更</a>
+										<a href="{{ route('user.password.edit') }}" onclick="event.preventDefault(); document.getElementById('password_edit-form').submit();"">パスワード変更</a>
+									</li>
+									<li>
+										<a href="/cancellation">退会のお手続き</a>
 									</li>
 									<li>
 										<a href="{{ route('user.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>

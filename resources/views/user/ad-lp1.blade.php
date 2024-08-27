@@ -252,7 +252,7 @@
        <p class="hover-target">＼3分程度で簡単登録／</p>
        <a href="/register" class="hover-target"><button>会員登録してクチコミを見る</button><img src="/img/ad-lp-img/lp-button-icon.png" alt="ボタンアイコン"></a>
       </div>
-       <a href="/job/list" class="hover-target"><button>外資系IT企業の一覧を見る</button><img src="/img/ad-lp-img/lp-button-icon-b.png" alt="ボタンアイコン"></a>
+       <a href="https://gaishiit.com/company" class="hover-target"><button>外資系IT企業の一覧を見る</button><img src="/img/ad-lp-img/lp-button-icon-b.png" alt="ボタンアイコン"></a>
     </div>
   </div>
 </section>
@@ -322,7 +322,7 @@
        <p class="hover-target">＼3分程度で簡単登録／</p>
        <a href="/register" class="hover-target"><button>会員登録してクチコミを見る</button><img src="/img/ad-lp-img/lp-button-icon.png" alt="ボタンアイコン"></a>
       </div>
-       <a href="/job/list" class="hover-target"><button>外資系IT企業の一覧を見る</button><img src="/img/ad-lp-img/lp-button-icon-b.png" alt="ボタンアイコン"></a>
+       <a href="https://gaishiit.com/company" class="hover-target"><button>外資系IT企業の一覧を見る</button><img src="/img/ad-lp-img/lp-button-icon-b.png" alt="ボタンアイコン"></a>
     </div>
   </div>
 </section>
@@ -330,9 +330,9 @@
 <section class="ad-lp-footer">
  <div class="ad-lp-footer-inner">
   <div class="lp-footer-content">
-    <a href=""><span>運営会社</span></a>
-    <a href=""><span>利用規約</span></a>
-    <a href=""><span>プライバシーポリシー</span></a>
+    <a href="https://gaishiit.com/corporate"><span>運営会社</span></a>
+    <a href="https://gaishiit.com/kiyaku"><span>利用規約</span></a>
+    <a href="https://gaishiit.com/privacy"><span>プライバシーポリシー</span></a>
   </div>
   <p>©︎ 2024 Gaishi-IT.com</p>
  </div>

@@ -32,61 +32,49 @@
 			</div>
 
 {{-- 簡易的な企業の紹介情報 --}}
-	@include ('user/partials/company_simple_intro')
+			<div class="company-details">
+				<div class="company-item">
+					<figure class="company-item__image">
+						@if(!empty($comp->logo_file))
+							<img src="{{ $comp->logo_file }}" alt="">
+						@endif
+					</figure>
+					<div class="company-item__content">
+						<p class="company-item__name">
+							{{ $comp->name }}
+						</p>
+							<dl class="company-item__reviews">
+							<dt>総合評価</dt>
+							<dd>
+								<span>{{ number_format($comp->total_point, 2) }}</span>
+								<span class="star5_rating" style="--rate:  {{ $comp->total_rate . '%' }};"></span>
+							</dd>
+							<dt>クチコミ件数</dt>
+							<dd>{{ number_format($comp->answer_count) }} 件</dd>
+						</dl>
+					</div>
+				</div>
+
 {{-- 簡易的な企業の紹介情報 --}}
 
+				<div class="con-wrap">
+					<div class="item-inner">
 
-
-		<div class="con-wrap">
-
-{{--
-			<div class="item thumb">
-				<div class="inner">
-					<figure class="corp_icon">
-						<img src="{{ $comp->logo_file }}" alt="">
-					</figure>
-					<figure class="corp_bg">
-						<img src="{{ $comp->image_file }}" alt="">
-					</figure>
-				</div>
-			</div>
---}}
-
-			<div class="item info">
-				<div class="item-inner">
-
-					<div class="item-top">
-						<p class="name">
-							<a>
-								<a href="/company/{{  $comp->id }}">{{ $comp->name }}</a>
-							</a>
-						</p>
-					</div>
-                            
-					<div class="ttl">
-						<div class="txt">
-							<p class="name">
-								{{ $event->name }}
-							</p>
-							<dl>
-								<dt><span class="cate">@if ($event->online_flag == '1')オンライン@else @if (empty($event->place))オフライン @else{{ $event->place }} @endif @endif</span>{{ str_replace('-','/', substr($event->event_date, 0 ,10)) . '/' . $event->start_hour . ':' . $event->start_min . '〜' . $event->end_hour . ':' . $event->end_min }}</dt>
-							</dl>
+						<div class="ttl">
+							<div class="txt">
+								<p class="name">
+									{{ $event->name }}
+								</p>
+								<dl>
+									<dt><span class="cate">@if ($event->online_flag == '1')オンライン@else @if (empty($event->place))オフライン @else{{ $event->place }} @endif @endif</span>{{ str_replace('-','/', substr($event->event_date, 0 ,10)) . '/' . $event->start_hour . ':' . $event->start_min . '〜' . $event->end_hour . ':' . $event->end_min }}</dt>
+								</dl>
+							</div>
 						</div>
-					</div>
                                 
-					<div class="item-info">
-						<p>{!! nl2br(e($event->intro)) !!}</p>
-						@if (\Carbon\Carbon::now()->lt($event->deadline_date) )
-							@if (empty($event->deadline_date) )
-								<div class="button-flex">
-									@if (Auth::guard('user')->check())
-										<a href="javascript:intform.submit()">イベントを申し込む</a>
-									@else
-										<a class="openModal button-modal" href="#modalLogin">イベントを申し込む</a>
-									@endif
-								</div>
-							@else
-								@if (\Carbon\Carbon::now()->lt($event->deadline_date) )
+						<div class="item-info">
+							<p>{!! nl2br(e($event->intro)) !!}</p>
+							@if (\Carbon\Carbon::now()->lt($event->deadline_date) )
+								@if (empty($event->deadline_date) )
 									<div class="button-flex">
 										@if (Auth::guard('user')->check())
 											<a href="javascript:intform.submit()">イベントを申し込む</a>
@@ -94,32 +82,24 @@
 											<a class="openModal button-modal" href="#modalLogin">イベントを申し込む</a>
 										@endif
 									</div>
+								@else
+									@if (\Carbon\Carbon::now()->lt($event->deadline_date) )
+										<div class="button-flex">
+											@if (Auth::guard('user')->check())
+												<a href="javascript:intform.submit()">イベントを申し込む</a>
+											@else
+												<a class="openModal button-modal" href="#modalLogin">イベントを申し込む</a>
+											@endif
+										</div>
+									@endif
 								@endif
-							@endif
-						@else
-							<div class="button-flex">
-								<p class="name" style="color:red;">締め切られました</p>
-							</div>
-						@endif
-					</div>
-{{--
-					<div class="ac-wrap">
-						@foreach ($eventPr as $pr)
-							<div class="ac-item">
-								<p class="ac-header">
-									{{ $pr->headline }}
-								</p>
-								<div class="ac-txt">
-									<p>
-										{!! nl2br(e($pr->content)) !!}
-									</p>
+							@else
+								<div class="button-flex">
+									<p class="name" style="color:red;">締め切られました</p>
 								</div>
-							</div>
-						@endforeach
-					</div>
---}}
-				</div><!-- item-inner -->
-			</div><!-- item info -->
+							@endif
+						</div>
+					</div><!-- item-inner -->
 
 			{{ html()->form('POST', '/interview/request')->attribute('name', 'intform')->open() }}
 			{{ html()->hidden('comp_id', $comp->id) }}
@@ -127,13 +107,19 @@
 			{{ html()->hidden("int_type", '2') }}
 			{{ html()->form()->close() }}
 
+				</div><!-- con-wrap -->
+			</div><!-- company-details -->
+
 {{-- 求人一覧 --}}
 	@include ('user/partials/job_list_comp_new')
 {{-- END 求人一覧 --}}
 
+	<div class="company-details">
 {{--  チャート --}}
 	@include ('user/partials/eval_chart')
 {{--  END チャート --}}
+	</div><!-- company-details -->
+	</div>
 
 {{-- 部門一覧 --}}
 	@include ('user/partials/unit_list')
@@ -147,10 +133,6 @@
 				@endif
 			</div>
 
-{{-- カテゴリ別クチコミボタン --}}
-	@include ('user/partials/eval_cat_button')
-{{-- END カテゴリ別クチコミボタン --}}
-
 {{-- クチコミ数ランキング --}}
 	@include ('user/partials/eval_ranking_fix')
 {{-- END クチコミ数ランキング --}}
@@ -159,7 +141,6 @@
 	@include ('user/partials/job_search_3type')
 {{-- END 3種 求人検索ボタン --}}
 
-	</div><!-- "con-wrap -->
 </div><!--inner -->
 </main>
 

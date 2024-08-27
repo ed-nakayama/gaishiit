@@ -59,8 +59,83 @@
 			</div>
 
 {{-- 簡易的な企業の紹介情報 --}}
-	@include ('user/partials/company_simple_intro')
-	<br>
+@php
+
+	$ranking = App\Models\Ranking::find( $comp->id);
+	$total_rate = $ranking->total_rate;
+	$total_point = $ranking->total_point;
+
+@endphp
+
+			<div class="company-details">
+				<div class="company-item">
+					<figure class="company-item__image">
+						@if(!empty($comp->logo_file))
+							<img src="{{ $comp->logo_file }}" alt="">
+						@endif
+					</figure>
+					<div class="company-item__content">
+						<p class="company-item__name">
+							{{ $comp->name }}
+						</p>
+
+						<dl class="company-item__reviews">
+							<dt>総合評価</dt>
+							<dd>
+								<span>{{ number_format($comp->total_point, 2) }}</span>
+								<span class="star5_rating" style="--rate:  {{ $comp->total_rate . '%' }};"></span>
+							</dd>
+							<dt>クチコミ件数</dt>
+							<dd>{{ number_format($comp->answer_count) }} 件</dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="item-info">
+
+					<div  style="display:flex;">
+						@if ( $comp->casual_flag == '1')
+							<div class="button-flex">
+								@if (Auth::guard('user')->check())
+									<a href="javascript:intform.submit()">カジュアル面談を依頼</a>
+								@else
+									<a class="openModal button-modal" href="#modalLogin">カジュアル面談を依頼</a>
+								@endif
+							</div>
+						@endif
+
+						@if ($qa_count > 0)
+							<div class="button-flex">
+								<a href="javascript:faqform.submit()">よくあるお問合せ</a>
+							</div>
+							{{ html()->form('POST', '/compfaq')->id('faqform')->attribute('name', 'unitform')->open() }}
+							{{ html()->hidden('company_id', $comp->id) }}
+							{{ html()->form()->close() }}
+						@endif
+					</div>
+
+				</div><!-- item-info -->
+
+@isset($interview)
+				<p>以前にこの企業へのカジュアル面談の依頼をしたことがあります</p>
+				<table style="font-size: 1.4rem;">
+					<tr>
+						<th>依頼日</th><th>依頼内容</th>
+					</tr>
+					<tr>
+						<td>{{ $interview->created_at->format('Y/m/d/H:i') }}</td>
+						<td>　　@if ($interview->interview_type == '0')カジュアル面談@endif</td>
+					</tr>
+				</table>
+@endisset
+
+{{--  チャート --}}
+	@include ('user/partials/eval_chart')
+{{--  END チャート --}}
+
+			</div><!-- company-details -->
+		</div><!-- item-inner -->
+
 {{-- 簡易的な企業の紹介情報 --}}
 
 			<div class="ttl">
@@ -70,14 +145,33 @@
 
 @if (isset($evalList[0]))
 	<div class="paywall">
-	@foreach ($evalList as $eval)
-			<div class="con-wrap">
-				<div class="item thumb">
-					<div class="inner">
-
-						<p class="eval-header">
-							<span style="font-size:14px;width:200px;padding: 4px 16px; font-weight: bold;">
-							@if ($eval->cat_sel == '1')給与
+		<ul class="review-list">
+			@foreach ($evalList as $eval)
+				<li class="review-list__item">
+					<div class="review-list__header">
+						<div class="review-list__detal">
+							<dl class="review-list__dl">
+								<dt class="rl-job">職種</dt>
+								<dd class="rl-job">{{ $eval->occupation }}</dd>
+								<dt class="rl-employment">在籍</dt>
+								<dd class="rl-employment">@if ($eval->retire_year == '9999'){{ \Carbon\Carbon::today()->format('Y') - $eval->join_year}}@else{{ $eval->retire_year - $eval->join_year }}@endif年</dd>
+								<dt class="rl-sex">性別</dt>
+								<dd class="rl-sex">@if ($eval->sex == '1')男性@elseif ($eval->sex == '2')女性@elseif ($eval->sex == '0')性別なし@else @if ($eval->id % 5 == '2')女性@else男性@endif @endif</dd>
+							</dl>
+							<p class="review-list__date">回答時期:@if (!empty($eval->answer_date)){{ substr(str_replace('-','/',$eval->answer_date),0,7) }}@else{{ str_replace('-','/',substr($eval->updated_at,0,7)) }}@endif</p>
+						</div>
+						<figure class="review-list__image"><img src="/img/icon-man.svg" alt=""></figure>
+					</div>
+					<div class="review-list__footer">
+						@if ( Auth::guard('user')->check() || !isset($cat['sel']) )
+						@else
+							<div class="review-list__Register">
+								<p class="review-list__RegisterTxt">無料のユーザー登録で全ての口コミをご覧いただけます</p>
+								<p class="review-list__RegisterBtn"><a href="/register">登録する</a></p>
+							</div>
+						@endif
+						<p class="review-list__footerRate">
+							@if ($cat == '1')給与
 							@elseif ($eval->cat_sel == '2')福利厚生
 							@elseif ($eval->cat_sel == '3')育成
 							@elseif ($eval->cat_sel == '4')法令遵守の意識
@@ -86,90 +180,47 @@
 							@elseif ($eval->cat_sel == '7')勤務体系
 							@elseif ($eval->cat_sel == '8')定年
 							@endif
-							</span><span class="star5_rating" style="--rate: {{ $eval->salary_point * 100 / 5  . '%' }};"></span>
+
+							@if ($eval->cat_sel == '1')給与
+							@elseif ($eval->cat_sel == '2')<span class="star5_rating" style="--rate: {{ $eval->welfare_point * 100 / 5  . '%' }};"></span>
+							@elseif ($eval->cat_sel == '3')<span class="star5_rating" style="--rate: {{ $eval->upbring_point * 100 / 5  . '%' }};"></span>
+							@elseif ($eval->cat_sel == '4')<span class="star5_rating" style="--rate: {{ $eval->compliance_point * 100 / 5  . '%' }};"></span>
+							@elseif ($eval->cat_sel == '5')<span class="star5_rating" style="--rate: {{ $eval->motivation_point * 100 / 5  . '%' }};"></span>
+							@elseif ($eval->cat_sel == '6')<span class="star5_rating" style="--rate: {{ $eval->work_life_point * 100 / 5  . '%' }};"></span>
+							@elseif ($eval->cat_sel == '7')<span class="star5_rating" style="--rate: {{ $eval->remote_point * 100 / 5  . '%' }};"></span>
+							@elseif ($eval->cat_sel == '8')<span class="star5_rating" style="--rate: {{ $eval->retire_point * 100 / 5  . '%' }};"></span>
+							@endif
 						</p>
+						<p class="review-list__footerText">
+							
+							@if ($eval->cat_sel == '1'){!! nl2br(e($eval->salary_content)) !!}
+							@elseif ($eval->cat_sel == '2'){!! nl2br(e($eval->welfare_content)) !!}
+							@elseif ($eval->cat_sel == '3'){!! nl2br(e($eval->upbring_content)) !!}
+							@elseif ($eval->cat_sel == '4'){!! nl2br(e($eval->compliance_content)) !!}
+							@elseif ($eval->cat_sel == '5'){!! nl2br(e($eval->motivation_content)) !!}
+							@elseif ($eval->cat_sel == '6'){!! nl2br(e($eval->work_life_content)) !!}
+							@elseif ($eval->cat_sel == '7'){!! nl2br(e($eval->remote_content)) !!}
+							@elseif ($eval->cat_sel == '8'){!! nl2br(e($eval->retire_content)) !!}
+							@endif
+						</p>
+					</div>
+				</li>
+			@endforeach
+		</ul>
 
-						<div class="txt" style="font-size:14px; padding: 4px 16px;text-align: right;">
-							回答者：{{ $eval->occupation }}、
-							在籍@if ($eval->retire_year == '9999'){{ \Carbon\Carbon::today()->format('Y') - $eval->join_year}}@else{{ $eval->retire_year - $eval->join_year }}@endif年、
-							@if ($eval->sex == '1')男性@elseif ($eval->sex == '2')女性@elseif ($eval->sex == '0')性別なし@else @if ($eval->id % 5 == '2')女性@else男性@endif @endif 
-							 - 回答時期:@if (!empty($eval->answer_date)){{ substr(str_replace('-','/',$eval->answer_date),0,7) }}@else{{ str_replace('-','/',substr($eval->updated_at,0,7)) }}@endif
-						</div>
-
-						<div class="eval-item">
-							<div class="eval-txt">
-								<p class="eval-detail">
-									@if ( Auth::guard('user')->check() 
-										|| (!isset($cat['sel']))
-										|| ($evalList->currentPage() == 1 && $loop->index == 0)
-									)
-										@if ($eval->cat_sel == '1'){!! nl2br(e($eval->salary_content)) !!}
-										@elseif ($eval->cat_sel == '2'){!! nl2br(e($eval->welfare_content)) !!}
-										@elseif ($eval->cat_sel == '3'){!! nl2br(e($eval->upbring_content)) !!}
-										@elseif ($eval->cat_sel == '4'){!! nl2br(e($eval->compliance_content)) !!}
-										@elseif ($eval->cat_sel == '5'){!! nl2br(e($eval->motivation_content)) !!}
-										@elseif ($eval->cat_sel == '6'){!! nl2br(e($eval->work_life_content)) !!}
-										@elseif ($eval->cat_sel == '7'){!! nl2br(e($eval->remote_content)) !!}
-										@elseif ($eval->cat_sel == '8'){!! nl2br(e($eval->retire_content)) !!}
-										@endif
-									@else
-										@if ($eval->cat_sel == '1')
-											{!! mb_strimwidth($eval->salary_content, 0, 40, "...") !!}
-											<div class="blur">{!! nl2br(e($eval->salary_content)) !!}</div>
-										@elseif ($eval->cat_sel == '2')
-											{!! mb_strimwidth($eval->welfare_content, 0, 40, "...") !!}
-											<div class="blur">{!! nl2br(e($eval->welfare_content)) !!}</div>
-										@elseif ($eval->cat_sel == '3')
-											{!! mb_strimwidth($eval->upbring_content, 0, 40, "...") !!}
-											<div class="blur">{!! nl2br(e($eval->upbring_content)) !!}</div>
-										@elseif ($eval->cat_sel == '4')
-											{!! mb_strimwidth($eval->compliance_content, 0, 40, "...") !!}
-											<div class="blur">{!! nl2br(e($eval->compliance_content)) !!}</div>
-										@elseif ($eval->cat_sel == '5')
-											{!! mb_strimwidth($eval->motivation_content, 0, 40, "...") !!}
-											<div class="blur">{!! nl2br(e($eval->motivation_content)) !!}</div>
-										@elseif ($eval->cat_sel == '6')
-											{!! mb_strimwidth($eval->work_life_content, 0, 40, "...") !!}
-											<div class="blur">{!! nl2br(e($eval->work_life_content)) !!}</div>
-										@elseif ($eval->cat_sel == '7')
-											{!! mb_strimwidth($eval->remote_content, 0, 40, "...") !!}
-											<div class="blur">{!! nl2br(e($eval->remote_content)) !!}</div>
-										@elseif ($eval->cat_sel == '8')
-											{!! mb_strimwidth($eval->retire_content, 0, 40, "...") !!}
-											<div class="blur">{!! nl2br(e($eval->retire_content)) !!}</div>
-										@endif
-										<div class="login">
-											<a class="eval-button" href="{{ route('user.register') }}" style="color:white;white-space:nowrap;">無料のユーザ登録をお願いします</a><br><br>
-											<a class="eval-button2" href="{{ route('user.login') }}" style="white-space:nowrap;">ログインはこちら</a>
-										</div>
-									@endif
-								</p>
-							</div>
-						</div>
-					</div><!-- item-inner -->
-				</div><!-- item -->
-			</div><!-- con-wrap -->
-			<br>
 		@isset($cat['sel'])
 			<div class="pager">
 				{{ $evalList->appends(request()->query())->links('pagination.user') }}
 			</div>
 		@endisset
-	@endforeach
-	</div>
-@endisset
 
-{{-- カテゴリ別クチコミボタン --}}
-	@include ('user/partials/eval_cat_button')
-{{-- END カテゴリ別クチコミボタン --}}
+	</div><!-- paywall -->
+@endif
 
 {{-- 求人一覧 --}}
 	@include ('user/partials/job_list_comp_new')
 {{-- END 求人一覧 --}}
 
-{{--  チャート --}}
-	@include ('user/partials/eval_chart')
-{{--  END チャート --}}
 		</div><!-- inner -->
 	</main>
 

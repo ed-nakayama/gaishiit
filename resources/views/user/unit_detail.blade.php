@@ -34,78 +34,72 @@
 			</div>
 
 {{-- 簡易的な企業の紹介情報 --}}
-	@include ('user/partials/company_simple_intro')
-	<br>
-{{-- 簡易的な企業の紹介情報 --}}
-
-			<div class="con-wrap">
-
-				<div class="item thumb">
-					<div class="inner">
-						<figure class="corp_icon">
+			<div class="company-details">
+				<div class="company-item">
+					<figure class="company-item__image">
+						@if(!empty($comp->logo_file))
 							<img src="{{ $comp->logo_file }}" alt="">
-						</figure>
-						<figure class="corp_bg">
-							@if ($comp->image_file == '')
-								<img src="/img/corp_img_01.jpg" alt="">
-							@else
-								<img src="{{ $comp->image_file }}" alt="">
-							@endif
-						</figure>
+						@endif
+					</figure>
+					<div class="company-item__content">
+						<p class="company-item__name">
+							<a href="/company/{{ $comp->id }}">{{ $comp->name }}</a>
+						</p>
+
+						<dl class="company-item__reviews">
+							<dt>総合評価</dt>
+							<dd>
+								<span>{{ number_format($comp->total_point, 2) }}</span>
+								<span class="star5_rating" style="--rate:  {{ $comp->total_rate . '%' }};"></span>
+							</dd>
+							<dt>クチコミ件数</dt>
+							<dd>{{ number_format($comp->answer_count) }} 件</dd>
+						</dl>
+						<p class="company-item__button"><a href="/company/{{ $comp->id }}">詳細を見る</a></p>
 					</div>
 				</div>
 
-				<div class="item info">
-					<div class="item-inner">
+				<div class="company-item">
+					<div class="company-item__content">
+						<p class="company-item__name">{{ $unit->name }}</p>
+					</div>
+				</div>
 
-						<div class="item-top">
-							<p class="name">
-								<a>
-									{{ $comp->name }}
-								 </a>
-							</p>
-						</div>
-                            
-						<div class="ttl">
-{{--
-							<a href="">
-								<figure>
-									<img src="{{ $comp->logo_file }}" alt="">
-								</figure>
-							</a>
---}}
-							<div class="txt">
-								<p class="name">
-									<a>
-										{{ $unit->name }}
-									</a>
-								</p>
-							</div>
-						</div>
+				<div class="item-info">
+						<p>{!! nl2br(e($unit->intro)) !!}</p>
 
-						<div class="item-info">
-							<p>{!! nl2br(e($unit->intro)) !!}</p>
-
+					<div  style="display:flex;">
+						@if ( $comp->casual_flag == '1')
 							<div class="button-flex">
-								@if ($unit->casual_flag == '1')
+								@if (Auth::guard('user')->check())
 									<a href="javascript:intform.submit()">カジュアル面談を依頼</a>
+								@else
+									<a class="openModal button-modal" href="#modalLogin">カジュアル面談を依頼</a>
 								@endif
 							</div>
-						</div>
-@if (!empty($interview))
-						以前にこの部署へのカジュアル面談の依頼をしたことがあります
-						<table style="font-size: 1.4rem;">
-							<tr>
-								<th>依頼日</th><th>依頼内容</th>
-							</tr>
-							<tr>
-								<td>{{ $interview->created_at->format('Y/m/d/H:i') }}</td>
-								<td>　　@if ($interview->interview_type == '0')カジュアル面談@endif</td>
-							</tr>
-						</table>
-@endif
+						@endif
+
 					</div>
-				</div>
+
+				</div><!-- item-info -->
+
+@if (!empty($interview))
+				<p>以前にこの部署へのカジュアル面談の依頼をしたことがあります</p>
+				<table style="font-size: 1.4rem;">
+					<tr>
+						<th>依頼日</th><th>依頼内容</th>
+					</tr>
+					<tr>
+						<td>{{ $interview->created_at->format('Y/m/d/H:i') }}</td>
+						<td>　　@if ($interview->interview_type == '0')カジュアル面談@endif</td>
+					</tr>
+				</table>
+@endisset
+
+			</div><!-- company-details -->
+
+{{-- 簡易的な企業の紹介情報 --}}
+
 
 @if (!empty($eventList[0]) )
 				<div class="event">
@@ -151,55 +145,98 @@
 
 {{-- 求人一覧 --}}
 @if (!empty($jobList[0]) )
-				<div class="job">
-					<div class="inner">
-						<h2>{{ $comp->name }}の{{ $unit->name }}求人一覧</h2>
-						@foreach ($jobList as $job)
-							{{-- ジョブフォーマット $job --}}
-								@include ('user/partials/job_format')
-							{{-- END ジョブフォーマット --}}
-						@endforeach
-					</div>
-				</div>
+
+	<div class="job">
+		<h2>{{ $unit->name }}の求人一覧</h2>
+
+		<div class="job-opening">
+			<ul class="job-opening-list">
+				@foreach ($jobList as $job)
+					<li class="job-opening-list__item">
+						<h3 class="job-opening-list__title">{{ $job->name }}</h3>
+						<p class="job-opening-list__text">{{ mb_strimwidth($job->intro, 0, 250, "...") }}</p>
+						<div class="job-opening-list__footer">
+							<dl class="job-opening-list__dl">
+								<dt>年収</dt>
+								<dd>{{ $job->getIncome() }}</dd>
+								<dt>エリア</dt>
+ 								<dd>{{ $job->getLocations() }} @if (!empty($job->else_location))({{ $job->else_location }})@endif</dd>
+							</dl>
+							<p class="detail-link-button"><a href="/company/{{ $job->company_id }}/{{ $job->id }}">求人詳細を見る</a></p>
+						</div>
+					</li>
+				@endforeach
+			</ul>
+			<p class="detail-link-button"><a href="/company/{{ $comp->id }}/joblist">求人一覧を見る</a></p>
+		</div><!-- job-opening -->
+	</div>
+
 @endif
 
 {{-- END 求人一覧 --}}
 
-{{-- 求人一覧ボタン $comp --}}
-	@include ('user/partials/job_list_button')
-{{-- END 求人一覧ボタン --}}
-
 {{-- 部門 --}}
 @isset($unitList[0])
-			<div class="eval">
-				<div class="inner">
-					<h2>部門</h2>
-					<ul>
-						@foreach ($unitList as $unit)
-						<li>
-							<a href="/company/{{ $comp->id }}/unit/{{ $unit->id }}" style="font-size:16px;color:#4AA5CE;">{{ $unit->name }}</a>
-						</li>
-						 @endforeach
-					</ul>
-				</div>
-			</div>
+	<div class="eval">
+		<h2>部門</h2>
+
+		<div class="job-opening">
+			<ul class="job-opening-list">
+				<li>
+					<div class="inner">
+						<ul>
+							@foreach ($unitList as $unit)
+								<li>
+									<a href="/company/{{ $comp->id }}/unit/{{ $unit->id }}" style="font-size:16px;color:#4AA5CE;">{{ $unit->name }}</a>
+								</li>
+								 @endforeach
+						</ul>
+					</div><!-- inner -->
+				</li>
+			</ul>
+		</div><!-- job-opening -->
+	</div><!-- eval -->
 
 @endisset
 {{-- END 部門 --}}
 
+	<div class="company-details">
+{{--  チャート --}}
+	@include ('user/partials/eval_chart')
+{{--  END チャート --}}
+	</div><!-- company-details -->
+	</div>
+
+
+
 {{-- その他部署求人一覧 --}}
 @if (!empty($elseJobList[0]) )
 
-				<div class="job">
-					<div class="inner">
-						<h2>{{ $comp->name }}のその他部署求人一覧</h2>
-						@foreach ($elseJobList as $job)
-							{{-- ジョブフォーマット $job --}}
-								@include ('user/partials/job_format')
-							{{-- END ジョブフォーマット --}}
-						@endforeach
-					</div>
-				</div>
+	<div class="job">
+		<h2>{{ $comp->name }}のその他部署求人一覧</h2>
+
+		<div class="job-opening">
+			<ul class="job-opening-list">
+				@foreach ($elseJobList as $job)
+					<li class="job-opening-list__item">
+						<h3 class="job-opening-list__title">{{ $job->name }}</h3>
+						<p class="job-opening-list__text">{{ mb_strimwidth($job->intro, 0, 250, "...") }}</p>
+						<div class="job-opening-list__footer">
+							<dl class="job-opening-list__dl">
+								<dt>年収</dt>
+								<dd>{{ $job->getIncome() }}</dd>
+								<dt>エリア</dt>
+ 								<dd>{{ $job->getLocations() }} @if (!empty($job->else_location))({{ $job->else_location }})@endif</dd>
+							</dl>
+							<p class="detail-link-button"><a href="/company/{{ $job->company_id }}/{{ $job->id }}">求人詳細を見る</a></p>
+						</div>
+					</li>
+				@endforeach
+			</ul>
+			<p class="detail-link-button"><a href="/company/{{ $comp->id }}/joblist">求人一覧を見る</a></p>
+		</div><!-- job-opening -->
+	</div>
+
 @endif
 {{-- END その他部署求人一覧 --}}
 
@@ -210,22 +247,6 @@
 				{{ html()->hidden('int_type', '0') }}
 				{{ html()->hidden('int_kind', '1') }}
 				{{ html()->form()->close() }}
-
-{{--  チャート --}}
-	@include ('user/partials/eval_chart')
-{{--  END チャート --}}
-
-			<div class="button-flex">
-				@if (Auth::guard('user')->check())
-					<a href="/eval/regist?comp_id={{ $comp->id }}" >企業の評価をする</a>
-				@else
-					<a class="openModal button-modal" href="#modalLogin">企業の評価をする</a>
-				@endif
-			</div>
-
-{{-- カテゴリ別クチコミボタン --}}
-	@include ('user/partials/eval_cat_button')
-{{-- END カテゴリ別クチコミボタン --}}
 
 {{-- クチコミ数ランキング --}}
 	@include ('user/partials/eval_ranking_fix')

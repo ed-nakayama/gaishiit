@@ -11,7 +11,6 @@ Auth::routes([
 ]);
 
 
-
 // クチコミ
 Route::get ('/chart', 'ChartController@index');
 
@@ -254,5 +253,18 @@ Route::middleware('auth:user')->group(function () {
 
     // TOPページ
     Route::resource('mypage', 'MypageController', ['only' => 'index']);
+
+	// 退会のお手続き
+	Route::get('/cancellation', function () { 
+	    return view('user.cancellation');
+	});
+
+	Route::post('/cancellation', 'UserController@cancellation');
+
+
 });
 
+// 退会のお手続き
+Route::get('/cancellation/complete', function () { 
+    return view('user.cancellation_complete');
+});

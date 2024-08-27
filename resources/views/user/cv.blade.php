@@ -135,6 +135,7 @@
 
  
 							<div class="btn-wrap">
+								<p style="color: #ff0000;">※ 未入力の場合、プロフィール完成度が100%に未到達のため、正式応募ができません。</p>
 								<button type="submit">登録 / 変更</button>
 								@if (session('status') === 'success-update')
 									<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">登録／変更が完了しました。</p>
@@ -185,6 +186,9 @@
 											<input type="text" name="toeic" value="{{ old('toeic' ,$user->toeic) }}" class="short">
 											<span>点</span>
 										</div>
+										@error('toeic')
+											<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+										@enderror
 									</div>
 								</div>
 							</div>
@@ -205,6 +209,7 @@
 							</div>
 
 							<div class="btn-wrap">
+								<p style="color: #ff0000;">※ 未入力の場合、プロフィール完成度が100%に未到達のため、正式応募ができません。</p>
 								<button type="submit">登録 / 変更</button>
 								@if (session('status') === 'success-update2')
 									<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">登録／変更が完了しました。</p>

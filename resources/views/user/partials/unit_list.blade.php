@@ -13,18 +13,24 @@
 @isset($unitList[0])
 
 	<div class="eval">
-		<div class="inner">
-			<h2>部門</h2>
-			<ul>
-				@foreach ($unitList as $unit)
-				<li>
-					<a href="/company/{{ $comp->id }}/unit/{{ $unit->id }}" style="font-size:16px;color:#4AA5CE;">{{ $unit->name }}</a>
-				</li>
-				 @endforeach
+		<h2>部門</h2>
 
+		<div class="job-opening">
+			<ul class="job-opening-list">
+				<li>
+					<div class="inner">
+						<ul>
+							@foreach ($unitList as $unit)
+								<li>
+									<a href="/company/{{ $comp->id }}/unit/{{ $unit->id }}" style="font-size:16px;color:#4AA5CE;">{{ $unit->name }}</a>
+								</li>
+								 @endforeach
+						</ul>
+					</div><!-- inner -->
+				</li>
 			</ul>
-		</div>
-	</div>
+		</div><!-- job-opening -->
+	</div><!-- eval -->
 
 @endisset
 {{-- END 部門一覧 --}}

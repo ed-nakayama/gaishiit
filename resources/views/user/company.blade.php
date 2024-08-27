@@ -32,93 +32,61 @@
 		</div>
 				
 {{-- 広告エリア --}}
-		@isset ($pickup)
+@isset ($pickup)
+@php
+
+	$ranking = App\Models\Ranking::find( $pickup->id);
+	$total_rate = $ranking->total_rate;
+	$total_point = $ranking->total_point;
+
+@endphp
+
+		<div class="con-wrap">
+			<h2>PICK UP企業</h2>
 			<div class="con-wrap">
-				<div class="item">
-					<a href="/company/{{ $pickup->id }}">
-						<figure>
-							@if ($pickup->image_file == '')
-								<img src="/img/corp_img_01.jpg" alt="">
-							@else
-								<img src="{{ $pickup->image_file }}" alt="">
+				<ol class="company-list">
+					<li class="company-list__item company-item -pickup">
+						<figure class="company-item__image">
+							@if (!empty($pickup->logo_file))
+								<img src="{{$pickup->logo_file }}" alt="">
 							@endif
 						</figure>
-
-						<div class="item-info">
-							<div class="top">
-								<figure>
-									<img src="{{ $pickup->mid_logo_file }}" alt="">
- 								</figure>
-								<div class="txt">
-									<p class="name">{{ $pickup->name }}</p>
-								</div>
-							</div>
+						<div class="company-item__content">
+							<p class="company-item__name"><a href="10000169.html">{{ $pickup->name }}</a></p>
+							<dl class="company-item__reviews">
+								<dt>総合評価</dt>
+								<dd>
+									<span>{{ number_format($total_point, 2) }}</span>
+									<span class="star5_rating" style="--rate:  {{ $total_rate . '%' }};"></span>
+								</dd>
+								<dt>口コミ件数</dt>
+								<dd>{{ number_format($ranking->answer_count) }} 件</dd>
+							</dl>
+							<p class="company-item__button"><a href="/company/{{ $pickup->id }}">詳細を見る</a></p>
 						</div>
-					</a>
-				</div>
-			</div>
-		 @endisset
+					</li>
+				</ol>
+			</div><!-- con-wrap -->
+		</div><!-- con-wrap -->
+@endisset
 {{-- END 広告エリア --}}
 			   
-				
 		<div class="pager sort_name">
 			<h2>名称で探す</h2>
 			<ul class="page">
-				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-a">A - G</a></li>
-				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-h">H - N</a></li>
-				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-o">O - U</a></li>
-				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-v">V - Z</a></li>
+				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-a">A / B / C / D / E / F / G</a></li>
+				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-h">H / I / J / K / L / M / N</a></li>
+				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-o">O / P / Q / R / S / T / U</a></li>
+				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-v">V / W / X / Y / Z</a></li>
 			</ul>
 		</div>
 
 		<div class="con-wrap">
-			@foreach ($compList as $comp)
-					<div class="item thumb" style="margin-top:10px;">
-						<table style="margin-left:20px; margin-right:20px; font-size: 16px; width:100%;">
-							<tr>
-								<td style="width:10%;">
-									<div class="job-corp-name">
-										<figure>
-											@if(!empty($comp->logo_file))
-												<img src="{{ $comp->logo_file }}" alt="">
-											@endif
-										</figure>
-									</div>
-								</td>
-								<td>
-@php
-	$ranking = $comp->getCompanyRanking();
-	$total_rate = $ranking->total_rate;
-	$total_point = $ranking->total_point;
-@endphp
-									<p style="font-size:20px;"><a href="/company/{{ $comp->id }}" style="text-decoration:underline;">{{ $comp->name }}</a></p>
-									<div style="text-align: center; display:flex; ">
-										<p class="txt" style="font-size:16px;">
-											<span class="star5_rating" style="--rate: {{ $total_rate . '%' }};font-size:20px;"></span>
-											　総合評価　<b>{{ number_format($total_point, 2) }}</b>
-										</p>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<p style="transform: rotate(0.03deg); margin-right: 20px;">{!! nl2br(e($comp->intro)) !!}</p>
-								</td>
-							</tr>
-						</table>
-
-						<div class="con-wrap">
-							<div class="button-flex" style="width:200px;margin-top:0px; margin-bottom:10px;">
-								<a href="/company/{{ $comp->id }}">企業詳細</a>
-							</div>
-						</div>
-					</div>
-
-
-			@endforeach
-
-
-
+			<ol class="company-list">
+				@foreach ($compList as $comp)
+					@include ('user/partials/comp_format')
+				@endforeach
+              </ol>
 
 			<div class="pager">
 				{{ $compList->links('pagination.user') }}
@@ -132,10 +100,6 @@
 		{{-- ピックアップ求人 --}}
 		@include ('user/partials/job_pickup')
 		{{-- END ピックアップ求人 --}}
-
-		{{-- 求人検索ボタン --}}
-		@include ('user/partials/job_search_button')
-		{{-- END 求人検索ボタン --}}
 
 		{{-- 3種 求人検索 --}}
 		@include ('user/partials/job_search_3type')

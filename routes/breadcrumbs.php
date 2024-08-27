@@ -131,6 +131,12 @@ Breadcrumbs::for('mypage', function ($trail) {
     $trail->push('マイページ', url("/mypage"));
 });
 
+// 退会のお手続き
+Breadcrumbs::for('cancellation', function ($trail) {
+	$trail->parent('mypage');
+	$trail->push("退会のお手続き");
+});
+
 // 企業一覧    マイページ > メッセージ一覧
 Breadcrumbs::for('interview_list', function ($trail) {
 	$trail->parent('mypage');

@@ -9,4 +9,7 @@ return[
 
     'session_cookie_comp' => env('SESSION_COOKIE_COMP', Str::slug(env('APP_NAME', 'laravel'), '_').'_session'),
     'ssession_table_comp' => env('SESSION_TABLE_COMP'),
+
+    'event_disp' => env('EVENT_DISP', 'false'),
+
 ];

@@ -143,6 +143,22 @@
 									</ul>
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
+</fieldset>
+
+							<div class="formContainer mg-ajust">
+								<div class="item-name">
+									<p>URL</p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									<a href="{{ $job->url }}" style="text-decoration:underline; color:blue;" target="_blank">{{ $job->url }}</a>
+								</div><!-- /.item-input -->
+							</div><!-- END formContainer -->
+
+@if (Auth::user()->agent_priv == '1')
+<fieldset disabled>
+@else
+<fieldset>
+@endif
                                 
 							<div class="formContainer mg-ajust">
 								<div class="item-name">
@@ -203,7 +219,7 @@
 
 								<div class="formContainer mg-ajust-midashi">
 									<div class="item-name">
-										<p>担当業種カテゴリ</p>
+										<p>担当業界カテゴリ</p>
 									</div><!-- /.item-name -->
 									<div class="item-input">
 										{{ $job->getIndCatName() }}

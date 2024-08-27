@@ -85,6 +85,15 @@ class SetRanking extends Command
 				+ $ranking->remote_point
 				+ $ranking->retire_point) / 8;
 
+			$salary_rate     = $ranking->salary_point     / 5 * 100;
+			$welfare_rate    = $ranking->welfare_point    / 5 * 100;
+			$upbring_rate    = $ranking->upbring_point    / 5 * 100;
+			$compliance_rate = $ranking->compliance_point / 5 * 100;
+			$motivation_rate = $ranking->motivation_point / 5 * 100;
+			$work_life_rate  = $ranking->work_life_point  / 5 * 100;
+			$remote_rate     = $ranking->remote_point     / 5 * 100;
+			$retire_rate     = $ranking->retire_point     / 5 * 100;
+
 			$total_rate = $total_point / 5 * 100;
 
 			Ranking::where('company_id', $ranking->company_id)
@@ -106,6 +115,15 @@ class SetRanking extends Command
 					'work_life_count'  => $ranking->work_life_count,
 					'remote_count'     => $ranking->remote_count,
 					'retire_count'     => $ranking->retire_count,
+
+					'salary_rate'       => $salary_rate,
+					'welfare_rate'      => $welfare_rate,
+					'upbring_rate'      => $upbring_rate,
+					'compliance_rate'   => $compliance_rate,
+					'motivation_rate'   => $motivation_rate,
+					'work_life_rate'    => $work_life_rate,
+					'remote_rate'       => $remote_rate,
+					'retire_rate'       => $retire_rate,
 
 					'total_point'      => $total_point,
 					'total_rate'       => $total_rate,

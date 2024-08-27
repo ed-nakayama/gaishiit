@@ -33,165 +33,105 @@
 			</div>
 
 			<div class="con-wrap">
+				<div class="search-job">
+					{{ html()->form('POST', '/job/list')->attribute('name', 'jobform')->open() }}
+					{{ html()->hidden('save_flag') }}
 
-				<div class="item setting">
-					<div class="item-inner">
+					<dl class="search-job__list">
 
-						{{ html()->form('POST', '/job/list')->attribute('name', 'jobform')->open() }}
-						{{ html()->hidden('save_flag') }}
-						<div class="setting-list">
-							<div class="item-block">
-								<p class="ttl">フリーワード</p>
-								<div class="form-inner contact">
-									<div class="contact-list">
-										<div class="input-wrap">
-											{{ html()->text('freeword', $searchUserHist->freeword) }}
-										</div>
-									</div>
-								</div>
+						<dt>フリーワード</dt>
+						<dd>{{ html()->text('freeword', $searchUserHist->freeword)->class('search-job__input') }}</dd>
+
+						<dt>エリア</dt>
+						<dd>
+							<div class="check-box-btn search-job__checkbox">
+								@foreach ($constLocation as $loc)
+									<label>
+										{{ html()->checkbox("locations[]", strstr($searchUserHist->locations ,$loc->id), $loc->id)->id('locations') }}
+										<span>{{ $loc->name }}</span>
+									</label>
+								@endforeach
 							</div>
-    
-							<div class="item-block">
-								<p class="ttl">エリア</p>
-								<div class="form-wrap">
-									<div class="form-block">
-										<div class="form-inner">
-											<div class="check-box-btn">
-												@foreach ($constLocation as $loc)
-													<label>
-														{{ html()->checkbox("locations[]", strstr($searchUserHist->locations ,$loc->id), $loc->id)->id('locations') }}
-														<span>{{ $loc->name }}</span>
-													</label>
-												@endforeach
-											</div>
-										</div>
-									</div>
-								</div>
+						</dd>
+
+						<dt>企業名</dt>
+						<dd>
+							<div class="search-job__select-lists">
+								<a class="openModalName button-modal search-job__button" href="#modalAreaName">変更する</a>
+								<ul id="comp_list" class="search-job__select-list">
+								</ul>
+								{{ html()->hidden('comps', $searchUserHist->comps)->id('comps') }}
 							</div>
+						</dd>
 
-							<div class="item-block">
-								<p class="ttl">企業名</p>
-								<div class="form-wrap">
-									<div class="form-block">
-										<div class="form-inner">
-											<div class="check-box-btn">
-												<ul id="comp_list">
-												</ul>
-												{{ html()->hidden('comps', $searchUserHist->comps)->id('comps') }}
-												<a  class="openModalName button-modal" href="#modalAreaName">変更</a>
-											</div>
-										</div>
-									</div>
-								</div>
+						<dt>職種</dt>
+						<dd>
+							<div class="search-job__select-lists">
+								{{ html()->hidden('job_cats', $searchUserHist->getJobCat() )->id('job_cats') }}
+								{{ html()->hidden('job_cat_details', $searchUserHist->getJobCategory() )->id('job_cat_details') }}
+								<a class="openModalJob button-modal search-job__button" href="#modalAreaJob">変更する</a>
+								<ul id="jobcat_name_list" class="search-job__select-list">
+								</ul>
 							</div>
+						</dd>
+					</dl>
 
-							<div class="item-block">
-								<p class="ttl">職種</p>
-								<div class="form-wrap">
-									<div class="form-block">
-										<div class="form-inner">
-											<div class="check-box-btn">
-												{{ html()->hidden('job_cats', $searchUserHist->getJobCat() )->id('job_cats') }}
-												{{ html()->hidden('job_cat_details', $searchUserHist->getJobCategory() )->id('job_cat_details') }}
-												<ul id="jobcat_name_list">
-												</ul>
-												<a  class="openModalJob button-modal" href="#modalAreaJob">変更</a>
-											</div>
-										</div>
-									</div>
+					<details class="search-job__details">
+						<summary>「特徴やこだわり」から絞り込む</summary>
+						<dl class="search-job__list">
+							<dt>担当業界</dt>
+							<dd>
+								<div class="search-job__select-lists">
+									{{ html()->hidden('industory_cats' ,$searchUserHist->getIndcatCat())->id('industory_cats') }}
+									{{ html()->hidden('industory_cat_details', $searchUserHist->getIndustory())->id('industory_cat_details') }}
+									<a class="openModalIndustory button-modal search-job__button" href="#modalAreaIndustory">変更する</a>
+									<ul id="industorycat_list" class="search-job__select-list">
+									</ul>
 								</div>
-							</div>
+							</dd>
 
-
-						</div>
-
-						<br>
-						<label style="font-size:14px;">＋特徴・こだわりで絞り込む</label>
-						<div class="item-inner">
-							<div class="setting-list">
-
-								<div class="item-block">
-									<p class="ttl">担当業界</p>
-									<div class="form-wrap">
-										<div class="form-block">
-											<div class="form-inner">
-												<div class="check-box-btn">
-													{{ html()->hidden('industory_cats' ,$searchUserHist->getIndcatCat())->id('industory_cats') }}
-													{{ html()->hidden('industory_cat_details', $searchUserHist->getIndustory())->id('industory_cat_details') }}
-													<ul id="industorycat_list">
-													</ul>
-													<a  class="openModalIndustory button-modal" href="#modalAreaIndustory">変更</a>
-												</div>
-											</div>
-										</div>
-									</div>
+							<dt>IT業界の業種</dt>
+							<dd>
+								<div class="search-job__select-lists">
+									{{ html()->hidden('business_cats', $searchUserHist->getBusCat())->id('business_cats') }}
+									{{ html()->hidden('business_cat_details', $searchUserHist->getBusiness())->id('business_cat_details') }}
+									<a class="openModalBussiness button-modal search-job__button" href="#modalAreaBussiness">変更する</a>
+									<ul id="buscat_list" class="search-job__select-list">
+									</ul>
 								</div>
+							</dd>
 
-								<div class="item-block">
-									<p class="ttl">IT業界の業種</p>
-									<div class="form-wrap">
-										<div class="form-block">
-											<div class="form-inner">
-												<div class="check-box-btn">
-													{{ html()->hidden('business_cats', $searchUserHist->getBusCat())->id('business_cats') }}
-													{{ html()->hidden('business_cat_details', $searchUserHist->getBusiness())->id('business_cat_details') }}
-													<ul id="buscat_list">
-													</ul>
-													<a  class="openModalBussiness button-modal" href="#modalAreaBussiness">変更</a>
-												</div>
-											</div>
-										</div>
-									</div>
+							<dt>年収</dt>
+							<dd>
+								<div class="check-box-btn search-job__checkbox">
+									@foreach ($incomeList as $income)
+										<label>
+											{{ html()->checkbox("incomes[]", strstr($searchUserHist->incomes ,$income->id), $income->id)->id('incomes') }}
+											<span>{{ $income->name }}</span>
+										</label>
+									@endforeach
 								</div>
+							</dd>
 
-								<div class="item-block">
-									<p class="ttl">年収</p>
-									<div class="form-wrap">
-										<div class="form-block">
-											<div class="form-inner">
-												<div class="check-box-btn">
-													@foreach ($incomeList as $income)
-														<label style="margin-bottom:10px;">
-															{{ html()->checkbox("incomes[]", strstr($searchUserHist->incomes ,$income->id), $income->id)->id('incomes') }}
-															<span>{{ $income->name }}</span>
-														</label>
-													@endforeach
-												</div>
-											</div>
-										</div>
-									</div>
+							<dt>こだわり</dt>
+							<dd>
+								<div class="search-job__select-lists">
+									{{ html()->hidden('commit_cat_details', $searchUserHist->getCommit())->id('commit_cat_details') }}
+									<a class="openModalCommit button-modal search-job__button" href="#modalAreaCommit">変更する</a>
+									<ul id="commitcat_list" class="search-job__select-list">
+									</ul>
 								</div>
+							</dd>
 
-								<div class="item-block">
-									<p class="ttl">こだわり</p>
-									<div class="form-wrap">
-										<div class="form-block">
-											<div class="form-inner">
-												<div class="check-box-btn">
-													{{ html()->hidden('commit_cat_details', $searchUserHist->getCommit())->id('commit_cat_details') }}
-													<ul id="commitcat_list">
-													</ul>
-													<a  class="openModalCommit button-modal" href="#modalAreaCommit">変更</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-							</div><!-- setting-list -->
-						</div><!-- internal item-inner -->
-                                           
-						<div class="button-flex">
-							<a href="javascript:void(0);" onclick="onSearchClick();">検索</a>
-@if (Auth::guard('user')->check())
+					</details>
+					<p class="search-job__submit form-button" style=" justify-content: space-around;">
+						<a href="javascript:void(0);" onclick="onSearchClick();">検索する</a>
+						@if (Auth::guard('user')->check())
 							<a href="javascript:void(0);" onclick="onLinkClick();">希望条件として保存</a>
-@endif
-						</div>
-						{{ html()->form()->close() }}
-
-					</div><!-- item-inner -->
-				</div><!-- item setting -->
-
+						@endif
+					</p>
+				{{ html()->form()->close() }}
+			</div><!-- con-wrap -->
 
 @if (empty($jobList[0]))
 				<div class="item info job">

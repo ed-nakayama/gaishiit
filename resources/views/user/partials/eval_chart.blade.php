@@ -1,19 +1,105 @@
 {{-- チャート $my_count $comp $ranking  --}}
 
-			<div class="ttl">
-				<h2>社員による会社評価スコア</h2>
+	<h2 class="company-details-title">社員による会社評価スコア</h2>
+		<div class="company-details-column">
+			<div class="company-details-chart" style="position: relative;">
+				<canvas id="myRadarChart"></canvas>
 			</div>
 
+			<div class="company-details-chartlists">
+				<dl class="company-details-chartlist">
+					<dt>給与</dt>
+					<dd>
+						<div class="company-details-chartlist__rate">
+							<span>{{ number_format($ranking->salary_point, 2) }}</span>
+							<span class="star5_rating" style="--rate:  {{ $ranking->salary_rate . '%' }};"></span>
+						</div>
+						<div class="detail-link-button">
+							<a href="/company/{{ $comp->id }}/salary" >{{ $ranking->salary_count }} 件の口コミを見る</a>
+						</div>
+					</dd>
 
-			<div class="canClass">
-				<div>
-					<canvas id="myRadarChart"></canvas>
-				</div>
-				<div style="text-align: center;">
-					<p class="txt" style="font-size:16px;font-weight: bold;">総合評価</p>　<b>{{ number_format($ranking->total_point, 2) }}</b>
-					<p class="txt" style="font-size:12px;">回答者数 {{ $ranking->answer_count }}人</p>
-					<p><span class="star5_rating"  style="--rate: {{ $ranking->total_rate . '%' }};"></span></p>
-					
+					<dt>福利厚生</dt>
+					<dd>
+						<div class="company-details-chartlist__rate">
+							<span>{{ number_format($ranking->welfare_point, 2) }}</span>
+							<span class="star5_rating" style="--rate: {{ $ranking->welfare_rate . '%' }};"></span>
+						</div>
+						<div class="detail-link-button">
+							<a href="/company/{{ $comp->id }}/welfare" >{{ $ranking->welfare_count }} 件の口コミを見る</a>
+						</div>
+					</dd>
+
+					<dt>育成</dt>
+					<dd>
+						<div class="company-details-chartlist__rate">
+							<span>{{ number_format($ranking->upbring_point, 2) }}</span>
+							<span class="star5_rating" style="--rate: {{ $ranking->upbring_rate . '%' }};"></span>
+						</div>
+						<div class="detail-link-button">
+							<a href="/company/{{ $comp->id }}/upbring" >{{ $ranking->upbring_count }} 件の口コミを見る</a>
+						</div>
+					</dd>
+
+					<dt>法令遵守の意識</dt>
+					<dd>
+						<div class="company-details-chartlist__rate">
+							<span>{{ number_format($ranking->compliance_point, 2) }}</span>
+							<span class="star5_rating" style="--rate:  {{ $ranking->compliance_rate . '%' }};"></span>
+						</div>
+						<div class="detail-link-button">
+							<a href="/company/{{ $comp->id }}/compliance" >{{ $ranking->compliance_count }} 件の口コミを見る</a>
+						</div>
+					</dd>
+
+					<dt>社員のモチベーション</dt>
+					<dd>
+						<div class="company-details-chartlist__rate">
+							<span>{{ number_format($ranking->motivation_point, 2) }}</span>
+							<span class="star5_rating" style="--rate:  {{ $ranking->motivation_rate . '%' }};"></span>
+						</div>
+						<div class="detail-link-button">
+							<a href="/company/{{ $comp->id }}/motivation" >{{ $ranking->motivation_count }} 件の口コミを見る</a>
+						</div>
+					</dd>
+
+					<dt>ワークライフバランス</dt>
+					<dd>
+						<div class="company-details-chartlist__rate">
+							<span>{{ number_format($ranking->work_life_point, 2) }}</span>
+							<span class="star5_rating" style="--rate: {{ $ranking->work_life_rate . '%' }};"></span>
+						</div>
+						<div class="detail-link-button">
+							<a href="/company/{{ $comp->id }}/worklife" >{{ $ranking->work_life_count }} 件の口コミを見る</a>
+						</div>
+					</dd>
+
+					<dt>勤務体系</dt>
+					<dd>
+						<div class="company-details-chartlist__rate">
+							<span>{{ number_format($ranking->remote_point, 2) }}</span>
+							<span class="star5_rating" style="--rate: {{ $ranking->remote_rate . '%' }};"></span>
+						</div>
+						<div class="detail-link-button">
+							<a href="/company/{{ $comp->id }}/remote" >{{ $ranking->remote_count }} 件の口コミを見る</a>
+						</div>
+					</dd>
+
+					<dt>定年</dt>
+					<dd>
+						<div class="company-details-chartlist__rate">
+							<span>{{ number_format($ranking->retire_point, 2) }}</span>
+							<span class="star5_rating" style="--rate: {{ $ranking->retire_rate . '%' }};"></span>
+						</div>
+						<div class="detail-link-button">
+							<a href="/company/{{ $comp->id }}/retirement" >{{ $ranking->retire_count }} 件の口コミを見る</a>
+						</div>
+					</dd>
+				</dl>
+
+			</div><!-- company-details-chartlists -->
+
+		</div><!-- company-details-column -->
 					@if ($my_count == 0)
 						<div class="button-eval">
 					@else
@@ -25,9 +111,9 @@
 							<a class="openModal button-modal" href="#modalLogin">企業の評価をする</a>
 						@endif
 					</div>
-				</div>
-			</div>
-			
+
+	<div><!-- company-details-column -->
+
 {{-- END チャート --}}
 
 <script>

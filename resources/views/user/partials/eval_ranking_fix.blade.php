@@ -10,56 +10,39 @@
 @endphp
 
 
-<style>
-.job-item {
-  background: #fff;
-  border: 4px solid #E5AF24;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-.job-corp-name figure {
-  border-radius: 50%;
-  overflow: hidden;
-  width: 70px;
-  border: 1px solid #D6D6D6;
-  background: #D6D6D6;
-}
-
-.button-flex {
-  display: flex;
-  justify-content: center;
-  margin: 32px auto;
-}
-
-.button-flex a {
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #fff;
-  background: #4AA5CE;
-  padding: 10px 20px;
-  border-radius: 30px;
-  max-width: 380px;
-  width: 100%;
-  text-align: center;
-}
-
-.button-flex a:nth-child(n+2) {
-  margin-left: 30px;
-}
-
-</style>
-
 	<div class="con-wrap">
 		<h2>クチコミ評価ランキング</h2>
 		<div class="form-wrap">
 
-			@foreach ($rankingList as $ranking)
-				{{-- ランキングフォーマット $ranking --}}
-					@include ('user/partials/ranking_format')
-				{{-- END ランキングフォーマット --}}
-			@endforeach
+			<ol class="ranking-list">
+				@foreach ($rankingList as $ranking)
+					@if ($loop->iteration <= 3)
+						<li class="ranking-list__item -rank{{ $loop->iteration }} company-item">
+					@else
+						<li class="ranking-list__item company-item">
+					@endif
+
+					<figure class="company-item__image">
+						@if(!empty($ranking->logo_file))
+							<img src="{{ $ranking->logo_file }}" alt="">
+						@endif
+					</figure>
+					<div class="company-item__content">
+						<p class="company-item__name"><a href="/company/{{ $ranking->company_id }}">{{ $ranking->company_name }}</a></p>
+							<dl class="company-item__reviews">
+								<dt>総合評価</dt>
+								<dd>
+									<span>{{ number_format($ranking->total_point, 2) }}</span>
+									<span class="star5_rating" style="--rate:  {{ $ranking->total_rate . '%' }};"></span>
+								</dd>
+								<dt>クチコミ件数</dt>
+								<dd>{{ number_format($ranking->answer_count) }} 件</dd>
+							</dl>
+						<p class="company-item__button"><a href="/company/{{ $ranking->company_id }}">詳細を見る</a></p>
+					</div>
+                  </li>
+				@endforeach
+			</ol>
 
 			<div class="con-wrap">
 				<div class="button-flex">

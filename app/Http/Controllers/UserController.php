@@ -406,6 +406,10 @@ class UserController extends Controller
 	**************************************/
 	public function cv_store3( Request $request )
 	{
+		$validatedData = $request->validate([
+			'toeic'          => ['nullable', 'integer', 'max:990'],
+   		]);
+
 		$loginUser = Auth::user();
 
 		$user = User::find($loginUser->id);
@@ -488,6 +492,10 @@ class UserController extends Controller
 	**************************************/
 	public function cv_eng_store3( Request $request )
 	{
+		$validatedData = $request->validate([
+			'toeic'          => ['nullable', 'integer', 'max:990'],
+   		]);
+
 		$loginUser = Auth::guard('user')->user();
 
 		$user = User::find($loginUser->id);
@@ -674,6 +682,22 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back()->with('update_password_success', 'パスワードを変更しました。');
+    }
+
+
+/*************************************
+* 退会手続き
+**************************************/
+	public function cancellation(){
+
+        $user = Auth::guard('user')->user();
+
+        $user->deleted_at = date("Y-m-d H:i:s");
+        $user->save();
+
+        Auth::guard('user')->logout();
+
+        return redirect('/cancellation/complete');
     }
 
 

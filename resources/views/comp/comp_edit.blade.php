@@ -91,6 +91,16 @@
                                 </div>
 
 								<div class="formContainer mg-ajust-midashi">
+                                    <div class="item-name">
+                                        <p>URL</p>
+                                    </div><!-- /.item-name -->
+                                    <div class="item-input">
+                                        <input type="text" name="url" value="{{ old('url' ,$comp->url) }}">
+                                    </div><!-- /.item-input -->
+                                </div>
+
+
+								<div class="formContainer mg-ajust-midashi">
 									<div class="item-name">
 										<p>業種カテゴリ</p>
 									</div><!-- /.item-name -->
@@ -165,20 +175,32 @@
 								</div>
 
                               
-                                <div class="formContainer al-item-none mg-ajust">
-                                    <div class="item-name">
-                                        <p>紹介<span>*</span></p>
-                                    </div><!-- /.item-name -->
-                                    <div class="item-input">
-                                        <textarea class="form-mt" name="intro" id="intro" cols="30" rows="10" placeholder="本文">{{ $comp->intro }}</textarea>
-                                <ul class="oneRow">
-                                    @error('intro')
-                                        <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-                                    @enderror
-                                </ul>
-                                    </div><!-- /.item-input -->
-                                </div>
+								<div class="formContainer al-item-none mg-ajust">
+									<div class="item-name">
+										<p>紹介<span>*</span></p>
+									</div><!-- /.item-name -->
+									<div class="item-input">
+										<textarea class="form-mt" name="intro" id="intro" cols="30" rows="10" placeholder="本文">{{ $comp->intro }}</textarea>
+										<ul class="oneRow">
+											@error('intro')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+										</ul>
+									</div><!-- /.item-input -->
+								</div>
                                 
+								<div class="formContainer mg-ajust-midashi">
+									<div class="item-name">
+										<p>正式応募に必要<br>な書類の初期値</p>
+									</div><!-- /.item-name -->
+									<div class="item-input">
+										<ul class="checkboxList">
+											<li><label><input type="checkbox" name="backg_flag" value="1" @if (old('backg_flag' ,$comp->backg_flag) == '1')  checked="checked" @endif>職務経歴書</label></li>
+											<li><label><input type="checkbox" name="backg_eng_flag" value="1" @if (old('backg_eng_flag',$comp->backg_eng_flag) == '1')  checked="checked" @endif>職務経歴書（英文）</label></li>
+											<li><label><input type="checkbox" name="personal_flag" value="1" @if (old('personal_flag' ,$comp->personal_flag) == '1')  checked="checked" @endif>履歴書</label></li>
+										</ul><!-- /.checkboxList -->
+									</div><!-- /.item-input -->
+								</div>
                               
                                 <div class="formContainer mg-ajust-midashi">
                                     <div class="item-name">
@@ -255,7 +277,7 @@
 			                      		 		{{session('update_success')}}
 			                    			</div>
 				                		@endif
-                                    <a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>　<a href="/comp/preview" class="squareBtn btn-large" target="_blank" rel="noopener noreferrer">プレビュー</a>
+                                    <a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>　<a href="/comp/preview" class="squareBtn btn-large btn-navy" target="_blank" rel="noopener noreferrer">プレビュー</a>
                                 </div><!-- /.btn-container -->
                             {{ Form::close() }}
                         </div><!-- /.secContentsInner -->

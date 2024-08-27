@@ -31,83 +31,77 @@
 				<h1>{{ $comp->name }}のクチコミ評価・求人</h1>
 			</div>
 
-			<div class="con-wrap">
+			<div class="company-details">
+				<div class="company-item">
+					<figure class="company-item__image">
+						@if(!empty($comp->logo_file))
+							<img src="{{ $comp->logo_file }}" alt="">
+						@endif
+					</figure>
+					<div class="company-item__content">
+						<p class="company-item__name">
+							{{ $comp->name }}
+						</p>
 
-				<div class="item info">
-					<div class="item-inner">
-						<div class="ttl">
+						<dl class="company-item__reviews">
+							<dt>総合評価</dt>
+							<dd>
+								<span>{{ number_format($comp->total_point, 2) }}</span>
+								<span class="star5_rating" style="--rate:  {{ $comp->total_rate . '%' }};"></span>
+							</dd>
+							<dt>クチコミ件数</dt>
+							<dd>{{ number_format($comp->answer_count) }} 件</dd>
+						</dl>
+					</div>
+				</div>
 
-							<table>
-								<tr>
-									<td style="width:10%;">
-										<div class="job-corp-name">
-											<figure>
-												@if(!empty($comp->logo_file))
-													<img src="{{ $comp->logo_file }}" alt="">
-												@endif
-											</figure>
-										</div>
-									</td>
-									<td>
-										<p class="expand-title">{{ $comp->name }}<p>
-										<div style="text-align: center; display:flex; ">
-											<p class="txt" style="font-size:16px;">
-												<span class="star5_rating" style="--rate: {{ $comp->total_rate . '%' }};font-size:20px;"></span>
-												　総合評価　<b>{{ number_format($comp->total_point, 2) }}</b>
-											</p>
-										</div>
-									</td>
-								</tr>
-							</table>
+				<div class="item-info">
+					<p>{!! nl2br($comp->intro) !!}</p>
 
+					<div  style="display:flex;">
+						@if ( $comp->casual_flag == '1')
+							<div class="button-flex">
+								@if (Auth::guard('user')->check())
+									<a href="javascript:intform.submit()">カジュアル面談を依頼</a>
+								@else
+									<a class="openModal button-modal" href="#modalLogin">カジュアル面談を依頼</a>
+								@endif
+							</div>
+						@endif
 
-							@if ($qa_count > 0)
-								<div class="button-flex" style="margin-top:0px; margin-bottom:0px;">
-									{{ html()->form('POST', '/compfaq')->id('faqform')->attribute('name', 'unitform')->open() }}
-									{{ html()->hidden('company_id', $comp->id) }}
-									<a href="javascript:faqform.submit()">よくあるお問合せ</a>
-									{{ html()->form()->close() }}
-								</div>
-							@endif
-						</div><!-- ttl -->
+						@if ($qa_count > 0)
+							<div class="button-flex">
+								<a href="javascript:faqform.submit()">よくあるお問合せ</a>
+							</div>
+							{{ html()->form('POST', '/compfaq')->id('faqform')->attribute('name', 'unitform')->open() }}
+							{{ html()->hidden('company_id', $comp->id) }}
+							{{ html()->form()->close() }}
+						@endif
+					</div>
 
-						<div class="item-info">
-							<p>{!! nl2br($comp->intro) !!}</p>
-							@if ( $comp->casual_flag == '1')
-								<div class="button-flex">
-									@if (Auth::guard('user')->check())
-										<a href="javascript:intform.submit()">カジュアル面談を依頼</a>
-									@else
-										<a class="openModal button-modal" href="#modalLogin">カジュアル面談を依頼</a>
-									@endif
-								</div>
-							@endif
-						</div>
+				</div><!-- item-info -->
 
 @isset($interview)
-						<p>以前にこの企業へのカジュアル面談の依頼をしたことがあります</p>
-						<table style="font-size: 1.4rem;">
-							<tr>
-								<th>依頼日</th><th>依頼内容</th>
-							</tr>
-							<tr>
-								<td>{{ $interview->created_at->format('Y/m/d/H:i') }}</td>
-								<td>　　@if ($interview->interview_type == '0')カジュアル面談@endif</td>
-							</tr>
-						</table>
+				<p>以前にこの企業へのカジュアル面談の依頼をしたことがあります</p>
+				<table style="font-size: 1.4rem;">
+					<tr>
+						<th>依頼日</th><th>依頼内容</th>
+					</tr>
+					<tr>
+						<td>{{ $interview->created_at->format('Y/m/d/H:i') }}</td>
+						<td>　　@if ($interview->interview_type == '0')カジュアル面談@endif</td>
+					</tr>
+				</table>
 @endisset
-					</div><!-- item-inner -->
-				</div><!-- item info -->
-			</div><!-- con-wrap -->
+
+
 
 {{--  チャート --}}
 	@include ('user/partials/eval_chart')
 {{--  END チャート --}}
 
-{{-- カテゴリ別クチコミボタン --}}
-	@include ('user/partials/eval_cat_button')
-{{-- END カテゴリ別クチコミボタン --}}
-
+			</div><!-- company-details -->
+		</div><!-- item-inner -->
 
 {{-- 回答者別口コミの一覧 $eval --}}
 	@include ('user/partials/eval_list')
@@ -177,21 +171,6 @@
 			{{ html()->hidden('int_type', '0') }}
 			{{ html()->hidden('int_kind', '0') }}
 			{{ html()->form()->close() }}
-
-			<div class="button-flex">
-				@if ( $comp->casual_flag == '1')
-					@if (Auth::guard('user')->check())
-						<a href="javascript:intform.submit()">カジュアル面談を依頼</a>
-					@else
-						<a class="openModal button-modal" href="#modalLogin">カジュアル面談を依頼</a>
-					@endif
-				@endif
-				@if (Auth::guard('user')->check())
-					<a href="/eval/regist?comp_id={{ $comp->id }}" >企業の評価をする</a>
-				@else
-					<a class="openModal button-modal" href="#modalLogin">企業の評価をする</a>
-				@endif
-			</div>
 
 
 {{-- クチコミ数ランキング --}}

@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
     public const USER_MYPAGE = '/mypage';
 	// Adminのリダイレクト先
 	public const ADMIN_MYPAGE = '/admin/mypage';
-	// Companyダイレクト先
+	// Companyリダイレクト先
 	public const COMP_MYPAGE = '/comp/mypage';
 
     /**

@@ -1,33 +1,4 @@
 {{-- エリアから求人を探す --}}
-<style>
-.job-check-box-btn label {
-  cursor: pointer; display: inline-block; line-height: 2;
-}
-.job-check-box-btn label input {
-  display: none;
-}
-.job-check-box-btn label span {
-  color: #4AA5CE;
-  font-size: 14px;
-  border: 1px solid #4AA5CE;
-  border-radius: 20px;
-  padding: 5px 20px;
-}
-
-.job-item {
-  background: #fff;
-  border: 4px solid #E5AF24;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-.area_box {
-  margin: 10px 10px 10px 10px;
-}
-
-
-</style>
-
 
 @php
 
@@ -83,8 +54,10 @@
 
 @endphp
 
+<div class="search-link">
+
 {{-- エリアから求人を探す --}}
-	<div class="con-wrap">
+	<div class="con-wrap search-link-list">
 		<h2>エリアから求人を探す</h2>
 		<div class="job-item">
 			<div class="area_box">
@@ -151,7 +124,7 @@
 
 
 {{-- 職種から求人を探す --}}
-	<div class="con-wrap">
+	<div class="con-wrap search-link-list">
 		<h2>職種から求人を探す</h2>
 		<div class="job-item">
 			<div class="area_box">
@@ -247,7 +220,7 @@
 
 									@foreach ($valJobCatDetail as $detail)
 										@if ($cat->id == $detail->job_cat_id)
-											<label style="margin-bottom:10px;">
+											<label>
 												@if ($param_count == 1)
 													@if (false !== strpos($param1, 'location'))
 														<a href="/job/list/{{ $param1 }}/occupation{{ $detail->id }}"><div class="internal_link">{{ $detail->name }}</div></a>
@@ -359,12 +332,12 @@
 
 
 {{-- 特徴・こだわり --}}
-	<div class="con-wrap">
+	<div class="con-wrap search-link-list">
 		<h2>特徴・こだわり</h2>
 		<div class="job-item">
 
 {{-- インダストリから求人を探す --}}
-			<div class="con-wrap" style="width:95%;margin: 0 auto 20px;">
+			<div class="con-wrap">
 				<h3>担当業界から求人を探す</h3>
 				<div class="job-item">
 					<div class="area_box">
@@ -414,7 +387,7 @@
 
 											@foreach ($valIndustoryCatDetail as $detail)
 												@if ($cat->id == $detail->industory_cat_id)
-													<label style="margin-bottom:10px;">
+													<label>
 														@if ($param_count == 1)
 															@if ( (false !== strpos($param1, 'indcat')) || (false !== strpos($param1, 'industory')) || (false !== strpos($param1, 'buscat')) || (false !== strpos($param1, 'business')) || (false !== strpos($param1, 'commit')) || (false !== strpos($param1, 'income')) )
 																<a href="/job/list/industory{{ $detail->id }}"><div class="internal_link">{{ $detail->name }}</div></a>
@@ -461,7 +434,7 @@
 
 
 {{-- 業種から求人を探す --}}
-			<div class="con-wrap" style="width:95%;margin: 0 auto 20px;">
+			<div class="con-wrap">
 				<h3>IT業界の業種から求人を探す</h3>
 				<div class="job-item">
 					<div class="area_box">
@@ -511,7 +484,7 @@
 
 											@foreach ($valBusinessCatDetail as $detail)
 												@if ($cat->id == $detail->business_cat_id)
-													<label style="margin-bottom:10px;">
+													<label>
 														@if ($param_count == 1)
 															@if ( (false !== strpos($param1, 'indcat')) || (false !== strpos($param1, 'industory')) || (false !== strpos($param1, 'buscat')) || (false !== strpos($param1, 'business')) || (false !== strpos($param1, 'commit')) || (false !== strpos($param1, 'income')) )
 																<a href="/job/list/business{{ $detail->id }}"><div class="internal_link">{{ $detail->name }}</div></a>
@@ -558,7 +531,7 @@
 
 
 {{-- 年収から求人を探す --}}
-			<div class="con-wrap" style="width:95%;margin: 0 auto 20px;">
+			<div class="con-wrap">
 				<h3>年収から求人を探す</h3>
 				<div class="job-item">
 					<div class="area_box">
@@ -566,7 +539,7 @@
 							<div class="form-block">
 									<div class="job-check-box-btn">
 										@foreach ($incomeList as $detail)
-											<label style="margin-bottom:10px;">
+											<label>
 												@if ($param_count == 1)
 													@if ( (false !== strpos($param1, 'indcat')) || (false !== strpos($param1, 'industory')) || (false !== strpos($param1, 'buscat')) || (false !== strpos($param1, 'business')) || (false !== strpos($param1, 'commit')) || (false !== strpos($param1, 'income')) )
 														<a href="/job/list/income{{ $detail->id }}"><div class="internal_link">{{ $detail->name }}</div></a>
@@ -610,7 +583,7 @@
 
 
 {{-- こだわりから求人を探す --}}
-			<div class="con-wrap" style="width:95%;margin: 0 auto 20px;">
+			<div class="con-wrap">
 				<h3>こだわりから求人を探す</h3>
 				<div class="job-item">
 					<div class="area_box">
@@ -621,7 +594,7 @@
 											<div class="internal_nolink_cat">{{ $cat->name }}</div>
 											@foreach ($commitCatDetail as $detail)
 												@if ($cat->id == $detail->commit_cat_id)
-													<label style="margin-bottom:10px;">
+													<label>
 														@if ($param_count == 1)
 															@if ( (false !== strpos($param1, 'indcat')) || (false !== strpos($param1, 'industory')) || (false !== strpos($param1, 'buscat')) || (false !== strpos($param1, 'business')) || (false !== strpos($param1, 'commit')) || (false !== strpos($param1, 'income')) )
 																<a href="/job/list/commit{{ $detail->id }}"><div class="internal_link">{{ $detail->name }}</div></a>

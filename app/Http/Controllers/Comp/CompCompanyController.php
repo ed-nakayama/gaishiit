@@ -68,6 +68,12 @@ class CompCompanyController extends CompanyController
 
 		$comp->intro = $request->intro;
 		$comp->person = $request->person;
+		$comp->url = $request->url;
+
+		$comp->backg_flag = !empty($request->backg_flag) ? '1' : '0';
+		$comp->backg_eng_flag = !empty($request->backg_eng_flag) ? '1' : '0';
+		$comp->personal_flag = !empty($request->personal_flag) ? '1' : '0';
+
 
 		// ロゴファイル保存
 		if (!empty($request->file('logo'))) {

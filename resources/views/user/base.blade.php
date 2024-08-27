@@ -1337,74 +1337,8 @@ $(document).ready(function() {
 
 });
 
-$(function () {
-  $('.openModalSort').click(function(){
-      $('body').css('overflow-y', 'hidden');  // 本文の縦スクロールを無効
-      $('.modalAreaSort').fadeIn();
-  });
-  $('#closeModal , #modalBg').click(function(){
-    $('body').css('overflow-y','auto');     // 本文の縦スクロールを有効
-    $('.modalAreaSort').fadeOut();
-  });
-});
-
-$(function () {
-  $('.openModalSort').on('click', function () {
-    $('.modalAreaSort').addClass('open-leftbar');
-  });
-  $('.modalAreaSort , .toggle-btn').on('click', function () {
-    $('.modalAreaSort').removeClass('open-leftbar');
-  });
-});
-
-
-$(function () {
-  $('.openModalName').click(function(){
-
-      	var btn = document.getElementById("button1");
-		button1.style.background = "#4AA5CE";
-		button1.style.color = "#fff";
-
-      $('body').css('overflow-y', 'hidden');  // 本文の縦スクロールを無効
-      $('.modalAreaName').fadeIn();
-  });
-  $('#closeModal , #modalBg').click(function(){
-    $('body').css('overflow-y','auto');     // 本文の縦スクロールを有効
-    $('.modalAreaName').fadeOut();
-  });
-});
-
-$(function () {
-  $('.openModalJob').click(function(){
-
-      	var btn = document.getElementById("button1");
-		button1.style.background = "#4AA5CE";
-		button1.style.color = "#fff";
-
-      $('body').css('overflow-y', 'hidden');  // 本文の縦スクロールを無効
-      $('.modalAreaJob').fadeIn();
-  });
-  $('#closeModal , #modalBg').click(function(){
-    $('body').css('overflow-y','auto');     // 本文の縦スクロールを有効
-    $('.modalAreaJob').fadeOut();
-  });
-});
-
-$(function () {
-  $('.openModalIndustry').click(function(){
-      
-      	var btn = document.getElementById("button1");
-		button1.style.background = "#4AA5CE";
-		button1.style.color = "#fff";
-
-      $('body').css('overflow-y', 'hidden');  // 本文の縦スクロールを無効
-      $('.modalAreaIndustry').fadeIn();
-  });
-  $('#closeModal , #modalBg').click(function(){
-    $('body').css('overflow-y','auto');     // 本文の縦スクロールを有効
-    $('.modalAreaIndustry').fadeOut();
-  });
-});
 </script>
+
+<script src="{{ asset('js/career.js') }}"></script>
 
 @endsection

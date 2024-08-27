@@ -1,85 +1,60 @@
 {{-- ジョブフォーマット $jobList --}}
 
-<style>
-.job-item {
-  background: #fff;
-  border: 4px solid #E5AF24;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-.job-corp-name figure {
- border-radius: 50%;
-  overflow: hidden;
-  width: 70px;
-  border: 1px solid #D6D6D6;
-  background: #D6D6D6;
-}
-
-.expand-name {
-	font-size: 2.4rem;
-	margin-right: 20px;
-}
-.expand-title {
-	font-size: 2.0rem;
-	margin-left: 20px;
-	margin-right: 20px;
-	font-weight:bold;
-}
-
-.expand-content {
-	font-size: 1.6rem;
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-@media screen and (max-width: 820px) {
-	.expand-name {
-		font-size: 1.8rem;
-	}
-	.expand-title {
-		font-size: 1.8rem;
-	}
-	.expand-content {
-		font-size: 1.2rem;
-	}
-}
-
-.job-unit {
-  font-size: 1.4rem;
-  display: inline-block;
-  background: #E5AF24;
-  border-radius: 14px;
-  margin-bottom: 6px;
-  display: inline-block;
-  color: #fff;
-  padding: 4px 16px;
-}
-
-</style>
 @php
 	$pre_comp_id = '0';
 	$next_arg = 1;
 @endphp
 
-@foreach ($jobList as $job)
+	<div class="pickup">
+		<ol class="pickup-list">
 
-	@if ($pre_comp_id != $job->company_id)
-	<div class="job-item" style="width:100%;">
-	@endif
-		<div class="inner">
-			@if ($pre_comp_id != $job->company_id)
-				@include ('user/partials/job_format_header')
-			@endif
+			@foreach ($jobList as $job)
 
-			@include ('user/partials/job_format_content')
-		</div>
+				@if ($pre_comp_id != $job->company_id)
+@php
+	$ranking = $job->getCompanyRanking();
+@endphp
+					<li class="pickup-list__item">
+						<div class="company-item">
+							<figure class="company-item__image">
+								@if (!empty($job->logo_file))
+									<img src="{{ $job->logo_file }}" alt="">
+								@endif
+							</figure>
+							<div class="company-item__content">
+								<p class="company-item__name"><a href="/company/{{ $job->company_id }}">{{ $job->company_name }}</a></p>
+								<dl class="company-item__reviews">
+									<dt>総合評価</dt>
+									<dd>
+										<span>{{ number_format($ranking->total_point, 2) }}</span>
+										<span class="star5_rating" style="--rate: {{ $ranking->total_rate . '%' }};"></span>
+									</dd>
+									<dt>クチコミ件数</dt>
+									<dd>{{ number_format($ranking->answer_count) }} 件</dd>
+								</dl>
+								<p class="company-item__button"><a href="/company/{{ $ranking->company_id }}">詳細を見る</a></p>
+							</div>
+						</div>
+						<ul class="job-opening-list">
+				@endif
+						<li class="job-opening-list__item">
+							<h3 class="job-opening-list__title">{{ $job->name }}</h3>
+							<p class="job-opening-list__text">{{ mb_strimwidth($job->intro, 0, 250, "...") }}</p>
+							<div class="job-opening-list__footer">
+								<dl class="job-opening-list__dl">
+									<dt>年収</dt>
+									<dd>{{ $job->getIncome() }}</dd>
+									<dt>エリア</dt>
+									<dd>{{ $job->getLocations() }} @if (!empty($job->else_location))({{ $job->else_location }})@endif</dd>
+								</dl>
+								<p class="detail-link-button"><a href="/company/{{ $job->company_id }}/{{ $job->id }}">求人詳細を見る</a></p>
+							</div>
+						</li>
 
 	@if (!empty($jobList[$next_arg]))
 		@if ($jobList[$next_arg]->company_id != $job->company_id)
-			</div>
-		@else
-			<hr>
+						</ul>
+					</li>
 		@endif
 	@endif
 	@php
@@ -88,6 +63,9 @@
 	@endphp
 
 @endforeach
+
+		</ol>
+		<p class="detail-link-button"><a href="/job">求人一覧を見る</a></p>
 	</div>
 
 

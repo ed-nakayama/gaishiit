@@ -112,38 +112,81 @@
  			</div><!-- con-wrap col-2 -->
 
 			<div class="con-wrap">
-				<div class="item info job">
-					<div class="ttl">
-						<h2>お気に入り</h2>
-					</div>        
-					<div class="item-inner" style="padding: 0px 0px;">
-						@if (!empty($favoriteList[0]))
-							@foreach ($favoriteList as $job)
-								@if ($loop->index == 0)
-									@include ('user/partials/job_format_header')
-								@endif
+				<div class="ttl">
+					<h2>お気に入り</h2>
+				</div>        
 
-								@include ('user/partials/job_format_content')
-							
-								@if (!empty($favoriteList[$loop->index + 1]) )
-									<hr>
-								@endif
-							@endforeach
-						@else
-							<p style="padding: 0px 20px;">設定なし</p>
-						@endif
-					</div>
+@php
+	$pre_comp_id = '0';
+	$next_arg = 1;
+@endphp
 
-					<div class="con-wrap">
-						{{ html()->form('GET', '/job/favorite')->attribute('name', 'joblistform')->open() }}
-						<div class="button-flex">
-							<a href="javascript:joblistform.submit()">お気に入り一覧</a>
-						</div>
-						{{ html()->form()->close() }}
-					</div>
+				<div class="pickup">
+					<ol class="pickup-list">
 
+						@foreach ($favoriteList as $job)
+
+							@if ($pre_comp_id != $job->company_id)
+@php
+	$ranking = $job->getCompanyRanking();
+@endphp
+								<li class="pickup-list__item">
+									<div class="company-item">
+										<figure class="company-item__image">
+											@if (!empty($job->logo_file))
+												<img src="{{ $job->logo_file }}" alt="">
+											@endif
+										</figure>
+										<div class="company-item__content">
+											<p class="company-item__name"><a href="/company/{{ $job->company_id }}">{{ $job->company_name }}</a></p>
+											<dl class="company-item__reviews">
+												<dt>総合評価</dt>
+												<dd>
+													<span>{{ number_format($ranking->total_point, 2) }}</span>
+													<span class="star5_rating" style="--rate: {{ $ranking->total_rate . '%' }};"></span>
+												</dd>
+												<dt>クチコミ件数</dt>
+												<dd>{{ number_format($ranking->answer_count) }} 件</dd>
+											</dl>
+											<p class="company-item__button"><a href="/company/{{ $ranking->company_id }}">詳細を見る</a></p>
+										</div>
+									</div>
+									<ul class="job-opening-list">
+							@endif
+									<li class="job-opening-list__item">
+										<h3 class="job-opening-list__title">{{ $job->name }}</h3>
+										<p class="job-opening-list__text">{{ mb_strimwidth($job->intro, 0, 250, "...") }}</p>
+										<div class="job-opening-list__footer">
+											<dl class="job-opening-list__dl">
+												<dt>年収</dt>
+												<dd>{{ $job->getIncome() }}</dd>
+												<dt>エリア</dt>
+												<dd>{{ $job->getLocations() }} @if (!empty($job->else_location))({{ $job->else_location }})@endif</dd>
+											</dl>
+											<p class="detail-link-button"><a href="/company/{{ $job->company_id }}/{{ $job->id }}">求人詳細を見る</a></p>
+										</div>
+									</li>
+
+	@if (!empty($favoriteList[$next_arg]))
+		@if ($favoriteList[$next_arg]->company_id != $job->company_id)
+									</ul>
+								</li>
+		@endif
+	@endif
+	@php
+		$pre_comp_id = $job->company_id;
+		$next_arg++;
+	@endphp
+
+@endforeach
+
+					</ol>
+					@if (!empty($favoriteList[0]))
+						<p class="detail-link-button"><a href="/job/favorite">お気に入り一覧</a></p>
+					@endif
 				</div>
 			</div><!-- con-wrap -->
+
 
 @if (!empty($eventList[0]))
 			<div class="con-wrap">

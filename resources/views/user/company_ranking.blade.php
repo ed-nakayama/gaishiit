@@ -36,14 +36,38 @@
 		</div>
 
 		<div class="con-wrap">
-			<h2>クチコミ数ランキング</h2>
+			<h2>クチコミ評価ランキング</h2>
 			<div class="form-wrap">
 
+			<ol class="ranking-list">
 				@foreach ($rankingList as $ranking)
-					{{-- ランキングフォーマット $ranking --}}
-						@include ('user/partials/ranking_format')
-					{{-- END ランキングフォーマット --}}
+					@if ($loop->iteration <= 3)
+						<li class="ranking-list__item -rank{{ $loop->iteration }} company-item">
+					@else
+						<li class="ranking-list__item company-item">
+					@endif
+					<figure class="company-item__image">
+						@if(!empty($ranking->logo_file))
+							<img src="{{ $ranking->logo_file }}" alt="">
+						@endif
+					</figure>
+					<div class="company-item__content">
+						<p class="company-item__name"><a href="/company/{{ $ranking->company_id }}">{{ $ranking->company_name }}</a></p>
+							<dl class="company-item__reviews">
+								<dt>総合評価</dt>
+								<dd>
+									<span>{{ number_format($ranking->total_point, 2) }}</span>
+									<span class="star5_rating" style="--rate:  {{ $ranking->total_rate . '%' }};"></span>
+								</dd>
+								<dt>クチコミ件数</dt>
+								<dd>{{ number_format($ranking->answer_count) }} 件</dd>
+							</dl>
+						<p class="company-item__button"><a href="/company/{{ $ranking->company_id }}">詳細を見る</a></p>
+					</div>
+                  </li>
 				@endforeach
+			</ol>
+
 		<div class="pager">
 			{{ $rankingList->appends(request()->query())->links('pagination.user') }}
 		</div>
@@ -53,10 +77,6 @@
 		{{-- ピックアップ求人 --}}
 			@include ('user/partials/job_pickup')
 		{{-- END ピックアップ求人 --}}
-
-		{{-- 求人検索ボタン --}}
-			@include ('user/partials/job_search_button')
-		{{-- END 求人検索ボタン --}}
 
 		{{-- 3種 求人検索 --}}
 			@include ('user/partials/job_search_3type')

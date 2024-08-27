@@ -225,9 +225,11 @@ class CompMemberController extends Controller
 		if (!empty($company)) {
 			$act['comp_name'] = $company->name;
 			$act['comp_logo'] = $company->logo_file;
+			$act['agency_flag'] = $company->agency_flag;
 		} else {
 			$act['comp_name'] = "";
 			$act['comp_logo'] = "";
+			$act['agency_flag'] = "";
 		}
 
 		// 企業カジュアル
