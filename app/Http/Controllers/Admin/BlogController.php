@@ -33,11 +33,34 @@ class BlogController extends Controller
 	{
 		$blogList = Blog::orderBy('id', 'DESC')
 			->paginate(10);
-    
+;
 		return view('admin.blog_list' ,compact(
 			'blogList',
 		));
 	}
+
+
+/*************************************
+* 更新
+**************************************/
+	public function update(Request $request)
+	{
+		$validatedData = $request->validate([
+			'blog_id'   => ['nullable', 'string'],
+			'open_date' => ['nullable', 'date'],
+		]);
+
+		$blog = Blog::find($request->blog_id);
+
+		$blog->open_flag = !empty($request->open_flag) ? '1' : '0';
+		$blog->open_date = $request->open_date;
+		$blog->save();
+
+		$page = !empty($request->page) ? $request->page : '1';
+
+		return redirect('admin/blog/list?page=' . $page);
+	}
+
 
 
 /*************************************

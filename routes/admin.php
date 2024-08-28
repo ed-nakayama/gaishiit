@@ -257,6 +257,7 @@ Route::get ('/api/joblist', 'ApiController@joblist');
 
 // ¥Ö¥í¥°
 Route::get ('/blog/list',   'BlogController@index');
+Route::post('/blog/list',   'BlogController@update');
 Route::get ('/blog',        'BlogController@detail')->name('blog.detail');
 Route::post('/blog',        'BlogController@store');
 Route::get ('/blog/change', 'BlogController@edit')->name('blog.change');
