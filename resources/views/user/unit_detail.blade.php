@@ -153,7 +153,7 @@
 			<ul class="job-opening-list">
 				@foreach ($jobList as $job)
 					<li class="job-opening-list__item">
-						<h3 class="job-opening-list__title">{{ $job->name }}</h3>
+						<h3 class="job-opening-list__title">><a href="/company/{{ $job->company_id }}/{{ $job->id }}">{{ $job->name }}</a></h3>
 						<p class="job-opening-list__text">{{ mb_strimwidth($job->intro, 0, 250, "...") }}</p>
 						<div class="job-opening-list__footer">
 							<dl class="job-opening-list__dl">
@@ -219,7 +219,7 @@
 			<ul class="job-opening-list">
 				@foreach ($elseJobList as $job)
 					<li class="job-opening-list__item">
-						<h3 class="job-opening-list__title">{{ $job->name }}</h3>
+						<h3 class="job-opening-list__title"><a href="/company/{{ $job->company_id }}/{{ $job->id }}">{{ $job->name }}</a></h3>
 						<p class="job-opening-list__text">{{ mb_strimwidth($job->intro, 0, 250, "...") }}</p>
 						<div class="job-opening-list__footer">
 							<dl class="job-opening-list__dl">

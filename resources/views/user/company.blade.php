@@ -52,7 +52,7 @@
 							@endif
 						</figure>
 						<div class="company-item__content">
-							<p class="company-item__name"><a href="10000169.html">{{ $pickup->name }}</a></p>
+							<p class="company-item__name"><a href="/company/{{  $pickup->id }}">{{ $pickup->name }}</a></p>
 							<dl class="company-item__reviews">
 								<dt>総合評価</dt>
 								<dd>

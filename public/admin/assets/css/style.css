@@ -792,6 +792,9 @@ table.mb-ajust {
 .tbl-blogList th:nth-child(7) {
 	width: 8%;
 }
+.tbl-blogList th:nth-child(8) {
+	width: 8%;
+}
 .tbl-blogList th {
     border-bottom: 1px solid #707070;
 }

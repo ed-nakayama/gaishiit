@@ -104,7 +104,7 @@
 					<div class="company-information">
 						<div class="company-information__header">
 							<h4 class="company-information__title">求人名</h4>
-							<p class="company-information__position">{{ $job->name }}</p>
+							<p class="company-information__position"><a class="" href="/company/{{ $job->company_id }}/{{ $job->id }}">{{ $job->name }}</a></p>
 						</div>
 						<dl class="company-information__info">
 							<dt>年収</dt>
