@@ -35,7 +35,7 @@
 						<tr>
 							<th>氏名</th>
 							<th>メールアドレス</th>
-							<th>候補者承認</th>
+							<th>候補者<br>承認</th>
 							<th>企業管理</th>
 							<th>請求情報</th>
 							<th>設定変更</th>
@@ -43,7 +43,8 @@
 							<th>ピックアップ<br>管理</th>
 							<th>メンバー管理</th>
 							<th>クチコミ承認</th>
-							<th>Agent権限</th>
+							<th>ジョブ検索<br>権限</th>
+							<th>候補者コンタクト権限</th>
 						</tr>
                                
 						@foreach ($adminList as $admin)
@@ -59,6 +60,7 @@
 								<td align="center">@if ($admin->account_priv == '1')●@endif</td>
 								<td align="center">@if ($admin->eval_priv == '1')●@endif</td>
 								<td align="center">@if ($admin->agent_priv == '1')●@endif</td>
+								<td align="center">@if ($admin->recruit_priv == '1')●@endif</td>
 								{{ html()->form('GET', '/admin/admin/edit')->attribute('name', "editform{$admin->id}")->open() }}
 								{{ html()->hidden('admin_id', $admin->id) }}
 								{{ html()->form()->close() }}

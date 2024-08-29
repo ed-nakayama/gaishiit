@@ -123,13 +123,25 @@
                                     <input type="checkbox" id="eval_priv" name="eval_priv" value="1" @if (old('eval_priv' ,$admin->eval_priv) == '1')  checked="checked" @endif  onchange="foo2();">
                                 </div><!-- /.item-input -->
                              </div>
+<hr>
+<br>
+<p style="font-weight:bold;">Agent限定</p>
+<br>
+                             <div class="formContainer mg-ajust-midashi">
+                                <div class="item-name">
+                                    <p>ジョブ検索権限</p>
+                                </div><!-- /.item-name -->
+                                <div class="item-input">
+                                    <input type="checkbox" id="agent_priv" name="agent_priv" value="1" @if (old('agent_priv' ,$admin->agent_priv) == '1')  checked="checked" @endif  onchange="foo0();">
+                                </div><!-- /.item-input -->
+                             </div>
 
                              <div class="formContainer mg-ajust-midashi">
                                 <div class="item-name">
-                                    <p>エージェント機能のみ</p>
+                                    <p>候補者コンタクト権限</p>
                                 </div><!-- /.item-name -->
                                 <div class="item-input">
-                                    <input type="checkbox" id="agent_priv" name="agent_priv" value="1" @if (old('agent_priv' ,$admin->agent_priv) == '1')  checked="checked" @endif  onchange="foo();">
+                                    <input type="checkbox" id="recruit_priv" name="recruit_priv" value="1" @if (old('recruit_priv' ,$admin->recruit_priv) == '1')  checked="checked" @endif  onchange="foo();">
                                 </div><!-- /.item-input -->
                              </div>
 
@@ -149,6 +161,34 @@
 
 
 <script>
+function foo0() {
+
+let aprove_priv  = document.getElementById('aprove_priv');
+let comp_priv    = document.getElementById('comp_priv');
+let bill_priv    = document.getElementById('bill_priv');
+let cat_priv     = document.getElementById('cat_priv');
+let info_priv    = document.getElementById('info_priv');
+let pickup_priv  = document.getElementById('pickup_priv');
+let account_priv = document.getElementById('account_priv');
+let eval_priv    = document.getElementById('eval_priv');
+let agent_priv   = document.getElementById('agent_priv');
+let recruit_priv = document.getElementById('recruit_priv');
+
+	if (agent_priv.checked) {
+		aprove_priv.checked  = false;
+		comp_priv.checked    = false;
+		bill_priv.checked    = false;
+		cat_priv.checked     = false;
+		info_priv.checked    = false;
+		pickup_priv.checked  = false;
+		account_priv.checked = false;
+		eval_priv.checked    = false;
+	} else {
+		recruit_priv.checked = false;
+	}
+
+}
+
 function foo() {
 
 let aprove_priv  = document.getElementById('aprove_priv');
@@ -160,9 +200,11 @@ let pickup_priv  = document.getElementById('pickup_priv');
 let account_priv = document.getElementById('account_priv');
 let eval_priv    = document.getElementById('eval_priv');
 let agent_priv   = document.getElementById('agent_priv');
+let recruit_priv = document.getElementById('recruit_priv');
 
+	if (recruit_priv.checked) {
+		agent_priv.checked  = true;
 
-	if (agent_priv.checked) {
 		aprove_priv.checked  = false;
 		comp_priv.checked    = false;
 		bill_priv.checked    = false;
@@ -172,7 +214,9 @@ let agent_priv   = document.getElementById('agent_priv');
 		account_priv.checked = false;
 		eval_priv.checked    = false;
 	}
+
 }
+
 
 
 function foo2() {
@@ -186,10 +230,12 @@ let pickup_priv  = document.getElementById('pickup_priv');
 let account_priv = document.getElementById('account_priv');
 let eval_priv    = document.getElementById('eval_priv');
 let agent_priv   = document.getElementById('agent_priv');
+let recruit_priv = document.getElementById('recruit_priv');
 
 
 	if (aprove_priv.checked || comp_priv.checked || bill_priv.checked || cat_priv.checked || info_priv.checked || pickup_priv.checked || account_priv.checked || eval_priv.checked) {
 		agent_priv.checked  = false;
+		recruit_priv.checked  = false;
 	}
 
 }

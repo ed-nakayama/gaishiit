@@ -67,6 +67,9 @@ class Kernel extends ConsoleKernel
 		// サイトマップ作成
 		$schedule->command('sitemap:generate')->dailyAt('04:00');     // 毎日 4:00
 
+		// 更新／削除ジョブ一覧
+		$schedule->command('command:SendCurrentJob')->dailyAt('10:00');     // 毎日 10:00
+
     }
 
     /**

@@ -1096,30 +1096,36 @@ padding: 5px 10px;
 	width: auto;
 }
 .tbl-memberList th:nth-child(3) {
-	width: 8%;
+	width: 6%;
 }
 .tbl-memberList th:nth-child(4) {
-	width: 8%;
+	width: 6%;
 }
 .tbl-memberList th:nth-child(5) {
-	width: 8%;
+	width: 6%;
 }
 .tbl-memberList th:nth-child(6) {
-	width: 8%;
+	width: 6%;
 }
 .tbl-memberList th:nth-child(7) {
-	width: 8%;
+	width: 6%;
 }
 .tbl-memberList th:nth-child(8) {
 	width: 8%;
 }
 .tbl-memberList th:nth-child(9) {
-	width: 8%;
+	width: 6%;
 }
 .tbl-memberList th:nth-child(9) {
-	width: 8%;
+	width: 6%;
 }
 .tbl-memberList th:nth-child(10) {
+	width: 6%;
+}
+.tbl-memberList th:nth-child(11) {
+	width: 8%;
+}
+.tbl-memberList th:nth-child(12) {
 	width: 8%;
 }
 .tbl-memberList th {

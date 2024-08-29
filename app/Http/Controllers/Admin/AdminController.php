@@ -123,6 +123,12 @@ class AdminController extends Controller
 			$agent_priv = 0;
 		}
 
+		if (!empty($request->recruit_priv)) {
+			$recruit_priv = 1;
+		} else {
+			$recruit_priv = 0;
+		}
+
 		$retAdmin = Admin::updateOrCreate(
 			['id' => $request->admin_id],
 			['name'          => $request->name,
@@ -136,6 +142,7 @@ class AdminController extends Controller
 			'account_priv'   => $account_priv,
 			'eval_priv'      => $eval_priv,
 			'agent_priv'     => $agent_priv,
+			'recruit_priv'  => $recruit_priv,
 			]
 		);
 
