@@ -25,6 +25,7 @@ class DelOldFiles extends Command
 	private $BACKUP_DIR   = 'public/comp_jobs/backup';
 	private $LOG_DIR      = 'public/comp_jobs/logs';
 	private $JOB_DIR      = 'public/comp_jobs/joblist';
+	private $CSV_DIR      = 'public/comp_jobs';
 	
 
     /**
@@ -45,9 +46,11 @@ class DelOldFiles extends Command
     public function handle()
     {
 
-		$this->del_files($this->LOG_DIR);
-		$this->del_files($this->BACKUP_DIR);
-		$this->del_files($this->JOB_DIR);
+//		$this->del_files($this->LOG_DIR);
+//		$this->del_files($this->BACKUP_DIR);
+//		$this->del_files($this->JOB_DIR);
+
+		$this->del_open_zero();
 	}
 
 
@@ -67,6 +70,37 @@ class DelOldFiles extends Command
 			}
 		});
 
+	}
+
+
+/*******************************************
+* サイズ0のopneファイル削除
+********************************************/
+    private function del_open_zero() {
+
+		$allFiles = Storage::files($this->CSV_DIR);
+		$fileCnt = count($allFiles);
+		sort($allFiles);
+
+		$files = array();
+		
+		for ($i = 0; $i < $fileCnt; $i++) {
+			$file = Storage::disk('local')->path($allFiles[$i]);
+			$filepath = pathinfo($file);
+			
+			if (strcmp($filepath['extension'] ,'xlsx') == 0) {
+				if (strpos($filepath['filename'],'[Open]') !== false) {
+					$files[] = $allFiles[$i];
+				}
+			}
+		}
+
+		$fileCnt = count($files);
+		for ($i = 0; $i < $fileCnt; $i++) {
+			$size = Storage::size($files[$i]);
+
+			if ($size == 0) Storage::delete($files[$i]);
+		}
 	}
 
 
