@@ -648,7 +648,8 @@ class MypageController extends Controller
 		// 職種保存
 		$job->setJobCat($request->jobCat);
 		// インダストリ保存
-		$job->setIndustory($request->indCat);
+//		$job->setIndustory($request->indCat);
+		$job->setIndustoryCat($request->indCat);
 
 		$job->save();
 

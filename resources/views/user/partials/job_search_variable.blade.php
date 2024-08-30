@@ -347,24 +347,26 @@
 										@foreach ($valIndustoryCat as $cat)
 											@if ( (false !== strpos($param1, 'industory')) || (false !== strpos($param2, 'industory')) || (false !== strpos($param3, 'industory')) )
 												@if ($cat->id == $ind_cat_id)
-													<div class="internal_nolink_cat">{{ $cat->name }}</div>
+													<label>
+														<div class="internal_nolink">{{ $cat->name }}</div>
+													</label>
 												@endif
 											@else
 												<label>
 													@if ($param_count == 1)
 														@if ( (false !== strpos($param1, 'indcat')) || (false !== strpos($param1, 'industory')) || (false !== strpos($param1, 'buscat')) || (false !== strpos($param1, 'business')) || (false !== strpos($param1, 'commit')) || (false !== strpos($param1, 'income')) )
-															<a href="/job/list/indcat{{$cat->id}}" class="internal_link_cat">{{ $cat->name }}</a>
+															<a href="/job/list/indcat{{$cat->id}}" class="internal_link">{{ $cat->name }}</a>
 														@else
-															<a href="/job/list/{{ $param1 }}/indcat{{ $cat->id }}" class="internal_link_cat">{{ $cat->name }}</a>
+															<a href="/job/list/{{ $param1 }}/indcat{{ $cat->id }}" class="internal_link">{{ $cat->name }}</a>
 														@endif
 													@elseif ($param_count == 2)
 														@if ( (false !== strpos($param2, 'indcat')) || (false !== strpos($param2, 'industory')) || (false !== strpos($param2, 'buscat')) || (false !== strpos($param2, 'business')) || (false !== strpos($param2, 'commit')) || (false !== strpos($param2, 'income')))
-															<a href="/job/list/{{ $param1 }}/indcat{{ $cat->id }}" class="internal_link_cat">{{ $cat->name }}</a>
+															<a href="/job/list/{{ $param1 }}/indcat{{ $cat->id }}" class="internal_link">{{ $cat->name }}</a>
 														@else
-															<a href="/job/list/{{ $param1 }}/{{ $param2 }}/indcat{{ $cat->id }}" class="internal_link_cat">{{ $cat->name }}</a>
+															<a href="/job/list/{{ $param1 }}/{{ $param2 }}/indcat{{ $cat->id }}" class="internal_link">{{ $cat->name }}</a>
 														@endif
 													@elseif ($param_count == 3)
-														<a href="/job/list/{{ $param1 }}/{{ $param2 }}/indcat{{ $cat->id }}" class="internal_link_cat">{{ $cat->name }}</a>
+														<a href="/job/list/{{ $param1 }}/{{ $param2 }}/indcat{{ $cat->id }}" class="internal_link">{{ $cat->name }}</a>
 													@else
 														{{ html()->form('POST', '/job/list')->attribute('name', "indcatForm{$cat->id}")->open() }}
 														{{ html()->hidden('industory_cats', $cat->id) }}
@@ -380,11 +382,11 @@
 															{{ html()->hidden('job_cat_details', $param['job_cat_details']) }}
 														@endif
 														{{ html()->form()->close() }}
-														<a href="javascript:indcatForm{{ $cat->id }}.submit()">{{ $cat->name }}</a>
+														<a href="javascript:indcatForm{{ $cat->id }}.submit()"><div class="internal_link">{{ $cat->name }}</div></a>
 													@endif
-												</label><br>
+												</label>
 											@endif
-
+{{--
 											@foreach ($valIndustoryCatDetail as $detail)
 												@if ($cat->id == $detail->industory_cat_id)
 													<label>
@@ -422,7 +424,7 @@
 													</label>
 												@endif
 											@endforeach
-											<br>
+--}}
 										@endforeach
 								</div>
 							</div>

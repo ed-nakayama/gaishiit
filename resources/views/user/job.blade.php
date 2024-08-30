@@ -175,7 +175,7 @@
 
 
 {{-- インダストリ選択モーダル  --}}
-	@include ('user/partials/job_industory_modal2')
+	@include ('user/partials/job_industory_modal3')
 {{-- END インダストリ選択モーダル  --}}
 
 

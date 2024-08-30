@@ -197,17 +197,10 @@
 										<div class="job-check-box-btn">
 											@foreach ($industoryCat as $cat)
 												<label>
-													<a href="/job/list/indcat{{$cat->id}}"  class="internal_link_cat">{{ $cat->name }}</a>
-												</label><br>
-												@foreach ($industoryCatDetail as $detail)
-													@if ($cat->id == $detail->industory_cat_id)
-														<label>
-															<a href="/job/list/industory{{ $detail->id }}"><div class="internal_link">{{ $detail->name }}</div></a>
-														</label>
-													@endif
-												@endforeach
-	 											<br>
+													<a href="/job/list/indcat{{$cat->id}}"><div class="internal_link">{{ $cat->name }}</div></a>
+												</label>
 											@endforeach
+ 											<br>
 										</div>
 									</div>
 								</div>

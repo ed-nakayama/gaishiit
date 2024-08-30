@@ -234,7 +234,16 @@
 								</div><!-- /.item-name -->
 								<div class="item-input">
 									@foreach ($industoryCat as $cat)
-										<div style="font-size:16px; font-weight: bold;">{{ $cat->name }}</div>
+										<div style="font-size:16px; font-weight: bold;">
+											<div style="margin-left: 15px;">
+												@if (!empty($job->getIndcatCat() ))
+													{{ html()->checkbox('indCat[]', (in_array($cat->id, $job->getIndcatCat() )), $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+												@else
+													{{ html()->checkbox('indCat[]', false, $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+												@endif
+											</div>
+										</div>
+{{--
 										<div style="display:flex;flex-wrap: wrap;">
 											@foreach ($industoryCatDetail as $detail)
 												@if ($cat->id == $detail->industory_cat_id)
@@ -248,6 +257,7 @@
 												@endif
 											@endforeach
 										</div>
+--}}
 									@endforeach
 									<ul class="oneRow">
 										@error('jobCat[]')

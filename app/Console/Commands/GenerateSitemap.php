@@ -61,7 +61,7 @@ class GenerateSitemap extends Command
 			->add(Url::create('/')->setPriority(1))
 			->add(Url::create('/corporate')->setPriority(0.5))
 			->add(Url::create('/privacy')->setPriority(0.5))
-//			->add(Url::create('/kiyaku')->setPriority(0.5))
+			->add(Url::create('/kiyaku')->setPriority(0.5))
 			->add(Url::create('/adminfaq')->setPriority(0.5))
 			->add(Url::create(route('user.register'))->setPriority(0.5))
 			->add(Url::create('/company')->setPriority(0.5))
@@ -140,7 +140,7 @@ class GenerateSitemap extends Command
 		$jobcatList = JobCat::where('del_flag','0')->get();
 		$jobcatDetailList = JobCatDetail::where('del_flag','0')->get();
 		$indcatList = IndustoryCat::where('del_flag','0')->get();
-		$indcatDetailList = IndustoryCat::where('del_flag','0')->get();
+//		$indcatDetailList = IndustoryCat::where('del_flag','0')->get();
 		$buscatList = BusinessCat::where('del_flag','0')->get();
 		$buscatDetailList = BusinessCatDetail::where('del_flag','0')->get();
 		$incomeList = Income::where('del_flag','0')->get();
@@ -182,6 +182,7 @@ class GenerateSitemap extends Command
 			}
 		}
 
+/*
 		foreach ($indcatDetailList as $cat) {
 			$job = $this->findJob(null, null, null, null, $cat->id);
 
@@ -189,7 +190,7 @@ class GenerateSitemap extends Command
 				$this->add_url("/job/list/industory{$cat->id}");
 			}
 		}
-
+*/
 		foreach ($buscatList as $cat) {
 			$job = $this->findJob(null, null, null, null, null, $cat->id);
 
@@ -248,7 +249,7 @@ class GenerateSitemap extends Command
 					$this->add_url("/job/list/location{$param1->id}/indcat{$cat->id}");
 				}
 			}
-
+/*
 			foreach ($indcatDetailList as $cat) {
 				$job = $this->findJob($param1->id, null, null, null, $cat->id);
 
@@ -256,7 +257,7 @@ class GenerateSitemap extends Command
 					$this->add_url("/job/list/location{$param1->id}/industory{$cat->id}");
 				}
 			}
-
+*/
 			foreach ($buscatList as $cat) {
 				$job = $this->findJob($param1->id, null, null, null, null, $cat->id);
 
@@ -301,7 +302,7 @@ class GenerateSitemap extends Command
 					$this->add_url("/job/list/jobcategory{$param1->id}/indcat{$cat->id}");
 				}
 			}
-
+/*
 			foreach ($indcatDetailList as $cat) {
 				$job = $this->findJob(null, $param1->id, null, null, $cat->id);
 
@@ -309,7 +310,7 @@ class GenerateSitemap extends Command
 					$this->add_url("/job/list/jobcategory{$param1->id}/industory{$cat->id}");
 				}
 			}
-
+*/
 			foreach ($buscatList as $cat) {
 				$job = $this->findJob(null, $param1->id, null, null, null, $cat->id);
 
@@ -354,7 +355,7 @@ class GenerateSitemap extends Command
 					$this->add_url("/job/list/occupation{$param1->id}/indcat{$cat->id}");
 				}
 			}
-
+/*
 			foreach ($indcatDetailList as $cat) {
 				$job = $this->findJob(null, null, $param1->id, null, $cat->id);
 
@@ -362,7 +363,7 @@ class GenerateSitemap extends Command
 					$this->add_url("/job/list/occupation{$param1->id}/industory{$cat->id}");
 				}
 			}
-
+*/
 			foreach ($buscatList as $cat) {
 				$job = $this->findJob(null, null, $param1->id, null, null, $cat->id);
 
@@ -409,7 +410,7 @@ class GenerateSitemap extends Command
 						$this->add_url("/job/list/location{$param1->id}/jobcategory{$param2->id}/indcat{$cat->id}");
 					}
 				}
-
+/*
 				foreach ($indcatDetailList as $cat) {
 					$job = $this->findJob($param1->id, $param2->id, null, null, $cat->id);
 
@@ -417,7 +418,7 @@ class GenerateSitemap extends Command
 						$this->add_url("/job/list/location{$param1->id}/jobcategory{$param2->id}/industory{$cat->id}");
 					}
 				}
-
+*/
 				foreach ($buscatList as $cat) {
 					$job = $this->findJob($param1->id, $param2->id, null, null, null, $cat->id);
 
@@ -461,7 +462,7 @@ class GenerateSitemap extends Command
 						$this->add_url("/job/list/location{$param1->id}/occupation{$param2->id}/indcat{$cat->id}");
 					}
 				}
-
+/*
 				foreach ($indcatDetailList as $cat) {
 					$job = $this->findJob($param1->id, null, $param2->id, null, $cat->id);
 
@@ -469,7 +470,7 @@ class GenerateSitemap extends Command
 						$this->add_url("/job/list/location{$param1->id}/occupation{$param2->id}/industory{$cat->id}");
 					}
 				}
-
+*/
 				foreach ($buscatList as $cat) {
 					$job = $this->findJob($param1->id, null, $param2->id, null, null, $cat->id);
 
@@ -581,12 +582,12 @@ class GenerateSitemap extends Command
 		if ( isset($industory_cats) ) {
 			$jobList = $jobList->where('jobs.industory_cats' ,'like', '%[' . $industory_cats .']%');
 		}
-
+/*
 		// インダストリ2
 		if ( isset($industory_cat_details) ) {
 			$jobList = $jobList->where('jobs.industory_cat_details' ,'like', '%[' . $industory_cat_details .']%');
 		}
-
+*/
 		// 業種1
 		if ( isset($business_cats) ) {
 			$jobList = $jobList->where('companies.business_cats' ,'like', '%[' . $business_cats .']%');

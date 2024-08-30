@@ -219,6 +219,27 @@ class Job extends Model
 
 
  /*****************************************
+ * インダストリカテゴリ セット
+ ******************************************/
+	public function setIndustoryCat($ary) {
+
+		if (!empty($ary[0])) {
+
+			$industory_cats = array();
+			for ($i = 0 ; $i < count($ary); $i++) {
+				$industory_cats[] = '[' . $ary[$i] . ']';
+			}
+
+			$this->industory_cats = implode(',', $industory_cats);
+
+		} else {
+			$this->industory_cats = null;
+		}
+
+	}
+
+
+ /*****************************************
  * インダストリカテゴリ＆インダストリ セット
  ******************************************/
 	public function setIndustory($ary) {
