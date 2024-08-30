@@ -3,7 +3,7 @@
 @section('content')
 
 <head>
-	<title>ジョブ管理｜{{ config('app.name', 'Laravel') }}</title>
+	<title>求人管理｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
 {{--@include('comp.member_activity')--}}
@@ -11,7 +11,7 @@
 	<div class="mainContentsInner-oneColumn">
 
 		<div class="mainTtl title-main">
-			<h2>ジョブ管理</h2>
+			<h2>求人管理</h2>
 		</div><!-- /.mainTtl -->
                 
 		<div class="containerContents">
@@ -27,7 +27,7 @@
 								<li style="text-align: right;">フリーワード</li>
 								<li style="width: 200px;margin-left: 0px;"><input type="text" name="freeword" value="{{ $freeword }}" placeholder=""></li>
 								<li><a href="javascript:listform.submit()" class="squareBtn">検索</a></li>
-								<li style="white-space:nowrap;">　　　<input type="checkbox" name="only_me" value="1" @if ($only_me == '1') checked @endif  onchange="this.form.submit()"><label>自分の担当のみ表示</label></li>
+								<li style="white-space:nowrap;">　　　<input type="checkbox" id="only_me"  name="only_me" value="1" @if ($only_me == '1') checked @endif  onchange="this.form.submit()"><label for="only_me">自分の担当のみ表示</label></li>
 							</ul><!-- /.item -->
 							{{ Form::close() }}
 						</div><!-- /.secBtnHead-btn -->

@@ -31,7 +31,7 @@
 --}}
                                 <div class="secBtnHead-check">
                                     {{ Form::open(['url' => '/comp/client/enter/list', 'name' => 'listform' , 'id' => 'listform', 'method'=>'GET']) }}
-                                        <input type="checkbox" name="only_me" value="1" @if ($search['only_me'] == '1') checked @endif  onchange="this.form.submit()"><label>自分の担当のみ表示</label>
+                                        <input type="checkbox" id="only_me" name="only_me" value="1" @if ($search['only_me'] == '1') checked @endif  onchange="this.form.submit()"><label for="only_me">自分の担当のみ表示</label>
                                     {{ Form::close() }}
                                 </div><!-- /.secBtnHead-btn -->
 

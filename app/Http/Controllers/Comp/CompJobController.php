@@ -175,6 +175,7 @@ class CompJobController extends Controller
 			'name'             => ['required', 'string', 'max:100'],
 			'intro'             => ['required', 'string'],
 			'locations'         => ['required'],
+			'income_id'         => ['required'],
 			'person'            => ['required'],
 		]);
 
@@ -244,8 +245,8 @@ class CompJobController extends Controller
 			$industory_cats = implode(',', $catList);
 
 		} else {
-			$job->industory_cats = null;
-			$job->industory_cat_details = null;
+			$industory_cats = null;
+			$industory_cat_details = null;
 		}
 
 
@@ -256,8 +257,10 @@ class CompJobController extends Controller
 			'member_id'             => $loginUser->id,
 			'name'                  => $request->name,
 			'intro'                 => $request->intro,
+			'url'                   => $request->url,
 			'job_code'              => $request->job_code,
 			'sub_category'          => $request->sub_category,
+			'income_id'             => $request->income_id,
 			'locations'             => $locations,
 			'else_location'         => $request->else_location,
 			'remote_flag'           => $remote_flag,

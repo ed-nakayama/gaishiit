@@ -3,7 +3,7 @@
 @section('content')
 
 <head>
-	<title>FAQ一覧｜{{ config('app.name', 'Laravel') }}</title>
+	<title>FAQ管理｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
 {{--@include('comp.member_activity')--}}
@@ -11,7 +11,7 @@
             <div class="mainContentsInner">
 
 				<div class="mainTtl title-main">
-					<h2>FAQ一覧</h2>
+					<h2>FAQ管理</h2>
 				</div><!-- /.mainTtl -->
                 
 				<div class="containerContents">

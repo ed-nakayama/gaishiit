@@ -41,17 +41,17 @@
 											<div class="form-inner">
 												<div>
 													　<input type="checkbox" id="casual_mail_flag" name="casual_mail_flag" @if ($member->casual_mail_flag == '1') checked @endif>
-														<label for="mendan">カジュアル面談</label>
+														<label for="casual_mail_flag">カジュアル面談</label>
 												</div>
 <br>
 												<div>
 													　<input type="checkbox" id="formal_mail_flag" name="formal_mail_flag" @if ($member->formal_mail_flag == '1') checked @endif>
-														<label for="oubo">正式応募</label>
+														<label for="formal_mail_flag">正式応募</label>
 												</div>
 <br>
 												<div>
 													　<input type="checkbox" id="event_mail_flag" name="event_mail_flag" @if ($member->event_mail_flag == '1') checked @endif>
-														<label for="event">イベント</label>
+														<label for="event_mail_flag">イベント</label>
 												</div>
 											</div>
 										</div>

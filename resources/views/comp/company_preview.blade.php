@@ -53,7 +53,7 @@
                                 </div>
                                 
                                 <div class="item-info">
-                                    <p>{!! nl2b(e($comp->intro)) !!}</p>
+                                    <p>{!! nl2br(e($comp->intro)) !!}</p>
 									@if ( $comp->casual_flag == '1')
                                     <div class="button-flex">
                                         <a>カジュアル面談を依頼</a>

@@ -114,7 +114,7 @@
                       </select>
                    </div>
                </div>
-               <div>　～　
+               <div>1
                </div>
                <div class="item-input">
                   <div class="selectWrap">
@@ -143,7 +143,7 @@
                             @foreach ($businessCatDetail as $detail)
                             	@if ($detail->business_cat_id == $cat->id)
                             		<li style="display: inline-block;">
-                            			<label>　<input type="checkbox" value="{{ $detail->id }}"   name="buscat_sel[]" title="{{ $detail->name }}" id="buscat_select"   @if (strpos($search['request_bus_cats'] ,$detail->id) !== false) checked @endif><span>{{ $detail->name }}</span></label>
+                            			<label><input type="checkbox" value="{{ $detail->id }}"   name="buscat_sel[]" title="{{ $detail->name }}" id="buscat_select"   @if (strpos($search['request_bus_cats'] ,$detail->id) !== false) checked @endif><span>{{ $detail->name }}</span></label>
                             		</li>
                             	@endif
 			                @endforeach
@@ -167,7 +167,7 @@
                             @foreach ($jobCatDetail as $detail)
                             	@if ($detail->job_cat_id == $cat->id)
                             		<li style="display: inline-block;">
-                            			<label>　<input type="checkbox" value="{{ $detail->id }}" name="jobcat_sel[]" title="{{ $detail->name }}"  id="jobcat_select"  @if (strpos($search['request_job_cat_details'] ,$detail->id) !== false) checked @endif><span>{{ $detail->name }}</span></label>
+                            			<label><input type="checkbox" value="{{ $detail->id }}" name="jobcat_sel[]" title="{{ $detail->name }}"  id="jobcat_select"  @if (strpos($search['request_job_cat_details'] ,$detail->id) !== false) checked @endif><span>{{ $detail->name }}</span></label>
                             		</li>
                             	@endif
 			                @endforeach

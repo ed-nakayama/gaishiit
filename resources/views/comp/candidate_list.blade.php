@@ -112,7 +112,7 @@
 										<th>最終更新</th>
 										<th>氏名</th>
 										<th>状況</th>
-										<th>年齢</th>
+										<th style="white-space:nowrap">年齢</th>
 										<th>勤務先</th>
 										<th>現在の職種</th>
 										<th>役職</th>

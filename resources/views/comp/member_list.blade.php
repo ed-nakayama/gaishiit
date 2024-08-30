@@ -3,14 +3,14 @@
 @section('content')
 
 <head>
-	<title>責任者登録｜{{ config('app.name', 'Laravel') }}</title>
+	<title>メンバー管理｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
             <div class="mainContentsInner-oneColumn">
 
                 <div class="secTitle">
                     <div class="title-main">
-                        <h2>責任者登録</h2>
+                        <h2>メンバー管理</h2>
                     </div><!-- /.mainTtl -->
                 </div><!-- /.sec-title -->
 
@@ -45,13 +45,13 @@
                                     <ul class="item-btn">
                                        <li></li>
                                          @error('solo_email')
-                                             <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+                                             <li style="width:400px;"><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
                                          @enderror
                                      </ul>
                                     <ul class="item-btn">
                                        <li></li>
                                          @error('solo_name')
-                                             <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+                                             <li style="width:400px;"><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
                                          @enderror
                                      </ul>
                                    {{ Form::close() }}

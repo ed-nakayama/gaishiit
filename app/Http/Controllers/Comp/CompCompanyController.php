@@ -195,7 +195,6 @@ class CompCompanyController extends CompanyController
 
  		return view('comp.company_preview' ,compact(
  			'comp',
- 			'compPr',
  			'eventList',
  			'jobList',
  			));

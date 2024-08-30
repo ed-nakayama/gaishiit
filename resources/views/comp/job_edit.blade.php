@@ -3,7 +3,7 @@
 @section('content')
 
 <head>
-	<title>ジョブ管理｜{{ config('app.name', 'Laravel') }}</title>
+	<title>求人管理｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
 {{--@include('comp.member_activity')--}}
@@ -12,19 +12,19 @@
 
                 <div class="mainTtl title-main">
 					@if ( !isset($job->id) )
-                    	<h2>ジョブ管理 - 新規作成</h2>
+                    	<h2>求人管理 - 新規作成</h2>
 					@elseif (strpos($job->person ,Auth::user()->id) !== false)
-	                    <h2>ジョブ管理 - 編集</h2>
+	                    <h2>求人管理 - 編集</h2>
 					@else
-                    	<h2>ジョブ管理 - 参照</h2>
+                    	<h2>求人管理 - 参照</h2>
 					@endif
                 </div><!-- /.mainTtl -->
 
                 <div class="containerContents">
 @if ( isset($job->id) )
  <!--  修正  -->
-                    {{ Form::open(['url' => '/comp/job/change', 'name' => 'changeform' , 'id' => 'changeform']) }}
-                    {{ Form::hidden('job_id', old('job_id' ,$job->id), ['class' => 'form-control', 'id'=>'job_id' ] )}}
+					{{ html()->form('POST', '/comp/job/change')->id('changeform')->attribute('name', 'changeform')->open() }}
+					{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
                     <section class="secContents-mb">
                         <div class="secContentsInner">
                             
@@ -43,7 +43,7 @@
 								<li>
                             		<div class="btnContainer">
 									@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false) 
-										<a href="javascript:changeform.submit()" class="squareBtn btn-short">保存</a>
+										<a href="javascript:changeform.submit()" class="squareBtn btn-short">公開保存</a>
 									@else
 				                		@if (session('update_success'))
     	                            		<a href="/comp/job" class="squareBtn btn-large">戻る</a>
@@ -58,18 +58,19 @@
 			               	{{-- 更新成功メッセージ --}}
 			               	@if (session('option_success'))
 			                  	<div id="success1" class="alert alert-success"  style="color:#0000ff;">
-			                   		{{session('option_success')}}
+			                   		公開/非公開フラグを保存しました。
 			                  	</div>
 			               	@endif
  		                   	</div>
                        </div><!-- /.secContentsInner -->
                     </section><!-- /.secContents-mb -->
-                    {{ Form::close() }}
+					{{ html()->form()->close() }}
 <!--  修正 END  -->
+<hr>
 @endif
 
-					{{ Form::open(['url' => '/comp/job/register', 'name' => 'regform' , 'id' => 'regform']) }}
-					{{ Form::hidden('job_id', old('job_id' ,$job->id), ['class' => 'form-control', 'id'=>'job_id' ] )}}
+					{{ html()->form('POST', '/comp/job/register')->id('regform')->attribute('name', 'regform')->open() }}
+					{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
 					<section class="secContents">
 
                         <div class="secContentsInner">
@@ -82,7 +83,7 @@
 											<p></p>
 										</div><!-- /.item-name -->
 
-										<div id="success2" class="alert alert-success"  style="color:#0000ff;">
+										<div id="success2" class="alert alert-success"  style="color:#0000ff; text-align:center; width:100%;">
 									 		{{session('update_success')}}
 										</div>
 									</div><!-- END formContainer mg-ajuse -->
@@ -166,6 +167,20 @@
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
 
+							<div class="formContainer mg-ajust">
+								<div class="item-name">
+									<p>URL</p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									<input name="url" type="text" value="{{ old('url' ,$job->url) }}"  @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">
+									<ul class="oneRow">
+										@error('url')
+											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+										@enderror
+									</ul>
+								</div><!-- /.item-input -->
+							</div><!-- END formContainer -->
+
 
 							<div class="formContainer mg-ajust">
 								<div class="item-name">
@@ -230,6 +245,27 @@
 								</div><!-- /.item-input -->
 							</div>
 
+
+							<div class="formContainer mg-ajust">
+								<div class="item-name">
+									<p>年収<span>*</span></p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									<div class="selectWrap">
+										<select name="income_id"  class="select-no">
+											<option value=""></option>
+											@foreach ($incomeList as $income)
+												<option value="{{ $income->id }}" @if (old('income_id' ,$job->income_id) == $income->id)  selected @endif>{{ $income->name }}</option>
+											@endforeach
+										</select>
+									</div>
+									<ul class="oneRow">
+										@error('income_id')
+											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+										@enderror
+									</ul>
+								</div><!-- /.item-input -->
+							</div><!-- END formContainer -->
                                 
 							<div class="formContainer mg-ajust">
 								<div class="item-name">
@@ -333,7 +369,7 @@
                                 		@endif
                               		@endif
                                 </div><!-- /.btn-container -->
-                            {{ Form::close() }}
+							{{ html()->form()->close() }}
 						</div><!-- /.secContentsInner -->
 					</section><!-- /.secContents -->
                    

@@ -8,12 +8,20 @@
     <link href="{{ asset('comp/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('comp/assets/css/remodal.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('comp/assets/css/remodal-default-theme.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('comp/assets/css/add_comp_new.css') }}" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
 <body class="bg-admin">
     
     <header class="header" style="position: fixed;width: 100%;z-index:1;">
+				@if ( config('app.env') == 'Staging')
+					<center>
+					<div style="background-color:blue;color:white;font-weight:bolder;font-size:16px;">
+						{{ config('app.env') }}
+					</div>
+					</center>
+				@endif
         <div class="headInner">
             <div class="headMain">
                 <h1 class="logo"><a href="/comp/mypage"><img src="/images/logo_on_comp.png" width="150"></a></h1>
@@ -28,20 +36,72 @@
                 <div class="containerMenu">
                     <ul class="menu">
                         <li style="white-space:nowrap;"><a href="/comp/candidate">候補者管理</a></li>
-                        <li style="white-space:nowrap;"><a href="/comp/job">ジョブ管理</a></li>
+                        <li style="white-space:nowrap;"><a href="/comp/job">求人管理</a></li>
+{{--
                         <li style="white-space:nowrap;"><a href="/comp/unit">部門設定</a></li>
+--}}
                         <li style="white-space:nowrap;"><a href="/comp/event">イベント管理</a></li>
+{{--
                         <li><a href="/comp/faq/list">FAQ</a></li>
+--}}
                     </ul>
                 </div><!-- /.containerMenu -->
             </div><!-- /.menu -->
 
-			<div style="display: flex; align-items: center;">
+{{--
 				<div class="dropdown-menu userName">
 					<ul class="usrNameMenu">
 						<li><a href="/comp/edit" class="name"  style="white-space:nowrap; color:white;  background:gray;">企業設定</a></li>
 					</ul>
 				</div><!-- /.dropdown-men -->　
+--}}
+        <div class="headMenu">
+				<div class="dropdown-menu userMsg">
+					<ul class="userMsgMenu">
+						<li>
+							<a href="#" class="userMsgMenu__button">
+								<img class="userMsgMenu__icon" src="/comp/assets/img/icon-comment.svg" width="40">
+								<span class="userMsgMenu__text">メッセージ</span>
+								<span class="userMsgMenu__badge"> {{ $member_act['user_casual_cnt'] + $member_act['user_formal_cnt'] + $member_act['event_cnt'] }}</span>
+							</a>
+							<ul class="dropdown-menu__list inner">
+								<li><a href="/comp/msg/casual/list">カジュアル面談</a></li>
+								<li><a href="/comp/msg/formal/list">正式応募</a></li>
+								<li><a href="/comp/msg/event/list">イベント</a></li>
+							</ul>
+							<form id="password_edit-form" action="{{ route('comp.password.edit') }}" method="GET" style="display: none;">
+							</form>
+							<form id="logout-form" action="{{ route('comp.logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
+						</li>
+					</ul>
+				</div><!-- /.dropdown-men -->
+
+
+				<div class="dropdown-menu userName">
+					<ul class="userNameMenu">
+						<li>
+							<a href="#" class="userNameMenu__button">設定</a>
+							<ul class="dropdown-menu__list inner">
+								<li><a href="/comp/edit">基本情報設定</a></li>
+								<li><a href="/comp/unit">部門設定</a></li>
+								<li><a href="/comp/member">メンバー管理</a></li>
+								<li><a href="/comp/claim/every">請求管理</a></li>
+								<li><a href="/comp/faq/list">FAQ管理</a></li>
+								<li><a href="/comp/member/setting">メール受信設定</a></li>
+								<li><a href="{{ route('comp.password.edit') }}" onclick="event.preventDefault(); document.getElementById('password_edit-form').submit();">{{ __('Change Password') }}</a></li>
+								<li><a href="{{ route('comp.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a></li>
+							</ul>
+							<form id="password_edit-form" action="{{ route('comp.password.edit') }}" method="GET" style="display: none;">
+							</form>
+							<form id="logout-form" action="{{ route('comp.logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
+						</li>
+					</ul>
+				</div><!-- /.dropdown-men -->
+{{--
 				<div class="dropdown-menu userName">
 					<ul class="usrNameMenu">
 						<li>
@@ -59,8 +119,8 @@
 						</li>
 					</ul>
 				</div><!-- /.dropdown-men -->
+--}}
 			</div>
-
 
         </div><!-- /.headInner -->
         <div class="infoBar">
@@ -73,17 +133,24 @@
                     	<p>{{ $information[0]->updated_at->format('Y/m/d') }} {{ $information[0]->content }}</p>
                     @endif
                 </div><!-- /.infoBarText -->
-@if(Auth::user()->ark_priv == '1')                
+@if($member_act['agency_flag'] == '1' && Auth::user()->ark_priv == '1')                
                 <div class="infoBarText" style="text-align: right">
                － {{ $member_act['comp_name'] }}でログイン中 －
                 </div><!-- /.infoBarTitle -->
+{{--
                 <div class="infoBarTitle">
                     <a href="{{ route('comp.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><h2>ログアウト</h2></a>
+                </div><!-- /.infoBarTitle -->
+--}}
+@else
+                <div class="infoBarText" style="text-align: right">
+               	{{ Auth::user()->name }}
                 </div><!-- /.infoBarTitle -->
 @endif
             </div><!-- /.infoBarInner -->
         </div><!-- /.infoBar -->
 
+{{--
 		<div class="msgBar">
 			<div class="msgBarInner">
 				<div class="msgBarTitle">
@@ -101,8 +168,7 @@
 				</div><!-- /.infoBarTitle -->
 			</div><!-- /.msgBarInner -->
 		</div><!-- /.msgBar -->
-
-
+--}}
     </header>
     
     

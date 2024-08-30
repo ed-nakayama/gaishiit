@@ -24,7 +24,7 @@
 							{{ Form::open(['url' => '/comp/unit/list', 'name' => 'listform' , 'id' => 'listform', 'method'=>'GET']) }}
 							<ul class="item-btn" style="-webkit-justify-content: space-between;">
 								<li></li>
-								<li style="white-space:nowrap;"><input type="checkbox" name="only_me" value="1" @if ($param['only_me'] == '1') checked @endif  onchange="this.form.submit()"><label>自分の担当のみ表示</label></li>
+								<li style="white-space:nowrap;"><input type="checkbox" id="only_me" name="only_me" value="1" @if ($param['only_me'] == '1') checked @endif  onchange="this.form.submit()"><label for="only_me">自分の担当のみ表示</label></li>
 							</ul><!-- /.item -->
 							{{ Form::close() }}
 						</div><!-- /.secBtnHead-btn -->

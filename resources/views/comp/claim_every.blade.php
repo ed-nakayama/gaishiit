@@ -9,7 +9,7 @@
 
             <div class="mainContentsInner-oneColumn">
                 <div class="mainTtl title-main">
-                    <h2>請求管理1</h2>
+                    <h2>請求管理</h2>
                 </div><!-- /.mainTtl -->
                 
                 <div class="containerContents">
