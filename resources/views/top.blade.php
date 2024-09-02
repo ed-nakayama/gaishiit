@@ -192,11 +192,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="mv"></div>
         <section id="sec-title" class="items">
 		<header>
-			<div id="menu">			
+			<div id="menu">
 				<div id="menu-inner">
 					<div class="logo">
 						<a href="/mypage">
-							<a href="#"><img src="img/top/logo.png" alt="Gaishi IT.com" class="v-pc"><img src="img/top/logo_sp.png" alt="Gaishi IT.com" class="v-sp">
+							<img src="img/top/h_logo_0901.png" style="max-width: 200px;height: auto;" alt="Gaishi IT.com" class="v-pc"><img src="img/top/h_logo_0901.png" style="max-width: 200px;height: auto;" alt="Gaishi IT.com" class="v-sp">
 						</a>
 					</div>
 
@@ -204,9 +204,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<nav>
 							<div class="inner">
 								<ul id="menu-content">
-									<li style="transform: rotate(0.03deg);"><a href="/company">企業を探す</a></li>
-									<li style="transform: rotate(0.03deg);"><a href="/job">求人を探す</a></li>
-									<li style="transform: rotate(0.03deg);"><a href="/blog">転職ガイド</a></li>
+									<li><a href="/company">企業を探す</a></li>
+									<li><a href="/job">求人を探す</a></li>
+									<li><a href="/blog">転職ガイド</a></li>
 								</ul>
 							</div>
 						</nav>
