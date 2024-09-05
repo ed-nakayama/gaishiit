@@ -19,7 +19,7 @@
     <span class="f-red">完全</span>
     <span class="f-red">無料</span>
   </div>
-  <img src="/img/ad-lp-img/ad-lp-logo.png" alt="ロゴ">
+  <img src="/img/ad-lp-img/h_logo_0901.png" alt="ロゴ">
   <div class="lp-eye-content02">
     <span class="r1">クチコミ</span>
     <span class="r2">掲載数</span>
