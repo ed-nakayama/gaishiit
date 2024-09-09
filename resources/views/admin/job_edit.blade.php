@@ -6,22 +6,22 @@
 	<title>ジョブ管理｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
-            <div class="mainContentsInner">
+<div class="mainContentsInner">
+	<div class="mainTtl title-main">
+		@if (Auth::user()->agent_priv == '0')
+			<h2>ジョブ管理 - 編集</h2>
+		@else
+			<h2>ジョブ管理 - 参照</h2>
+		@endif
+		<h3>{{ $job->getCompanyName() }}</h3>
+	</div><!-- /.mainTtl -->
 
-                <div class="mainTtl title-main">
-@if (Auth::user()->agent_priv == '0')
-                    <h2>ジョブ管理 - 編集</h2>
-@else
-                    <h2>ジョブ管理 - 参照</h2>
-@endif
-                </div><!-- /.mainTtl -->
-
-                <div class="containerContents">
-@if (Auth::user()->agent_priv == '1')
-<fieldset disabled>
-@else
-<fieldset>
-@endif
+	<div class="containerContents">
+		@if (Auth::user()->agent_priv == '1')
+			<fieldset disabled>
+		@else
+			<fieldset>
+		@endif
 					{{ html()->form('POST', '/admin/mypage/job/change')->id('changeform')->attribute('name', 'changeform')->open() }}
 					{{ html()->hidden('company_id', old('company_id' ,$job->company_id)) }}
 					{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
@@ -43,7 +43,7 @@
 @if (Auth::user()->agent_priv == '0')
 								<li>
                             		<div class="btnContainer">
-									<a href="javascript:changeform.submit()" class="squareBtn btn-short">保存</a>
+									<a href="javascript:changeform.submit()" class="squareBtn btn-short">公開保存</a>
                             		</div><!-- /.btn-container -->
 								</li>
 @endif

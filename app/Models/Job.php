@@ -40,6 +40,23 @@ class Job extends Model
 	}
 
 
+/*************************************
+* 企業名取得
+**************************************/
+	public function getCompanyName()
+	{
+		$result = null;
+
+		if (!empty($this->company_id)) {
+			$temp = Company::find($this->company_id);
+			$result = $temp->name;
+		}
+
+		return $result;
+	}
+
+
+
  /*****************************************
  * 企業ランキング 取得
  ******************************************/
@@ -60,7 +77,7 @@ class Job extends Model
 **************************************/
 	public function getIncome()
 	{
-		$income  = '';
+		$income  = '―';
 
 		if (!empty($this->income_id)) {
 			$temp = Income::find($this->income_id);
@@ -76,7 +93,7 @@ class Job extends Model
 **************************************/
 	public function getLocations()
 	{
-		$retLoc = '';
+		$retLoc = '―';
 
 		if (!empty($this->locations)) {
 
@@ -133,7 +150,7 @@ class Job extends Model
  ******************************************/
 	public function getJobCat() {
 
-		$ret = '';
+		$ret = '―';
 		
 		if (!empty($this->job_cats)) {
 			$ret = str_replace('[', '', $this->job_cats);
@@ -150,7 +167,7 @@ class Job extends Model
  ******************************************/
 	public function getJobCatName() {
 
-		$result = '';
+		$result = '―';
 		
 		if (!empty($this->job_cats)) {
 			$ret = str_replace('[', '', $this->job_cats);
