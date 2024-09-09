@@ -82,6 +82,12 @@ class AdminCompanyController extends CompanyController
 
 		$comp = Company::find($request->comp_id);
 
+		if (!empty($request->open_flag)) {
+			$comp->open_flag = $request->open_flag;
+		} else {
+			$comp->open_flag = 0;
+		}
+
 		if (!empty($request->agency_flag)) {
 			$comp->agency_flag = $request->agency_flag;
 		} else {
