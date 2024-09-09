@@ -36,7 +36,6 @@
 		</div>
 
 		<div class="con-wrap">
-			<h2>クチコミ評価ランキング</h2>
 			<div class="form-wrap">
 
 			<ol class="ranking-list">

@@ -318,6 +318,11 @@ input[type="checkbox"] {
   border-radius: 5px;
 }
 
+.tbl-member-5th th:nth-child(2) {
+  width: 6%;
+}
+
+
 .contentsTitle-container {
   .linkList {
     margin-bottom: 10px;
@@ -457,13 +462,16 @@ input[type="checkbox"] {
 }
 
 
-.squareBtn {
+.squareBtn,
+.squareGrayBtn {
   background-color: $gold;
   border-radius: 999em;
 }
 
 .btnContainer {
-  .squareBtn {
+
+  .squareBtn,
+  .squareGrayBtn {
     container-type: inline-size;
     position: relative;
     font-weight: bold;
@@ -563,7 +571,7 @@ input[type="checkbox"] {
 
 .tab_box .tab_btn {
   &.active {
-    background-color: $navy;
+    background-color: $gold;
     color: #fff;
     font-weight: bold;
   }

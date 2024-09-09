@@ -21,9 +21,9 @@
 }
 
 .pane-contents h2 {
+  margin: 30px 0;
   font-size: 26px;
   font-weight: bold;
-  margin-bottom: 20px;
   text-align: center;
   color: #e5af24;
 }
@@ -152,14 +152,14 @@
     margin-top: 10px;
   }
   .company-item .company-item__reviews > dt {
-    width: 40%;
+    width: 19%;
     padding: 10px 0;
   }
   .company-item .company-item__reviews > dt:nth-of-type(2) {
-    margin-left: 0px;
+    margin-left: 3px;
   }
   .company-item .company-item__reviews > dd {
-    width: 60%;
+    width: 30%;
   }
 }
 .company-item .company-item__button {
@@ -361,6 +361,9 @@
   font-size: 12px;
   font-weight: normal;
 }
+.top-ranking .top-ranking-list__item .company-item__reviews > dt:not(:first-child) {
+  margin-left: 3px;
+}
 .top-ranking .top-ranking-list__item .company-item__reviews > dd {
   font-size: 14px;
   padding: 10px 0;
@@ -467,6 +470,7 @@
   width: calc(100% - 100px);
 }
 .top-pickup .top-pickup-list__item .company-item__reviews > dt {
+  padding: 5px 0;
   font-size: 12px;
   font-weight: normal;
 }
@@ -836,7 +840,7 @@
 .search-link-list > h2 {
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin: 20px 0;
   text-align: left;
   color: #484848;
 }
@@ -886,7 +890,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 195px;
+  width: 192px;
   height: 40px;
   margin-bottom: 5px;
   padding: 0px 30px 0px 20px;
@@ -971,7 +975,7 @@
   font-size: 20px;
 }
 .top-search-link .search-link-list .job-check-box-btn a {
-  width: 180px;
+  width: 155px;
   color: #4aa5ce;
 }
 @media (max-width: 500px) {
@@ -1089,6 +1093,7 @@
 
 .review-list__footer {
   position: relative;
+  min-height: 80px;
 }
 .review-list__footer .review-list__footerRate {
   margin-bottom: 10px;
@@ -1422,6 +1427,14 @@
   padding: 3px 15px;
   font-weight: bold;
   line-height: 1.2;
+}
+.job-detail .job-detail__dl > dd:nth-of-type(1) {
+  width: auto;
+}
+@media (min-width: 768px) {
+  .job-detail .job-detail__dl > dd:nth-of-type(1) {
+    width: calc(100% - 100px);
+  }
 }
 .job-detail .job-detail__dl > dd > a {
   text-decoration: underline;

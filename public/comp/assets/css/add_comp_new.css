@@ -259,6 +259,10 @@ input[type=checkbox]:checked::before {
   border-radius: 5px;
 }
 
+.tbl-member-5th th:nth-child(2) {
+  width: 6%;
+}
+
 .contentsTitle-container .linkList {
   margin-bottom: 10px;
   margin-left: auto;
@@ -380,32 +384,38 @@ input[type=checkbox]:checked::before {
   padding: 0;
 }
 
-.squareBtn {
+.squareBtn,
+.squareGrayBtn {
   background-color: #e5af24;
   border-radius: 999em;
 }
 
-.btnContainer .squareBtn {
+.btnContainer .squareBtn,
+.btnContainer .squareGrayBtn {
   container-type: inline-size;
   position: relative;
   font-weight: bold;
   font-size: 16px;
 }
-td .btnContainer .squareBtn {
+td .btnContainer .squareBtn,
+td .btnContainer .squareGrayBtn {
   padding: 5px;
   font-size: 13px;
 }
 
 @container (max-width: 100px) {
-  .btnContainer .squareBtn {
+  .btnContainer .squareBtn,
+  .btnContainer .squareGrayBtn {
     padding: 10px 0;
     font-size: 14px;
   }
 }
-.btnContainer .squareBtn[href=""] {
+.btnContainer .squareBtn[href=""],
+.btnContainer .squareGrayBtn[href=""] {
   background-color: #ccc;
 }
-.btnContainer .squareBtn::after {
+.btnContainer .squareBtn::after,
+.btnContainer .squareGrayBtn::after {
   content: "";
   position: absolute;
   top: calc(50% - 10px);
@@ -419,7 +429,8 @@ td .btnContainer .squareBtn {
   background-color: #fff;
 }
 @container (max-width: 150px) {
-  .btnContainer .squareBtn::after {
+  .btnContainer .squareBtn::after,
+  .btnContainer .squareGrayBtn::after {
     display: none;
   }
 }
@@ -471,7 +482,7 @@ td .btnContainer .squareBtn {
 }
 
 .tab_box .tab_btn.active {
-  background-color: #011d70;
+  background-color: #e5af24;
   color: #fff;
   font-weight: bold;
 }

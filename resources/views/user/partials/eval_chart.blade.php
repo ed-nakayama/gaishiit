@@ -3,7 +3,7 @@
 	<h2 class="company-details-title">社員による会社評価スコア</h2>
 		<div class="company-details-column">
 			<div class="company-details-chart" style="position: relative;">
-				<canvas id="myRadarChart"></canvas>
+				<canvas id="myRadarChart" style="width:75%;"></canvas>
 			</div>
 
 			<div class="company-details-chartlists">
