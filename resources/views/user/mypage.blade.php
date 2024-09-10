@@ -1,9 +1,10 @@
 @extends('layouts.user.auth')
 
+{{--
 @section('breadcrumbs')
 	{{ Breadcrumbs::render('mypage') }}
 @endsection
-
+--}}
 
 @section('addheader')
 	<title>マイページ｜{{ config('app.title') }}</title>
