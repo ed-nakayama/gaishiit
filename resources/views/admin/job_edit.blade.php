@@ -43,7 +43,7 @@
 @if (Auth::user()->agent_priv == '0')
 								<li>
                             		<div class="btnContainer">
-									<a href="javascript:changeform.submit()" class="squareBtn btn-short">公開保存</a>
+										<a href="javascript:changeform.submit()" class="squareBtn btn-short">公開保存</a>
                             		</div><!-- /.btn-container -->
 								</li>
 @endif
@@ -92,6 +92,15 @@
 									</div>
 								</li>
 							</ul><!-- /.jobToggle -->
+
+							<div class="formContainer mg-ajust-midashi">
+								<div class="item-name">
+									<p>更新日</p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									{{ $job->updated_at }}
+								</div><!-- /.item-input -->
+							</div><!-- END formContainer mg-ajuse -->
 
 							@if ( isset($unitList[0]) )
 								<div class="formContainer mg-ajust">
