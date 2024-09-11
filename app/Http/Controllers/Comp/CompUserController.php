@@ -268,7 +268,7 @@ class CompUserController extends UserController
 /*************************************
 * ユーザ情報取得
 **************************************/
-	public function get_user($user_id)
+	public function get_user($user_id, $company_id)
 	{
 		$userInfo = User::leftJoin('const_englishes as eng','users.english','=','eng.id')
 			->leftJoin('const_englishes as jpn','users.japanese','=','jpn.id')
@@ -282,6 +282,7 @@ class CompUserController extends UserController
 	
 		$int_count = Interview::where('interviews.user_id', $user_id)
 			->where('aprove_flag', '1')
+			->where('company_id', $company_id)
 			->where('updated_at', '>' , $pre_date)
 			->count();
 
@@ -429,7 +430,7 @@ class CompUserController extends UserController
 
 
 
-		$userInfo = $this->get_user($user_id);
+		$userInfo = $this->get_user($user_id ,$loginUser->company_id);
 
 		$parent_id = $request->parent_id;
 
