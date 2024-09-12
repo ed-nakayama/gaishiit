@@ -189,9 +189,11 @@ class CompUserController extends UserController
 **************************************/
 	public function userBasePdf(Request $request)
 	{
+		$loginUser = Auth::user();
+
 		$userInfo = "";
 		if ( !empty($request->user_id) ) {
-			$userInfo = $this->get_user($request->user_id);
+			$userInfo = $this->get_user($request->user_id, $loginUser->company_id);
 		}
 		
 		$pdf = \PDF::loadView('pdf_templates.user_base',
@@ -208,10 +210,11 @@ class CompUserController extends UserController
 **************************************/
 	public function userCvPdf(Request $request)
 	{
+		$loginUser = Auth::user();
 		
 		$userInfo = "";
 		if ( !empty($request->user_id) ) {
-			$userInfo = $this->get_user($request->user_id);
+			$userInfo = $this->get_user($request->user_id, $loginUser->company_id);
 		}
 		
 	
@@ -229,10 +232,11 @@ class CompUserController extends UserController
 **************************************/
 	public function userCvEngPdf(Request $request)
 	{
+		$loginUser = Auth::user();
 		
 		$userInfo = "";
 		if ( !empty($request->user_id) ) {
-			$userInfo = $this->get_user($request->user_id);
+			$userInfo = $this->get_user($request->user_id, $loginUser->company_id);
 		}
 		
 
@@ -250,10 +254,11 @@ class CompUserController extends UserController
 **************************************/
 	public function userVitaePdf(Request $request)
 	{
+		$loginUser = Auth::user();
 		
 		$userInfo = "";
 		if ( !empty($request->user_id) ) {
-			$userInfo = $this->get_user($request->user_id);
+			$userInfo = $this->get_user($request->user_id, $loginUser->company_id);
 		}
 
 		$pdf = \PDF::loadView('pdf_templates.user_vitae',
@@ -384,11 +389,11 @@ class CompUserController extends UserController
 			->leftJoin('events','interviews.event_id','=','events.id')
 			->selectRaw('interviews.*,' .
 						'comp_members.name as member_name,' .
-						'jobs.name as job_name, jobs.person as job_person,' .
+						'jobs.id as job_id, jobs.name as job_name, jobs.person as job_person,' .
 						'const_stages.name as stage_name ,const_statuses.name as status_name, const_results.name as result_name,' .
-						'units.name as unit_name, units.person as unit_person,' .
+						'units.id as unit_id, units.name as unit_name, units.person as unit_person,' .
 						'companies.name as company_name, companies.person as company_person,' .
-						'events.name as event_name, events.person as event_person'
+						'events.id as event_id, events.name as event_name, events.person as event_person'
 						)
 			->where('interviews.company_id' ,$loginUser->company_id)
 			->where('interviews.user_id', $user_id)
