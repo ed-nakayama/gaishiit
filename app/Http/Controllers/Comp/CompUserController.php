@@ -392,7 +392,7 @@ class CompUserController extends UserController
 						'jobs.id as job_id, jobs.name as job_name, jobs.person as job_person,' .
 						'const_stages.name as stage_name ,const_statuses.name as status_name, const_results.name as result_name,' .
 						'units.id as unit_id, units.name as unit_name, units.person as unit_person,' .
-						'companies.name as company_name, companies.person as company_person,' .
+						'companies.id as company_id, companies.name as company_name, companies.person as company_person,' .
 						'events.id as event_id, events.name as event_name, events.person as event_person'
 						)
 			->where('interviews.company_id' ,$loginUser->company_id)

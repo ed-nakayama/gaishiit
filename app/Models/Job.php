@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Company;
+use App\Models\CompMember;
 use App\Models\Income;
 use App\Models\ConstLocation;
 use App\Models\JobCat;
 use App\Models\JobCatDetail;
 use App\Models\IndustoryCat;
 use App\Models\IndustoryCatDetail;
+
 
 class Job extends Model
 {
@@ -368,6 +370,32 @@ class Job extends Model
 			if (!empty($catList[0])) {
 				foreach ($catList as $cat) {
 					$temp[] = $cat->name;
+				}
+			
+				$result = implode('／', $temp);
+			}
+		}
+
+		return $result;
+	}
+
+
+ /*****************************************
+ * 担当者 取得
+ ******************************************/
+	public function getPerson() {
+
+		$result = '';
+		
+		if (!empty($this->person)) {
+			$ret = explode(',', $this->person);
+
+			$memList = CompMember::whereIn('id' ,$ret)
+				->get();
+			
+			if (!empty($memList[0])) {
+				foreach ($memList as $mem) {
+					$temp[] = $mem->name;
 				}
 			
 				$result = implode('／', $temp);

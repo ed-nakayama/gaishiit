@@ -230,23 +230,12 @@ class CompJobController extends Controller
 			for ($i = 0 ; $i < count($temp); $i++) {
 				$cats_list[] = '[' . $temp[$i] . ']';
 			}
-
-			$industory_cat_details = implode(',', $cats_list);
-
-			// インダストリカテゴリ
-			$parList = IndustoryCatDetail::whereIn('id' ,$temp)
-				->selectRaw('distinct industory_cat_id')
-				->get();
-
-			$catList  = array();
-			foreach ($parList as $par) {
-				$catList[] =  '[' . $par->industory_cat_id . ']';
-			}
-			$industory_cats = implode(',', $catList);
+			$industory_cats = implode(',', $cats_list);
+//			$industory_cat_details = null;
 
 		} else {
 			$industory_cats = null;
-			$industory_cat_details = null;
+//			$industory_cat_details = null;
 		}
 
 
@@ -273,7 +262,7 @@ class CompJobController extends Controller
 			'job_cats'              => $job_cats,
 			'job_cat_details'       => $job_cat_details,
 			'industory_cats'        => $industory_cats,
-			'industory_cat_details' => $industory_cat_details,
+//			'industory_cat_details' => $industory_cat_details,
 			]
 		);
 
@@ -317,6 +306,26 @@ class CompJobController extends Controller
 			'unitList',
 			'memberList',
 //			'edit_flag',
+		));
+	}
+
+
+/*************************************
+* 参照
+**************************************/
+	public function ref( Request $request, $jobId = null )
+	{
+		$loginUser = Auth::user();
+
+		$comp_id = $loginUser->company_id;
+
+		$job = Job::where('company_id' , $comp_id)
+			->where('id', $jobId)
+			->first();
+
+		
+		return view('comp.job_ref' ,compact(
+			'job',
 		));
 	}
 

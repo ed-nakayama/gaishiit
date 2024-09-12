@@ -143,11 +143,11 @@
 										@elseif ( ($int->interview_type == '0') && ($int->interview_kind == '1') )
 											{{ $int->unit_name }}
 										@elseif ( ($int->interview_type == '0') && ($int->interview_kind == '2') )
-											<a href="/comp/job/edit?job_id={{ $int->job_id }}" style="text-decoration:underline;" target="_blank">{{ $int->job_name }}</a>
+											<a href="/comp/job/ref/{{ $int->job_id }}" style="text-decoration:underline;" target="_blank">{{ $int->job_name }}</a>
 										@elseif ($int->interview_type == '1')
-											<a href="/comp/job/edit?job_id={{ $int->job_id }}" style="text-decoration:underline;" target="_blank">{{ $int->job_name }}</a>
+											<a href="/comp/job/ref/{{ $int->job_id }}" style="text-decoration:underline;" target="_blank">{{ $int->job_name }}</a>
 										@elseif ($int->interview_type == '2')
-											<a href="/comp/event/detail?event_id={{ $int->event_id }}" style="text-decoration:underline;" target="_blank">{{ $int->event_name }}</a>
+											{{ $int->event_name }}
 										@endif
 									</td>
 									<td>{{ $int->person_name }}</td>

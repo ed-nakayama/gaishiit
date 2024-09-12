@@ -78,6 +78,7 @@ Route::get ('/job/edit',       'CompJobController@edit');
 Route::post('/job/edit',       'CompJobController@edit')->name('job.edit');
 Route::get ('/job/edit/store', 'CompJobController@store');
 Route::post('/job/edit/store', 'CompJobController@store');
+Route::get ('/job/ref/{jobId}','CompJobController@ref')->name('job.ref');
 
 Route::get ('/job/change', 'CompJobController@edit')->name('job.change');
 Route::post('/job/change', 'CompJobController@change');
