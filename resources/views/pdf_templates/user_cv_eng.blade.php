@@ -15,9 +15,9 @@
                                         </div><!-- /.tblCaption -->
                                         <table class="tblUserInfo">
 
-                                            <tr><th>Candidate Number</th></tr>
-                                            <tr><td>{{ $userInfo['nick_name'] }}</td></tr>
-                                            
+                                            <tr><th>Candidate Name</th></tr>
+                                            <tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}@else {{ $userInfo->nick_name }} @endif</td></tr>
+                                           
                                             <tr><th>Company Name</th></tr>
                                             <tr><td>{{ $userInfo->en_company }}</td></tr>
                                             

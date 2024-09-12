@@ -15,8 +15,8 @@
                                         </div><!-- /.tblCaption -->
                                         <table class="tblUserInfo">
 
-                                            <tr><th>候補者番号</th></tr>
-                                            <tr><td>{{ $userInfo['nick_name'] }}</td></tr>
+                                            <tr><th>お名前</th></tr>
+                                            <tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}@else {{ $userInfo->nick_name }} @endif</td></tr>
                                             
                                             <tr><th>企業名</th></tr>
                                             <tr><td>{{ $userInfo->company }}</td></tr>
