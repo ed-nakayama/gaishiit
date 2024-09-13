@@ -40,6 +40,14 @@
 								</ul><!-- /.item -->
 								{{ html()->form()->close() }}
 							</div><!-- /.secBtnHead-btn -->
+
+							<div class="secBtnHead-btn" style="width:100%;margin: auto 0;">
+								{{ html()->form('GET', '/admin/comp/list/download')->id('downloadform')->attribute('name', 'downloadform')->open() }}
+								<ul class="item-btn">
+									<li style="width:100%;text-align:center;"><a href="javascript:downloadform.submit()" class="squareBtn" style="width:140px;white-space:nowrap;">一括ダウンロード</a></li>
+								</ul><!-- /.item -->
+								{{ html()->form()->close() }}
+							</div><!-- /.secBtnHead-btn -->
 						</div>
 					@endif
 

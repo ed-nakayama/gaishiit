@@ -122,6 +122,7 @@ Route::get ('/user/store', 'AdminUserController@store');
     // ´ë¶È´ØÏ¢
 Route::get ('/comp/list', 'AdminCompanyController@list')->name('comp.list');
 Route::post('/comp/list', 'AdminCompanyController@list');
+Route::get ('/comp/list/download', 'AdminCompanyController@list_download')->name('comp.list.download');
 
 Route::get ('/comp/register', 'AdminCompanyController@getRegister');
 Route::post('/comp/register', 'AdminCompanyController@postRegister');

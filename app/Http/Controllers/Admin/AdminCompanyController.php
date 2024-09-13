@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\CompanyController;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Company;
 use App\Models\CompMember;
@@ -13,6 +14,8 @@ use App\Models\BusinessCatDetail;
 
 class AdminCompanyController extends CompanyController
 {
+	private $DL_DIR = 'public/comp';
+
 	public function __construct()
 	{
  		$this->middleware('auth:admin');
@@ -247,6 +250,43 @@ class AdminCompanyController extends CompanyController
 			'comp',
 			'comp_id',
 		));
+	}
+
+
+/*************************************
+* 企業一覧ダウンロード
+**************************************/
+	public function list_download(Request $request)
+	{
+
+		$dlFileName = "complist_" . date("Ymd_His") . ".csv";
+		$dlFile = $this->DL_DIR . "/" . $dlFileName;
+
+		$compList = Company::orderBy('name_english')
+			->get();
+
+		$header = '"comp_id","企業名","SFID","公開","ARK代理管理"';
+		$header = mb_convert_encoding($header, 'SJIS-WIN', 'UTF8');
+		Storage::append($dlFile, $header);
+
+		foreach ($compList as $comp) {
+
+			$comp_name = mb_convert_encoding($comp->name, 'SJIS-WIN', 'UTF8');
+
+			$detail =  '"' . $comp->id . '"'
+					. ',"' . $comp_name . '"'
+					. ',"' . $comp->salesforce_id . '"'
+					. ',"' . $comp->open_flag . '"'
+					. ',"' . $comp->agency_flag . '"'
+					;
+
+			Storage::append($dlFile, $detail);
+		}
+
+		$mimeType = Storage::mimeType($dlFile);
+		$headers = [['Content-Type' => $mimeType]];
+
+		return Storage::download($dlFile, $dlFileName, $headers);
 	}
 
 
