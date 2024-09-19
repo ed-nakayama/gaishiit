@@ -6,6 +6,14 @@
 	<title>ジョブ管理｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
+
+<style>
+.scroll{
+  height: 600px;
+  overflow: auto;
+}
+</style>
+
 <div class="mainContentsInner">
 	<div class="mainTtl title-main">
 		@if (Auth::user()->agent_priv == '0')
@@ -154,6 +162,7 @@
 							</div><!-- END formContainer -->
 </fieldset>
 
+<div class="scroll">
 							<div class="formContainer mg-ajust">
 								<div class="item-name">
 									<p>URL</p>
@@ -395,7 +404,7 @@
                                         </ul>
                                     </div><!-- /.item-input -->
                                 </div>
-
+</div>{{-- END scroll --}}
 @if (Auth::user()->agent_priv == '0')
                                 <div class="btnContainer">
 			                		{{-- 更新成功メッセージ --}}
