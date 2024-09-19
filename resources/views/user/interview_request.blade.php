@@ -92,10 +92,14 @@
 				<div class="request-inner">
 					@if ($int_type == '0')
 						<h3>カジュアル面談を依頼する</h3>
-						<p style="font-size: 16px;">氏名、メールアドレス、職務経歴書（簡易版）を企業へ公開することに同意し、応募をします。</p>
+						<p style="font-size: 16px;">氏名、メールアドレス、職務経歴書（簡易版）を企業へ公開することに同意し、応募をします。
+							<div style="font-size: 16px;color:red;text-align:center;">※まずは本サービス「外資IT.com」の担当者からご連絡させていただきます。</div>
+						</p>
 					@elseif ($int_type == '1')
 						<h3>正式に応募する</h3>
-						<p style="font-size: 16px;">氏名、メールアドレス、職務経歴書（簡易版）を企業へ公開することに同意し、応募をします。</p>
+						<p style="font-size: 16px;">氏名、メールアドレス、職務経歴書（簡易版）を企業へ公開することに同意し、応募をします。
+							<div style="font-size: 16px;color:red;text-align:center;">※まずは本サービス「外資IT.com」の担当者からご連絡させていただきます。</div>
+						</p>
 					@elseif ($int_type == '2')
 						<h3>イベントを申し込む</h3>
 						<p style="font-size: 16px;">氏名、メールアドレス、職務経歴書（簡易版）を企業へ公開することに同意し、応募をします。</p>
