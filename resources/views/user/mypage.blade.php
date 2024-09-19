@@ -31,7 +31,7 @@
 			<div class="con-wrap ads">
 					<figure>
 						@if ( empty($user_act['banner'][0]->image) )
-							<img src="/img/mypage/img_ads.jpg" alt="">
+							<img src="/img/mypage/img_ads.gif" alt="">
 						@else
 							@if ( empty($user_act['banner'][0]->url) )
 								<a></a>
