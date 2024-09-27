@@ -216,9 +216,13 @@
 												@if ($cat->id == $detail->job_cat_id)
 													<div style="margin-left: 15px;">
 														@if (!empty($job->getJobCategory() ))
-															{{ html()->checkbox('jobCat[]', (in_array($detail->id, $job->getJobCategory() )), $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
+															{{ html()->checkbox('jobCat[]', (in_array($detail->id, old("jobCat", $job->getJobCategory()) )), $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
 														@else
-															{{ html()->checkbox('jobCat[]', false, $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
+															@if (!empty(old("jobCat")))
+																{{ html()->checkbox('jobCat[]', (in_array($detail->id, old("jobCat") )), $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
+															@else
+																{{ html()->checkbox('jobCat[]', false, $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
+															@endif
 														@endif
 													</div>
 												@endif
@@ -255,27 +259,16 @@
 										<div style="font-size:16px; font-weight: bold;">
 											<div style="margin-left: 15px;">
 												@if (!empty($job->getIndcatCat() ))
-													{{ html()->checkbox('indCat[]', (in_array($cat->id, $job->getIndcatCat() )), $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+													{{ html()->checkbox('indCat[]', (in_array($cat->id, old("indCat", $job->getIndcatCat()) )), $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
 												@else
-													{{ html()->checkbox('indCat[]', false, $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+													@if (!empty(old("indCat")))
+														{{ html()->checkbox('indCat[]', (in_array($detail->id, old("indCat") )), $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+													@else
+														{{ html()->checkbox('indCat[]', false, $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+													@endif
 												@endif
 											</div>
 										</div>
-{{--
-										<div style="display:flex;flex-wrap: wrap;">
-											@foreach ($industoryCatDetail as $detail)
-												@if ($cat->id == $detail->industory_cat_id)
-													<div style="margin-left: 15px;">
-														@if (!empty($job->getIndustory() ))
-															{{ html()->checkbox('indCat[]', (in_array($detail->id, $job->getIndustory() )), $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
-														@else
-															{{ html()->checkbox('indCat[]', false, $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
-														@endif
-													</div>
-												@endif
-											@endforeach
-										</div>
---}}
 									@endforeach
 									<ul class="oneRow">
 										@error('jobCat[]')
@@ -331,10 +324,23 @@
 
 									<ul class="radioList">
 										@foreach ($constLocation as $loc)
+{{--
 											<li><label><input type="checkbox" value="{{ $loc->id }}" name="locations[]"  @if (strpos($job->locations ,$loc->id) !== false) checked @endif  onchange="elseChange()" @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif><span>{{ $loc->name }}</span></label></li>
+--}}
+											<li><label>
+												@if (!empty($job->getLocationArray() ))
+													{{ html()->checkbox('locations[]', (in_array($loc->id, old("locations", $job->getLocationArray()) )), $loc->id)->attribute('onchange', "elseChange()")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}<span>{{ $loc->name }}</span>
+												@else
+													@if (!empty(old("locations")))
+														{{ html()->checkbox('locations[]', (in_array($loc->id, old("locations") )), $loc->id)->attribute('onchange', "elseChange()")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}<span>{{ $loc->name }}</span>
+													@else
+														{{ html()->checkbox('locations[]', false, $loc->id)->attribute('onchange', "elseChange()")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}<span>{{ $loc->name }}</span>
+													@endif
+												@endif
+											</label></li>
 										@endforeach
-											<li><label>　／　<input type="checkbox" value="1" id="remote" name="remote"  @if ($job->remote_flag == '1') checked @endif onchange="locChange()" @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif><span>リモート</span></label></li>
-											<li><label>　：　<input type="checkbox" value="1" id="no_auto_flag" name="no_auto_flag"  @if ($job->no_auto_flag == '1') checked @endif  @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif><span>自動修正対象外</span></label></li>
+											<li><label>　／　{{ html()->checkbox('remote', old('remote' ,$job->remote_flag), "1")->attribute('onchange', "locChange()")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}<span>リモート</span></label></li>
+											<li><label>　／　{{ html()->checkbox('no_auto_flag', old('no_auto_flag' ,$job->no_auto_flag), "1")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}<span>自動修正対象外</span></label></li>
 									</ul><!-- /.radioList -->
 
 									<ul class="oneRow">
@@ -375,9 +381,9 @@
 								</div><!-- /.item-name -->
 								<div class="item-input">
 									<ul class="checkboxList">
-										<li><label><input type="checkbox" name="backg_flag" value="1" @if (old('backg_flag' ,$job->backg_flag) == '1')  checked="checked" @endif  @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif>職務経歴書</label></li>
-										<li><label><input type="checkbox" name="backg_eng_flag" value="1" @if (old('backg_eng_flag',$job->backg_eng_flag) == '1')  checked="checked" @endif  @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif>職務経歴書（英文）</label></li>
-										<li><label><input type="checkbox" name="personal_flag" value="1" @if (old('personal_flag' ,$job->personal_flag) == '1') checked="checked" @endif  @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif>履歴書</label></li>
+										<li><label>{{ html()->checkbox('backg_flag', old('backg_flag' ,$job->backg_flag), "1")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}職務経歴書</label></li>
+										<li><label>{{ html()->checkbox('backg_eng_flag', old('backg_eng_flag' ,$job->backg_eng_flag), "1")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}職務経歴書（英文）</label></li>
+										<li><label>{{ html()->checkbox('personal_flag', old('personal_flag' ,$job->personal_flag), "1")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}履歴書</label></li>
 									</ul><!-- /.checkboxList -->
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
