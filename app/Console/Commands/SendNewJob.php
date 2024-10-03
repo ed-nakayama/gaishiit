@@ -53,18 +53,18 @@ class SendNewJob extends Command
 			->where('jobs.open_flag', '1')
 			->whereNull('jobs.job_cat_details')
 			->where('jobs.created_at', '>', $lastUpdate->last_date)
-			->selectRaw('companies.id as comp_id, companies.name as comp_name, jobs.id as job_id, jobs.name as job_name')
+			->selectRaw('companies.id as comp_id, companies.name as comp_name, jobs.id as job_id, jobs.name as job_name, jobs.job_code as job_code')
 			->get();
 
 		$workName  = "public/comp_jobs/new_jobs_" . date("Ymd")  . ".csv";
 
 		Storage::delete($workName);
 
-		$header = 'comp_name,job_name,url';
+		$header = 'comp_name,job_id,job_name,url';
 		Storage::disk('local')->append($workName, $header);
 		
 		foreach ($jobList as $job) {
-			$content = str_replace("\n", '', $job->comp_name) . ',"' . $job->job_name. '"' . ",https://gaishiit.com/admin/mypage/job/edit?company_id={$job->comp_id}&job_id={$job->job_id}";
+			$content = str_replace("\n", '', $job->comp_name) . ',"' . $job->job_code . '"' . ',"' . $job->job_name . '"' . ",https://gaishiit.com/admin/mypage/job/edit?company_id={$job->comp_id}&job_id={$job->job_id}";
 
 			$content = mb_convert_encoding($content, 'SJIS-WIN', 'UTF8');
 
