@@ -46,9 +46,9 @@
 										{{ html()->text('freeword', $freeword) }}
 									</li>
 									<li>
-										公開/非公開
+										表示/非表示
 										<div class="selectWrap">
-											{{ html()->select('open_flag', [0 => '非公開', 1 => '公開', 2 => 'すべて'], $open_flag)->class('select-no') }}
+											{{ html()->select('open_flag', [0 => '非表示', 1 => '表示', 2 => 'すべて'], $open_flag)->class('select-no') }}
 										</div>
 									</li>
 									<li>
@@ -131,7 +131,7 @@
 								<th>企業名</th>
 								<th>ジョブID</th>
 								<th>Job Title</th>
-								<th>公開/<br>非公開</th>
+								<th>表示/<br>非表示</th>
 								<th>Close</th>
 								<th>職種</th>
 								<th>補足カテゴリ</th>
@@ -153,7 +153,7 @@
 										<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}</a>
 										{{ html()->form()->close() }}
 									</td>
-									<td>@if ($int->open_flag == '1')公開 @else非公開 @endif</td>
+									<td>@if ($int->open_flag == '1')表示 @else非表示 @endif</td>
 									<td  style="text-align: center;">
 										{{ html()->checkbox('',false ,$int->id)->id('close' . $int->id)->attribute('onchange', "modalConfirm($int->id);") }}
 									</td>

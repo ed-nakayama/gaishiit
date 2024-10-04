@@ -40,9 +40,9 @@
 								<li>
 									<div class="button-radio">
 										<input id="c_ch1" class="radiobutton" name="open_flag" type="radio" value="1"  @if (old('open_flag' ,$job->open_flag) == '1')  checked="checked" @endif  onchange="checkOpen()"  />
-										<label for="c_ch1">公開</label> /
+										<label for="c_ch1">表示</label> /
 										<input id="c_ch2" class="radiobutton" name="open_flag" type="radio" value="0"  @if (old('open_flag' ,$job->open_flag) == '0')  checked="checked" @endif  onchange="checkOpen()" />
-										<label for="c_ch2">非公開</label> 
+										<label for="c_ch2">非表示</label> 
 									</div>
 								</li>
 								<li>
@@ -51,7 +51,7 @@
 @if (Auth::user()->agent_priv == '0')
 								<li>
                             		<div class="btnContainer">
-										<a href="javascript:changeform.submit()" class="squareBtn btn-short">公開保存</a>
+										<a href="javascript:changeform.submit()" class="squareBtn btn-short">表示設定保存</a>
                             		</div><!-- /.btn-container -->
 								</li>
 @endif
