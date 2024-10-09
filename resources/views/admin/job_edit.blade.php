@@ -165,6 +165,15 @@
 <div class="scroll">
 							<div class="formContainer mg-ajust">
 								<div class="item-name">
+									<p>一般/portal</p>
+								</div><!-- /.item-name -->
+								<div class="item-input">
+									@if ($job->portal_flag == '1') portal @else 一般 @endif
+								</div><!-- /.item-input -->
+							</div><!-- END formContainer -->
+
+							<div class="formContainer mg-ajust">
+								<div class="item-name">
 									<p>URL</p>
 								</div><!-- /.item-name -->
 								<div class="item-input">

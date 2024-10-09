@@ -40,6 +40,7 @@ public $sheetData;
 		    	'url'           => isset($row[14]) ? $row[14] : '',
 		    	'kind'          => isset($row[15]) ? $row[15] : '',
 		    	'open'          => isset($row[16]) ? $row[16] : '',
+		    	'portal'        => isset($row[17]) ? $row[17] : '',
 		    ];
     	}
 

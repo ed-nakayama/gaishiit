@@ -355,6 +355,7 @@ end_proc:
 			'open_date'         => $this->open_date,
 			'for_agent'         => $job_arr['agent'],
 			'event_job'         => $this->event_job,
+			'portal_flag'       => !empty($job_arr['portal'] == '1') ? '1' : '0',
 		]);
 
 	}
@@ -370,7 +371,6 @@ end_proc:
 		$job->intro = $this->jobDetail;
 		$job->working_place = $job_arr['working_place'];
 
-//		$job->job_cat_details = !empty($this->cat_id) ? "[{$this->cat_id}]" : null;
 		$job->sub_category = $this->sub_category;
 		$job->url = $job_arr['url'];
 		$job->for_agent = $job_arr['agent'];
@@ -386,6 +386,10 @@ end_proc:
 		if (empty($job->open_date)) {
 			$job->open_flag = $this->open_flag;
 			$job->open_date = $this->open_date;
+		}
+
+		if ($job->portal_flag == '0') {
+			$job->portal_flag = !empty($job_arr['portal'] == '1') ? '1' : '0';
 		}
 		
 		$job->event_job = $this->event_job;

@@ -2555,7 +2555,7 @@ select {
 	width: 6%;
 }
 .tbl-joblist th:nth-child(2) { /* 企業名 */
-	width: 12%;
+	width: 10%;
 }
 .tbl-joblist th:nth-child(3) { /* ジョブID */
 	width: 6%;
@@ -2563,16 +2563,16 @@ select {
 .tbl-joblist th:nth-child(4) { /* Job Title */
 	width: auto;
 }
-.tbl-joblist th:nth-child(5) { /* 公開/非公開 */
+.tbl-joblist th:nth-child(5) { /* 外Web/内Web */
+	width: 6%;
+}
+.tbl-joblist th:nth-child(6) { /* 公開/非公開 */
 	width: 5%;
 }
-.tbl-joblist th:nth-child(6) { /* Close */
+.tbl-joblist th:nth-child(7) { /* Close */
 	width: 5%;
 }
-.tbl-joblist th:nth-child(7) { /* 職種 */
-	width: 10%;
-}
-.tbl-joblist th:nth-child(8) { /* 補足カテゴリ */
+.tbl-joblist th:nth-child(8) { /* 職種 */
 	width: 10%;
 }
 .tbl-joblist th:nth-child(9) { /* 部門 */

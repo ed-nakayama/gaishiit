@@ -6,6 +6,22 @@
 	<title>マイページ｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
+<script>
+function func_dl() {
+
+	document.addform.dl.value = '1';
+	document.addform.submit();
+}
+
+function func_nodl() {
+
+	document.addform.dl.value = '';
+	document.addform.submit();
+}
+
+
+</script>
+
 <div class="mainContentsInner-oneColumn">
 
 	<div style="display:flex;justify-content: space-between;">
@@ -39,7 +55,8 @@
 					<div class="panel_area" style="padding: 0px;">
 
 						{{ html()->form('GET', '/admin/mypage/joblist/list')->id('addform')->attribute('name', 'addform')->open() }}
-						<div class="secBtnHead">
+						{{ html()->hidden('dl', '') }}
+					<div class="secBtnHead">
 							<div class="secBtnHead-btn">
 								<ul class="item-btn" style="align-items: center;">
 									<li style="width: 400px;margin-left: 0px;">全体検索
@@ -48,16 +65,23 @@
 									<li>
 										表示/非表示
 										<div class="selectWrap">
-											{{ html()->select('open_flag', [0 => '非表示', 1 => '表示', 2 => 'すべて'], $open_flag)->class('select-no') }}
+											{{ html()->select('open_flag', [0 => '非表示', 1 => '表示', 2 => 'すべて'], $open_flag) }}
 										</div>
 									</li>
 									<li>
 										職種有無
 										<div class="selectWrap">
-											{{ html()->select('cat_flag', [0 => '職種なし', 1 => '職種あり', 2 => 'すべて'], $cat_flag)->class('select-no') }}
+											{{ html()->select('cat_flag', [0 => '職種なし', 1 => '職種あり', 2 => 'すべて'], $cat_flag) }}
 										</div>
 									</li>
-									<li style="margin-top: 20px;"><a href="javascript:addform.submit()" class="squareBtn">検索</a></li>
+									<li>
+										一般/portal
+										<div class="selectWrap">
+											{{ html()->select('portal_flag', [0 => '一般', 1 => 'portal', 2 => 'すべて'], $portal_flag) }}
+										</div>
+									</li>
+									<li style="margin-top: 20px;"><input type="button" value="検索" class="squareBtn" onclick="func_nodl()"></li>
+									<li style="margin-top: 20px;"><input type="button" value="検索ダウンロード" class="squareBtn" onclick="func_dl()"></li>
 								</ul><!-- /.item -->
 							</div><!-- /.secBtnHead-btn -->
 						</div>
@@ -131,10 +155,10 @@
 								<th>企業名</th>
 								<th>ジョブID</th>
 								<th>Job Title</th>
+								<th>一般/<br>portal</th>
 								<th>表示/<br>非表示</th>
-								<th>Close</th>
+								<th>削除</th>
 								<th>職種</th>
-								<th>補足カテゴリ</th>
 								<th>部門</th>
 								<th>ロケーション</th>
 								<th>勤務地詳細<br>/その他</th>
@@ -153,12 +177,12 @@
 										<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}</a>
 										{{ html()->form()->close() }}
 									</td>
+									<td>@if ($int->portal_flag == '1')　portal @else 一般 @endif</td>
 									<td>@if ($int->open_flag == '1')表示 @else非表示 @endif</td>
 									<td  style="text-align: center;">
 										{{ html()->checkbox('',false ,$int->id)->id('close' . $int->id)->attribute('onchange', "modalConfirm($int->id);") }}
 									</td>
 									<td>{{ $int->getJobCategoryName() }}</td>
-									<td>{{ $int->sub_category }}</td>
 									<td>{{ $int->unit_name }}</td>
 									<td>{{ $int->getLocations() }}</td>
 									<td>{{ $int->working_place }}</td>

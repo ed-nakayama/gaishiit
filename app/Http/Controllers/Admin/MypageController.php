@@ -371,6 +371,7 @@ class MypageController extends Controller
 		$freeword = '';
 		$open_flag = 1;
 		$cat_flag = 2;
+		$portal_flag = 2;
 
 		return view('admin.mypage_joblist' ,compact(
 			'jobList',
@@ -383,6 +384,7 @@ class MypageController extends Controller
 			'freeword',
 			'open_flag',
 			'cat_flag',
+			'portal_flag',
 		));
 
 	}
@@ -402,11 +404,19 @@ class MypageController extends Controller
 		$freeword = $request->freeword;
 		$open_flag = $request->open_flag;
 		$cat_flag = $request->cat_flag;
+		$portal_flag = $request->portal_flag;
 
 
-		$jobList = Job::Join('companies', 'jobs.company_id','=','companies.id')
-			->leftJoin('units', 'jobs.unit_id','=','units.id')
-			->selectRaw('jobs.*, companies.name as company_name, units.name as unit_name');
+		if (!empty($request->dl)) {
+			$jobList = Job::Join('companies', 'jobs.company_id','=','companies.id')
+				->leftJoin('units', 'jobs.unit_id','=','units.id')
+				->selectRaw('jobs.*, companies.salesforce_id as salesforce_id, companies.name_english as comp_name_english , units.name as unit_name');
+
+		} else {
+			$jobList = Job::Join('companies', 'jobs.company_id','=','companies.id')
+				->leftJoin('units', 'jobs.unit_id','=','units.id')
+				->selectRaw('jobs.*, companies.name as company_name, units.name as unit_name');
+		}
 
 
 		$words = array();
@@ -513,23 +523,52 @@ class MypageController extends Controller
 			$jobList = $jobList->whereNotNull('jobs.job_cat_details');
 		}
 
-		$jobList = $jobList->orderBy('jobs.updated_at' ,'desc')
-			->orderBy('companies.name')
-			->orderBy('jobs.name')
-			->paginate(20);
+		if ($portal_flag != 2) {
+			$jobList = $jobList->where('jobs.portal_flag' ,$portal_flag);
+		}
+		
+		if (!empty($request->dl)) {
+			$jobList = $jobList->orderBy('jobs.company_id')
+				->orderBy('jobs.id')
+				->get();
 
-		return view('admin.mypage_joblist' ,compact(
-			'jobList',
-			'comp_name',
-			'job_title',
-			'sub_category',
-			'working_place',
-			'unit_name',
-			'location',
-			'freeword',
-			'open_flag',
-			'cat_flag',
-		));
+
+			$fileName = "joblist_" . date("Ymd_His") . ".csv";
+			$dlFileName = "Gaishi_Joblit.csv";
+			$csvFile = $this->CSV_DIR . "/" . $fileName;
+			$dlFile = $this->CSV_DIR . "/" . $dlFileName;
+
+			$this->make_sfccsv($csvFile ,$jobList);
+
+			$mimeType = Storage::mimeType($csvFile);
+			$headers = [['Content-Type' => $mimeType]];
+
+			Storage::delete($dlFile);
+			Storage::copy($csvFile, $dlFile);
+
+			return Storage::download($dlFile, $dlFileName, $headers);
+
+		} else {
+			$jobList = $jobList->orderBy('jobs.updated_at' ,'desc')
+				->orderBy('companies.name')
+				->orderBy('jobs.name')
+				->paginate(20);
+
+			return view('admin.mypage_joblist' ,compact(
+				'jobList',
+				'comp_name',
+				'job_title',
+				'sub_category',
+				'working_place',
+				'unit_name',
+				'location',
+				'freeword',
+				'open_flag',
+				'cat_flag',
+				'portal_flag',
+			));
+		}
+
 
 	}
 
