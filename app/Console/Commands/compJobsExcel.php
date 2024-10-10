@@ -380,14 +380,14 @@ end_proc:
 			$job->locations = $this->locations;
 			$job->remote_flag = $this->remote_flag;
 		}
-
+/*
 		$this->set_open($job_arr);
 
 		if (empty($job->open_date)) {
 			$job->open_flag = $this->open_flag;
 			$job->open_date = $this->open_date;
 		}
-
+*/
 		if ($job->portal_flag == '0') {
 			$job->portal_flag = !empty($job_arr['portal'] == '1') ? '1' : '0';
 		}
