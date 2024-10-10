@@ -56,7 +56,7 @@ function func_nodl() {
 
 						{{ html()->form('GET', '/admin/mypage/joblist/list')->id('addform')->attribute('name', 'addform')->open() }}
 						{{ html()->hidden('dl', '') }}
-					<div class="secBtnHead">
+						<div class="secBtnHead">
 							<div class="secBtnHead-btn">
 								<ul class="item-btn" style="align-items: center;">
 									<li style="width: 400px;margin-left: 0px;">全体検索
@@ -115,6 +115,23 @@ function func_nodl() {
 								</ul><!-- /.item -->
 							</div><!-- /.secBtnHead-btn -->
 						</div>
+
+						<div class="secBtnHead">
+							<ul class="item-btn" style="align-items: center;">
+								<li style="width: auto;" >
+									企業
+									<div class="selectWrap aharf">
+										<select name="comp_id"  class="select-no">
+											<option value=""></option>
+											@foreach ($company_list as $comp)
+												<option value="{{ $comp->id }}" @if (old('comp_id' ,$comp->id) == $comp_id)  selected @endif>{{ $comp->name }}</option>
+											@endforeach
+										</select>
+									</div>
+								</li>
+							</ul><!-- /.item -->
+						</div>
+
 						{{ html()->form()->close() }}
 
 @if (Auth::user()->agent_priv == '0')

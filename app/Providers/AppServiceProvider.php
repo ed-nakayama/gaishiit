@@ -220,6 +220,7 @@ class AppServiceProvider extends ServiceProvider
 			view()->share('comp_XY', Company::where('name_english','like', 'Y%')->get());
 			view()->share('comp_XZ', Company::where('name_english','like', 'Z%')->get());
 
+		view()->share('company_list', Company::orderBy('name_english')->get());
 
 		} else {
 			view()->composer('*', function($view) {

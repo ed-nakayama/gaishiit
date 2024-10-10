@@ -372,6 +372,7 @@ class MypageController extends Controller
 		$open_flag = 1;
 		$cat_flag = 2;
 		$portal_flag = 2;
+		$comp_id = '';
 
 		return view('admin.mypage_joblist' ,compact(
 			'jobList',
@@ -385,6 +386,7 @@ class MypageController extends Controller
 			'open_flag',
 			'cat_flag',
 			'portal_flag',
+			'comp_id',
 		));
 
 	}
@@ -405,6 +407,7 @@ class MypageController extends Controller
 		$open_flag = $request->open_flag;
 		$cat_flag = $request->cat_flag;
 		$portal_flag = $request->portal_flag;
+		$comp_id = $request->comp_id;
 
 
 		if (!empty($request->dl)) {
@@ -416,6 +419,11 @@ class MypageController extends Controller
 			$jobList = Job::Join('companies', 'jobs.company_id','=','companies.id')
 				->leftJoin('units', 'jobs.unit_id','=','units.id')
 				->selectRaw('jobs.*, companies.name as company_name, units.name as unit_name');
+		}
+
+
+		if (!empty($comp_id)) {
+			$jobList = $jobList->where('jobs.company_id' , $comp_id);
 		}
 
 
@@ -566,6 +574,7 @@ class MypageController extends Controller
 				'open_flag',
 				'cat_flag',
 				'portal_flag',
+				'comp_id',
 			));
 		}
 
