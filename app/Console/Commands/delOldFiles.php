@@ -46,11 +46,11 @@ class DelOldFiles extends Command
     public function handle()
     {
 
-//		$this->del_files($this->LOG_DIR);
-//		$this->del_files($this->BACKUP_DIR);
-//		$this->del_files($this->JOB_DIR);
+		$this->del_files($this->LOG_DIR);
+		$this->del_files($this->BACKUP_DIR);
+		$this->del_files($this->JOB_DIR);
 
-		$this->del_open_zero();
+//		$this->del_open_zero();
 	}
 
 

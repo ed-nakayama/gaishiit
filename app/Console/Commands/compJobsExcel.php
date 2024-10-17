@@ -43,7 +43,6 @@ class CompJobsExcel extends Command
 	private $cat_id;
 	private $sub_category;
 	private $unit_id;
-	private $unit_name;
 	private $locations;
 	private $jobDetail;
 	private $comp;
@@ -51,7 +50,6 @@ class CompJobsExcel extends Command
 	private $open_flag;
 	private $open_date;
 	private $event_job;
-	private $job_title;
 
 	private $error;
 
@@ -60,8 +58,8 @@ class CompJobsExcel extends Command
 	private $LOG_DIR      = 'public/comp_jobs/logs';
 	private $XLSX_LOG_DIR = 'comp_jobs/logs';
 	
-//	private $mail_addr = 'nakayama@aci7.com';
-	private $mail_addr = 'rpa-result@gaishiit.com';
+	private $mail_addr = 'nakayama@aci7.com';
+//	private $mail_addr = 'rpa-result@gaishiit.com';
 
     /**
      * Create a new command instance.
@@ -157,14 +155,6 @@ class CompJobsExcel extends Command
 					$tempJobDetail = $job_arr['job_detail'] . "\n\n" . $job_arr['job_detail_2'] . "\n\n" . $job_arr['job_detail_3'] . "\n\n" . $job_arr['job_detail_4'] . "\n\n" . $job_arr['job_detail_5'];
 					$this->jobDetail = rtrim($tempJobDetail);
 
-					$this->job_title = $job_arr['job_title'];
-					$this->job_title = str_replace("\n", '', $this->job_title);
-					$this->job_title = trim($this->job_title);
-
-					$this->unit_name = $job_arr['unit_name'];
-					$this->unit_name = str_replace("\n", '', $this->unit_name);
-					$this->unit_name = trim($this->unit_name);
-
 					$this->check_error($job_arr);
 
 					if (!empty($this->error) ) {
@@ -188,7 +178,7 @@ class CompJobsExcel extends Command
 							$cnt = Job::withTrashed()
 								->where('company_id' ,$job_arr['comp_id'])
 								->where('url' ,$job_arr['url'])
-								->where('name' ,$this->job_title)
+								->where('name' ,$job_arr['job_title'])
 								->where(function($query) {
 									$query->whereNull('job_code')
 									->orWhere('job_code' , '');
@@ -202,7 +192,7 @@ class CompJobsExcel extends Command
 								$job = Job::withTrashed()
 									->where('company_id' ,$job_arr['comp_id'])
 									->where('url' ,$job_arr['url'])
-									->where('name' ,$this->job_title)
+									->where('name' ,$job_arr['job_title'])
 									->where(function($query) {
 										$query->whereNull('job_code')
 										->orWhere('job_code' , '');
@@ -213,7 +203,7 @@ class CompJobsExcel extends Command
 								$job = Job::withTrashed()
 									->where('company_id' ,$job_arr['comp_id'])
 									->where('url' ,$job_arr['url'])
-									->where('name' ,$this->job_title)
+									->where('name' ,$job_arr['job_title'])
 									->where('intro' ,$this->jobDetail)
 									->where(function($query) {
 										$query->whereNull('job_code')
@@ -225,7 +215,7 @@ class CompJobsExcel extends Command
 						}
 
 						// ジョブタイトル
-						$jobTitle = $this->job_title;
+						$jobTitle = $job_arr['job_title'];
 						if ( (strpos($jobTitle,'障がい者') === false) && (strpos($jobTitle,'Internship') === false) ) {
 							if (empty($job)) {
 								$this->create_job($job_arr);
@@ -334,7 +324,7 @@ end_proc:
 			'company_id'        => $job_arr['comp_id'],
 			'unit_id'           => $this->unit_id,
 			'member_id'         => $this->member_id,
-			'name'              => $this->job_title,
+			'name'              => $job_arr['job_title'],
 			'intro'             => $this->jobDetail,
 			'job_code'          => $job_arr['job_id'],
 //			'job_cat_detail_id' => $this->cat_id,
@@ -380,14 +370,14 @@ end_proc:
 			$job->locations = $this->locations;
 			$job->remote_flag = $this->remote_flag;
 		}
-/*
+
 		$this->set_open($job_arr);
 
 		if (empty($job->open_date)) {
 			$job->open_flag = $this->open_flag;
 			$job->open_date = $this->open_date;
 		}
-*/
+
 		if ($job->portal_flag == '0') {
 			$job->portal_flag = !empty($job_arr['portal'] == '1') ? '1' : '0';
 		}
@@ -445,13 +435,13 @@ end_proc:
 		}
 
 		// ジョブタイトル
-		if (empty($this->job_title)) {
-			$this->job_title = mb_substr($this->job_title ,0 ,160);
-		}
+//		if (empty($job_arr['job_title'])) {
+//			$job_arr['job_title'] = mb_substr($job_arr['job_title'] ,0 ,160);
+//		}
 
 
 		if ( $job_arr['kind'] == 'Job' ) {
-			$jobTitle = $this->job_title;
+			$jobTitle = $job_arr['job_title'];
 			if (strpos($jobTitle,'合同選考') !== false) {
 				if (!empty($this->error)) $this->error .= "／";
 				$this->error .= "合同選考が含まれている。";
@@ -469,8 +459,8 @@ end_proc:
 		} else {
 
 			// イベント
-			$job_title = $this->job_title;
-			$unit_name = $this->unit_name;
+			$job_title = $job_arr['job_title'];
+			$unit_name = $job_arr['unit_name'];
 	//		$detail = $this->jobDetail;
 			$detail = $job_arr['cat_name'];
 		
@@ -514,18 +504,17 @@ end_proc:
 			if (!empty($this->error)) $this->error .= "／";
 			$this->error .= "企業IDが長すぎる。";
 		}
-
 		if ( mb_strlen($job_arr['job_id']) > 20 ) {
 			if (!empty($this->error)) $this->error .= "／";
 			$this->error .= "募集番号が長すぎる。";
 		}
 
-		if ( mb_strlen($this->job_title) > 200 ) {
+		if ( mb_strlen($job_arr['job_title']) > 200 ) {
 			if (!empty($this->error)) $this->error .= "／";
 			$this->error .= "ジョブタイトルが長すぎる。";
 		}
 
-		if ( mb_strlen($this->unit_name) > 100 ) {
+		if ( mb_strlen($job_arr['unit_name']) > 100 ) {
 			if (!empty($this->error)) $this->error .= "／";
 			$this->error .= "部署名が長すぎる。";
 		}
@@ -573,15 +562,15 @@ end_proc:
 		$this->unit_id = null;
 
 		// 部署ID取得
-		if (!empty($this->unit_name)) {
+		if (!empty($job_arr['unit_name'])) {
 			$unit = Unit::where('company_id' ,$job_arr['comp_id'])
-				->where('name' ,$this->unit_name)
+				->where('name' ,$job_arr['unit_name'])
 				->first();
 					
 			if (empty($unit)) { // error
 				$unit = Unit::create([
 					'company_id'        => $job_arr['comp_id'],
-					'name'              => $this->unit_name,
+					'name'              => $job_arr['unit_name'],
 					'person'            => $this->member_id,
 					'open_flag'         => '1',
 					'open_date'         => date("Y-m-d H:i:s"),

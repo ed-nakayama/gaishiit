@@ -16,6 +16,7 @@ use App\Imports\JobsImport;
 use App\Exports\JobsExport;
 
 use App\Mail\ExcelError;
+use App\Mail\ExcelError2;
 use App\Mail\JobClose;
 
 class CompJobsExcelUpdate extends Command
@@ -111,6 +112,20 @@ class CompJobsExcelUpdate extends Command
 
 				$workLog = date("Y/m/d H:i:s") . " Proc " . $baseName;
 				Storage::disk('local')->append($workName, $workLog);
+
+				$size = Storage::size($files[$i]);
+
+				if ($size == 0) {
+					Mail::send(new ExcelError2($this->mail_addr ,$files[$i]));
+
+					// ファイルをbackupに移動
+					$orgFile = $this->BACKUP_DIR . '/' . $baseName;
+					Storage::delete($orgFile);
+					Storage::move($files[$i], $orgFile);
+
+					continue;
+				}
+
 
 				// ファイル読み込み
 				$import = new JobsImport();
@@ -231,6 +246,10 @@ end_proc:
 				$job->open_date = $this->open_date;
 			}
 
+			if ($job->portal_flag == '0') {
+				$job->portal_flag = !empty($job_arr['portal'] == '1') ? '1' : '0';
+			}
+
 			$job->save();
 		}
 	}
@@ -259,6 +278,7 @@ end_proc:
 			'open_flag'         => $this->open_flag,
 			'open_date'         => $this->open_date,
 			'for_agent'         => $job_arr['agent'],
+			'portal_flag'       => !empty($job_arr['portal'] == '1') ? '1' : '0',
 		]);
 
 	}
