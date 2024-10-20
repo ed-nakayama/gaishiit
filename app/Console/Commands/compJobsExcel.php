@@ -58,9 +58,6 @@ class CompJobsExcel extends Command
 	private $LOG_DIR      = 'public/comp_jobs/logs';
 	private $XLSX_LOG_DIR = 'comp_jobs/logs';
 	
-	private $mail_addr = 'nakayama@aci7.com';
-//	private $mail_addr = 'rpa-result@gaishiit.com';
-
     /**
      * Create a new command instance.
      *
@@ -81,6 +78,8 @@ class CompJobsExcel extends Command
 		$baseName = '';
 		$delFile = '';
 		$attachFiles = array();
+
+		$mail_addr = config('mail.rpa_mail');
 
 		$workName   = $this->LOG_DIR  . "/" . "Working_" . date("Ymd")  . ".log";
 
@@ -284,12 +283,11 @@ end_proc:
 				$attachFiles[] = $eventFile;
 			}
 
-
 			if (!empty($errorList[0]) || !empty($eventList[0]) ) {
-				Mail::send(new ExcelError($this->mail_addr ,$attachFiles));
+				Mail::send(new ExcelError($mail_addr ,$attachFiles));
 			} else {
 				if ($comp_id == '10000001') {
-					Mail::send(new ExcelOk($this->mail_addr ,$comp_name));
+					Mail::send(new ExcelOk($mail_addr ,$comp_name));
 				}
 			}
 

@@ -47,9 +47,6 @@ class CompJobsExcelUpdate extends Command
 	private $XLSX_LOG_DIR = 'comp_jobs/logs';
 	private $MAIL_DIR      = 'public/comp_jobs/mail';
 	
-//	private $mail_addr = 'nakayama@aci7.com';
-	private $mail_addr = 'rpa-result@gaishiit.com';
-
     /**
      * Create a new command instance.
      *
@@ -69,6 +66,8 @@ class CompJobsExcelUpdate extends Command
     {
 		$baseName = '';
 		$attachFiles = array();
+
+		$mail_addr = config('mail.rpa_mail');
 
 		$workName   = $this->LOG_DIR  . "/" . "Working_" . date("Ymd")  . ".log";
 		$mailName   = $this->MAIL_DIR  . "/" . "mail_log.csv";
@@ -116,7 +115,7 @@ class CompJobsExcelUpdate extends Command
 				$size = Storage::size($files[$i]);
 
 				if ($size == 0) {
-					Mail::send(new ExcelError2($this->mail_addr ,$files[$i]));
+					Mail::send(new ExcelError2($mail_addr ,$files[$i]));
 
 					// ファイルをbackupに移動
 					$orgFile = $this->BACKUP_DIR . '/' . $baseName;
@@ -217,7 +216,7 @@ end_proc:
 			}
 
 			if (!empty($errorList[0]) ) {
-				Mail::send(new ExcelError($this->mail_addr ,$attachFiles));
+				Mail::send(new ExcelError($mail_addr ,$attachFiles));
 			}
 
 

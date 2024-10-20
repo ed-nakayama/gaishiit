@@ -134,5 +134,7 @@ return [
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
     'agent_mail' => env('AGENT_MAIL'),
+    'rpa_mail' => env('RPA_MAIL'),
+    'new_job_mail' => env('NEW_JOB_MAIL'),
 
 ];

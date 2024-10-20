@@ -45,16 +45,6 @@ class AgentRequest extends Mailable
      */
     public function build()
     {
-/*
-        $admins = Admin::where('aprove_priv','1')
-        	->get();
-
-        $to = array();
-
-        foreach ( $admins as $ad ) {
-            $to[] = $ad['email'];
-		}
-*/
 		$to = config('mail.agent_mail');
 
 	    return $this->to($to)       // 送信先アドレス

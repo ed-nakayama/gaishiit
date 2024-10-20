@@ -70,12 +70,11 @@ class SendNewJob extends Command
 
 			Storage::disk('local')->append($workName, $content);
 		}
-/*
+
 		Mail::send(new SendNewJobMail($workName));
 
 		$lastUpdate->last_date = date("Y-m-d H:i:s");
 		$lastUpdate->save();
-*/
 
 		$baseName = basename($workName);
 		$orgFile ='public/comp_jobs/joblist/' . $baseName;

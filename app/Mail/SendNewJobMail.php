@@ -40,8 +40,7 @@ class SendNewJobMail extends Mailable
      */
     public function build()
     {
-        $to[] = 'm.kawata@d-ark.co.jp';
-//        $to[] = 't.nakayama@d-ark.co.jp';
+		$to[] = config('mail.new_job_mail');
 
 		return $this->to($to)       // 送信先アドレス
     	    ->subject('【外資IT】新規ジョブ一覧')        // 件名

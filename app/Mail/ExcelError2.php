@@ -46,9 +46,7 @@ class ExcelError2 extends Mailable
     	    ->subject('【外資IT】RPAファイル異常エラー')        // 件名
         	->text('mail_templates.rpa_error2');
 
-//		foreach ($this->files as $file) {
-        	$cmd = $cmd->attachFromStorage($this->files); // 添付ファイル
-//		}
+       	$cmd = $cmd->attachFromStorage($this->files); // 添付ファイル
 
 	    return $cmd;
     }
