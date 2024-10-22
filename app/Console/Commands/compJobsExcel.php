@@ -151,7 +151,21 @@ class CompJobsExcel extends Command
 						$comp_name = $job_arr['comp_name'];
 					}
 					
-					$tempJobDetail = $job_arr['job_detail'] . "\n\n" . $job_arr['job_detail_2'] . "\n\n" . $job_arr['job_detail_3'] . "\n\n" . $job_arr['job_detail_4'] . "\n\n" . $job_arr['job_detail_5'];
+					$tempJobDetail = $job_arr['job_detail'];
+
+					if (!empty($job_arr['job_detail_2']) ) {
+						$tempJobDetail = $tempJobDetail . "\n\n" . $job_arr['job_detail_2'] ;
+					}
+					if (!empty($job_arr['job_detail_3']) ) {
+						$tempJobDetail = $tempJobDetail . "\n\n" . $job_arr['job_detail_3'] ;
+					}
+					if (!empty($job_arr['job_detail_4']) ) {
+						$tempJobDetail = $tempJobDetail . "\n\n" . $job_arr['job_detail_4'] ;
+					}
+					if (!empty($job_arr['job_detail_5']) ) {
+						$tempJobDetail = $tempJobDetail . "\n\n" . $job_arr['job_detail_5'] ;
+					}
+					
 					$this->jobDetail = rtrim($tempJobDetail);
 
 					$this->check_error($job_arr);

@@ -133,7 +133,7 @@ class CompJobsExcelUpdate extends Command
 				$data = $import->sheetData;
 
 			// コード変換
-				$data = mb_convert_encoding($data, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+//				$data = mb_convert_encoding($data, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
 
 				$comp_id = '';
 				$comp_error_flag = 0;
@@ -264,7 +264,21 @@ end_proc:
 
 		$this->set_open($job_arr);
 
-		$jobDetail = $job_arr['job_detail'] . "\n\n" . $job_arr['job_detail_2'] . "\n\n" . $job_arr['job_detail_3'] . "\n\n" . $job_arr['job_detail_4'] . "\n\n" . $job_arr['job_detail_5'];
+		$jobDetail = $job_arr['job_detail'];
+
+		if (!empty($job_arr['job_detail_2']) ) {
+			$jobDetail = $jobDetail . "\n\n" . $job_arr['job_detail_2'] ;
+		}
+		if (!empty($job_arr['job_detail_3']) ) {
+			$jobDetail = $jobDetail . "\n\n" . $job_arr['job_detail_3'] ;
+		}
+		if (!empty($job_arr['job_detail_4']) ) {
+			$jobDetail = $jobDetail . "\n\n" . $job_arr['job_detail_4'] ;
+		}
+		if (!empty($job_arr['job_detail_5']) ) {
+			$jobDetail = $jobDetail . "\n\n" . $job_arr['job_detail_5'] ;
+		}
+
 
 		$job = Job::create([
 			'company_id'        => $job_arr['comp_id'],
