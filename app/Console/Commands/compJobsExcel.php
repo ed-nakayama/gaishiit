@@ -19,6 +19,7 @@ use App\Imports\JobsImport;
 use App\Exports\JobsExport;
 
 use App\Mail\ExcelError;
+use App\Mail\ExcelError2;
 use App\Mail\JobClose;
 use App\Mail\ExcelOk;
 
@@ -57,6 +58,7 @@ class CompJobsExcel extends Command
 	private $BACKUP_DIR   = 'public/comp_jobs/backup';
 	private $LOG_DIR      = 'public/comp_jobs/logs';
 	private $XLSX_LOG_DIR = 'comp_jobs/logs';
+	private $MAIL_DIR      = 'public/comp_jobs/mail';
 	
     /**
      * Create a new command instance.
@@ -82,6 +84,7 @@ class CompJobsExcel extends Command
 		$mail_addr = config('mail.rpa_mail');
 
 		$workName   = $this->LOG_DIR  . "/" . "Working_" . date("Ymd")  . ".log";
+		$mailName   = $this->MAIL_DIR  . "/" . "mail_log.csv";
 
 		$allFiles = Storage::files($this->CSV_DIR);
 		$fileCnt = count($allFiles);
@@ -94,9 +97,9 @@ class CompJobsExcel extends Command
 			$filepath = pathinfo($file);
 			
 			if (strcmp($filepath['extension'] ,'xlsx') == 0) {
-				if (strpos($filepath['filename'],'[Open]') === false) {
+//				if (strpos($filepath['filename'],'[Open]') === false) {
 					$files[] = $allFiles[$i];
-				}
+//				}
 			}
 		}
 
@@ -130,6 +133,20 @@ class CompJobsExcel extends Command
 
 				$workLog = date("Y/m/d H:i:s") . " Proc " . $baseName;
 				Storage::disk('local')->append($workName, $workLog);
+
+				$size = Storage::size($files[$i]);
+
+				if ($size == 0) {
+					Mail::send(new ExcelError2($mail_addr ,$files[$i]));
+
+					// ファイルをbackupに移動
+					$orgFile = $this->BACKUP_DIR . '/' . $baseName;
+					Storage::delete($orgFile);
+					Storage::move($files[$i], $orgFile);
+
+					continue;
+				}
+
 
 				// ファイル読み込み
 				$import = new JobsImport();
@@ -240,31 +257,6 @@ class CompJobsExcel extends Command
 				} // end foreach
 
 end_proc:
-/* 2023/10/23 一時的に排除
-				// 過去ジョブ　非公開設定
-				$closeJob = Job::Join('companies', 'jobs.company_id', '=', 'companies.id')
-					->leftJoin('units', 'jobs.unit_id', '=', 'units.id')
-					->selectRaw('jobs.* ,companies.id as company_id , companies.name as company_name ,units.name as unit_name')
-					->where('jobs.company_id', $comp_id)
-//					->where('jobs.open_flag', '1')
-					->where('jobs.updated_at', '<', date("Y-m-d 00:00:00", strtotime("-1 week")))
-					->get();
-
-				if (!empty($closeJob[0])) {
-
-					$jobCnt = count($closeJob);
-					print_r("削除対象件数：" . $jobCnt . "\n");
-
-					$delList = array();
-					foreach ($closeJob as $clsJob) {
-//						$clsJob->open_flag = '0';
-//						$clsJob->save();
-						$clsJob->delete();
-
-						$delList[] = $this->add_del($clsJob);
-					}
-				}
-*/
 				// ファイルをbackupに移動
 				$orgFile = $this->BACKUP_DIR . '/' . $baseName;
 				Storage::delete($orgFile);
@@ -300,7 +292,7 @@ end_proc:
 			if (!empty($errorList[0]) || !empty($eventList[0]) ) {
 				Mail::send(new ExcelError($mail_addr ,$attachFiles));
 			} else {
-				if ($comp_id == '10000001') {
+				if (!empty($comp_id) && $comp_id == '10000001') {
 					Mail::send(new ExcelOk($mail_addr ,$comp_name));
 				}
 			}

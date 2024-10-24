@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
 		$schedule->command('command:compjobsexceldel')->dailyAt('03:00');     // 毎日 3:00
 
 		// [Open]付きファイルの取込み
-		$schedule->command('command:compjobsexcelupdate')->everyFifteenMinutes()->unlessBetween('3:00', '8:00'); // 15分毎
+//		$schedule->command('command:compjobsexcelupdate')->everyFifteenMinutes()->unlessBetween('3:00', '8:00'); // 15分毎
 
 		// SFからのCSV取込み
 		$schedule->command('command:sendopenupdate')->weeklyOn(1, '10:00'); // 毎週月曜日の10:00時に実行
@@ -66,9 +66,6 @@ class Kernel extends ConsoleKernel
 
 		// サイトマップ作成
 		$schedule->command('sitemap:generate')->dailyAt('04:00');     // 毎日 4:00
-
-		// 更新／削除ジョブ一覧
-		$schedule->command('command:SendCurrentJob')->dailyAt('10:00');     // 毎日 10:00
 
     }
 
