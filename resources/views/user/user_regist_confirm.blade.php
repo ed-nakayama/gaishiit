@@ -117,9 +117,9 @@
 										<div class="select-wrap">
 											<label for="">
 												<select id="sex" name="sex" disabled>
-													{{ html()->option("男性", '1', (old('sex') == '1')) }}
-													{{ html()->option("女性", '2', (old('sex') == '2')) }}
-													{{ html()->option("選択しない", '0', (old('sex') == '0')) }}
+													{{ html()->option("男性", '1', ($reg->sex == '1')) }}
+													{{ html()->option("女性", '2', ($reg->sex == '2')) }}
+													{{ html()->option("選択しない", '0', ($reg->sex == '0')) }}
 													{{ html()->hidden('sex', $reg->sex) }}
 												</select>
 											</label>
