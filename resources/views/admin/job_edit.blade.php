@@ -55,6 +55,11 @@
                             		</div><!-- /.btn-container -->
 								</li>
 @endif
+								<li>
+                            		<div class="btnContainer">
+										ID : {{ $job->id }}
+                            		</div><!-- /.btn-container -->
+								</li>
 							</ul><!-- /.jobToggle -->
 			              	<div id="success1" class="alert alert-success"  style="color:#0000ff;text-align: center;">
 			               	{{-- 更新成功メッセージ --}}
@@ -419,6 +424,26 @@
                                         </ul>
                                     </div><!-- /.item-input -->
                                 </div>
+
+								<div class="formContainer al-item-none mg-ajust">
+									<div class="item-name">
+										<p>仕事内容</p>
+									</div><!-- /.item-name -->
+									<div class="item-input">
+										<textarea class="form-mt" name="app_contents" id="" cols="30" rows="10" placeholder="テキスト">{{ old('app_contents' ,$job->app_contents) }}</textarea>
+									</div><!-- /.item-input -->
+								</div><!-- END formContainer -->
+
+								<div class="formContainer al-item-none mg-ajust">
+									<div class="item-name">
+										<p>募集要項</p>
+									</div><!-- /.item-name -->
+									<div class="item-input">
+										<textarea class="form-mt" name="app_details" id="" cols="30" rows="10" placeholder="テキスト">{{ old('app_details' ,$job->app_details) }}</textarea>
+									</div><!-- /.item-input -->
+								</div><!-- END formContainer -->
+
+
 </div>{{-- END scroll --}}
 @if (Auth::user()->agent_priv == '0')
                                 <div class="btnContainer">
