@@ -402,28 +402,30 @@
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
                                 
-                                <div class="formContainer bb-ajust">
-                                    <div class="item-name">
-                                        <p>担当<span>*</span></p>
-                                    </div><!-- /.item-name -->
-                                    <div class="item-input item-input-row">
-                                        <div class="item-input-btn">
+							<div class="formContainer bb-ajust">
+								<div class="item-name">
+									<p>担当<span>*</span></p>
+								</div><!-- /.item-name -->
+								<div class="item-input item-input-row">
+									<div class="item-input-btn">
 
 @if (Auth::user()->agent_priv == '0')
-                                            <div class="modalContainer">
-                                                <a href="#modal" class="squareBtn btn-medium">選択</a>
-                                            </div><!-- /.modalContainer -->
+										<div class="modalContainer">
+											<a href="#modal" class="squareBtn btn-medium">選択</a>
+										</div><!-- /.modalContainer -->
 @endif
-                                        </div>
-                                        {{Form::hidden('person', old('person' ,$job->person), ['class' => 'form-control', 'id'=>'person' ] )}}
-                                        <span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
-                                        <ul class="oneRow">
-                                            @error('person')
-                                                <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-                                            @enderror
-                                        </ul>
-                                    </div><!-- /.item-input -->
-                                </div>
+									</div>
+									{{Form::hidden('person', old('person' ,$job->person), ['class' => 'form-control', 'id'=>'person' ] )}}
+									<span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
+									<ul class="oneRow">
+										@error('person')
+											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+										@enderror
+									</ul>
+								</div><!-- /.item-input -->
+							</div>
+
+								<font color='red'>※ChatGPTで使用</font><br>
 
 								<div class="formContainer al-item-none mg-ajust">
 									<div class="item-name">
@@ -446,13 +448,13 @@
 
 </div>{{-- END scroll --}}
 @if (Auth::user()->agent_priv == '0')
-                                <div class="btnContainer">
-			                		{{-- 更新成功メッセージ --}}
-			                		@if (session('update_success'))
+								<div class="btnContainer">
+								{{-- 更新成功メッセージ --}}
+									@if (session('update_success'))
 										<p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)" class="text-sm text-blue-400 dark:text-blue-400" style="color: blue;">{{session('update_success')}}</p>
-			                		@endif
-                                    <a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>
-                                </div><!-- /.btn-container -->
+									@endif
+									<a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>
+								</div><!-- /.btn-container -->
 @endif
 							{{ html()->form()->close() }}
 
