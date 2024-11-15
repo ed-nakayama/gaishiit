@@ -362,18 +362,7 @@ end_proc:
     {
 		print_r("更新　OK JobID=" . $job->id . "\n");
 
-		$job->intro = $this->jobDetail;
-		$job->working_place = $job_arr['working_place'];
-
-		$job->sub_category = $this->sub_category;
-		$job->url = $job_arr['url'];
-		$job->for_agent = $job_arr['agent'];
-
-
-		if ($job->no_auto_flag == '0') {
-			$job->locations = $this->locations;
-			$job->remote_flag = $this->remote_flag;
-		}
+		$portal_flag = !empty($job_arr['portal'] == '1') ? '1' : '0';
 
 		$this->set_open($job_arr);
 
@@ -383,10 +372,35 @@ end_proc:
 		}
 
 		if ($job->portal_flag == '0') {
-			$job->portal_flag = !empty($job_arr['portal'] == '1') ? '1' : '0';
+			$job->portal_flag = $portal_flag;
+		}
+
+		if ($portal_flag == '0') {
+			if ($job->no_auto_flag == '0') {
+				$job->locations = $this->locations;
+				$job->remote_flag = $this->remote_flag;
+			}
+
+			$job->intro = $this->jobDetail;
+			$job->working_place = $job_arr['working_place'];
+			$job->sub_category = $this->sub_category;
+			$job->for_agent = $job_arr['agent'];
+			$job->event_job = $this->event_job;
+
+			if ($job->portal_flag == '0') {
+				$job->url = $job_arr['url'];
+			} else {
+				if (!empty($job->deleted_at)) {
+					$job->url = $job_arr['url'];
+				}
+			}
+
+		} else {
+			if (!empty($job_arr['url'])) {
+				$job->url = $job_arr['url'];
+			}
 		}
 		
-		$job->event_job = $this->event_job;
 		$job->updated_at = date("Y-m-d H:i:s");
 		$job->deleted_at = null;
 		$job->save();
