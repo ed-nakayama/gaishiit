@@ -15,7 +15,7 @@
 							<span class="star5_rating" style="--rate:  {{ $ranking->salary_rate . '%' }};"></span>
 						</div>
 						<div class="detail-link-button">
-							<a href="/company/{{ $comp->id }}/salary" >{{ $ranking->salary_count }} 件の口コミを見る</a>
+							<a href="/company/{{ $comp->id }}/salary" >{{ $ranking->salary_count }} 件のクチコミを見る</a>
 						</div>
 					</dd>
 
@@ -26,7 +26,7 @@
 							<span class="star5_rating" style="--rate: {{ $ranking->welfare_rate . '%' }};"></span>
 						</div>
 						<div class="detail-link-button">
-							<a href="/company/{{ $comp->id }}/welfare" >{{ $ranking->welfare_count }} 件の口コミを見る</a>
+							<a href="/company/{{ $comp->id }}/welfare" >{{ $ranking->welfare_count }} 件のクチコミを見る</a>
 						</div>
 					</dd>
 
@@ -37,7 +37,7 @@
 							<span class="star5_rating" style="--rate: {{ $ranking->upbring_rate . '%' }};"></span>
 						</div>
 						<div class="detail-link-button">
-							<a href="/company/{{ $comp->id }}/upbring" >{{ $ranking->upbring_count }} 件の口コミを見る</a>
+							<a href="/company/{{ $comp->id }}/upbring" >{{ $ranking->upbring_count }} 件のクチコミを見る</a>
 						</div>
 					</dd>
 
@@ -48,7 +48,7 @@
 							<span class="star5_rating" style="--rate:  {{ $ranking->compliance_rate . '%' }};"></span>
 						</div>
 						<div class="detail-link-button">
-							<a href="/company/{{ $comp->id }}/compliance" >{{ $ranking->compliance_count }} 件の口コミを見る</a>
+							<a href="/company/{{ $comp->id }}/compliance" >{{ $ranking->compliance_count }} 件のクチコミを見る</a>
 						</div>
 					</dd>
 
@@ -59,7 +59,7 @@
 							<span class="star5_rating" style="--rate:  {{ $ranking->motivation_rate . '%' }};"></span>
 						</div>
 						<div class="detail-link-button">
-							<a href="/company/{{ $comp->id }}/motivation" >{{ $ranking->motivation_count }} 件の口コミを見る</a>
+							<a href="/company/{{ $comp->id }}/motivation" >{{ $ranking->motivation_count }} 件のクチコミを見る</a>
 						</div>
 					</dd>
 
@@ -70,7 +70,7 @@
 							<span class="star5_rating" style="--rate: {{ $ranking->work_life_rate . '%' }};"></span>
 						</div>
 						<div class="detail-link-button">
-							<a href="/company/{{ $comp->id }}/worklife" >{{ $ranking->work_life_count }} 件の口コミを見る</a>
+							<a href="/company/{{ $comp->id }}/worklife" >{{ $ranking->work_life_count }} 件のクチコミを見る</a>
 						</div>
 					</dd>
 
@@ -81,7 +81,7 @@
 							<span class="star5_rating" style="--rate: {{ $ranking->remote_rate . '%' }};"></span>
 						</div>
 						<div class="detail-link-button">
-							<a href="/company/{{ $comp->id }}/remote" >{{ $ranking->remote_count }} 件の口コミを見る</a>
+							<a href="/company/{{ $comp->id }}/remote" >{{ $ranking->remote_count }} 件のクチコミを見る</a>
 						</div>
 					</dd>
 
@@ -92,7 +92,7 @@
 							<span class="star5_rating" style="--rate: {{ $ranking->retire_rate . '%' }};"></span>
 						</div>
 						<div class="detail-link-button">
-							<a href="/company/{{ $comp->id }}/retirement" >{{ $ranking->retire_count }} 件の口コミを見る</a>
+							<a href="/company/{{ $comp->id }}/retirement" >{{ $ranking->retire_count }} 件のクチコミを見る</a>
 						</div>
 					</dd>
 				</dl>

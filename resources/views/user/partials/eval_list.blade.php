@@ -25,7 +25,7 @@
 
 @isset($evalList[0])
 	<div class="ttl">
-		<h2>回答者別口コミの一覧</h2>
+		<h2>回答者別クチコミの一覧</h2>
 	</div>
 
 	<div class="paywall">

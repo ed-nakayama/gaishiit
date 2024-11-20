@@ -30,6 +30,10 @@
 			<div class="ttl">
 				<h1>{{ $comp->name }}のクチコミ評価・求人</h1>
 			</div>
+			<div style="text-align:right;">
+				<a href="#kuchikomi" style="text-decoration:underline;">回答者別クチコミの一覧</a>　
+				<a href="#kyujin" style="text-decoration:underline;">求人一覧</a>
+			</div>
 
 			<div class="company-details">
 				<div class="company-item">
@@ -104,10 +108,12 @@
 		</div><!-- item-inner -->
 
 {{-- 回答者別口コミの一覧 $eval --}}
+	<a name="kuchikomi"></a>
 	@include ('user/partials/eval_list')
 {{-- END 回答者別口コミの一覧 --}}
 
 {{-- 求人一覧 --}}
+	<a name="kyujin"></a>
 	@include ('user/partials/job_list_comp_new')
 {{-- END 求人一覧 --}}
 
