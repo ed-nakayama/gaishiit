@@ -232,6 +232,7 @@ return [
         'input_len' => '全項目の合計',
         'open_date' => '公開日',
         'income' => '年収',
+        'income_id' => '年収',
 
     ],
 

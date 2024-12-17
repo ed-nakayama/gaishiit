@@ -22,7 +22,6 @@ Auth::routes([
     'verify'   => false
 ]);
 
-
 Route::get('/', 'User\Auth\LoginController@top')->name('users.index');
 
 Route::get('/comps', 'Comp\Auth\LoginController@showLoginForm')->name('comps.index');
@@ -59,5 +58,4 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     require __DIR__.'/admin.php';
 
 });
-
 

@@ -43,8 +43,8 @@ class SendCurrentJobMail extends Mailable
      */
     public function build()
     {
-        $to[] = 'rpa-result@gaishiit.com';
-//        $to[] = 't.nakayama@d-ark.co.jp';
+//        $to[] = 'm.kawata@d-ark.co.jp';
+        $to[] = 't.nakayama@d-ark.co.jp';
 
 		return $this->to($to)       // 送信先アドレス
     	    ->subject('【外資IT】更新／削除ジョブ一覧')        // 件名

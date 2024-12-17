@@ -219,29 +219,24 @@
 									<p>担当業種</p>
 								</div><!-- /.item-name -->
 								<div class="item-input">
-									@foreach ($industoryCat as $cat)
-										<div style="font-size:16px; font-weight: bold;">{{ $cat->name }}</div>
-										<div style="display:flex;flex-wrap: wrap;">
-											@foreach ($industoryCatDetail as $detail)
-												@if ($cat->id == $detail->industory_cat_id)
-													<div style="margin-left: 15px;">
-														@if (!empty($job->getIndustory() ))
-															{{ html()->checkbox('indCat[]', (in_array($detail->id, $job->getIndustory() )), $detail->id) }}{{ $detail->name }}
-														@else
-															{{ html()->checkbox('indCat[]', false, $detail->id) }}{{ $detail->name }}
-														@endif
-													</div>
-												@endif
-											@endforeach
-										</div>
-									@endforeach
-									<ul class="oneRow">
-										@error('jobCat[]')
-											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-										@enderror
-									</ul>
-									<hr>
-									<br>
+									<div style="display:flex;flex-wrap: wrap;">
+										@foreach ($industoryCat as $cat)
+												<div style="margin-left: 15px;">
+													@if (!empty($job->getIndcatCat() ))
+														{{ html()->checkbox('indCat[]', (in_array($cat->id, $job->getIndcatCat() )), $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+													@else
+														{{ html()->checkbox('indCat[]', false, $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+													@endif
+												</div>
+										@endforeach
+										<ul class="oneRow">
+											@error('jobCat[]')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+										</ul>
+										<br>
+									</div>
+										<hr>
 								</div><!-- /.item-input -->
 							</div>
 

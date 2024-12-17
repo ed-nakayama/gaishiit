@@ -25,7 +25,6 @@
 	} // end foreach
 
 @endphp
-
 	<div class="con-wrap">
 		<h2>ピックアップ求人</h2>
 		<div class="pickup">

@@ -12,4 +12,6 @@ return[
 
     'event_disp' => env('EVENT_DISP', 'false'),
 
+    'OPENAI_API_KEY' => env('OPENAI_API_KEY', ''),
+
 ];

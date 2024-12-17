@@ -62,7 +62,7 @@ class SendCurrentJob extends Command
 		Storage::disk('local')->append($updateName, $header);
 		
 		foreach ($updateList as $job) {
-			$content = $job->comp_id  . ',"' . $job->comp_name . '","' .  $job->updated_at . '",' . $job->count;
+			$content = $job->comp_id  . ',"' . $job->comp_name. '","' .  $job->updated_at . '",' . $job->count;
 
 			$content = mb_convert_encoding($content, 'SJIS-WIN', 'UTF8');
 
@@ -74,7 +74,6 @@ class SendCurrentJob extends Command
 			->join('companies', 'jobs.company_id', 'companies.id')
 			->whereNull('companies.deleted_at')
 			->whereNotNull('jobs.deleted_at')
-			->where('jobs.deleted_at', '>', date("Y-m-d 00:00:00", strtotime("-4 week")))
 			->selectRaw("companies.id as comp_id, companies.name as comp_name, date_format(jobs.deleted_at, '%Y-%m-%d') as deleted_at, count(*) as count")
 			->groupBy('companies.id')
 			->groupBy('companies.name')

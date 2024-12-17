@@ -125,7 +125,7 @@
 					@endif
 
 					<hr class="job-detail__hr">
-					@if (empty($job->app_contents))
+					@if (empty($job->app_contents) || $job->app_contents == '-')
 						<h3 class="job-detail__subTitle">仕事内容</h3>
 						<div class="job-detail__description">
 							<p>{!! nl2br(e($job->intro)) !!}</p>
@@ -139,7 +139,7 @@
 						<h3 class="job-detail__subTitle">募集要項</h3>
 						<div class="job-detail__requirements">
 							<p>
-								{!! nl2br(e($job->app_details)) !!}
+								{!! nl2br($job->app_details) !!}
 							</p>
 						</div>
 					@endif

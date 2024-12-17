@@ -692,6 +692,8 @@ class MypageController extends Controller
 		$job->working_place     = $request->working_place;
 		$job->no_auto_flag      = $no_auto_flag;
 		$job->income_id         = $request->income_id;
+		$job->app_contents      = $request->app_contents;
+		$job->app_details       = $request->app_details;
 
 		// 職種保存
 		$job->setJobCat($request->jobCat);
