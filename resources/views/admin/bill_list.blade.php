@@ -18,7 +18,7 @@
 
                             <div class="yearTotalPrice">
                                 <div class="selectWrap yearTotalPriceSelect">
-									{{ Form::open(['url' => '/admin/bill', 'name' => 'changeform']) }}
+									{{ html()->form('POST', '/admin/bill')->id('changeform')->attribute('name', 'changeform')->open() }}
 										<select name="fiscal_year"  class="select-no" onchange="this.form.submit()">
 										@foreach ($fiscalYearList as $year)
 											<option value="{{ $year }}" @if ($fiscal_year == $year)  selected @endif>{{ $year }}年度</option>
@@ -68,11 +68,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '07')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -95,11 +95,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '08')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -122,11 +122,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '09')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -150,11 +150,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '10')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -177,11 +177,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '11')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -204,11 +204,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '12')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -231,11 +231,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '01')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -258,11 +258,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '02')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -285,11 +285,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '03')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -312,11 +312,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '04')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -339,11 +339,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '05')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>
@@ -366,11 +366,11 @@
 													@if (substr($bill->bill_date, 5 ,2) == '06')
                                                 		<ul class="item">
                                                     		<li>
-																{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'userform' . $bill->id ]) }}
-																{{ Form::hidden('bill_date', $bill->bill_date) }}
-																{{ Form::hidden('company_id', $bill->company_id) }}
+																{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'userform' . $bill->id)->open() }}
+																{{ html()->hidden('bill_date', $bill->bill_date) }}
+																{{ html()->hidden(company_id', $bill->company_id) }}
 																<a href="javascript:userform{{ $bill->id }}.submit()">{{ $bill->company_name }}</a>
-																{{ Form::close() }}
+																{{ html()->form()->close() }}
                                                     			<span>￥ {{ number_format($bill->total_price) }}</span>
                                                     		</li>
                                                 		</ul>

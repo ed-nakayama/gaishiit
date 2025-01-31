@@ -17,9 +17,9 @@
 		<div class="containerContents">
 @if ( isset($blog->id) )
  <!--  修正  -->
-			{{ Form::open(['url' => '/admin/blog/change', 'name' => 'changeform' , 'id' => 'changeform']) }}
-			{{Form::hidden('blog_id', old('blog_id' ,$blog->id), ['class' => 'form-control', 'id'=>'blog_id' ] )}}
- 			<section class="secContents-mb">
+			{{ html()->form('POST', '/admin/blog/change')->id('changeform')->attribute('name', 'changeform')->open() }}
+			{{ html()->hidden('blog_id', old('blog_id' ,$blog->id)) }}
+			<section class="secContents-mb">
 				<div class="secContentsInner">
                             
 					<ul class="jobToggleList leftAlign">

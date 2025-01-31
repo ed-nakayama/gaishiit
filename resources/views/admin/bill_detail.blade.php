@@ -41,8 +41,8 @@
 
                         {{ $fiscal_month }}　合計：￥ 
                         @if ($bill->bill_type  == '1' || $bill->bill_type  == '2')
-							{{ Form::open(['url' => '/admin/bill/change', 'name' => 'changeform' ]) }}
-							{{ Form::hidden('bill_id', $bill->id) }}
+							{{ html()->form('POST', '/admin/bill/change')->attribute('name', 'changeform')->open() }}
+							{{ html()->hidden('bill_id', $bill->id) }}
 							<input type="text" name="total_price" value="{{ $bill->total_price }}">
 							@if (auth()->user()->bill_priv == '1')
 								<a href="javascript:changeform.submit()" class="squareBtn btn-large">保存</a>
@@ -68,10 +68,10 @@
                                 </tr>
 	@else
 								@foreach ($intList as $int)
-								{{ Form::open(['url' => '/admin/bill/detail', 'name' => 'editform' . $int->id ]) }}
-								{{ Form::hidden('company_id', $comp->id) }}
-								{{ Form::hidden('bill_date', $bill->bill_date) }}
-								{{ Form::hidden('interview_id', $int->id) }}
+								{{ html()->form('POST', '/admin/bill/detail')->attribute('name', 'editform' . $int->id)->open() }}
+								{{ html()->hidden('company_id', $comp->id) }}
+								{{ html()->hidden('bill_date', $bill->bill_date) }}
+								{{ html()->hidden('interview_id', $int->id) }}
                                 <tr>
                                     <td>{{ str_replace('-','/', substr($int->entrance_date, 0 ,10)) }}</td>
                                     <td>{{ $int->user_name }}</td>
@@ -86,7 +86,7 @@
 										</div><!-- /.btn-container -->
                                     </td>
                                 </tr>
-								{{ Form::close() }}
+								{{ html()->form()->close() }}
 								@endforeach
     @endif
 @else

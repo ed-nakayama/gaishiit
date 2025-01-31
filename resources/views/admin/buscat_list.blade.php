@@ -22,7 +22,8 @@
 							@if (auth()->user()->cat_priv == '1')
                             <div class="secBtnHead">
                                 <div class="secBtnHead-btn">
-                                   {{ Form::open(['url' => '/admin/buscat/add', 'name' => 'addform' , 'id' => 'addform']) }}
+                                   {{ html()->form('POST', '/admin/buscat/add')->id('addform')->attribute('name', 'addform')->open() }}
+
                                     <ul class="item-btn">
                                        <li></li>
                                        <li style="width: 300px;"><input type="text" name="solo_bus_name" value="{{ old('solo_bus_name') }}" placeholder="業種名"></li>
@@ -52,8 +53,8 @@
                                 </tr>
                                 @foreach ($catList as $cat)
                                 <tr>
-                               {{ Form::open(['url' => '/admin/buscat/store', 'name' => 'catform' . $cat['id'] ]) }}
-                               {{ Form::hidden('cat_id', $cat['id']) }}
+                               {{ html()->form('POST', '/admin/buscat/store')->attribute('name', 'catform' . $cat['id'])->open() }}
+                               {{ html()->hidden('cat_id', $cat['id']) }}
                                     <td>{{ $cat['id'] }}</td>
                                     <td><input type="text" name="order_num" value="{{ $cat['order_num'] }}" oninput="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
                                     <td><input type="text" name="name" value="{{ $cat['name'] }}" oninput="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
