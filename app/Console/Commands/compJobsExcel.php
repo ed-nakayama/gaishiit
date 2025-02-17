@@ -163,6 +163,29 @@ class CompJobsExcel extends Command
 
 				foreach ($data as $job_arr) {
 
+					if (
+						(empty($job_arr['comp_id']) ) && 
+						(empty($job_arr['comp_name']) ) && 
+						(empty($job_arr['unit_name']) ) && 
+						(empty($job_arr['cat_name']) ) && 
+						(empty($job_arr['job_id']) ) && 
+						(empty($job_arr['job_title']) ) && 
+						(empty($job_arr['job_detail']) ) && 
+						(empty($job_arr['job_detail_2']) ) && 
+						(empty($job_arr['job_detail_3']) ) && 
+						(empty($job_arr['job_detail_4']) ) && 
+						(empty($job_arr['job_detail_5']) ) && 
+						(empty($job_arr['working_place']) ) && 
+						(empty($job_arr['register_date']) ) && 
+						(empty($job_arr['agent']) ) && 
+						(empty($job_arr['url']) ) && 
+						(empty($job_arr['kind']) ) && 
+						(empty($job_arr['open']) ) && 
+						(empty($job_arr['portal']) )
+						) {
+							continue;
+						}
+
 					if (empty($comp_id)) {
 						$comp_id = $job_arr['comp_id'];
 						$comp_name = $job_arr['comp_name'];
