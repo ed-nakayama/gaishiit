@@ -79,6 +79,25 @@
 				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-o">O / P / Q / R / S / T / U</a></li>
 				<li class="page__numbers"><a class="openModalSeek button-modal" href="#cate-v">V / W / X / Y / Z</a></li>
 			</ul>
+
+{{--  ****************************************** --}}
+
+			<h2>フリーワード検索</h2>
+			<div class="con-wrap">
+				<div class="search-job">
+					{{ html()->form('POST', '/company')->attribute('name', 'compform')->open() }}
+					<div style="text-align: center;">{{ html()->text('freeword', $freeword)->class('search-job__input') }}</div>
+
+					<p class="search-job__submit form-button" style=" justify-content: space-around;">
+						<a href="javascript:compform.submit()">検索する</a>
+					</p>
+				</div><!-- search-job -->
+				{{ html()->form()->close() }}
+			</div><!-- con-wrap -->
+
+{{--  ****************************************** --}}
+
+
 		</div>
 
 		<div class="con-wrap">

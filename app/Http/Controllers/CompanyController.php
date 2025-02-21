@@ -55,7 +55,25 @@ class CompanyController extends Controller
 	{
 		$loginUser = Auth::guard('user')->user();
 
+		$freeword = !empty($request->freeword) ?  $request->freeword : '';
+		$freeword = str_replace('　', ' ', $freeword);
+
 		$compList = Company::selectRaw('companies.*');
+		
+		if (!empty($freeword)) {
+			$words = explode(" ", $freeword);
+
+			for ($i = 0; $i < count($words); $i++) {
+				$compList = $compList
+					->where(function($query) use ($words ,$i) {
+						$query->where('name' , 'like', "%{$words[$i]}%")
+						->orWhere('name_kana' , 'like', "%{$words[$i]}%")
+						->orWhere('name_english' , 'like', "%{$words[$i]}%")
+						;
+					});
+			}
+		}
+
 /*
 		$comp_sel = $request->comp_sel;
 
@@ -86,6 +104,7 @@ class CompanyController extends Controller
  		return view('user.company' ,compact(
  			'compList',
  			'pickup',
+ 			'freeword',
  			));
 	}
 
