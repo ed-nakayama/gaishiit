@@ -476,9 +476,9 @@ end_proc:
 		}
 
 		// ジョブタイトル
-//		if (empty($job_arr['job_title'])) {
-//			$job_arr['job_title'] = mb_substr($job_arr['job_title'] ,0 ,160);
-//		}
+		if (empty($job_arr['job_title'])) {
+			$this->error .= "ジョブタイトルがない。";
+		}
 
 
 		if ( $job_arr['kind'] == 'Job' ) {
