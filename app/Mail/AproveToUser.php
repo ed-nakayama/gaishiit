@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 use App\Models\User;
+use App\Models\Admin;
 
 class AproveToUser extends Mailable
 {
@@ -40,11 +41,21 @@ class AproveToUser extends Mailable
      */
     public function build()
     {
+        $admins = Admin::where('aprove_priv','1')
+        	->get();
+
+        $cc = array();
+
+        foreach ( $admins as $ad ) {
+            $cc[] = $ad['email'];
+		}
+
 	    return $this->to($this->user->email)       // 送信先アドレス
-    	    ->subject('【外資IT】承認のお知らせ')        // 件名
-        	->text('mail_templates.aprove_to_user') // 本文
-        	->with(['user' => $this->user
-        		]);       // 本文に送る値
+			->cc($cc)
+			->subject('【外資IT】承認のお知らせ')        // 件名
+			->text('mail_templates.aprove_to_user') // 本文
+			->with(['user' => $this->user
+				]);       // 本文に送る値
     }
 
 }

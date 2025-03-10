@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 use App\Models\User;
+use App\Models\Admin;
 
 class RejectToUser extends Mailable
 {
@@ -41,10 +42,16 @@ class RejectToUser extends Mailable
      */
     public function build()
     {
+        $admins = Admin::where('aprove_priv','1')
+        	->get();
+
+        $cc = array();
+
 	    return $this->to($this->user->email)       // 送信先アドレス
-    	    ->subject('【外資IT】否認のお知らせ')        // 件名
-        	->text('mail_templates.reject_to_user') // 本文
-        	->with(['user' => $this->user]);       // 本文に送る値
-    }
+			->cc($cc)
+			->subject('【外資IT】否認のお知らせ')        // 件名
+			->text('mail_templates.reject_to_user') // 本文
+			->with(['user' => $this->user]);       // 本文に送る値
+	}
 
 }
