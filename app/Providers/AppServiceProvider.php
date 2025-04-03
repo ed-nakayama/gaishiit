@@ -89,7 +89,7 @@ class AppServiceProvider extends ServiceProvider
 
     	$years = strftime("%Y") + 1;
 		$yearList = array();
-		for ($i = 1962; $i <= $years; $i++) {
+		for ($i = 1958; $i <= $years; $i++) {
 			$yearList[$i] = $i;
 		}
         view()->share('yearList' ,$yearList);
