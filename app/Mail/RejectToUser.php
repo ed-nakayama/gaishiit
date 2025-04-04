@@ -47,6 +47,10 @@ class RejectToUser extends Mailable
 
         $cc = array();
 
+        foreach ( $admins as $ad ) {
+            $cc[] = $ad['email'];
+		}
+
 	    return $this->to($this->user->email)       // 送信先アドレス
 			->cc($cc)
 			->subject('【外資IT】否認のお知らせ')        // 件名
