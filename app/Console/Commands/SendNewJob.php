@@ -60,11 +60,11 @@ class SendNewJob extends Command
 
 		Storage::delete($workName);
 
-		$header = 'comp_name,job_id,job_name,url';
+		$header = 'comp_name,job_name,url';
 		Storage::disk('local')->append($workName, $header);
 		
 		foreach ($jobList as $job) {
-			$content = str_replace("\n", '', $job->comp_name) . ',"' . $job->job_code . '"' . ',"' . $job->job_name . '"' . ",https://gaishiit.com/admin/mypage/job/edit?company_id={$job->comp_id}&job_id={$job->job_id}";
+			$content = str_replace("\n", '', $job->comp_name) .  ',"' . $job->job_name . '"' . ",https://gaishiit.com/admin/mypage/job/edit?company_id={$job->comp_id}&job_id={$job->job_id}";
 
 			$content = mb_convert_encoding($content, 'SJIS-WIN', 'UTF8');
 
