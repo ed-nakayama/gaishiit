@@ -53,7 +53,7 @@ class RejectToUser extends Mailable
 
 	    return $this->to($this->user->email)       // 送信先アドレス
 			->cc($cc)
-			->subject('【外資IT】否認のお知らせ')        // 件名
+			->subject('【外資IT】ご利用登録について')        // 件名
 			->text('mail_templates.reject_to_user') // 本文
 			->with(['user' => $this->user]);       // 本文に送る値
 	}
