@@ -136,5 +136,6 @@ return [
     'agent_mail' => env('AGENT_MAIL'),
     'rpa_mail' => env('RPA_MAIL'),
     'new_job_mail' => env('NEW_JOB_MAIL'),
+    'approval_mail' => env('APPROVAL_MAIL'),
 
 ];
