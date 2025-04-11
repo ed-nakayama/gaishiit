@@ -42,17 +42,13 @@ class RejectToUser extends Mailable
      */
     public function build()
     {
-        $admins = Admin::where('aprove_priv','1')
-        	->get();
-
-        $cc = array();
-
-        foreach ( $admins as $ad ) {
-            $cc[] = $ad['email'];
-		}
+		$list = config('mail.approval_mail');
+		$list = str_replace(' ', '', $list);
+        
+		$bcc = explode(',', $list);
 
 	    return $this->to($this->user->email)       // 送信先アドレス
-			->cc($cc)
+			->bcc($bcc)
 			->subject('【外資IT】ご利用登録について')        // 件名
 			->text('mail_templates.reject_to_user') // 本文
 			->with(['user' => $this->user]);       // 本文に送る値

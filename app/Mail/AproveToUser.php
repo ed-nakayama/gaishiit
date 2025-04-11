@@ -41,17 +41,13 @@ class AproveToUser extends Mailable
      */
     public function build()
     {
-        $admins = Admin::where('aprove_priv','1')
-        	->get();
-
-        $cc = array();
-
-        foreach ( $admins as $ad ) {
-            $cc[] = $ad['email'];
-		}
+		$list = config('mail.approval_mail');
+		$list = str_replace(' ', '', $list);
+        
+		$bcc = explode(',', $list);
 
 	    return $this->to($this->user->email)       // 送信先アドレス
-			->cc($cc)
+			->bcc($bcc)
 			->subject('【外資IT】承認のお知らせ')        // 件名
 			->text('mail_templates.aprove_to_user') // 本文
 			->with(['user' => $this->user
