@@ -224,18 +224,20 @@
 								</div><!-- /.item-name -->
 								<div class="item-input">
 									@foreach ($jobCat as $cat)
-										<div style="font-size:16px; font-weight: bold;">{{ $cat->name }}</div>
+										<div style="font-size:16px; font-weight: bold;">{{ $cat->name }}　
+											<label>{{ html()->checkbox("jobcat_parent[]", 0, $cat->id)->id("jobcat_parent")->class("jobcat_parent{$cat->id}") }}<span style="font-weight:bold;">全て</span></label>
+										</div>
 										<div style="display:flex;flex-wrap: wrap;">
 											@foreach ($jobCatDetail as $detail)
 												@if ($cat->id == $detail->job_cat_id)
 													<div style="margin-left: 15px;">
 														@if (!empty($job->getJobCategory() ))
-															{{ html()->checkbox('jobCat[]', (in_array($detail->id, old("jobCat", $job->getJobCategory()) )), $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
+															{{ html()->checkbox('jobCat[]', (in_array($detail->id, old("jobCat", $job->getJobCategory()) )), $detail->id)->class("jobCat{$cat->id}")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
 														@else
 															@if (!empty(old("jobCat")))
-																{{ html()->checkbox('jobCat[]', (in_array($detail->id, old("jobCat") )), $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
+																{{ html()->checkbox('jobCat[]', (in_array($detail->id, old("jobCat") )), $detail->id)->class("jobCat{$cat->id}")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
 															@else
-																{{ html()->checkbox('jobCat[]', false, $detail->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
+																{{ html()->checkbox('jobCat[]', false, $detail->id)->class("jobCat{$cat->id}")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $detail->name }}
 															@endif
 														@endif
 													</div>
@@ -256,10 +258,12 @@
 								<div class="formContainer mg-ajust-midashi">
 									<div class="item-name">
 										<p>担当業界カテゴリ</p>
+
 									</div><!-- /.item-name -->
 									<div class="item-input">
 										{{ $job->getIndCatName() }}
 										<hr>
+										<label>{{ html()->checkbox("industory_parent", 0)->id("industory_parent") }}<span style="font-weight:bold;">全て</span></label>
 										<br>
 									</div><!-- /.item-input -->
 								</div>
@@ -273,12 +277,12 @@
 										<div style="font-size:16px; font-weight: bold;">
 											<div style="margin-left: 15px;">
 												@if (!empty($job->getIndcatCat() ))
-													{{ html()->checkbox('indCat[]', (in_array($cat->id, old("indCat", $job->getIndcatCat()) )), $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+													{{ html()->checkbox('indCat[]', (in_array($cat->id, old("indCat", $job->getIndcatCat()) )), $cat->id)->class('industory_checks')->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
 												@else
 													@if (!empty(old("indCat")))
-														{{ html()->checkbox('indCat[]', (in_array($detail->id, old("indCat") )), $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+														{{ html()->checkbox('indCat[]', (in_array($detail->id, old("indCat") )), $cat->id)->class('industory_checks')->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
 													@else
-														{{ html()->checkbox('indCat[]', false, $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+														{{ html()->checkbox('indCat[]', false, $cat->id)->class('industory_checks')->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
 													@endif
 												@endif
 											</div>
@@ -491,6 +495,68 @@
 {{-- END担当　モーダル領域   --}}
 
 <script>
+
+/*********************************
+/* 職種チェックボックス制御  *
+**********************************/
+	@foreach ($jobCat as $cat)
+		//全選択・解除のチェックボックス
+		let jobcat_all{{ $cat->id }} = document.querySelector(".jobcat_parent{{ $cat->id }}");
+		//チェックボックスのリスト
+		let jobcat_list{{ $cat->id }} = document.querySelectorAll(".jobCat{{ $cat->id }}");
+
+		//全選択のチェックボックスイベント
+		jobcat_all{{ $cat->id }}.addEventListener('change', jobcat_change_all{{ $cat->id }});
+
+		function jobcat_change_all{{ $cat->id }}() {
+			//チェックされているか
+			if (jobcat_all{{ $cat->id }}.checked) {
+				//全て選択
+				for (let i in jobcat_list{{ $cat->id }}) {
+					if (jobcat_list{{ $cat->id }}.hasOwnProperty(i)) {
+						jobcat_list{{ $cat->id }}[i].checked = true;
+					}
+				}
+				
+			} else {
+				//全て解除
+				for (let i in jobcat_list{{ $cat->id }}) {
+					if (jobcat_list{{ $cat->id }}.hasOwnProperty(i)) {
+						jobcat_list{{ $cat->id }}[i].checked = false;
+					}
+				}
+			}
+		};
+
+	@endforeach
+
+
+/*********************************
+/* 担当業界チェックボックス制御  *
+**********************************/
+	const industory_parent = document.getElementById("industory_parent");
+	const industory_checks = document.querySelectorAll(".industory_checks");
+	// 全て選択のチェックボックスがクリックされた時
+	industory_parent.addEventListener('click', () => {
+		for (val of industory_checks) {
+			industory_parent.checked == true ? val.checked = true : val.checked = false;
+		}
+	});
+
+	// 個別のチェックボックスがクリックされた時
+	industory_checks.forEach(element => {
+		element.addEventListener('click', () => {
+			// チェックが1つでも外された時
+			if (element.checked == false) {
+				industory_parent.checked = false;
+			}
+			// 全てにチェックがされた時
+			if (document.querySelectorAll(".industory_checks:checked").length == industory_checks.length) {
+				industory_parent.checked = true;
+			}
+		});
+	});
+
 
 /////////////////////////////////////////////////////////
 // その他ロケーション表示
