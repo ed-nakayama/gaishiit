@@ -187,6 +187,8 @@ class RegisterController extends Controller
 			$job_cats = implode(',', $job_cat_list);
 		}
 
+		$ip = $request->headers->get('x-real-ip');
+
 		// ユーザ登録
         $retUser = User::create([
             'name'             => $request->user_name,
@@ -219,6 +221,7 @@ class RegisterController extends Controller
             'job_cat_details'  => $request->job_cat_details,
             'income'           => $request->income,
             'no_company'       => $request->no_company,
+            'ip'               => $ip,
             
         ]);
 
