@@ -2705,6 +2705,44 @@ select {
 }
 
 
+/* Referer一覧 */
+.tbl-referer {
+    width: 100%;
+    font-size: 12px;
+}
+.tbl-referer tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-referer th:nth-child(1) {
+	width: 10%;
+}
+.tbl-referer th:nth-child(2) {
+	width: 10%;
+}
+.tbl-referer th:nth-child(3) {
+	width: 8%;
+}
+.tbl-referer th:nth-child(4) {
+	width: 5%;
+}
+.tbl-referer th:nth-child(5) {
+	width: 20%;
+}
+.tbl-referer th:nth-child(6) {
+	width: auto;
+}
+.tbl-referer th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-referer th, .tbl-referer td {
+    padding: 5px 10px;
+}
+.tbl-referer tr:hover td {
+	background-color: #ffffcc;
+}
+
+
+
 /* JOB一覧 SFC用 */
 .tbl-jobsfc {
     width: 100%;

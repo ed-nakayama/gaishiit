@@ -39,7 +39,7 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* °ìÍ÷ ¸õÊä¼Ô¸¡º÷
+* ä¸€è¦§ å€™è£œè€…æ¤œç´¢
 **************************************/
 	public function index()
 	{
@@ -56,7 +56,7 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* ¸¡º÷¥ê¥¹¥È
+* æ¤œç´¢ãƒªã‚¹ãƒˆ
 **************************************/
 	public function search_list($aprove ,$request)
 	{
@@ -78,16 +78,16 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* °ìÍ÷ ¸õÊä¼Ô¸¡º÷
+* ä¸€è¦§ å€™è£œè€…æ¤œç´¢
 **************************************/
 	public function aprove(Request $request)
 	{
 		if ( isset($request->sel_aprove) ) {
-			if ($request->sel_aprove == '1') { // ¾µÇ§
+			if ($request->sel_aprove == '1') { // æ‰¿èª
 				$sel_aprove = '1';
-			} elseif ($request->sel_aprove == '2') { // ÈİÇ§
+			} elseif ($request->sel_aprove == '2') { // å¦èª
 				$sel_aprove = '2';
-			} else { // ¥ê¥¸¥§¥¯¥È
+			} else { // ãƒªã‚¸ã‚§ã‚¯ãƒˆ
 				$sel_aprove = '0';
 			}
 		} else {
@@ -100,11 +100,11 @@ class AdminUserController extends UserController
 				$user->aprove_flag = $sel_aprove;
 				$user->save();
 
-				if ($sel_aprove == 1) { // ¾µÇ§¤Î¤ªÃÎ¤é¤»
+				if ($sel_aprove == 1) { // æ‰¿èªã®ãŠçŸ¥ã‚‰ã›
 					Mail::send(new AproveToUser($user));
 //		 			Mail::send(new AproveToComp($member));
 
-				} else if ($sel_aprove == 2) { // ÈİÇ§¤Î¤ªÃÎ¤é¤»
+				} else if ($sel_aprove == 2) { // å¦èªã®ãŠçŸ¥ã‚‰ã›
 					Mail::send(new RejectToUser($user));
 		 		}
 			}
@@ -117,16 +117,16 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* °ìÍ÷ ¸õÊä¼ÔÍúÎò
+* ä¸€è¦§ å€™è£œè€…å±¥æ­´
 **************************************/
 	public function aproveHist(Request $request)
 	{
 		if ( isset($request->sel_aprove) ) {
-			if ($request->sel_aprove == '1') { // ¾µÇ§
+			if ($request->sel_aprove == '1') { // æ‰¿èª
 				$sel_aprove = '1';
-			} elseif ($request->sel_aprove == '2') { // ¾µÇ§
+			} elseif ($request->sel_aprove == '2') { // æ‰¿èª
 				$sel_aprove = '2';
-			} else { // ¥ê¥¸¥§¥¯¥È
+			} else { // ãƒªã‚¸ã‚§ã‚¯ãƒˆ
 				$sel_aprove = '0';
 			}
 		} else {
@@ -144,14 +144,14 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* °ìÍ÷ ¸õÊä¼Ô¸¡º÷
+* ä¸€è¦§ å€™è£œè€…æ¤œç´¢
 **************************************/
 	public function histBack(Request $request)
 	{
-		if ($request->aprove == '1') { // ¾µÇ§
+		if ($request->aprove == '1') { // æ‰¿èª
 			$aprove = '1';
 			$sel_aprove = '2';
-		} else { // ¥ê¥¸¥§¥¯¥È
+		} else { // ãƒªã‚¸ã‚§ã‚¯ãƒˆ
 			$sel_aprove = '1';
 			$aprove = '2';
 		}
@@ -174,7 +174,7 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* ¥æ¡¼¥¶¾ğÊó¼èÆÀ
+* ãƒ¦ãƒ¼ã‚¶æƒ…å ±å–å¾—
 **************************************/
 	public function get_user($user_id)
 	{
@@ -185,7 +185,7 @@ class AdminUserController extends UserController
 			->where('users.id' ,$user_id)
 			->first();
 
-		// 1Ç¯°ÊÆâ¤Ë¥á¥Ã¥»¡¼¥¸¤Î¤ä¤ê¼è¤ê¤¬¤¢¤ì¤Ğ»áÌ¾¤âÉ½¼¨
+		// 1å¹´ä»¥å†…ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚„ã‚Šå–ã‚ŠãŒã‚ã‚Œã°æ°åã‚‚è¡¨ç¤º
 		$pre_date = date("Y-m-d",strtotime("-1 year"));
 	
 		$int_count = Interview::where('interviews.user_id', $user_id)
@@ -197,7 +197,7 @@ class AdminUserController extends UserController
 		if ($int_count > 0) $userInfo['open_flag'] = '1';
 
 
-		// ¶ĞÌ³ÃÏ¤Î¼èÆÀ
+		// å‹¤å‹™åœ°ã®å–å¾—
 		$locName = array();
 		$locs = explode(",", $userInfo->request_location);
 		$locList = ConstLocation::select('name')->whereIn('id' ,$locs)->get();
@@ -207,7 +207,7 @@ class AdminUserController extends UserController
 		$userInfo['location_name'] = join(" / " ,$locName);
 
 
-		// ¿¦¼ïÌ¾¤Î¼èÆÀ
+		// è·ç¨®åã®å–å¾—
 		$catName = array();
 		$cats = explode(",", $userInfo->job_cats);
 		$catList = JobCat::select('name')->whereIn('id' ,$cats)->get();
@@ -216,7 +216,7 @@ class AdminUserController extends UserController
 		}
 		$userInfo['job_cat_name'] = join(" / ",$catName);
 
-		// ¿¦¼ïÌ¾¤Î¼èÆÀ
+		// è·ç¨®åã®å–å¾—
 		$catDetailName = array();
 		$cat_details = explode(",", $userInfo->job_cat_details);
 		$catDetailList = JobCatDetail::select('name')->whereIn('id' ,$cat_details)->get();
@@ -226,7 +226,7 @@ class AdminUserController extends UserController
 		$userInfo['job_cat_detail_name'] = join(" / ",$catDetailName);
 
 
-		// ¶È¼ïÌ¾¤Î¼èÆÀ
+		// æ¥­ç¨®åã®å–å¾—
 		$catName = array();
 		$cats = explode(",", $userInfo->business_cats);
 		$catList = BusinessCatDetail::select('name')->whereIn('id' ,$cats)->get();
@@ -240,7 +240,7 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* ¸õÊä¼Ô¾ÜºÙ¾ğÊó
+* å€™è£œè€…è©³ç´°æƒ…å ±
 **************************************/
 	public function detail(Request $request)
 	{
@@ -294,7 +294,7 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* ¾õÂÖÊÑ¹¹
+* çŠ¶æ…‹å¤‰æ›´
 **************************************/
 	public function change( Request $request )
 	{
@@ -304,11 +304,11 @@ class AdminUserController extends UserController
 			$user->aprove_flag = $request->aprove;
 			$user->save();
 
-			if ($request->aprove == 1) { // ¾µÇ§¤Î¤ªÃÎ¤é¤»
+			if ($request->aprove == 1) { // æ‰¿èªã®ãŠçŸ¥ã‚‰ã›
 				Mail::send(new AproveToUser($user));
 //				Mail::send(new AproveToComp($member));
 
-			} else if ($request->aprove == 2) { // ÈİÇ§¤Î¤ªÃÎ¤é¤»
+			} else if ($request->aprove == 2) { // å¦èªã®ãŠçŸ¥ã‚‰ã›
 				Mail::send(new RejectToUser($user));
   			}
 		}
@@ -318,7 +318,7 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* °ìÍ÷ ¸õÊä¼Ô´ÉÍı
+* ä¸€è¦§ å€™è£œè€…ç®¡ç†
 **************************************/
 	public function canIndex()
 	{
@@ -348,7 +348,7 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* °ìÍ÷ ¸õÊä¼Ô´ÉÍı
+* ä¸€è¦§ å€™è£œè€…ç®¡ç†
 **************************************/
 	public function canList(Request $request)
 	{
@@ -379,7 +379,7 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* ¸õÊä¼Ô´ÉÍı ¸¡º÷¥ê¥¹¥È
+* å€™è£œè€…ç®¡ç† æ¤œç´¢ãƒªã‚¹ãƒˆ
 **************************************/
 	public function search_can_list($param)
 	{
@@ -435,7 +435,7 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* ¥ª¡¼¥Ê¡¼¥·¥Ã¥× ¸¡º÷¥ê¥¹¥È
+* ã‚ªãƒ¼ãƒŠãƒ¼ã‚·ãƒƒãƒ— æ¤œç´¢ãƒªã‚¹ãƒˆ
 **************************************/
 	public function ownership()
 	{
@@ -468,9 +468,9 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* ¥á¡¼¥ëÁ÷¿®
+* ãƒ¡ãƒ¼ãƒ«é€ä¿¡
 **************************************/
-	public function send( Request $request )
+	public function send( Request $request)
 	{
 		$validator = Validator::make($request->all(), [
 			'parent_id' => ['required','string'],
@@ -502,6 +502,36 @@ class AdminUserController extends UserController
 		]);
 
 		return redirect()->route('admin.user.detail', ['parent_id'=>$parent_id, 'user_id'=>$user_id] );
+	}
+
+
+/*************************************
+* ãƒªãƒ•ã‚¡ãƒ©ä¸€è¦§
+**************************************/
+	public function referer(Request $request)
+	{
+		$subSQL0 = \DB::table('users')
+			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
+		
+		$userQuery = \DB::table('users')
+			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
+			->leftJoin('lp_refs', 'users.ip','=','lp_refs.ip')
+			->selectRaw("users.*, age ,referer")
+			->orderBy('created_at' ,'desc');
+
+		if (!empty($request->referer)) {
+			$referer = $request->referer;
+			$userQuery = $userQuery->where('referer', 'like', "%{$referer}%");
+		} else {
+			$referer = '';
+		}
+	
+		$userList = $userQuery->paginate(20);
+
+		return view('admin.referer_list' ,compact(
+			'userList',
+			'referer',
+		));
 	}
 
 

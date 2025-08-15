@@ -34,6 +34,9 @@
 @if (Auth::user()->agent_priv == '0' || Auth::user()->recruit_priv == '1')
                         <li><a href="/admin/candidate">候補者管理</a></li>
 @endif
+@if (Auth::user()->agent_priv == '0' || Auth::user()->recruit_priv == '1')
+                        <li><a href="/admin/candidate/referer">候補者 Referer</a></li>
+@endif
 @if (Auth::user()->agent_priv == '0')
                         <li><a href="/admin/ownership">オーナーシップ管理</a></li>
                         <li><a href="/admin/admin/list">メンバー管理</a></li>

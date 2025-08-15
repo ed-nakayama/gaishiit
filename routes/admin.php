@@ -147,6 +147,10 @@ Route::get ('/candidate',      'AdminUserController@canIndex');
 Route::get ('/candidate/list', 'AdminUserController@canList');
 Route::post('/candidate/list', 'AdminUserController@canList');
 
+Route::get ('/candidate/referer', 'AdminUserController@referer');
+Route::post('/candidate/referer', 'AdminUserController@referer');
+
+
 // オーナーシップ
 Route::get ('/ownership', 'AdminUserController@ownership');
 Route::post('/ownership', 'AdminUserController@ownership');
