@@ -30,6 +30,7 @@ use App\Models\Company;
 use App\Models\SearchUserHist;
 use App\Models\Banner;
 use App\Models\Income;
+use App\Models\LpRef;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -53,6 +54,24 @@ class AppServiceProvider extends ServiceProvider
     {
         $url->forceScheme('https');
 
+		$referer = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+		$ip = !empty($_SERVER['HTTP_X_REAL_IP']) ? $_SERVER['HTTP_X_REAL_IP'] : '';
+
+		if (!empty($referer)) {
+			$url_info = parse_url($referer);
+			$root_url = $url_info['scheme'] . '://' . $url_info['host'];
+		
+			$ref = LpRef::where('ip', $ip)
+	 			->where('referer', 'like', "{$root_url}%")
+	 			->get();
+
+			if (empty($ref[0])) {
+				$lpRef = LpRef::create([
+					'ip' => $ip,
+					'referer' => $referer,
+				]);
+			}
+		}
 
         // 管理画面用のクッキー名称、セッションテーブル名を変更する
         $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
