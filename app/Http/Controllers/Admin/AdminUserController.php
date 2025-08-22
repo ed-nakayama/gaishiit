@@ -67,7 +67,7 @@ class AdminUserController extends UserController
 			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->leftJoin('const_locations', 'users.request_location','=','const_locations.id')
 			->selectRaw("users.*, age ,const_locations.name as location_name")
-			->where('aprove_flag' ,$aprove)
+			->whereNull('deleted_at')
 			->orderBy('created_at' ,'desc');
 
 		$userList = $userQuery->paginate(20);
@@ -244,6 +244,7 @@ class AdminUserController extends UserController
 **************************************/
 	public function detail(Request $request)
 	{
+
 		$user_id = $request->user_id;
 
 		$userInfo = $this->get_user($user_id);
@@ -255,7 +256,6 @@ class AdminUserController extends UserController
 			->where('interviews.user_id' ,$user_id)
 			->whereNotNull('interviews.entrance_date')
 			->get();
-
 
 		$subSQL = Interview::selectRaw("user_id, company_id, max(updated_at) as last_update")
 //			->whereNull('interviews.entrance_date')

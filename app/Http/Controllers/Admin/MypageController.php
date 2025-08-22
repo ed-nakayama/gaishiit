@@ -85,7 +85,8 @@ class MypageController extends Controller
 		$userQuery = \DB::table('users')
 			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->leftJoin('const_locations', 'users.request_location','=','const_locations.id')
-			->selectRaw("users.*, age ,const_locations.name as location_name");
+			->selectRaw("users.*, age ,const_locations.name as location_name")
+			->whereNull('deleted_at');
 			
 
 		if ($request->sel_aprove == '0') {
@@ -692,8 +693,6 @@ class MypageController extends Controller
 		$job->working_place     = $request->working_place;
 		$job->no_auto_flag      = $no_auto_flag;
 		$job->income_id         = $request->income_id;
-		$job->app_contents      = $request->app_contents;
-		$job->app_details       = $request->app_details;
 
 		// 職種保存
 		$job->setJobCat($request->jobCat);
