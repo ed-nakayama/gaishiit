@@ -187,7 +187,8 @@ class RegisterController extends Controller
 			$job_cats = implode(',', $job_cat_list);
 		}
 
-		$ip = $request->headers->get('x-real-ip');
+		$ip = session()->get('lp_ip');
+		$referer = session()->get('lp_ref');
 
 		// ユーザ登録
         $retUser = User::create([
@@ -222,6 +223,7 @@ class RegisterController extends Controller
             'income'           => $request->income,
             'no_company'       => $request->no_company,
             'ip'               => $ip,
+            'referer'          => $referer,
             
         ]);
 

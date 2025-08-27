@@ -114,4 +114,24 @@ class User extends Authenticatable
     }
 
 
+	/*
+	* 年齢 取得
+	*/
+    public function getAge()
+    {
+        $ret = '';
+
+        if (!empty($this->birthday)) {
+
+			$now = date('Ymd');
+			$birthday = str_replace("-", "", $this->birthday);
+			
+			$ret = floor(($now - $birthday) / 10000);
+		}
+	
+		return $ret;
+    }
+
+
+
 }

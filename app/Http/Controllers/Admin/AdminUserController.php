@@ -510,23 +510,16 @@ class AdminUserController extends UserController
 **************************************/
 	public function referer(Request $request)
 	{
-		$subSQL0 = \DB::table('users')
-			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
-		
-		$userQuery = \DB::table('users')
-			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
-			->leftJoin('lp_refs', 'users.ip','=','lp_refs.ip')
-			->selectRaw("users.*, age ,referer")
-			->orderBy('created_at' ,'desc');
+		$userList = USER::orderBy('created_at' ,'desc');
 
 		if (!empty($request->referer)) {
 			$referer = $request->referer;
-			$userQuery = $userQuery->where('referer', 'like', "%{$referer}%");
+			$userList =$userList->where('referer', 'like', "%{$referer}%");
 		} else {
 			$referer = '';
 		}
 	
-		$userList = $userQuery->paginate(20);
+		$userList = $userList->paginate(20);
 
 		return view('admin.referer_list' ,compact(
 			'userList',

@@ -59,7 +59,7 @@
                                         {{ Form::close() }}
                                     </td>
 									<td>@if ( $int->aprove_flag == '1')<font color="blue">承認済</font>@elseif ( $int->aprove_flag == '2')<font color="red">リジェクト</font>@endif</td>
-                                    <td>{{ $int->age }}</td>
+                                    <td>{{ $int->getAge() }}</td>
                                     <td>{{ $int->company }}</td>
                                     <td>{{ $int->referer }}</td>
                                 </tr>

@@ -63,17 +63,10 @@ class AppServiceProvider extends ServiceProvider
 			$url_info = parse_url($referer);
 			$root_url = $url_info['scheme'] . '://' . $url_info['host'];
 		
-			$ref = LpRef::where('ip', $ip)
-	 			->where('referer', 'like', "{$root_url}%")
-	 			->get();
-
-			if (empty($ref[0])) {
-				$lpRef = LpRef::create([
-					'ip' => $ip,
-					'referer' => $referer,
-				]);
-			}
+			session()->put('lp_ref', $referer);
+			session()->put('lp_ip' , $ip);
 		}
+
 
         // 管理画面用のクッキー名称、セッションテーブル名を変更する
         $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
