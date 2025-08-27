@@ -16,6 +16,7 @@ use App\Models\ConstLocation;
 use App\Models\Evaluation;
 use App\Models\JobCatDetail;
 use App\Models\IndustoryCatDetail;
+use App\Models\User;
 
 use STS\ZipStream\ZipStreamFacade AS Zip;
 
@@ -79,15 +80,8 @@ class MypageController extends Controller
 **************************************/
 	public function search_list($request)
 	{
-		$subSQL0 = \DB::table('users')
-			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
-		
-		$userQuery = \DB::table('users')
-			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
-			->leftJoin('const_locations', 'users.request_location','=','const_locations.id')
-			->selectRaw("users.*, age ,const_locations.name as location_name")
-			->whereNull('deleted_at');
-			
+		$userQuery = User::leftJoin('const_locations', 'users.request_location','=','const_locations.id')
+			->selectRaw("users.*, const_locations.name as location_name");
 
 		if ($request->sel_aprove == '0') {
 			$userQuery = $userQuery->where('aprove_flag' , '0');
