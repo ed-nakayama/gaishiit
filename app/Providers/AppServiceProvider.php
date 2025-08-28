@@ -59,14 +59,13 @@ class AppServiceProvider extends ServiceProvider
 
 		$appUrl = env('APP_URL');
 
-		if ( !empty($referer) && (strpos($referer ,$appUrl) === false) ) {
+		if ( !empty($referer) && (strpos($referer ,$appUrl) !== false) ) {
 			$url_info = parse_url($referer);
 			$root_url = $url_info['scheme'] . '://' . $url_info['host'];
 		
 			session()->put('lp_ref', $referer);
 			session()->put('lp_ip' , $ip);
 		}
-
 
         // 管理画面用のクッキー名称、セッションテーブル名を変更する
         $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
