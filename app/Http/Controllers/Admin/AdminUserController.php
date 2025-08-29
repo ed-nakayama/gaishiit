@@ -67,6 +67,7 @@ class AdminUserController extends UserController
 			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->leftJoin('const_locations', 'users.request_location','=','const_locations.id')
 			->selectRaw("users.*, age ,const_locations.name as location_name")
+			->where('aprove_flag' ,$aprove)
 			->whereNull('deleted_at')
 			->orderBy('created_at' ,'desc');
 
