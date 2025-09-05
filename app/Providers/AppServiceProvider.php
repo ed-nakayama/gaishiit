@@ -57,9 +57,9 @@ class AppServiceProvider extends ServiceProvider
 		$referer = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 		$ip = !empty($_SERVER['HTTP_X_REAL_IP']) ? $_SERVER['HTTP_X_REAL_IP'] : '';
 
-		$appUrl = env('APP_URL');
-
-		if ( !empty($referer) && (strpos($referer ,$appUrl) !== false) ) {
+		$appUrl = config('app.url');
+;
+		if ( !empty($referer) && (strpos($referer ,$appUrl) === false) ) {
 			$url_info = parse_url($referer);
 			$root_url = $url_info['scheme'] . '://' . $url_info['host'];
 		
