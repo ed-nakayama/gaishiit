@@ -3,6 +3,6 @@
 候補者の新規申請がありました。
 内容をご確認の上、承認をお願いします。
 
-{{ url('/') }}/admin/user/list
+{{ url('/') }}/admin/mypage
 
 @include('mail_templates.sign')
