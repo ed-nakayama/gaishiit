@@ -198,7 +198,7 @@ class AdminCompanyController extends CompanyController
 			$imgPath = storage_path("app/public/comp/{$comp->id}/original_{$file_name}");
 
 			$img = ImageManager::imagick()->read($imgPath);
-			$img->scaleDown(width: 70); // 65 x xxx
+			$img->scaleDown(width: 200); // 65 x xxx
 	        $img->save(storage_path("app/public/comp/{$comp->id}/{$file_name}"));
 
 

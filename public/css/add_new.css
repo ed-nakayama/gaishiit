@@ -1338,9 +1338,14 @@
 .job-detail .job-detail__image {
   flex: 0 0 150px;
   width: 150px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #484848;
+  height: 150px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 5px;
+  background-color: #fff;
 }
 @media (max-width: 820px) {
   .job-detail .job-detail__image {
