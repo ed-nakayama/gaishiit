@@ -48,7 +48,7 @@ class AproveToUser extends Mailable
 
 	    return $this->to($this->user->email)       // 送信先アドレス
 			->bcc($bcc)
-			->subject('【外資IT】承認のお知らせ')        // 件名
+			->subject('【外資IT】ご利用登録のお知らせ')        // 件名
 			->text('mail_templates.aprove_to_user') // 本文
 			->with(['user' => $this->user
 				]);       // 本文に送る値
