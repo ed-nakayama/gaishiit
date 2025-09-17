@@ -48,6 +48,32 @@ class SetDispOrder extends Command
 			$job->save();
 		}
 
+
+		$cnt = 0;
+		
+		while (1) {
+
+			$compId = 0;
+			$dup = 0;
+        	$jobList = Job::where('open_flag' ,'1')
+        		->orderBy('disp_order')
+        		->get();
+
+			foreach ($jobList as $job) {
+				if ($compId == $job->company_id) {
+					$job->disp_order = random_int(1, 99999999);
+					$job->save();
+					$dup = 1;
+				} else {
+					$compId = $job->company_id;
+				}
+			}
+			$cnt++;
+			if ($dup == 0) break;
+			if ($cnt > 10) break;
+		}
+
+
 	}
 
 

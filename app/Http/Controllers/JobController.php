@@ -464,6 +464,7 @@ class JobController extends Controller
 **************************************/
 	public function search_all()
 	{
+/*
 		$jobList = Job::join('ranking_jobs','jobs.id', 'ranking_jobs.job_id')
 			->join('companies','jobs.company_id', 'companies.id')
 			->leftJoin('rankings', 'rankings.company_id', 'jobs.company_id')
@@ -476,8 +477,23 @@ class JobController extends Controller
 		$jobList = $jobList->selectRaw('jobs.*,' .
 					  'companies.name as company_name ,companies.logo_file as logo_file ,companies.image_file as image_file,' .
 					  'rankings.* ')
-			->orderBy('rankings.total_point','DESC')
-			->orderBy('jobs.updated_at','DESC')
+//			->orderBy('rankings.total_point','DESC')
+//			->orderBy('jobs.updated_at','DESC')
+			->orderBy('disp_order')
+			->paginate(10);
+*/
+
+		$jobList = Job::Join('companies','jobs.company_id', 'companies.id')
+			->leftJoin('rankings', 'rankings.company_id', 'jobs.company_id')
+			->where('companies.open_flag' ,'1')
+			->where('jobs.open_flag','1')
+			->whereNotNull('jobs.intro')
+			->where('jobs.intro','!=','');
+
+		$jobList = $jobList->selectRaw('jobs.*,' .
+					  'companies.name as company_name ,companies.logo_file as logo_file ,companies.image_file as image_file, companies.commit_cats as commit_cats,' .
+					  'rankings.* ')
+			->orderBy('disp_order')
 			->paginate(10);
 
 		return $jobList;
