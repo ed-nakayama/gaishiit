@@ -398,8 +398,23 @@ class JobController extends Controller
 
 			return redirect('/job');
 		}
+// 2025/09/17 
+//		if (empty($param['locations'])
+//			&& empty($param['incomes'])
+//			&& empty($param['job_cats'])
+//			&& empty($param['job_cat_details'])
+//			&& empty($param['industory_cats'])
+//			&& empty($param['industory_cat_details'])
+//			&& empty($param['business_cats'])
+//			&& empty($param['business_cat_details'])
+//			&& empty($param['commit_cat_details'])
+//			&& isset($param['freeword'])
+//			) {
+//			$jobList = $this->search_local2($param);
 
-		$jobList = $this->search_local($param);
+//		} else {
+			$jobList = $this->search_local($param);
+//		}
 
 		// ページング対応
 		$jobList = $jobList->appends($request->input());
@@ -650,6 +665,7 @@ class JobController extends Controller
 				$jobList = $jobList
 					->where(function($query) use ($words ,$i) {
 						$query->where('companies.name' , 'like', "%{$words[$i]}%")
+						->orWhere('companies.name_english' , 'like', "%{$words[$i]}%")
 						->orWhere('jobs.name' , 'like', "%{$words[$i]}%")
 						->orWhere('jobs.intro' , 'like', "%{$words[$i]}%")
 						->orWhere('jobs.job_code' , 'like', "%{$words[$i]}%")
@@ -663,11 +679,90 @@ class JobController extends Controller
 		$jobList = $jobList->selectRaw('jobs.*,' .
 					  'companies.name as company_name ,companies.logo_file as logo_file ,companies.image_file as image_file, companies.commit_cats as commit_cats,' .
 					  'rankings.* ')
+			->orderBy('disp_order')
 			->paginate(10);
 
 		return $jobList;
 	}
 	
+
+/*************************************
+* 検索条件取得
+**************************************/
+	public function search_local2($param)
+	{
+		$jobList = Job::Join('companies','jobs.company_id', 'companies.id')
+			->leftJoin('rankings', 'rankings.company_id', 'jobs.company_id')
+			->where('companies.open_flag' ,'1')
+			->where('jobs.open_flag','1')
+			->whereNotNull('jobs.intro')
+			->where('jobs.intro','!=','');
+
+		$jobList0 = '';
+
+		// フリーワード
+		if ( isset($param['freeword']) ) {
+			$freeword = str_replace('　', ' ', $param['freeword']);
+			$words = explode(" ", $freeword);
+
+			for ($i = 0; $i < count($words); $i++) {
+				$jobList = $jobList
+					->where(function($query) use ($words ,$i) {
+						$query->where('jobs.name' , 'like', "%{$words[$i]}%")
+						->orWhere('jobs.intro' , 'like', "%{$words[$i]}%")
+						->orWhere('jobs.job_code' , 'like', "%{$words[$i]}%")
+						->orWhere('jobs.sub_category' , 'like', "%{$words[$i]}%")
+						->orWhere('jobs.working_place' , 'like', "%{$words[$i]}%")
+						;
+					});
+			}
+
+
+			$jobList0 = Job::Join('companies','jobs.company_id', 'companies.id')
+				->leftJoin('rankings', 'rankings.company_id', 'jobs.company_id')
+				->where('companies.open_flag' ,'1')
+				->where('jobs.open_flag','1')
+				->whereNotNull('jobs.intro')
+				->where('jobs.intro','!=','');
+
+			for ($i = 0; $i < count($words); $i++) {
+				$jobList0 = $jobList0
+					->where(function($query) use ($words ,$i) {
+						$query->where('companies.name' , 'like', "%{$words[$i]}%")
+						->orWhere('companies.name_english' , 'like', "%{$words[$i]}%")
+						;
+					});
+			}
+		}
+
+
+		if (empty($jobList0)) {
+			$jobList = $jobList->selectRaw('jobs.*,' .
+					  'companies.name as company_name ,companies.logo_file as logo_file ,companies.image_file as image_file, companies.commit_cats as commit_cats,' .
+					  'rankings.* ')
+				->paginate(10);
+
+			return $jobList;
+
+		} else {
+			$jobList = $jobList->selectRaw('jobs.*,' .
+					  'companies.name as company_name ,companies.logo_file as logo_file ,companies.image_file as image_file, companies.commit_cats as commit_cats,' .
+					  'salary_point, welfare_point, upbring_point, compliance_point, motivation_point, work_life_point, remote_point, retire_point, salary_count, welfare_count, upbring_count, compliance_count, motivation_count, work_life_count, remote_count, retire_count, salary_rate, welfare_rate, upbring_rate, compliance_rate, motivation_rate, work_life_rate, remote_rate, retire_rate, total_point, total_rate, answer_count'
+					  );
+
+			$jobList0 = $jobList0->selectRaw('jobs.*,' .
+					  'companies.name as company_name ,companies.logo_file as logo_file ,companies.image_file as image_file, companies.commit_cats as commit_cats,' .
+					  'salary_point, welfare_point, upbring_point, compliance_point, motivation_point, work_life_point, remote_point, retire_point, salary_count, welfare_count, upbring_count, compliance_count, motivation_count, work_life_count, remote_count, retire_count, salary_rate, welfare_rate, upbring_rate, compliance_rate, motivation_rate, work_life_rate, remote_rate, retire_rate, total_point, total_rate, answer_count'
+					  )
+				->union($jobList)
+				->paginate(10);
+
+			return $jobList0;
+		}
+
+	}
+	
+
 
 /*************************************
 * 詳細
