@@ -45,6 +45,7 @@ class SetDispOrder extends Command
 
 		foreach ($jobList as $job) {
 			$job->disp_order = random_int(1, 99999999);
+			$job->timestamps = false;
 			$job->save();
 		}
 
@@ -62,6 +63,7 @@ class SetDispOrder extends Command
 			foreach ($jobList as $job) {
 				if ($compId == $job->company_id) {
 					$job->disp_order = random_int(1, 99999999);
+					$job->timestamps = false;
 					$job->save();
 					$dup = 1;
 				} else {
@@ -70,9 +72,10 @@ class SetDispOrder extends Command
 			}
 			$cnt++;
 			if ($dup == 0) break;
-			if ($cnt > 10) break;
+			if ($cnt > 20) break;
 		}
 
+//		echo $cnt . "\n";
 
 	}
 

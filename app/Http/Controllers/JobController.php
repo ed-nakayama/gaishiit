@@ -477,9 +477,8 @@ class JobController extends Controller
 		$jobList = $jobList->selectRaw('jobs.*,' .
 					  'companies.name as company_name ,companies.logo_file as logo_file ,companies.image_file as image_file,' .
 					  'rankings.* ')
-//			->orderBy('rankings.total_point','DESC')
-//			->orderBy('jobs.updated_at','DESC')
-			->orderBy('disp_order')
+			->orderBy('rankings.total_point','DESC')
+			->orderBy('jobs.updated_at','DESC')
 			->paginate(10);
 */
 
