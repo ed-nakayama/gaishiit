@@ -37,23 +37,11 @@
 					{{ html()->form('POST', '/job/list')->attribute('name', 'jobform')->open() }}
 					{{ html()->hidden('save_flag') }}
 
+					<div  style="text-align: right;">
+						<a class="search-job__button" href="javascript:void(0)" onclick="clearAll()">条件クリア</a>
+					</div>
+
 					<dl class="search-job__list">
-
-						<dt>フリーワード</dt>
-						<dd>{{ html()->text('freeword', $searchUserHist->freeword)->class('search-job__input') }}</dd>
-
-						<dt>エリア</dt>
-						<dd>
-							<div class="check-box-btn search-job__checkbox">
-								@foreach ($constLocation as $loc)
-									<label>
-										{{ html()->checkbox("locations[]", strstr($searchUserHist->locations ,$loc->id), $loc->id)->id('locations') }}
-										<span>{{ $loc->name }}</span>
-									</label>
-								@endforeach
-							</div>
-						</dd>
-
 						<dt>企業名</dt>
 						<dd>
 							<div class="search-job__select-lists">
@@ -74,6 +62,22 @@
 								</ul>
 							</div>
 						</dd>
+
+						<dt>フリーワード</dt>
+						<dd>{{ html()->text('freeword', $searchUserHist->freeword)->class('search-job__input') }}</dd>
+
+						<dt>エリア</dt>
+						<dd>
+							<div class="check-box-btn search-job__checkbox">
+								@foreach ($constLocation as $loc)
+									<label>
+										{{ html()->checkbox("locations[]", strstr($searchUserHist->locations ,$loc->id), $loc->id)->id('locations') }}
+										<span>{{ $loc->name }}</span>
+									</label>
+								@endforeach
+							</div>
+						</dd>
+
 					</dl>
 
 					<details class="search-job__details">
@@ -190,6 +194,106 @@
 
 
 <script>
+
+function clearAll() {
+
+	// 企業名クリア
+	var boxes = document.getElementsByName("comp_sel[]");
+	var cnt = boxes.length;
+
+	for (var i = 0; i < cnt; i++) {
+		boxes[i].checked = false;
+	}
+	document.getElementById( "comps" ).value = "" ;
+	$("#comp_list").html("<li><span>指定なし</span></li>");
+
+
+	// 職種カテゴリクリア
+	boxes = document.getElementsByName("jobcat_parent[]");
+	cnt = boxes.length;
+
+	for (var i = 0; i < cnt; i++) {
+		boxes[i].checked = false;
+	}
+	document.getElementById( "job_cats" ).value = "";
+
+
+	// 職種クリア
+	boxes = document.getElementsByName("jobcat_sel[]");
+	cnt = boxes.length;
+
+	for (var i = 0; i < cnt; i++) {
+		boxes[i].checked = false;
+	}
+	document.getElementById( "job_cat_details" ).value = "";
+	$("#jobcat_name_list").html("<li><span>指定なし</span></li>");
+
+
+	// フリーワードクリア
+	var txt = document.getElementById("freeword");
+	txt .value = '';
+
+
+	// エリアクリア
+	boxes = document.getElementsByName("locations[]");
+	cnt = boxes.length;
+	for (var i = 0; i < cnt; i++) {
+		boxes[i].checked = false;
+	}
+
+
+	// 担当業界カテゴリクリア
+	boxes = document.getElementsByName("industorycat_parent[]");
+	cnt = boxes.length;
+
+	for (var i = 0; i < cnt; i++) {
+		boxes[i].checked = false;
+	}
+	document.getElementById( "industorycat_list" ).value = "";
+	$("#industorycat_list").html("<li><span>指定なし</span></li>");
+
+
+	// IT業界の業種カテゴリクリア
+	boxes = document.getElementsByName("buscat_parent[]");
+	cnt = boxes.length;
+
+	for (var i = 0; i < cnt; i++) {
+		boxes[i].checked = false;
+	}
+	document.getElementById( "business_cats" ).value = "";
+
+
+	// IT業界の業種クリア
+	boxes = document.getElementsByName("buscat_sel[]");
+	cnt = boxes.length;
+
+	for (var i = 0; i < cnt; i++) {
+		boxes[i].checked = false;
+	}
+	document.getElementById( "business_cat_details" ).value = "";
+	$("#buscat_list").html("<li><span>指定なし</span></li>");
+
+
+	// 年収クリア
+	boxes = document.getElementsByName("incomes[]");
+	cnt = boxes.length;
+	for (var i = 0; i < cnt; i++) {
+		boxes[i].checked = false;
+	}
+
+
+
+	// こだわりクリア
+	boxes = document.getElementsByName("commitcat_sel[]");
+	cnt = boxes.length;
+
+	for (var i = 0; i < cnt; i++) {
+		boxes[i].checked = false;
+	}
+	document.getElementById( "commit_cat_details" ).value = "";
+	$("#commitcat_list").html("<li><span>指定なし</span></li>");
+
+}
 
 
 function onSearchClick() {
