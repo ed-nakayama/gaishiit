@@ -119,6 +119,10 @@ Route::get ('/user/edit',  'AdminUserController@edit')->name('user.edit');
 Route::post('/user/store', 'AdminUserController@store')->name('user.store');
 Route::get ('/user/store', 'AdminUserController@store');
 
+// PDF出力
+Route::get ('/pdf/base', 'AdminUserController@userBasePdf');
+Route::post('/pdf/base', 'AdminUserController@userBasePdf');
+
     // 企業関連
 Route::get ('/comp/list', 'AdminCompanyController@list')->name('comp.list');
 Route::post('/comp/list', 'AdminCompanyController@list');

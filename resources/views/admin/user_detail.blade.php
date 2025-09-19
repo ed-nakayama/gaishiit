@@ -213,6 +213,14 @@ window.addEventListener('DOMContentLoaded', function() {
                                     <div class="containerTblUserInfo">
                                         <div class="tblCaption">
                                             <h2 class="tblCaptionTitle">候補者情報</h2>
+								<ul class="tblCaptionList">
+									<li>
+										{{ Form::open(['url' => '/admin/pdf/base', 'name' => 'baseform' ]) }}
+										{{ Form::hidden("user_id", $userInfo->id)}}
+										<a href="javascript:baseform.submit()">&gt;&gt;PDFダウンロード</a>
+										{{ Form::close() }}
+									</li>
+								</ul>
                                         </div><!-- /.tblCaption -->
                                         
                                         <table class="tblUserInfo">

@@ -133,5 +133,81 @@ class User extends Authenticatable
     }
 
 
+	/*
+	* 性別 取得
+	*/
+    public function getSex()
+    {
+        $ret = '';
+
+        if ($this->sex == '1') {
+            $ret = '男';
+		} else if ($this->sex == '2') {
+			$ret = '女';
+		} else {
+			$ret = '選択しない';
+		}
+		
+		return $ret;
+    }
+
+
+	/*
+	* 希望勤務地　取得
+	*/
+    public function getLocation()
+    {
+        $ret = '';
+
+		// 勤務地の取得
+		$locName = array();
+		$locs = explode(",", $this->request_location);
+		$locList = ConstLocation::select('name')->whereIn('id' ,$locs)->get();
+		foreach ($locList as $loc) {
+			$locName[] = $loc->name;
+		}
+		$ret = join(" / " ,$locName);
+		
+		return $ret;
+    }
+
+
+	/*
+	* 転職を希望する職種　取得
+	*/
+    public function getBusDetail()
+    {
+        $ret = '';
+
+		// 業種名の取得
+		$catName = array();
+		$cats = explode(",", $this->business_cats);
+		$catList = BusinessCatDetail::select('name')->whereIn('id' ,$cats)->get();
+		foreach ($catList as $cat) {
+			$catName[] = $cat->name;
+		}
+		$ret = join(" / ",$catName);
+		
+		return $ret;
+    }
+
+
+	/*
+	* 転職を希望する職種　取得
+	*/
+    public function getCatDetail()
+    {
+        $ret = '';
+
+		$catDetailName = array();
+		$cat_details = explode(",", $this->job_cat_details);
+		$catDetailList = JobCatDetail::select('name')->whereIn('id' ,$cat_details)->get();
+		foreach ($catDetailList as $cat) {
+			$catDetailName[] = $cat->name;
+		}
+		$ret = join(" / ",$catDetailName);
+		
+		return $ret;
+    }
 
 }

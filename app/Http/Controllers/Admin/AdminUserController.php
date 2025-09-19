@@ -530,4 +530,26 @@ class AdminUserController extends UserController
 	}
 
 
+/*************************************
+* ユーザ基本情報 PDF出力
+**************************************/
+	public function userBasePdf(Request $request)
+	{
+		$loginUser = Auth::user();
+
+		$userInfo = "";
+		if ( !empty($request->user_id) ) {
+			$userInfo = User::where('users.id' ,$request->user_id)
+				->first();
+		}
+		
+		$pdf = \PDF::loadView('pdf_templates.user_base_open',
+			['userInfo' => $userInfo],
+		);
+		$pdf->setPaper('A4');
+		
+		return $pdf->download('user_basic_open.pdf');
+	}
+
+
 }
