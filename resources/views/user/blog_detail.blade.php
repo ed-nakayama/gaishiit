@@ -73,21 +73,21 @@
 	$super = $blog->getSuper();
 @endphp
 				@if (!empty($super))
-					 <div class="supervision">
-						 <figure>
+					 <div class="supervision" style="margin: 20px 60px 0;padding: 5px;">
+						 <figure style="width: 60px;height: 60px;">
 							 <img src="{{ $super->image }}" alt="">
 						 </figure>
 						 <div class="supervision_name">
-							 <p class="tag">監修</p>
-							 <p>{{ $super->name }}</p>
+							 <p class="tag" style="font-size: 10px;">監修</p>
+							 <p style="font-size: 10px;">{{ $super->name }}</p>
 						 </div>
 						 <div class="supervision_info">
-							 <p>
+							 <p style="font-size: 10px;">
 								 {!! nl2br($super->content) !!}
 							 </p>
 						 </div>
 						 @if (!empty($super->url))
-							<p class="corp-button" style="text-align: center;width:100%;"><a href="{{ $super->url }}" target="_blank">プロフィールを見る</a></p>
+							<p class="corp-button" style="text-align: center;width:100%;font-size: 10px;"><a href="{{ $super->url }}" target="_blank">プロフィールを見る</a></p>
 						@endif
 					 </div>
 				 @endif
