@@ -184,6 +184,16 @@ window.addEventListener('DOMContentLoaded', function() {
                                         </div><!-- /.secBtnHead-btn -->
                                     </div><!-- /.ecBtnHead -->
 
+
+		@if ($errors->any())
+			<div class="error">
+				<ul>
+					@foreach ($errors->all() as $error)
+						<li  style="color:#ff0000;">{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
 送信履歴
 <table style="font-size: 12px;">
 <tr>

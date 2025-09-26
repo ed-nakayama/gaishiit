@@ -247,7 +247,6 @@ class AdminUserController extends UserController
 	{
 
 		$user_id = $request->user_id;
-
 		$userInfo = $this->get_user($user_id);
 
 		$interviewList = Interview::leftJoin('companies','interviews.company_id','=','companies.id')
@@ -475,7 +474,7 @@ class AdminUserController extends UserController
 	public function send( Request $request)
 	{
 		$validator = Validator::make($request->all(), [
-			'parent_id' => ['required','string'],
+			'parent_id' => ['nullable','string'],
 			'user_id'   => ['required','string'],
 			'from_mail' => ['required','string','email'],
 			'to_mail'   => ['required','string','email'],
@@ -484,8 +483,11 @@ class AdminUserController extends UserController
 			'content'   => ['required','string'],
 		]);
 
+		$parent_id = $request->parent_id;
+		$user_id = $request->user_id;
+		
 		if($validator->fails()) {
-			return Redirect::to(URL::previous() . "#inquiry")->withInput()->with('errors', $validator->messages());
+			return Redirect::to(URL::previous() . "?parent_id={$parent_id}&user_id={$user_id}")->withInput()->with('errors', $validator->messages());
 		}
 
 		$parent_id = $request->parent_id;
