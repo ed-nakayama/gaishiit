@@ -64,8 +64,9 @@ class CompMypageController extends Controller
 		$loginUser = Auth::user();
 
 		$subSQL0 = \DB::table('users')
-			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
-		
+			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age")
+			->where('aprove_flag' , '1');
+
 		$userQuery = \DB::table('users')
 			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->selectRaw("users.*, age")
@@ -73,6 +74,7 @@ class CompMypageController extends Controller
 				$query->whereNull('users.no_company')
 				->orWhere('users.no_company','not LIKE' , "%{$loginUser->company_id}%");
 			})
+			->where('aprove_flag' , '1')
 			->orderBy('created_at','desc');
 
 		if (!empty($param['from_age'])) $userQuery = $userQuery->where('age' ,'>=',  $param['from_age']);
@@ -301,7 +303,8 @@ class CompMypageController extends Controller
 		$loginUser = Auth::user();
 
 		$subSQL0 = \DB::table('users')
-			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
+			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age")
+			->where('aprove_flag' , '1');
 		
 		$userQuery = \DB::table('users')
 			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
