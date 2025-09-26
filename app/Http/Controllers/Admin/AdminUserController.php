@@ -479,6 +479,7 @@ class AdminUserController extends UserController
 			'user_id'   => ['required','string'],
 			'from_mail' => ['required','string','email'],
 			'to_mail'   => ['required','string','email'],
+			'cc_mail'   => ['nullable','string','email'],
 			'title'     => ['required','string'],
 			'content'   => ['required','string'],
 		]);
@@ -491,10 +492,11 @@ class AdminUserController extends UserController
 		$user_id   = $request->user_id;
 		$from_mail = $request->from_mail;
 		$to_mail   = $request->to_mail;
+		$cc_mail   = !empty($request->cc_mail) ? $request->cc_mail : null;
 		$title     = $request->title;
 		$content   = $request->content;
 
-		Mail::send(new AgentToUser($from_mail, $to_mail, $title, $content));
+		Mail::send(new AgentToUser($from_mail, $to_mail, $cc_mail, $title, $content));
 
 		$loginUser = Auth::user();
 

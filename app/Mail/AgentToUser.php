@@ -21,6 +21,7 @@ class AgentToUser extends Mailable
      */
     private $from_mail;
     private $to_mail;
+    private $cc_mail;
     private $title;
     private $content;
     // 上記までを追記
@@ -31,10 +32,11 @@ class AgentToUser extends Mailable
      *
      * @return void
      */
-    public function __construct($from_mail, $to_mail, $title, $content)
+    public function __construct($from_mail, $to_mail, $cc_mail, $title, $content)
     {
         $this->from_mail = $from_mail;
         $this->to_mail   = $to_mail;
+        $this->cc_mail   = $cc_mail;
         $this->title     = $title;
         $this->content   = $content;
     }
@@ -46,10 +48,16 @@ class AgentToUser extends Mailable
      */
     public function build()
     {
+/*
+		$ret = $this->to($this->to_mail)
+			->from($this->from_mail);
 
-		return $this->to($this->to_mail)       // 送信先アドレス
+		if (!empty($this->cc_mail)) $ret = $ret->cc($this->cc_mail);
+*/
+
+		return $this->to($this->to_mail)      // 送信先アドレス
 			->from($this->from_mail)
-			->cc($this->from_mail)
+			->cc($this->cc_mail)
 			->subject($this->title)        // 件名
 			->text('mail_templates.agent_to_user') // 本文
 			->with(['content' => $this->content

@@ -16,4 +16,4 @@
 
 内容をご確認の上、対応をお願いします。
 
-@include('mail_templates.sign')
+@include('mail_templates.sign_reply')

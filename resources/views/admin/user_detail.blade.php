@@ -104,12 +104,15 @@ window.addEventListener('DOMContentLoaded', function() {
 			</tr>
 			<tr>
 				<td>From</td>
-{{--				<td>{{ html()->text('from_mail', auth()->user()->email) }}</td>--}}
 				<td>{{ html()->text('from_mail',  config('mail.agent_mail')) }}</td>
 			</tr>
 			<tr>
 				<td>To</td>
 				<td>{{ html()->text('to_mail', $userInfo->email) }}</td>
+			</tr>
+			<tr>
+				<td>Cc</td>
+				<td>{{ html()->text('cc_mail', auth()->user()->email) }}</td>
 			</tr>
 			<tr>
 				<td>件名</td>

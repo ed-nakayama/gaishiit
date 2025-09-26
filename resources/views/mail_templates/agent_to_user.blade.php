@@ -1,3 +1,3 @@
 {!! $content !!}
 
-@include('mail_templates.sign')
+@include('mail_templates.sign_reply')
