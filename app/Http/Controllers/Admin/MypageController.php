@@ -330,7 +330,7 @@ class MypageController extends Controller
 		$jobList = Job::leftJoin('companies', 'jobs.company_id','=','companies.id')
 			->leftJoin('units', 'jobs.unit_id','=','units.id')
 			->selectRaw('jobs.*, companies.name as company_name, units.name as unit_name')
-			->where('jobs.open_flag' , '1')
+//			->where('jobs.open_flag' , '1')
 			->orderBy('jobs.updated_at' ,'desc')
 			->orderBy('companies.name')
 			->orderBy('jobs.name')
@@ -364,7 +364,7 @@ class MypageController extends Controller
 		$unit_name = '';
 		$location = '';
 		$freeword = '';
-		$open_flag = 1;
+		$open_flag = 2;
 		$cat_flag = 2;
 		$portal_flag = 2;
 		$comp_id = '';
