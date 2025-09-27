@@ -86,7 +86,7 @@
 									<td>{{ $int->job_title }}</td>
 									<td>{{ $int->graduation . ' ' . $int->department }}</td>
 									<td>{{ $int->ote_income }}</td>
-									<td>{{ $int->location_name }}</td>
+									<td>{{ $int->getLocation() }}</td>
 								</tr>
 							@endforeach
 

@@ -80,8 +80,7 @@ class MypageController extends Controller
 **************************************/
 	public function search_list($request)
 	{
-		$userQuery = User::leftJoin('const_locations', 'users.request_location','=','const_locations.id')
-			->selectRaw("users.*, const_locations.name as location_name");
+		$userQuery = User::selectRaw("users.*");
 
 		if ($request->sel_aprove == '0') {
 			$userQuery = $userQuery->where('aprove_flag' , '0');
@@ -856,8 +855,7 @@ class MypageController extends Controller
 			}
 
 
-			$g_url = "https://gaishiit.com/admin/mypage/job/edit?company_id=" . $job->company_id . "&job_id=" . $job->id;
-
+			$g_url = config('app.url') . "/admin/mypage/job/edit?company_id=" . $job->company_id . "&job_id=" . $job->id;
 
 			$detail =  '"' . $job->salesforce_id . '"'
 					. ',"' . $job->comp_name_english . '"'
@@ -1355,7 +1353,7 @@ class MypageController extends Controller
 			}
 
 
-			$g_url = "https://gaishiit.com/admin/mypage/job/edit?company_id=" . $job->company_id . "&job_id=" . $job->id;
+			$g_url = config('app.url') . "/admin/mypage/job/edit?company_id=" . $job->company_id . "&job_id=" . $job->id;
 
 
 			$detail =  '"' . $job->salesforce_id . '"'
@@ -1415,32 +1413,6 @@ class MypageController extends Controller
 
 			$cnt++;
 		}
-
-	}
-
-
-
-/*************************************
-*  候補者一覧
-**************************************/
-	public function users(Request $request)
-	{
-		$subSQL0 = \DB::table('users')
-			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
-		
-		$userQuery = \DB::table('users')
-			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
-			->leftJoin('const_locations', 'users.request_location','=','const_locations.id')
-			->where('aprove_flag' , '1')
-			->selectRaw("users.*, age ,const_locations.name as location_name");
-		
-		$userList = $userQuery
-			->orderBy('created_at' ,'desc')
-			->paginate(20);
-
-		return view('admin.mypage_userlist' ,compact(
-			'userList',
-		));
 
 	}
 

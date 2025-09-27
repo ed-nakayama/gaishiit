@@ -58,7 +58,6 @@ Route::post('/mypage/joblist/upload', 'MypageController@upload_csv');
 
 Route::get ('/mypage/jobsfc',             'MypageController@jobsfc');
 Route::post('/mypage/jobsfc',             'MypageController@jobsfc');
-//	Route::get('/mypage/jobsfc/download', 'MypageController@joblist_download');
 
 Route::get ('/mypage/eval',       'MypageController@eval')->name('mypage.eval');
 Route::post('/mypage/eval',       'MypageController@eval');
@@ -66,11 +65,6 @@ Route::get ('/mypage/eval/edit',  'MypageController@eval_edit')->name('mypage.ev
 Route::post('/mypage/eval/edit',  'MypageController@eval_edit');
 Route::get ('/mypage/eval/store', 'MypageController@eval_store')->name('mypage.eval.store');
 Route::post('/mypage/eval/store', 'MypageController@eval_store');
-
-// 候補者一覧
-Route::get ('/mypage/user', 'MypageController@users');
-Route::get ('/mypage/userlist', 'MypageController@userlist')->name('mypage.userlist');
-Route::post('/mypage/userlist', 'MypageController@userlist');
 
 // パスワード変更
 Route::get ('/password/edit', 'AdminController@editPassword')->name('password.edit');
