@@ -48,16 +48,13 @@ class AgentToUser extends Mailable
      */
     public function build()
     {
-/*
-		$ret = $this->to($this->to_mail)
-			->from($this->from_mail);
-
-		if (!empty($this->cc_mail)) $ret = $ret->cc($this->cc_mail);
-*/
+		$to_cc[] = $this->from_mail;
+		
+		if (!empty($this->cc_mail)) $to_cc[] = $this->cc_mail;
 
 		return $this->to($this->to_mail)      // 送信先アドレス
 			->from($this->from_mail)
-			->cc($this->cc_mail)
+			->cc($to_cc)
 			->subject($this->title)        // 件名
 			->text('mail_templates.agent_to_user') // 本文
 			->with(['content' => $this->content

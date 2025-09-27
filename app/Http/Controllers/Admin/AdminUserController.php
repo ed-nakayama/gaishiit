@@ -175,79 +175,14 @@ class AdminUserController extends UserController
 
 
 /*************************************
-* ユーザ情報取得
-**************************************/
-	public function get_user($user_id)
-	{
-		$userInfo = User::leftJoin('const_englishes as eng','users.english','=','eng.id')
-			->leftJoin('const_englishes as jpn','users.japanese','=','jpn.id')
-			->leftJoin('const_prefs','users.pref' ,'=' ,'const_prefs.id')
-			->selectRaw('users.*  ,eng.name as english_name ,jpn.name as japanese_name  ,const_prefs.name as pref_name ')
-			->where('users.id' ,$user_id)
-			->first();
-
-		// 1年以内にメッセージのやり取りがあれば氏名も表示
-		$pre_date = date("Y-m-d",strtotime("-1 year"));
-	
-		$int_count = Interview::where('interviews.user_id', $user_id)
-			->where('aprove_flag', '1')
-			->where('updated_at', '>' , $pre_date)
-			->count();
-
-		$userInfo['open_flag'] = '0';
-		if ($int_count > 0) $userInfo['open_flag'] = '1';
-
-
-		// 勤務地の取得
-		$locName = array();
-		$locs = explode(",", $userInfo->request_location);
-		$locList = ConstLocation::select('name')->whereIn('id' ,$locs)->get();
-		foreach ($locList as $loc) {
-			$locName[] = $loc->name;
-		}
-		$userInfo['location_name'] = join(" / " ,$locName);
-
-
-		// 職種名の取得
-		$catName = array();
-		$cats = explode(",", $userInfo->job_cats);
-		$catList = JobCat::select('name')->whereIn('id' ,$cats)->get();
-		foreach ($catList as $cat) {
-			$catName[] = $cat->name;
-		}
-		$userInfo['job_cat_name'] = join(" / ",$catName);
-
-		// 職種名の取得
-		$catDetailName = array();
-		$cat_details = explode(",", $userInfo->job_cat_details);
-		$catDetailList = JobCatDetail::select('name')->whereIn('id' ,$cat_details)->get();
-		foreach ($catDetailList as $cat) {
-			$catDetailName[] = $cat->name;
-		}
-		$userInfo['job_cat_detail_name'] = join(" / ",$catDetailName);
-
-
-		// 業種名の取得
-		$catName = array();
-		$cats = explode(",", $userInfo->business_cats);
-		$catList = BusinessCatDetail::select('name')->whereIn('id' ,$cats)->get();
-		foreach ($catList as $cat) {
-			$catName[] = $cat->name;
-		}
-		$userInfo['buscat_name'] = join(" / ",$catName);
-
-		return $userInfo;
-	}
-
-
-/*************************************
 * 候補者詳細情報
 **************************************/
 	public function detail(Request $request)
 	{
-
 		$user_id = $request->user_id;
-		$userInfo = $this->get_user($user_id);
+
+		$userInfo = User::where('users.id' ,$user_id)
+			->first();
 
 		$interviewList = Interview::leftJoin('companies','interviews.company_id','=','companies.id')
 			->leftJoin('units','interviews.unit_id','=','units.id')
@@ -485,6 +420,7 @@ class AdminUserController extends UserController
 
 		$parent_id = $request->parent_id;
 		$user_id = $request->user_id;
+		$content = $request->content;
 		
 		if($validator->fails()) {
 			return Redirect::to(URL::previous() . "?parent_id={$parent_id}&user_id={$user_id}")->withInput()->with('errors', $validator->messages());
@@ -505,6 +441,7 @@ class AdminUserController extends UserController
 		$agentMailHist = AgentMailHist::create([
 			'user_id'  => $user_id,
 			'agent_id' => $loginUser->id,
+			'content'  => $content,
 		]);
 
 		return redirect()->route('admin.user.detail', ['parent_id'=>$parent_id, 'user_id'=>$user_id] );

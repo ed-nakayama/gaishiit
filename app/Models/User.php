@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ConstJobChange;
 use App\Models\Income;
 use App\Models\Company;
+use App\Models\ConstEnglish;
+use App\Models\ConstPref;
 
 class User extends Authenticatable
 {
@@ -209,5 +211,159 @@ class User extends Authenticatable
 		
 		return $ret;
     }
+
+
+	/*
+	* 英語力　取得
+	*/
+    public function getEngishAbility()
+    {
+        $ret = '';
+
+        if (!empty($this->english)) {
+			$ability = ConstEnglish::find($this->english);
+
+			$ret = $ability->name;
+		}
+		
+		return $ret;
+    }
+
+
+	/*
+	* 日本語力　取得
+	*/
+    public function getJapaneseAbility()
+    {
+        $ret = '';
+
+        if (!empty($this->japanese)) {
+			$ability = ConstEnglish::find($this->japanese);
+
+			$ret = $ability->name;
+		}
+		
+		return $ret;
+    }
+
+
+	/*
+	* 県名　取得
+	*/
+    public function getPref()
+    {
+        $ret = '';
+
+        if (!empty($this->pref)) {
+			$pref = ConstPref::find($this->pref);
+
+			$ret = $pref->name;
+		}
+		
+		return $ret;
+    }
+
+
+	/*
+	* 承認情報 取得
+	*/
+    public function getAprove()
+    {
+        $ret = '';
+
+        if ($this->aprove_flag == '1') {
+            $ret = '承認済';
+		} else if ($this->aprove_flag == '2') {
+			$ret = 'リジェクト';
+		} else {
+			$ret = '未承認';
+		}
+		
+		return $ret;
+    }
+
+
+	/*
+	* 生年月日 取得
+	*/
+    public function getBirthday()
+    {
+        $ret = str_replace('-','/', substr($this->birthday, 0 ,10));
+		
+		return $ret;
+    }
+
+
+	/*
+	* 在職期間 取得
+	*/
+    public function getEnroll()
+    {
+        $ret = "{$this->enroll_from_year}年{$this->enroll_from_month}月{$this->enroll_from_day}日～";
+        
+		if ($this->enroll_to_year == '0') {
+			$ret .= "現在";
+		} else if ($this->enroll_to_year == '') {
+		} else {
+			$ret .= "{$this->enroll_to_year}年{$this->enroll_to_month}月{$this->enroll_to_day}日";
+		}
+		
+		return $ret;
+    }
+
+
+	/*
+	* 配偶者 取得
+	*/
+    public function getSpouse()
+    {
+        $ret = '';
+
+        if ($this->spouse == '1') {
+            $ret = 'あり';
+		} else {
+			$ret = 'なし';
+		}
+		
+		return $ret;
+    }
+
+
+	/*
+	* 配偶者の扶養義務 取得
+	*/
+    public function getObligation()
+    {
+        $ret = '';
+
+        if ($this->obligation == '1') {
+            $ret = 'あり';
+		} else {
+			$ret = 'なし';
+		}
+		
+		return $ret;
+    }
+
+
+	/*
+	* 現在職種 取得
+	*/
+    public function getCurrentJob()
+    {
+        $ret = '';
+
+		if ($this->job == 1) {
+			$ret = "IC";
+		} else if ($this->job == '2') {
+			$ret = "Management　　　　年数 {$this->mgr_year}年 / 人数 {$this->mgr_member}人";
+		} else {
+			$ret = "未設定";
+		}
+
+
+		return $ret;
+    }
+
 
 }
