@@ -25,7 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 		// お気に入り登録データをメール送信
-		$schedule->command('command:usermail')->everyFifteenMinutes(); // 15分毎
+//		$schedule->command('command:usermail')->everyFifteenMinutes(); // 15分毎
+		$schedule->command('command:usermail')->dailyAt('18:00'); // 毎日 18:00
 
 		// クチコミ申込みのお知らせをメール送信
 		$schedule->command('command:evalmail')->everyFifteenMinutes(); // 15分毎
@@ -34,7 +35,7 @@ class Kernel extends ConsoleKernel
 		$schedule->command('command:compjobsexcel')->everyFifteenMinutes()->unlessBetween('0:00', '6:50'); // 15分毎
 
 		// 現在未使用
-		$schedule->command('command:compjobscsv')->everyFifteenMinutes()->unlessBetween('3:00', '8:00'); // 15分毎
+//		$schedule->command('command:compjobscsv')->everyFifteenMinutes()->unlessBetween('3:00', '8:00'); // 15分毎
 
 		// 6か月以上前のファイル削除
 		$schedule->command('command:deloldfiles')->dailyAt('02:00');     // 毎日 2:00
