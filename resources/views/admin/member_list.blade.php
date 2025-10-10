@@ -76,6 +76,7 @@
                                     <th>削除</th>
                                     <th>管理者</th>
                                     <th>ログイン権限</th>
+                                    <th>ID</th>
                                     <th>Mail</th>
                                     <th>氏名</th>
                                     <th>パスワード</th>
@@ -89,6 +90,7 @@
                                     <td><input type="checkbox" name="del_flag" value="1"  onchange="memberChange('{{ 'membersave' . $mem->id }}')"></td>
                                     <td><input type="checkbox" name="admin_flag" value="1"  onchange="memberChange('{{ 'membersave' . $mem->id }}')"  @if ($mem->admin_flag == '1') checked @endif ></td>
                                     <td><input type="checkbox" name="ark_priv" value="1"  onchange="memberChange('{{ 'membersave' . $mem->id }}')"  @if ($mem->ark_priv == '1') checked @endif ></td>
+                                    <td>{{ $mem['id'] }}</td>
                                     <td><input type="text" name="email" value="{{ $mem['email'] }}" oninput="memberChange('{{ 'membersave' . $mem->id }}')"></td>
                                     <td><input type="text" name="name" value="{{ $mem['name'] }}" oninput="memberChange('{{ 'membersave' . $mem->id }}')"></td>
                                     <td>{{ $mem->pw_raw }}</td>
