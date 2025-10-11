@@ -17,6 +17,26 @@ class Interview extends Model
         'id',
     ];
 
-	public $sortable = ['id','aprove_flag'];  //ÄÉµ­(¥½¡¼¥È¤Ë»È¤¦¥«¥é¥à¤ò»ØÄê
+	public $sortable = ['id','aprove_flag'];  //è¿½è¨˜(ã‚½ãƒ¼ãƒˆã«ä½¿ã†ã‚«ãƒ©ãƒ ã‚’æŒ‡å®š
+
+
+/*************************************
+* interview_kind å–å¾—
+**************************************/
+	public function getKind()
+	{
+		$result = null;
+
+		if ($this->interview_kind == '0') {
+			$result = 'ä¼æ¥­';
+		} else if ($this->interview_kind == '1') {
+			$result = 'éƒ¨ç½²';
+		} else {
+			$result = 'ã‚¸ãƒ§ãƒ–';
+		}
+
+		return $result;
+	}
+
 
 }
