@@ -233,63 +233,80 @@ class CompMemberController extends Controller
 		}
 
 		// 企業カジュアル
-		$comp_casual = interview::Join('companies', function ($join) use ($loginUser) {
-    		$join->on('interviews.company_id', '=', 'companies.id')
-				->where('companies.id' , $loginUser->company_id)
-				->where('companies.person' , 'like' ,"%$loginUser->id%");
-    		})
-    		->Join('interview_msg_statuses', function ($join) use ($loginUser) {
+		$comp_casual = interview::LeftJoin('interview_msg_statuses', function ($join) use ($loginUser) {
     			$join->on('interview_msg_statuses.interview_id', '=', 'interviews.id')
 				->where('interview_msg_statuses.reader_id' ,$loginUser->id)
-				->where('interview_msg_statuses.read_flag', '0');
+				->where('interview_msg_statuses.reader_type', 'C');
     		})
+			->Join('companies', function ($join) use ($loginUser) {
+    			$join->on('interviews.company_id', '=', 'companies.id')
+					->where('companies.id' , $loginUser->company_id)
+					->where('companies.person' , 'like' ,"%$loginUser->id%");
+    			})
 			->where('interviews.interview_type', '0')
 			->where('interviews.interview_kind' , '0')
-	    	->count();
+			->where(function($query) {
+				$query->where('interview_msg_statuses.read_flag', '0')
+				->orWhereNull('interview_msg_statuses.read_flag');
+			})
+    		->count();
+
 
 
 		// 部署カジュアル
-		$unit_casual = interview::Join('units', function ($join) use ($loginUser) {
-    		$join->on('interviews.unit_id', '=', 'units.id')
-				->where('units.company_id' , $loginUser->company_id)
-				->where('units.person' , 'like' ,"%$loginUser->id%");
-    		})
-    		->Join('interview_msg_statuses', function ($join) use ($loginUser) {
+		$unit_casual = interview::LeftJoin('interview_msg_statuses', function ($join) use ($loginUser) {
     			$join->on('interview_msg_statuses.interview_id', '=', 'interviews.id')
 				->where('interview_msg_statuses.reader_id' ,$loginUser->id)
-				->where('interview_msg_statuses.read_flag', '0');
+				->where('interview_msg_statuses.reader_type', 'C');
     		})
+			->Join('units', function ($join) use ($loginUser) {
+    			$join->on('interviews.unit_id', '=', 'units.id')
+					->where('units.company_id' , $loginUser->company_id)
+					->where('units.person' , 'like' ,"%$loginUser->id%");
+    			})
 			->where('interviews.interview_type', '0')
 			->where('interviews.interview_kind' , '1')
-	    	->count();
+			->where(function($query) {
+				$query->where('interview_msg_statuses.read_flag', '0')
+				->orWhereNull('interview_msg_statuses.read_flag');
+			})
+    		->count();
+
 
 
 		// ジョブカジュアル
-		$job_casual = interview::Join('interview_msg_statuses', function ($join) use ($loginUser) {
+		$job_casual = interview::LeftJoin('interview_msg_statuses', function ($join) use ($loginUser) {
     			$join->on('interview_msg_statuses.interview_id', '=', 'interviews.id')
 				->where('interview_msg_statuses.reader_id' ,$loginUser->id)
-				->where('interview_msg_statuses.read_flag', '0');
+				->where('interview_msg_statuses.reader_type', 'C');
     		})
+			->join('jobs','interviews.job_id','=','jobs.id')
 			->where('interviews.interview_type', '0')
 			->where('interviews.interview_kind' , '2')
-	    	->count();
+			->where('jobs.person', 'like'  ,"%$loginUser->id%")
+			->where(function($query) {
+				$query->where('interview_msg_statuses.read_flag', '0')
+				->orWhereNull('interview_msg_statuses.read_flag');
+			})
+    		->count();
 
 		$act['user_casual_cnt'] = $comp_casual + $unit_casual + $job_casual;
 
 		// ジョブ正式
-		$act['user_formal_cnt'] = interview::Join('jobs', function ($join) use ($loginUser) {
-    		$join->on('interviews.job_id', '=', 'jobs.id')
-				->where('jobs.company_id' , $loginUser->company_id)
-				->where('jobs.person' , 'like' ,"%$loginUser->id%");
-    		})
-    		->Join('interview_msg_statuses', function ($join) use ($loginUser) {
+		$act['user_formal_cnt'] = interview::LeftJoin('interview_msg_statuses', function ($join) use ($loginUser) {
     			$join->on('interview_msg_statuses.interview_id', '=', 'interviews.id')
 				->where('interview_msg_statuses.reader_id' ,$loginUser->id)
-				->where('interview_msg_statuses.read_flag', '0');
+				->where('interview_msg_statuses.reader_type', 'C');
     		})
-			->where('interviews.interview_type' , '1')
-	    	->count();
-
+			->join('jobs','interviews.job_id','=','jobs.id')
+			->where('interviews.interview_type', '1')
+			->where('interviews.interview_kind' , '2')
+			->where('jobs.person', 'like'  ,"%$loginUser->id%")
+			->where(function($query) {
+				$query->where('interview_msg_statuses.read_flag', '0')
+				->orWhereNull('interview_msg_statuses.read_flag');
+			})
+    		->count();
 
 /*
 		// 企業イベント
@@ -338,7 +355,6 @@ class CompMemberController extends Controller
 	    	->count();
 
 		$act['event_cnt'] = $unit_event;
-
 		
 		return $act;
 	}

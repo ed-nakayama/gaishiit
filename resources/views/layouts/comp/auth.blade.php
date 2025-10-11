@@ -65,9 +65,9 @@
 								<span class="userMsgMenu__badge"> {{ $member_act['user_casual_cnt'] + $member_act['user_formal_cnt'] + $member_act['event_cnt'] }}</span>
 							</a>
 							<ul class="dropdown-menu__list inner">
-								<li><a href="/comp/msg/casual/list">カジュアル面談</a></li>
-								<li><a href="/comp/msg/formal/list">正式応募</a></li>
-								<li><a href="/comp/msg/event/list">イベント</a></li>
+								<li><a href="/comp/msg/casual/list">カジュアル面談</a><span class="userMsgMenu__badge"> {{ $member_act['user_casual_cnt'] }}</span></li>
+								<li><a href="/comp/msg/formal/list">正式応募</a><span class="userMsgMenu__badge"> {{ $member_act['user_formal_cnt']  }}</span></li>
+								<li><a href="/comp/msg/event/list">イベント</a><span class="userMsgMenu__badge"> {{ $member_act['event_cnt'] }}</span></li>
 							</ul>
 							<form id="password_edit-form" action="{{ route('comp.password.edit') }}" method="GET" style="display: none;">
 							</form>
