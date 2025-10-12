@@ -235,12 +235,26 @@ class InterviewController extends Controller
 			$interview->save();
 		}
 
+		// イメージファイル保存
+		$filename = '';
+		$path = '';
+		if (!empty($request->file('up_file'))) {
+			$filename = $request->file('up_file')->getClientOriginalName();
+
+			$path = date('Ymd_His.') . pathinfo($filename, PATHINFO_EXTENSION);
+
+			$request->file('up_file')->storeAs("public/comp/{$comp->id}/{$loginUser->id}/" ,$path);
+		}
+
 
 		InterviewMessage::create([
             'interview_id' => $request->interview_id,
             'user_id'      => $loginUser->id,
             'content'      => $request->content,
+            'raw_file'     => $filename,
+            'up_file'      => $path,
         ]);
+
 
 
 		$person = array();
@@ -644,6 +658,21 @@ class InterviewController extends Controller
 
 	}
 
+
+/*************************************
+* 添付ファイル出力
+**************************************/
+	public function dlAttach(Request $request) {
+		
+		$loginUser = Auth::user();
+
+		$filePath = "public/comp/{$request->comp_id}/{$loginUser->id}/"  . $request->up_file;
+		$fileName = $request->raw_file;
+		$mimeType = Storage::mimeType($filePath);
+		$headers = [['Content-Type' => $mimeType]];
+
+		return Storage::download($filePath, $fileName, $headers);
+	}
 
 
 }

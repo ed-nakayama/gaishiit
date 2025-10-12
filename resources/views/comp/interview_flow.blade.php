@@ -53,7 +53,7 @@
 									<li>
 										<div class="profileListInner">
 											<p class="profileTag">ジョブ</p>
-											<p class="profileTagName">{{ $interview->name }}</p>
+											<p class="profileTagName"><a href="/comp/job/ref/{{ $interview->job_id }}" target="_blank" style="text-decoration: underline;">{{ $interview->name }}</a></p>
 										</div>
 										<p class="profileJobId">ジョブID：{{ $interview->job_code }}</p>
 									</li>
@@ -176,6 +176,17 @@
                                                     			<div class="talkItemMesseage bg-pattern-a">
                                                         			<p>{!! nl2br(e($msg->content)) !!}</p>
                                                    	 			</div><!-- /.talkItemMesseage -->
+                                                   	 			
+																@if ( !empty($msg->raw_file) )
+                                                    			<div class="talkItemMesseage bg-pattern-a"  style="text-align: right;">
+																	{{ html()->form('POST', '/comp/interview/dl/attach')->id('dlform' . $msg->id)->attribute('name', 'dlform' . $msg->id)->open() }}
+																	{{ html()->hidden('user_id', $interview->user_id) }}
+																	{{ html()->hidden('raw_file', $msg->raw_file) }}
+																	{{ html()->hidden('up_file', $msg->up_file) }}
+																	<a href="javascript:dlform{{ $msg->id }}.submit()"  style="text-decoration: underline;">{{ $msg->raw_file }}</a>
+																	{{ html()->form()->close() }}
+                                                   	 			</div><!-- /.talkItemMesseage -->
+                                								@endif
                                                 			</div><!-- /.talkItem -->
                                            	 			</li>
                                            			@else 
@@ -189,6 +200,18 @@
                                                     			<div class="talkItemMesseage bg-pattern-b">
                                                         			<p>{!! nl2br(e($msg->content)) !!}</p>
                                                     			</div><!-- /.talkItemMesseage -->
+
+																@if ( !empty($msg->raw_file) )
+                                                    			<div class="talkItemMesseage bg-pattern-b"  style="text-align: right;">
+																	{{ html()->form('POST', '/comp/interview/dl/attach')->id('dlform' . $msg->id)->attribute('name', 'dlform' . $msg->id)->open() }}
+																	{{ html()->hidden('user_id', $interview->user_id) }}
+																	{{ html()->hidden('raw_file', $msg->raw_file) }}
+																	{{ html()->hidden('up_file', $msg->up_file) }}
+																	<a href="javascript:dlform{{ $msg->id }}.submit()"  style="text-decoration: underline;">{{ $msg->raw_file }}</a>
+																	{{ html()->form()->close() }}
+                                                   	 			</div><!-- /.talkItemMesseage -->
+                                								@endif
+
                                                 			</div><!-- /.talkItem -->
                                             			</li>
                                            			@endif
@@ -197,8 +220,8 @@
                                     	</div><!-- /.containerTalk -->
 
 
-                                        {{ Form::open(['url' => '/comp/interview/flowpost', 'name' => 'postform' , 'id' => 'postform']) }}
-                                        {{ Form::hidden('interview_id', $interview->interview_id, ['class' => 'form-control', 'id'=>'interview_id' ]) }}
+										{{ html()->form('POST', "/comp/interview/flowpost")->id('postform')->attribute('name', "postform")->acceptsFiles()->open() }}
+										{{ html()->hidden('interview_id', $interview->interview_id)->id('interview_id') }}
 
 										@if ($interview->interview_type == '0' || $interview->interview_type == '1')
 											<div class="containerNewMessage">
@@ -301,12 +324,13 @@
                                                     <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
                                                 @enderror
                                                 </ul>
+												添付ファイル：{{ html()->file('up_file') }}<br>
                                             </div>
         
                                             <div class="btnContainer">
                                                 <a href="javascript:postform.submit()" class="squareBtn btn-large">送信</a>
                                             </div><!-- /.btn-container -->
-                                        {{ Form::close() }}
+                                        {{ html()->form()->close() }}
 
 									</div><!-- /.containerNewMessage -->
 									@endif

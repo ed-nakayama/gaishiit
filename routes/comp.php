@@ -216,6 +216,10 @@ Route::post('/interview/request/store', 'CompInterviewController@interview_reque
 Route::get ('/interview/aprove', 'CompInterviewController@aprove');
 Route::post('/interview/aprove', 'CompInterviewController@aprove');
 
+Route::get ('/interview/dl/attach', 'CompInterviewController@dlAttach');
+Route::post('/interview/dl/attach', 'CompInterviewController@dlAttach');
+
+
 // ¿¡µ·¥ÿœ¢
 Route::get ('/billing',      'CompInterviewController@billing');
 Route::post('/billing',      'CompInterviewController@billing');

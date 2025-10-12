@@ -175,7 +175,6 @@ class CompInterviewController extends InterviewController
 			->where('jobs.person' , 'like' ,"%$loginUser->id%")
 			->where('interviews.company_id' ,$loginUser->company_id)
 			->where('interview_type' ,1)
-//			->orderBy('id' ,'desc')
 			->orderBy('last_update' ,'desc')
 			->paginate(10);
 
@@ -236,7 +235,7 @@ class CompInterviewController extends InterviewController
 			->where('interviews.company_id' ,$loginUser->company_id)
 			->orderBy('last_update' ,'desc')
 			->paginate(10);
-//ddd($eventList);
+
 		$i = 0;
 		foreach ($eventList as $cas) {
 	 		$msg = InterviewMessage::leftJoin('comp_members','interview_messages.member_id','=','comp_members.id')
@@ -419,10 +418,23 @@ class CompInterviewController extends InterviewController
 			$interview->save();
 		}
 
+		// イメージファイル保存
+		$filename = '';
+		$path = '';
+		if (!empty($request->file('up_file'))) {
+			$filename = $request->file('up_file')->getClientOriginalName();
+
+			$path = date('Ymd_His.') . pathinfo($filename, PATHINFO_EXTENSION);
+
+			$request->file('up_file')->storeAs("public/comp/{$loginUser->company_id}/{$interview->user_id}/" ,$path);
+		}
+
 		InterviewMessage::create([
             'interview_id' => $request->interview_id,
             'member_id'    => $loginUser->id,
             'content'      => $request->content,
+            'raw_file'     => $filename,
+            'up_file'      => $path,
         ]);
         
 
@@ -540,7 +552,8 @@ class CompInterviewController extends InterviewController
 
 		if ($interview->interview_type == '0') {
 			if ($request->aprove_flag == '1') { // 承認のメール送信
-				$content ="カジュアル面談へのお申込みが承認されました。";
+				$content ="カジュアル面談のお申込みを受け付けました。\n担当者からの連絡をお待ちください。";
+
 				if ($user->casual_mail_flag == '1') {
 					Mail::send(new CompAproveToUser($user, $interview));
 					$user->casual_mail_date = date("Y-m-d H:i:s");
@@ -560,7 +573,7 @@ class CompInterviewController extends InterviewController
 
 		if ($interview->interview_type == '1') {
 			if ($request->aprove_flag == '1') { // 承認のメール送信
-				$content ="正式応募へのお申込みが承認されました。";
+				$content ="正式応募へのお申込みを受け付けました。\n担当者からの連絡をお待ちください。";
 				if ($user->formal_mail_flag == '1') {
 					Mail::send(new CompAproveToUser($user, $interview));
 					$user->formal_mail_date = date("Y-m-d H:i:s");
@@ -911,6 +924,22 @@ class CompInterviewController extends InterviewController
 		return view('comp.billing_hist_list' ,compact(
 			'billingList',
 			));
+	}
+
+
+/*************************************
+* 添付ファイル出力
+**************************************/
+	public function dlAttach(Request $request) {
+		
+		$loginUser = Auth::user();
+
+		$filePath = "public/comp/{$loginUser->company_id}/{$request->user_id}/"  . $request->up_file;
+		$fileName = $request->raw_file;
+		$mimeType = Storage::mimeType($filePath);
+		$headers = [['Content-Type' => $mimeType]];
+
+		return Storage::download($filePath, $fileName, $headers);
 	}
 
 }

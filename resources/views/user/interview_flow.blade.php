@@ -189,8 +189,21 @@
 										<p class="txt" style="line-height: 14px;padding-left: 5px;">
 											{!! nl2br(e($msg->content)) !!}
 										</p>
+										@if ( !empty($msg->raw_file) )
+											{{ html()->form('POST', '/interview/dl/attach')->id('dlform' . $msg->id)->attribute('name', 'dlform' . $msg->id)->open() }}
+											{{ html()->hidden('comp_id', $interview->company_id) }}
+											{{ html()->hidden('raw_file', $msg->raw_file) }}
+											{{ html()->hidden('up_file', $msg->up_file) }}
+											<p class="txt" style="line-height: 14px;padding-right: 5px;text-align: right;">
+												<a href="javascript:dlform{{ $msg->id }}.submit()"  style="text-decoration: underline;">{{ $msg->raw_file }}</a>
+											</p>
+											{{ html()->form()->close() }}
+										@endif
 									</div>
 								</div>
+
+
+
 							@else 
 								<div class="balloon-chat left">
 									<div class="time" style="font-size: 1.2rem;">{{ $msg->created_at->format('Y/m/d/H:i') }}</div>
@@ -198,6 +211,16 @@
 										<p class="txt" style="line-height: 14px;padding-left: 5px;">
 											{!! nl2br(e($msg->content)) !!}
 										</p>
+										@if ( !empty($msg->raw_file) )
+											{{ html()->form('POST', '/interview/dl/attach')->id('dlform' . $msg->id)->attribute('name', 'dlform' . $msg->id)->open() }}
+											{{ html()->hidden('comp_id', $interview->company_id) }}
+											{{ html()->hidden('raw_file', $msg->raw_file) }}
+											{{ html()->hidden('up_file', $msg->up_file) }}
+											<p class="txt" style="line-height: 14px;padding-right: 5px;text-align: right;">
+												<a href="javascript:dlform{{ $msg->id }}.submit()"  style="text-decoration: underline; color:white;">{{ $msg->raw_file }}</a>
+											</p>
+											{{ html()->form()->close() }}
+										@endif
 									</div>
 								</div>
 							@endif
@@ -214,7 +237,7 @@
  						<div class="messageBg">
 							<h2>新しいメッセージを送る</h2>
 							<div class="message-area">
-								{{ html()->form('POST', "/interview/flowpost")->id('postform')->attribute('name', "postform")->open() }}
+								{{ html()->form('POST', "/interview/flowpost")->id('postform')->attribute('name', "postform")->acceptsFiles()->open() }}
 								{{ html()->hidden('interview_id', $interview->interview_id)->id('interview_id') }}
 								@if ($interview->aprove_flag == '0')
 									<input type="radio" name="aprove_flag" value="1" @if (old('aprove_flag') == '1') checked @endif>承認　　
@@ -232,6 +255,9 @@
 										<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
 									</ul>
 								@enderror
+								<div style="text-align:left;">
+								添付ファイル：{{ html()->file('up_file') }}
+								</div>
 								<button type="submit">送信</button>
 								{{ html()->form()->close() }}
 							</div> <!-- END message-area -->

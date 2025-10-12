@@ -215,6 +215,10 @@ Route::post('/interview/store',  'InterviewController@store');
 Route::get ('/interview/aprove', 'InterviewController@aprove');
 Route::post('/interview/aprove', 'InterviewController@aprove');
 
+Route::get ('/interview/dl/attach', 'InterviewController@dlAttach');
+Route::post('/interview/dl/attach', 'InterviewController@dlAttach');
+
+
 // 転職エージェントに相談
 Route::get ('/agent/request',      'InterviewController@agentRequest');
 Route::post('/agent/request',      'InterviewController@agentRequest')->name('agent.request');
