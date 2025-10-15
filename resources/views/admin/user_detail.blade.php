@@ -220,9 +220,17 @@ window.addEventListener('DOMContentLoaded', function() {
 											<td style="padding: 5px 10px;">{{ $hist->created_at }}</td><td style="padding: 5px 10px;">{{ $hist->getAgentName() }}</td>
 											<td style="padding: 5px 10px;">
 												<div class="wrap">
-													<input type="checkbox" id="showtext">
-													<label for="showtext" class="description">{!! nl2br($hist->content) !!}
+													<input type="checkbox" id="showtext{{ $hist->id}}">
+													<label for="showtext{{ $hist->id }}" class="description">{!! nl2br($hist->content) !!}
 													</label>
+<style>
+#showtext{{ $hist->id }} {
+	display:none;
+}
+#showtext{{ $hist->id }}:checked ~  .description{
+	display:block;
+}
+</style>
 												</div>
 											
 											</td>
