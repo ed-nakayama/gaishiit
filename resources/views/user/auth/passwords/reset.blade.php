@@ -36,6 +36,7 @@
 											<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus  style="width:300px; height: 30px;font-size: 14px;">
  
 	                                 		@error('email')
+	                                 			<br>
 	                                    		<span class="invalid-feedback" role="alert" style="color:#ff0000;">
 	                                        		{{ $message }}
 	                                    		</span>
@@ -58,6 +59,7 @@
 	                           				 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"  style="width:300px; height: 30px;font-size: 14px;">
 
 	                                		@error('password')
+	                                 			<br>
 	                                    		<span class="invalid-feedback" role="alert" style="color:#ff0000;">
 	                                        		{{ $message }}
 	                                    		</span>
