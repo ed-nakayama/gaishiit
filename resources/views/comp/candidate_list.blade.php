@@ -18,17 +18,8 @@
                     
 					<section class="secContents-mb">
 						<div class="secContentsInner">
-{{--
-							<div class="secBtnHead">
-								<div class="secBtnHead-btn">
-									<ul class="item-btn">
-										<li><a href="#modal" class="squareBtn">絞り込み</a></li>
-									</ul><!-- /.item -->
-								</div><!-- /.secBtnHead-btn -->
-							</div>
---}}
 
-							{{ Form::open(['url' => 'comp/candidate/list', 'name' => 'modalform' ]) }}
+							{{ html()->form('POST', '/comp/candidate/list')->attribute('name', 'modalform')->open() }}
 							<div class="formContainer mg-ajust"  style="display: flex;justify-content: space-between;margin-bottom: 0px;">
 
 								<div class="item-name" style="width:auto;">
@@ -40,9 +31,9 @@
 										<div class="selectWrap" style="width:120px;padding:0px;">
 											<select name="result"  class="select-no">
 												<option value="">指定しない</option>
-												<option value="0">コンタクト中</option>
+												<option value="0" @if ($searchHist->result == '0')  selected @endif>コンタクト中</option>
 												@foreach ($constResult as $res)
-													<option value="{{ $res->id }}" @if (old('result') == $res->id)  selected @endif>{{ $res->name }}</option>
+													<option value="{{ $res->id }}" @if ($searchHist->result == $res->id)  selected @endif>{{ $res->name }}</option>
 												@endforeach
 											</select>
 										</div>
@@ -58,10 +49,10 @@
 										<div class="selectWrap" style="width:120px;margin-left:0px;">
 											<select name="from_age"  class="select-no">
 												<option value="">指定しない</option>
-												<option value="20" @if ($search['from_age'] == '20')  selected @endif>20代</option>
-												<option value="30" @if ($search['from_age'] == '30')  selected @endif>30代</option>
-												<option value="40" @if ($search['from_age'] == '40')  selected @endif>40代</option>
-												<option value="50" @if ($search['from_age'] == '50')  selected @endif>50代</option>
+												<option value="20" @if ($searchHist->from_age == '20')  selected @endif>20代</option>
+												<option value="30" @if ($searchHist->from_age == '30')  selected @endif>30代</option>
+												<option value="40" @if ($searchHist->from_age == '40')  selected @endif>40代</option>
+												<option value="50" @if ($searchHist->from_age == '50')  selected @endif>50代</option>
 											</select>
 										</div>
 									</div>
@@ -71,10 +62,10 @@
 										<div class="selectWrap" style="width:120px;">
 											<select name="to_age"  class="select-no">
 												<option value="">指定しない</option>
-												<option value="20" @if ($search['to_age'] == '20')  selected @endif>20代</option>
-												<option value="30" @if ($search['to_age'] == '30')  selected @endif>30代</option>
-												<option value="40" @if ($search['to_age'] == '40')  selected @endif>40代</option>
-												<option value="50" @if ($search['to_age'] == '50')  selected @endif>50代</option>
+												<option value="20" @if ($searchHist->to_age == '20')  selected @endif>20代</option>
+												<option value="30" @if ($searchHist->to_age == '30')  selected @endif>30代</option>
+												<option value="40" @if ($searchHist->to_age == '40')  selected @endif>40代</option>
+												<option value="50" @if ($searchHist->to_age == '50')  selected @endif>50代</option>
 											</select>
 					 					</div>
 									</div><!-- /.item-input -->
@@ -86,7 +77,7 @@
 										<p">フリーワード</p>
 									</div><!-- /.item-name -->
 									<div class="item-input">
-										<input type="text" name="freeword" value="{{ $search['freeword'] }}"  style="width:300px;">
+										<input type="text" name="freeword" value="{{ $searchHist->freeword }}"  style="width:300px;">
 									</div><!-- /.item-input -->
 								</div>
 
@@ -99,7 +90,7 @@
 								</div>
 
 							</div>
-							{{ Form::close() }}
+							{{ html()->form()->close() }}
 
 
 
@@ -124,11 +115,11 @@
 									<tr>
 										<td>{{ $int->last_update }}</td>
 										<td>
-											{{ Form::open(['url' => '/comp/user/detail', 'name' => 'userform' . $int->id ]) }}
-											{{ Form::hidden('user_id', $int->id) }}
-											{{ Form::hidden('parent_id', '2') }}
+											{{ html()->form('POST', '/comp/user/detail')->attribute('name', 'userform' . $int->id)->open() }}
+											{{ html()->hidden('user_id', $int->id) }}
+											{{ html()->hidden('parent_id', '2') }}
 											<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}</a>
-											{{ Form::close() }}
+											{{ html()->form()->close() }}
 										</td>
 										<td>
 											@if ( $int->result_name == '')
@@ -148,7 +139,7 @@
 
 								</table>
 								<div class="pager">
-									{{ $userList->appends($search)->links('pagination.comp') }}
+									{{ $userList->appends($searchHist->toArray())->links('pagination.comp') }}
 								</div>
 							@endif
 

@@ -520,13 +520,13 @@ class CompUserController extends UserController
 			]);
 		}
 		
-		$search = $searchHist->toArray();
+//		$search = $searchHist->toArray();
 
-		$userList = $this->search_can_list($search);
+		$userList = $this->search_can_list($searchHist);
 
 		return view('comp.candidate_list' ,compact(
 			'userList',
-			'search',
+			'searchHist',
 		));
  
 	}
@@ -543,23 +543,23 @@ class CompUserController extends UserController
 			->where('use_page' ,'COMP_CAND')
 			->first();
 
-		$searchHist['result'] = $request->result;
-		$searchHist['from_age'] = $request->from_age;
-		$searchHist['to_age'] = $request->to_age;
-		$searchHist['current_job'] = $request->current_job;
-		$searchHist['freeword'] = $request->freeword;
+		$searchHist->result = $request->result;
+		$searchHist->from_age = $request->from_age;
+		$searchHist->to_age = $request->to_age;
+		$searchHist->current_job = $request->current_job;
+		$searchHist->freeword = $request->freeword;
 
 		$searchHist->save();
 
-		$search = $searchHist->toArray();
+//		$search = $searchHist->toArray();
 
-		$userList = $this->search_can_list($search);
+		$userList = $this->search_can_list($searchHist);
 
 		$parent_id = '2';
 
 		return view('comp.candidate_list' ,compact(
 			'userList',
-			'search',
+			'searchHist',
 			'parent_id',
 		));
  
@@ -612,21 +612,24 @@ class CompUserController extends UserController
 					->orWhereNotNull('formal_last_update');
 				});
 
-		if (!empty($param['result'])) $userQuery = $userQuery->where('users.result_id' , $param['result']);
-		if (!empty($param['from_age'])) $userQuery = $userQuery->where('age' ,'>=',  $param['from_age']);
-		if (!empty($param['to_age'])) $userQuery = $userQuery->where('age' ,'<',  $param['to_age'] + 10);
-//		if (!empty($param['current_job'])) $userQuery = $userQuery->whereIn('users.current_job' ,  $param['current_job']);
+		if (!empty($param->result)) $userQuery = $userQuery->where('users.result_id' , $param->result);
+		if (!empty($param->from_age)) $userQuery = $userQuery->where('age' ,'>=',  $param->from_age);
+		if (!empty($param->to_age)) $userQuery = $userQuery->where('age' ,'<',  $param->to_age + 10);
+//		if (!empty($param->current_job'])) $userQuery = $userQuery->whereIn('users.current_job' ,  $param['current_job']);
 
 		if (!empty($param['freeword'])) {
+			$freeword = $param->freeword;
+
 			$userQuery = $userQuery
-				->where(function($query) use  ($loginUser ,$param) {
-					$query->where('users.graduation',  'like', "%{$param['freeword']}%")
-					->orWhere('users.company',         'like', "%{$param['freeword']}%")
-					->orWhere('users.old_company',     'like', "%{$param['freeword']}%")
-					->orWhere('users.job_title',       'like', "%{$param['freeword']}%")
-					->orWhere('users.job_content',     'like', "%{$param['freeword']}%")
-					->orWhere('users.request_carrier', 'like', "%{$param['freeword']}%")
-					->orWhere('users.job_detail',      'like', "%{$param['freeword']}%")
+				->where(function($query) use  ($freeword) {
+					$query->where('users.graduation',  'like', "%{$freeword}%")
+					->orWhere('users.name',            'like', "%{$freeword}%")
+					->orWhere('users.company',         'like', "%{$freeword}%")
+					->orWhere('users.old_company',     'like', "%{$freeword}%")
+					->orWhere('users.job_title',       'like', "%{$freeword}%")
+					->orWhere('users.job_content',     'like', "%{$freeword}%")
+					->orWhere('users.request_carrier', 'like', "%{$freeword}%")
+					->orWhere('users.job_detail',      'like', "%{$freeword}%")
 					;
 				});
 		}
