@@ -5,30 +5,116 @@
 
 @section('content')
 
-            <div class="mainContentsInner-oneColumn">
+<div class="mainContentsInner-oneColumn">
 
-                <div class="secTitle">
-                    <div class="title-main">
-                        <h2>候補者一覧</h2>
-                    </div><!-- /.mainTtl -->
-                </div><!-- /.sec-title -->
-               
-                
-                <div class="containerContents">
-                    
-                    <section class="secContents-mb">
-                        <div class="secContentsInner">
+	<div class="secTitle">
+		<div class="title-main">
+			<h2>候補者一覧</h2>
+		</div><!-- /.mainTtl -->
+	</div><!-- /.sec-title -->
 
-                           <div class="secBtnHead">
-                                <div class="secBtnHead-btn">
-                                    <ul class="item-btn">
-                                        <li><a href="#modal" class="squareBtn">絞り込み</a></li>
-                                    </ul><!-- /.item -->
-                                </div><!-- /.secBtnHead-btn -->
-                           </div>
+	<div class="containerContents">
+
+		<section class="secContents-mb">
+			<div class="secContentsInner">
+
+				{{ Form::open(['url' => 'admin/candidate/list', 'name' => 'modalform' ,'method' => 'GET' ]) }}
+
+				<div class="formContainer mg-ajust" style="width:90%;">
+					<div class="item-name" style="width:40px;">
+						<p>年齢</p>
+					</div><!-- /.item-name -->
+
+					<div class="item-input" style="display:flex;">
+						<div class="selectWrap" style="width:120px;">
+							<select name="from_age" class="select-no">
+								<option value="">指定しない</option>
+								<option value="20" @if ($searchHist->from_age == '20')  selected @endif>20代</option>
+								<option value="30" @if ($searchHist->from_age == '30')  selected @endif>30代</option>
+								<option value="40" @if ($searchHist->from_age == '40')  selected @endif>40代</option>
+								<option value="50" @if ($searchHist->from_age == '50')  selected @endif>50代</option>
+							</select>
+						</div>
+						<div style="margin-top:8px;">　～　</div>
+					
+						<div class="selectWrap" style="width:120px;">
+							<select name="to_age"  class="select-no">
+								<option value="">指定しない</option>
+								<option value="20" @if ($searchHist->to_age == '20')  selected @endif>20代</option>
+								<option value="30" @if ($searchHist->to_age == '30')  selected @endif>30代</option>
+								<option value="40" @if ($searchHist->to_age == '40')  selected @endif>40代</option>
+								<option value="50" @if ($searchHist->to_age == '50')  selected @endif>50代</option>
+							</select>
+	 					</div>
+					</div><!-- /.item-input -->
+
+					<div class="item-name" style="width:80px;">
+						<p>現在の職種</p>
+					</div><!-- /.item-name -->
+
+					<div class="item-input">
+						<div class="selectWrap">
+							<select name="current_job"  class="select-no">
+								<option value="">指定しない</option>
+								@foreach ($jobCat as $cat)
+								<option value="{{ $cat->id }}" @if ($searchHist->current_job == $cat->id)  selected @endif>{{ $cat->name }}</option>
+								@endforeach
+							</select>
+						</div>
+					</div><!-- /.item-input -->
+				</div><!-- /.formContainer -->
+
+
+				<div class="formContainer mg-ajust" style="width:90%;">
+					<div class="item-name" style="width:80px;">
+						<p>希望勤務地</p>
+					</div><!-- /.item-name -->
+
+					<div class="item-input">
+						<div class="selectWrap harf">
+							<select name="location"  class="select-no">
+								<option value="">指定しない</option>
+								@foreach ($constLocation as $loc)
+								<option value="{{ $loc->id }}" @if ($searchHist->location == $loc->id)  selected @endif>{{ $loc->name }}</option>
+								@endforeach
+							</select>
+						</div><!-- /.item-input -->
+					</div><!-- /.formContainer -->
+
+					<div class="item-name" style="width:160px;">
+						<p>転職を希望するカテゴリ</p>
+					</div><!-- /.item-name -->
+            
+					<div class="item-input">
+						<div class="selectWrap">
+							<select name="request_cat"  class="select-no">
+								<option value="">指定しない</option>
+								@foreach ($jobCat as $cat)
+								<option value="{{ $cat->id }}" @if ($searchHist->request_cat == $cat->id)  selected @endif>{{ $cat->name }}</option>
+								@endforeach
+							</select>
+						</div>
+					</div><!-- /.item-input -->
+				</div><!-- /.formContainer -->
+
+				<div class="formContainer mg-ajust" style="width:90%;">
+					<div class="item-name" style="width:85px;">
+						<p>フリーワード</p>
+					</div><!-- /.item-name -->
+
+					<div class="item-input">
+						<input type="text" name="freeword" value="{{ $searchHist->freeword }}"  style="width:400px;">
+					</div><!-- /.item-input -->
+
+					<div class="btnContainer">
+						<a href="javascript:modalform.submit()" class="squareBtn btn-large" style="width:120px; line-height:10px;">検索</a>
+					</div><!-- /.btn-container -->
+				</div><!-- /.formContainer -->
+   
+		{{ html()->form()->close() }}
 
 @if(!isset($userList[0]))
-  <div>※データはありません。</div>
+				<div>※データはありません。</div>
 @else
 							<p style="text-align: center;">全{{ $userList->total() }}件中 {{  ($userList->currentPage() -1) * $userList->perPage() + 1}}-{{ (($userList->currentPage() -1) * $userList->perPage() + 1) + (count($userList) -1)  }}件</p>
                            <table class="tbl-candidate">
@@ -66,7 +152,7 @@
 
                             </table>
                             <div class="pager">
-                               {{ $userList->appends( $search)->links('pagination.admin') }}
+                               {{ $userList->appends($searchHist->toArray())->links('pagination.admin') }}
                             </div>
 @endif
 
@@ -74,122 +160,5 @@
 					</section><!-- /.secContents-mb -->
 				</div><!-- /.containerContents -->
             </div><!-- /.mainContentsInner-oneColumn -->
-
-
-<!-- モーダル -->
-		<div class="remodal" data-remodal-id="modal">
-			{{ Form::open(['url' => 'admin/candidate/list', 'name' => 'modalform' ,'method' => 'GET' ]) }}
-			<div class="modalTitle">
-				<h2>絞り込み</h2>
-			</div><!-- /.modalTitle -->
-
-			<div class="modalInner bb-ajust">
-			
-				<div class="formContainer mg-ajust">
-					<div class="item-name">
-						<p>年齢</p>
-					</div><!-- /.item-name -->
-        
-					<div class="item-input">
-						<div class="selectWrap">
-							<select name="from_age"  class="select-no">
-								<option value="">指定しない</option>
-								<option value="20" @if ($search['from_age'] == '20')  selected @endif>20代</option>
-								<option value="30" @if ($search['from_age'] == '30')  selected @endif>30代</option>
-								<option value="40" @if ($search['from_age'] == '40')  selected @endif>40代</option>
-								<option value="50" @if ($search['from_age'] == '50')  selected @endif>50代</option>
-							</select>
-						</div>
-					</div>
-					<div>　～　
-					</div>
-					<div class="item-input">
-						<div class="selectWrap">
-							<select name="to_age"  class="select-no">
-								<option value="">指定しない</option>
-								<option value="20" @if ($search['to_age'] == '20')  selected @endif>20代</option>
-								<option value="30" @if ($search['to_age'] == '30')  selected @endif>30代</option>
-								<option value="40" @if ($search['to_age'] == '40')  selected @endif>40代</option>
-								<option value="50" @if ($search['to_age'] == '50')  selected @endif>50代</option>
-							</select>
-	 					</div>
-					</div><!-- /.item-input -->
-				</div><!-- /.formContainer -->
-
-
-				<div class="formContainer mg-ajust">
-					<div class="item-name">
-						<p>現在の職種</p>
-					</div><!-- /.item-name -->
-        
-					<div class="item-input">
-						<div class="selectWrap harf">
-							<select name="current_job"  class="select-no">
-								<option value="">指定しない</option>
-								@foreach ($jobCat as $cat)
-								<option value="{{ $cat->id }}" @if ($search['current_job'] == $cat->id)  selected @endif>{{ $cat->name }}</option>
-								@endforeach
-							</select>
-						</div>
-					</div><!-- /.item-input -->
-				</div><!-- /.formContainer -->
-
-
-				<div class="formContainer mg-ajust">
-					<div class="item-name">
-						<p>希望勤務地</p>
-					</div><!-- /.item-name -->
-            
-
-					<div class="item-input">
-						<div class="selectWrap harf">
-							<select name="location"  class="select-no">
-								<option value="">指定しない</option>
-								@foreach ($constLocation as $loc)
-								<option value="{{ $loc->id }}" @if ($search['location'] == $loc->id)  selected @endif>{{ $loc->name }}</option>
-								@endforeach
-							</select>
-						</div><!-- /.item-input -->
-					</div><!-- /.formContainer -->
-				</div><!-- /.formContainer -->
-	
-
-				<div class="formContainer mg-ajust">
-				<div class="item-name">
-					<p>転職を希望するカテゴリ</p>
-				</div><!-- /.item-name -->
-            
-				<div class="item-input">
-					<div class="selectWrap harf">
-						<select name="request_cat"  class="select-no">
-							<option value="">指定しない</option>
-							@foreach ($jobCat as $cat)
-							<option value="{{ $cat->id }}" @if ($search['request_cat'] == $cat->id)  selected @endif>{{ $cat->name }}</option>
-							@endforeach
-						</select>
-					</div>
-				</div><!-- /.item-input -->
-			</div><!-- /.formContainer -->
-
-			<div class="formContainer mg-ajust">
-				<div class="item-name">
-					<p>フリーワード</p>
-				</div><!-- /.item-name -->
-        
-				<div class="item-input">
-					<input type="text" name="freeword" value="{{ $search['freeword'] }}">
-				</div><!-- /.item-input -->
-			</div><!-- /.formContainer -->
-
-		</div><!-- /.modalInner -->
-
-     
-		<div class="btnContainer">
-			<a href="javascript:modalform.submit()" class="squareBtn btn-large">絞り込む</a>
-		</div><!-- /.btn-container -->
-		{{ html()->form()->close() }}
-	</div>
-<!-- モーダル END -->
-
 
 @endsection

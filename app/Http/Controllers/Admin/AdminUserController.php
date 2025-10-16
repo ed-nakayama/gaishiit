@@ -258,7 +258,7 @@ class AdminUserController extends UserController
 	public function canIndex()
 	{
 		$loginUser = Auth::user();
-		
+
 		$searchHist = SearchHist::where('owner_id' ,$loginUser->id)
 			->where('use_page' ,'ADMIN_CAND')
 			->first();
@@ -270,13 +270,13 @@ class AdminUserController extends UserController
 			]);
 		}
 		
-		$search = $searchHist->toArray();
+//		$search = $searchHist->toArray();
 
-		$userList = $this->search_can_list($search);
+		$userList = $this->search_can_list($searchHist);
 
 		return view('admin.candidate_list' ,compact(
 			'userList',
-			'search',
+			'searchHist',
 		));
  
 	}
@@ -287,27 +287,28 @@ class AdminUserController extends UserController
 **************************************/
 	public function canList(Request $request)
 	{
+//dd($request);
 		$loginUser = Auth::user();
-		
+
 		$searchHist = SearchHist::where('owner_id' ,$loginUser->id)
 			->where('use_page' ,'ADMIN_CAND')
 			->first();
 
-		$searchHist['result'] = $request->result;
-		$searchHist['from_age'] = $request->from_age;
-		$searchHist['to_age'] = $request->to_age;
-		$searchHist['current_job'] = $request->current_job;
-		$searchHist['freeword'] = $request->freeword;
+		$searchHist->result = $request->result;
+		$searchHist->from_age = !empty($request->from_age) ? $request->from_age : '1';
+		$searchHist->to_age = $request->to_age;
+		$searchHist->current_job = $request->current_job;
+		$searchHist->freeword = $request->freeword;
 
 		$searchHist->save();
 
-		$search = $searchHist->toArray();
+//		$search = $searchHist->toArray();
 
-		$userList = $this->search_can_list($search);
+		$userList = $this->search_can_list($searchHist);
 
 		return view('admin.candidate_list' ,compact(
 			'userList',
-			'search',
+			'searchHist',
 		));
  
 	}
@@ -328,19 +329,23 @@ class AdminUserController extends UserController
 			->whereNull('deleted_at')
 			->selectRaw("users.*, age ,const_locations.name as location_name");
 
-		if ($param['result'] != '') $userQuery = $userQuery->where('users.result_id' , $param['result']);
-		if ($param['from_age']!= '') $userQuery = $userQuery->where('age' ,'>=',  $param['from_age']);
-		if ($param['to_age'] != '') $userQuery = $userQuery->where('age' ,'<',  $param['to_age'] + 10);
-		if ($param['current_job'] != '') $userQuery = $userQuery->whereIn('users.job_cats' ,  $param['current_job']);
+		if (!empty($param->result)) $userQuery = $userQuery->where('users.result_id' , $param->result);
+		if (!empty($param->from_age)) $userQuery = $userQuery->where('age' ,'>=',  $param->from_age);
+		if (!empty($param->to_age)) $userQuery = $userQuery->where('age' ,'<',  $param->to_age + 10);
+		if (!empty($param->current_job)) $userQuery = $userQuery->whereIn('users.job_cats' , ["{$param->current_job}"]);
 
-		if ($param['freeword'] != '') {
+		if (!empty($param->freeword)) {
+			$freeword = $param->freeword;
+
 			$userQuery = $userQuery
-				->where(function($query) {
-					$query->where('users.graduation' , 'like', "%{$param['freeword']}%")
-					->orWhere('users.company' , 'like', "%{$param['freeword']}%")
-					->orWhere('users.job_content' , 'like', "%{$param['freeword']}%")
-					->orWhere('users.japanese_background' , 'like', "%{$param['freeword']}%")
-					->orWhere('users.english_background' , 'like', "%{$param['freeword']}%")
+				->where(function($query) use ($freeword) {
+					$query->where('users.graduation' , 'like', "%{$freeword}%")
+					->orWhere('users.name' , 'like', "%{$freeword}%")
+					->orWhere('users.email' , 'like', "%{$freeword}%")
+					->orWhere('users.company' , 'like', "%{$freeword}%")
+					->orWhere('users.job_content' , 'like', "%{$freeword}%")
+//					->orWhere('users.japanese_background' , 'like', "%{$freeword}%")
+//					->orWhere('users.english_background' , 'like', "%{$freeword}%")
 					;
 				});
 		}
