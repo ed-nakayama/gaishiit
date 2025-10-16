@@ -100,7 +100,7 @@ class CompJobController extends Controller
 					->orWhere('jobs.job_code' , 'like', "%{$words[$i]}%")
 					->orWhere('jobs.sub_category' , 'like', "%{$words[$i]}%")
 					->orWhere('units.name' , 'like', "%{$words[$i]}%")
-					->orWhere('job_cat_details.name' , 'like', "%{$words[$i]}%")
+//					->orWhere('job_cat_details.name' , 'like', "%{$words[$i]}%")
 					;
 				});
 		}

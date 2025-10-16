@@ -39,10 +39,12 @@ class MypageController extends Controller
 		$request = new Request();
 		
 		$request->sel_aprove = '';
+		$request->user = '';
 
 		$userList = $this->search_list($request);
 
 		$sel_aprove = '';
+		$user_name = '';
 
 		$user = \Auth::user();
 
@@ -53,6 +55,7 @@ class MypageController extends Controller
 		return view('admin.mypage' ,compact(
 			'userList',
 			'sel_aprove',
+			'user_name',
 		));
 
 	}
@@ -64,12 +67,14 @@ class MypageController extends Controller
 	public function list(Request $request)
 	{
 		$sel_aprove = $request->sel_aprove;
+		$user_name = !empty($request->user_name) ? $request->user_name : '';
 
 		$userList = $this->search_list($request);
 
 		return view('admin.mypage' ,compact(
 			'userList',
 			'sel_aprove',
+			'user_name',
 		));
 
 	}
@@ -91,7 +96,12 @@ class MypageController extends Controller
 		} elseif ($request->sel_aprove == '2') {
 			$userQuery = $userQuery->where('aprove_flag' , '2');
 		}
-		
+
+		if (!empty($request->user_name) ) {
+			$user_name = $request->user_name;
+			$userQuery = $userQuery->where('name' , 'like', "%{$user_name}%");
+		}
+
 		$userList = $userQuery
 			->orderBy('created_at' ,'desc')
 			->paginate(20);

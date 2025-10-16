@@ -190,16 +190,19 @@ input[type=checkbox]:checked::before {
 .tab_box_no2 .tab_btn {
   font-weight: bold;
   border-radius: 6px 6px 0 0;
+  border: 1px solid;
+  border-color: white;
 }
 .tab_box .tab_btn:nth-child(3n+1),
 .tab_box_no .tab_btn:nth-child(3n+1),
 .tab_box_no2 .tab_btn:nth-child(3n+1) {
-  background-color: #011d70;
+/*  background-color: #011d70;*/
+  background-color: #aac1ff;
 }
 .tab_box .tab_btn:nth-child(3n+2),
 .tab_box_no .tab_btn:nth-child(3n+2),
 .tab_box_no2 .tab_btn:nth-child(3n+2) {
-  background-color: #7798f0;
+  background-color: #aac1ff;
 }
 .tab_box .tab_btn:nth-child(3n+3),
 .tab_box_no .tab_btn:nth-child(3n+3),
@@ -210,7 +213,8 @@ input[type=checkbox]:checked::before {
 .tab_box_no .tab_btn.active,
 .tab_box_no2 .tab_btn.active {
   color: #fff;
-  background-color: #e7af25;
+/*  background-color: #e7af25;*/
+  background-color: #011d70;
 }
 
 .secContentsInner {
@@ -278,6 +282,10 @@ input[type=checkbox]:checked::before {
   color: #fff;
   font-weight: bold;
 }
+.contentsTitle-container .linkList a:hover {
+  background-color: #ff6347;
+}
+
 .contentsTitle-container .linkList a::after {
   content: "";
   display: inline-block;
@@ -479,12 +487,6 @@ td .btnContainer .squareGrayBtn {
 .check-box-btn:has(input[type=checkbox]) {
   display: flex;
   flex-wrap: wrap;
-}
-
-.tab_box .tab_btn.active {
-  background-color: #e5af24;
-  color: #fff;
-  font-weight: bold;
 }
 
 .messageBoxTbl,

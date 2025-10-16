@@ -21,7 +21,7 @@
 
 					<div class="secBtnHead">
 						<div class="secBtnHead-btn">
-							{{ Form::open(['url' => '/comp/job/list', 'name' => 'listform' , 'id' => 'listform', 'method'=>'GET']) }}
+							{{ html()->form('GET', '/comp/job/list')->id('listform')->attribute('name', 'listform')->open() }}
 							<ul class="item-btn" style="align-items: center;">
 								<li><a href="/comp/job/register" class="squareBtn">新規作成</a></li>
 								<li style="text-align: right;">フリーワード</li>
@@ -29,7 +29,7 @@
 								<li><a href="javascript:listform.submit()" class="squareBtn">検索</a></li>
 								<li style="white-space:nowrap;">　　　<input type="checkbox" id="only_me"  name="only_me" value="1" @if ($only_me == '1') checked @endif  onchange="this.form.submit()"><label for="only_me">自分の担当のみ表示</label></li>
 							</ul><!-- /.item -->
-							{{ Form::close() }}
+							{{ html()->form()->close() }}
 						</div><!-- /.secBtnHead-btn -->
 					</div><!-- /.sec-btn -->
 
@@ -58,14 +58,14 @@
 								<td>{{ $job->person_name }}</td>
 								<td>
 									<div class="btnContainer">
-										{{ Form::open(['url' => '/comp/job/edit', 'name' => 'editform' . $job->id ,'method'=>'GET' ]) }}
-										{{ Form::hidden('job_id', $job->id) }}
+										{{ html()->form('GET', '/comp/job/edit')->id('editform' . $job->id)->attribute('name', 'editform' . $job->id)->open() }}
+										{{ html()->hidden('job_id', $job->id) }}
 										@if (strpos($job->person ,Auth::user()->id) !== false)
 											<a href="javascript:editform{{ $job->id }}.submit()" class="squareBtn btn-large">編集</a>
 										@else
 											<a href="javascript:editform{{ $job->id }}.submit()" class="squareGrayBtn btn-large">参照</a>
 										@endif
-										{{ Form::close() }}
+										{{ html()->form()->close() }}
 									</div><!-- /.btn-container -->
 								</td>
 							</tr>
@@ -86,21 +86,18 @@
 
 
 $(document).ready(function(){
+
   $("#jobTable tr:even").not(':first').addClass("evenRow");
+
   $("#jobTable tr").not(':first').hover(
     function(){
         $(this).addClass("focusRow");
     },function(){
         $(this).removeClass("focusRow");
  });
+
 });
 
 </script>
-
-<style>
-#jobTable { cursor: pointer; }
-.evenRow { background-color: #F5F5F5; }
-.focusRow { background-color: #ffffcc; }
-</style>
 
 @endsection

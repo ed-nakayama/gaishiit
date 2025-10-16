@@ -222,15 +222,5 @@ $(document).ready(function(){
 });
 </script>
 
-<style>
-#memberTable { cursor: pointer; }
-.evenRow { background-color: #F5F5F5; }
-.focusRow { background-color: #ffffcc; }
-
-#alreadyTable { cursor: pointer; }
-.evenRow { background-color: #F5F5F5; }
-.focusRow { background-color: #ffffcc; }
-
-</style>
 
 @endsection

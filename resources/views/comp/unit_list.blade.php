@@ -85,10 +85,5 @@ $(document).ready(function(){
 
 </script>
 
-<style>
-#unitTable { cursor: pointer; }
-.evenRow { background-color: #F5F5F5; }
-.focusRow { background-color: #ffffcc; }
-</style>
 
 @endsection

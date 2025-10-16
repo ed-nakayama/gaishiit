@@ -4,6 +4,15 @@
 
 <head>
 	<title>マイページ｜{{ config('app.name', 'Laravel') }}</title>
+	
+<script>
+  function user_search() {
+
+	sarchform.sel_aprove.value = selform.sel_aprove.value;
+	document.sarchform.submit();
+  }
+</script>
+	
 </head>
 
 <div class="mainContentsInner-oneColumn">
@@ -36,17 +45,26 @@
 							<div class="secBtnHead-btn">
 								<ul class="item-btn">
 									<li>
+										{{ html()->form('GET', '/admin/mypage/list')->attribute('name', 'selform')->open() }}
 										<div class="selectWrap">
-											{{ html()->form('GET', '/admin/mypage/list')->attribute('name', 'selform')->open() }}
 											<select name="sel_aprove"  class="select-no" onchange="changeSel()" id="sel_aprove">
 												{{ html()->option('すべて') }}
 												{{ html()->option('未承認'    , '0' , ($sel_aprove == '0')) }}
 												{{ html()->option('承認'      , '1' , ($sel_aprove == '1')) }}
 												{{ html()->option('リジェクト', '2' , ($sel_aprove == '2')) }}
 											</select>
-											{{ html()->form()->close() }}
 										</div>
+										{{ html()->form()->close() }}
 									</li>
+									<li style="margin-top: 6px;text-align:right;">候補者名
+									</li>
+									<li style="width: 180px;">
+										{{ html()->form('GET', '/admin/mypage/list')->attribute('name', 'sarchform')->open() }}
+										{{ html()->hidden('sel_aprove') }}
+										{{ html()->text('user_name', $user_name) }}
+										{{ html()->form()->close() }}
+									</li>
+									<li style="margin-top: 2px;"><a href="" class="squareBtn" onclick="user_search();return false;">検索</a></li>
 								</ul><!-- /.item -->
 							</div><!-- /.secBtnHead-btn -->
 						</div>
