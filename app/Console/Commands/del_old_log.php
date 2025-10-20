@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use App\Models\Logging;
+use App\Models\LpRef;
 
 
 
@@ -43,6 +44,9 @@ class del_old_log extends Command
     {
         
 		$jobList = Logging::where('updated_at', '<', date('Y-m-d', strtotime('-6 month')) )
+			->delete();
+
+		$jobList = LpRef::where('updated_at', '<', date('Y-m-d', strtotime('-3 month')) )
 			->delete();
 
 	}
