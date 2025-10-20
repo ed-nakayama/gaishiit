@@ -38,6 +38,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<meta property="og:url" content="{{ url()->current() }}" />
 	<meta property="og:site_name" content="{{ config('app.name') }}" />
 
+@if ( config('app.env') == 'Staging')
+	<meta name="robots" content="noindex">
+@endif
+
 @yield('addheader')
 
 	<link href="{{ asset('css/add_new.css') }}" rel="stylesheet">
@@ -156,7 +160,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				@if ( config('app.env') == 'Staging')
 					<center>
 					<div style="background-color:blue;color:white;font-weight:bolder;font-size:16px;">
-						{{ config('app.env') }}
+						{{ config('app.env') }}（テストサイト）
 					</div>
 					</center>
 				@endif

@@ -40,6 +40,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="{{ asset('css/chart.css') }}">
 
 	<link href="{{ asset('css/add_new.css') }}" rel="stylesheet">
+	
+@if ( config('app.env') == 'Staging')
+	<meta name="robots" content="noindex">
+@endif
+
 
 </head>
 
@@ -197,7 +202,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 @endif
-		
+
 	{{ html()->form('POST', '/company')->attribute('name', 'kuchiform')->open() }}
 	{{ html()->form()->close() }}
 
@@ -206,6 +211,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <section id="sec-title" class="items">
 		<header>
 			<div id="menu">
+				@if ( config('app.env') == 'Staging')
+					<center>
+					<div style="background-color:blue;color:white;font-weight:bolder;font-size:16px;">
+						{{ config('app.env') }}（テストサイト）
+					</div>
+					</center>
+				@endif
+
 				<div id="menu-inner">
 					<div class="logo">
 						<a href="/mypage">
