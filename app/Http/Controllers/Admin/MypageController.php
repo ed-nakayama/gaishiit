@@ -28,6 +28,7 @@ class MypageController extends Controller
 	public function __construct()
     {
         $this->middleware('auth:admin');
+//        dd(Auth::check());
     }
     
     
@@ -38,8 +39,9 @@ class MypageController extends Controller
 	{
 		$request = new Request();
 		
-		$request->sel_aprove = '';
-		$request->user = '';
+		$request->merge(['sel_aprove' => '']);
+		$request->merge(['suser' => '']);
+
 
 		$userList = $this->search_list($request);
 
@@ -1184,16 +1186,15 @@ class MypageController extends Controller
 		foreach ($jobList as $job) {
 
 			// 半角スペース 変換
-			$job_name      = str_replace( "\xc2\xa0", " ", $job->name );
-			$job_code      = str_replace( "\xc2\xa0", " ", $job->job_code );
-			$unit_name     = str_replace( "\xc2\xa0", " ", $job->unit_name );
-//			$job_cat_name  = str_replace( "\xc2\xa0", " ", $job->job_cat_name );
-			$job_cat_name  = str_replace( "\xc2\xa0", " ", $job->getJobCategoryName() );
-			$sub_category  = str_replace( "\xc2\xa0", " ", $job->sub_category );
-			$intro         = str_replace( "\xc2\xa0", " ", $job->intro );
-			$working_place = str_replace( "\xc2\xa0", " ", $job->working_place );
-			$url           = str_replace( "\xc2\xa0", " ", $job->url );
-			$for_agent     = str_replace( "\xc2\xa0", " ", $job->for_agent );
+			$job_name      = !empty($job->name)                 ? str_replace( "\xc2\xa0", " ", $job->name ) : '';
+			$job_code      = !empty($job->job_code)             ? str_replace( "\xc2\xa0", " ", $job->job_code ) : '';
+			$unit_name     = !empty($job->unit_name)            ? str_replace( "\xc2\xa0", " ", $job->unit_name ) : '';
+			$job_cat_name  = !empty($job->getJobCategoryName()) ? str_replace( "\xc2\xa0", " ", $job->getJobCategoryName() ) : '';
+			$sub_category  = !empty($job->sub_category)         ? str_replace( "\xc2\xa0", " ", $job->sub_category ) : '';
+			$intro         = !empty($job->intro)                ? str_replace( "\xc2\xa0", " ", $job->intro ) : '';
+			$working_place = !empty($job->working_place)        ? str_replace( "\xc2\xa0", " ", $job->working_place ) : '';
+			$url           = !empty($job->url)                  ? str_replace( "\xc2\xa0", " ", $job->url ) : '';
+			$for_agent     = !empty($job->for_agent)            ? str_replace( "\xc2\xa0", " ", $job->for_agent ) : '';
 
 			$job_name      = str_replace( ",", "，" ,$job_name );
 			$job_code      = str_replace( ",", "，" ,$job_code );

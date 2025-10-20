@@ -100,7 +100,7 @@
 									<td>@if ( $int->aprove_flag == '1')<font color="blue">承認済</font>@elseif ( $int->aprove_flag == '2')<font color="red">リジェクト</font>@endif</td>
 									<td>{{ $int->getAge() }}</td>
 									<td>{{ $int->company }}</td>
-									<td>{{ mb_strimwidth($int->job_content, 0, 38, "...") }}</td>
+									<td>@if (!empty($int->job_content)){{ mb_strimwidth($int->job_content, 0, 38, "...") }}@endif</td>
 									<td>{{ $int->job_title }}</td>
 									<td>{{ $int->graduation . ' ' . $int->department }}</td>
 									<td>{{ $int->ote_income }}</td>

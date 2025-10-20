@@ -58,18 +58,20 @@ class AppServiceProvider extends ServiceProvider
 		$ip = !empty($_SERVER['HTTP_X_REAL_IP']) ? $_SERVER['HTTP_X_REAL_IP'] : '';
 
 		$appUrl = config('app.url');
+		$url_info = parse_url($appUrl);
+		$root_url = '://' . $url_info['host'];
 
-		if ( !empty($ip) && (strpos($referer ,$appUrl) === false) ) {
+		if ( !empty($ip) && (strpos($referer ,$root_url) === false) ) {
 //			$url_info = parse_url($referer);
 //			$root_url = $url_info['scheme'] . '://' . $url_info['host'];
 		
 			session()->put('lp_ref', $referer);
 			session()->put('lp_ip' , $ip);
 
-			$lpRef = LpRef::create([
-				'ip' => $ip,
-				'referer' => $referer,
-			]);
+//			$lpRef = LpRef::create([
+//				'ip' => $ip,
+//				'referer' => $referer,
+//			]);
 
 		}
 
