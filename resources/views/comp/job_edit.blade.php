@@ -8,369 +8,368 @@
 
 {{--@include('comp.member_activity')--}}
 
-            <div class="mainContentsInner">
+<div class="mainContentsInner">
 
-                <div class="mainTtl title-main">
-					@if ( !isset($job->id) )
-                    	<h2>求人管理 - 新規作成</h2>
-					@elseif (strpos($job->person ,Auth::user()->id) !== false)
-	                    <h2>求人管理 - 編集</h2>
-					@else
-                    	<h2>求人管理 - 参照</h2>
-					@endif
-                </div><!-- /.mainTtl -->
+	<div class="mainTtl title-main">
+		@if ( !isset($job->id) )
+			<h2>求人管理 - 新規作成</h2>
+		@elseif (strpos($job->person ,Auth::user()->id) !== false)
+			<h2>求人管理 - 編集</h2>
+		@else
+			<h2>求人管理 - 参照</h2>
+		@endif
+	</div><!-- /.mainTtl -->
 
-                <div class="containerContents">
+	<div class="containerContents">
 @if ( isset($job->id) )
  <!--  修正  -->
-					{{ html()->form('POST', '/comp/job/change')->id('changeform')->attribute('name', 'changeform')->open() }}
-					{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
-                    <section class="secContents-mb">
-                        <div class="secContentsInner">
+		{{ html()->form('POST', '/comp/job/change')->id('changeform')->attribute('name', 'changeform')->open() }}
+		{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
+		<section class="secContents-mb">
+			<div class="secContentsInner">
                             
-							<ul class="jobToggleList leftAlign">
-								<li>
-									<div class="button-radio">
-										<input id="c_ch1" class="radiobutton" name="open_flag" type="radio" value="1"  @if (old('open_flag' ,$job->open_flag) == '1')  checked="checked" @endif   @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="checkOpen()"  />
-										<label for="c_ch1">公開</label> /
-										<input id="c_ch2" class="radiobutton" name="open_flag" type="radio" value="0"  @if (old('open_flag' ,$job->open_flag) == '0')  checked="checked" @endif   @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="checkOpen()" />
-										<label for="c_ch2">非公開</label> 
-									</div>
-								</li>
-								<li>
-                                    <label id="del_lavel"  for=""><span>削除する</span><input type="checkbox"  name="del_flag" id="del_flag" value="1"  @if (old('dell_flag' ,$job->del_flag) == '1')  checked="checked" @endif  @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()" /></label>
-								</li>
-								<li>
-                            		<div class="btnContainer">
-									@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false) 
-										<a href="javascript:changeform.submit()" class="squareBtn btn-short">公開保存</a>
-									@else
-				                		@if (session('update_success'))
-    	                            		<a href="/comp/job" class="squareBtn btn-large">戻る</a>
-                                		@else
-											<a href="javascript:history.back();" class="squareBtn btn-short" >戻る</a>
-										@endif
-									@endif
-                            		</div><!-- /.btn-container -->
-								</li>
-							</ul><!-- /.jobToggle -->
-			              	<div id="success1" class="alert alert-success"  style="color:#0000ff;text-align: center;">
-			               	{{-- 更新成功メッセージ --}}
-			               	@if (session('option_success'))
-			                  	<div id="success1" class="alert alert-success"  style="color:#0000ff;">
-			                   		公開/非公開フラグを保存しました。
-			                  	</div>
-			               	@endif
- 		                   	</div>
-                       </div><!-- /.secContentsInner -->
-                    </section><!-- /.secContents-mb -->
-					{{ html()->form()->close() }}
-<!--  修正 END  -->
-<hr>
-@endif
-
-					{{ html()->form('POST', '/comp/job/register')->id('regform')->attribute('name', 'regform')->open() }}
-					{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
-					<section class="secContents">
-
-                        <div class="secContentsInner">
-
-							@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false)
-								{{-- 更新成功メッセージ --}}
+				<ul class="jobToggleList leftAlign">
+					<li>
+						<div class="button-radio">
+							<input id="c_ch1" class="radiobutton" name="open_flag" type="radio" value="1"  @if (old('open_flag' ,$job->open_flag) == '1')  checked="checked" @endif   @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="checkOpen()"  />
+							<label for="c_ch1">公開</label> /
+							<input id="c_ch2" class="radiobutton" name="open_flag" type="radio" value="0"  @if (old('open_flag' ,$job->open_flag) == '0')  checked="checked" @endif   @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="checkOpen()" />
+							<label for="c_ch2">非公開</label> 
+						</div>
+					</li>
+					<li>
+						<label id="del_lavel"  for=""><span>削除する</span><input type="checkbox"  name="del_flag" id="del_flag" value="1"  @if (old('dell_flag' ,$job->del_flag) == '1')  checked="checked" @endif  @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()" /></label>
+					</li>
+					<li>
+						<div class="btnContainer">
+							@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false) 
+								<a href="javascript:changeform.submit()" class="squareBtn btn-short">公開保存</a>
+							@else
 								@if (session('update_success'))
-									<div class="formContainer mg-ajust">
-										<div class="item-name">
-											<p></p>
-										</div><!-- /.item-name -->
-
-										<div id="success2" class="alert alert-success"  style="color:#0000ff; text-align:center; width:100%;">
-									 		{{session('update_success')}}
-										</div>
-									</div><!-- END formContainer mg-ajuse -->
+									<a href="/comp/job" class="squareBtn btn-large">戻る</a>
+								@else
+									<a href="javascript:history.back();" class="squareBtn btn-short" >戻る</a>
 								@endif
 							@endif
+						</div><!-- /.btn-container -->
+					</li>
+				</ul><!-- /.jobToggle -->
 
-							<ul class="jobToggleList">
-								<li  style="display:flex;">
-									<label for="c_ch1">このジョブ宛にカジュアル面談を受け付ける　</label>
-									<div class="button-radio">
-										<input id="cas_ch1" class="radiobutton" name="casual_flag" type="radio" value="1"  @if (old('casual_flag' ,$job->casual_flag) == '1')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()" />
-										<label for="cas_ch1" style="padding:3px 10px;">はい</label> /
-										<input id="cas_ch2" class="radiobutton" name="casual_flag" type="radio" value="0"  @if (old('casual_flag' ,$job->casual_flag) == '0')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()"/>
-										<label for="cas_ch2" style="padding:3px 10px;">いいえ</label> 
-									</div>
-								</li>
-							</ul><!-- /.jobToggle -->
+				<div id="success1" class="alert alert-success"  style="color:#0000ff;text-align: center;">
+					{{-- 更新成功メッセージ --}}
+					@if (session('option_success'))
+						<div id="success1" class="alert alert-success"  style="color:#0000ff;">
+							公開/非公開フラグを保存しました。
+						</div>
+					@endif
+				</div>
+			</div><!-- /.secContentsInner -->
+		</section><!-- /.secContents-mb -->
+		{{ html()->form()->close() }}
+<!--  修正 END  -->
+		<hr>
+@endif
 
-							@if ( isset($unitList[0]) )
-								<div class="formContainer mg-ajust">
-									<div class="item-name">
-										<p>部門</p>
-									</div><!-- /.item-name -->
-									<div class="item-input">
-										<div class="selectWrap harf">
-											<select name="unit"  class="select-no"  @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  onchange="clearMsg()">
-												<option value=""></option>
-												@foreach ($unitList as $un)
-													<option value="{{ $un->id }}" @if (old('unit' ,$job->unit_id) == $un->id)  selected @endif>{{ $un->name }}</option>
-												@endforeach
-											</select>
-										</div>
-									<ul class="oneRow">
-										@error('unit')
-											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-										@enderror
-										</ul>
-									</div><!-- /.item-input -->
-								</div><!-- END formContainer mg-ajuse -->
-							@endif
-                                
-							<div class="formContainer mg-ajust-midashi">
-								<div class="item-name">
-									<p>Job Title<span>*</span></p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<input type="text"  name="name"  value="{{ old('name' ,$job->name) }}" @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">
-									<ul class="oneRow">
-										@error('name')
-											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-										@enderror
-									</ul>
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer mg-ajuse -->
-                                
-							<div class="formContainer al-item-none mg-ajust">
-								<div class="item-name">
-									<p>紹介<span>*</span></p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<textarea class="form-mt" name="intro" id="" cols="30" rows="10" placeholder="テキスト" @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">{{ old('intro' ,$job->intro) }}</textarea>
-									<ul class="oneRow">
-										@error('intro')
-										<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-										@enderror
-									</ul>
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer -->
-                                
-							<div class="formContainer mg-ajust">
-								<div class="item-name">
-									<p>ジョブID</p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<input class="harf" name="job_code" type="text" value="{{ old('job_code' ,$job->job_code) }}"  @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">
-									<ul class="oneRow">
-										@error('job_code')
-											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-										@enderror
-									</ul>
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer -->
+		{{ html()->form('POST', '/comp/job/register')->id('regform')->attribute('name', 'regform')->open() }}
+		{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
+		<section class="secContents">
 
-							<div class="formContainer mg-ajust">
-								<div class="item-name">
-									<p>URL</p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<input name="url" type="text" value="{{ old('url' ,$job->url) }}"  @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">
-									<ul class="oneRow">
-										@error('url')
-											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-										@enderror
-									</ul>
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer -->
+			<div class="secContentsInner">
 
+				@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false)
+					{{-- 更新成功メッセージ --}}
+					@if (session('update_success'))
+						<div class="formContainer mg-ajust">
+							<div class="item-name">
+								<p></p>
+							</div><!-- /.item-name -->
+								<div id="success2" class="alert alert-success"  style="color:#0000ff; text-align:center; width:100%;">
+						 		{{session('update_success')}}
+							</div>
+						</div><!-- END formContainer mg-ajuse -->
+					@endif
+				@endif
 
-							<div class="formContainer mg-ajust">
-								<div class="item-name">
-									<p>職種</p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<hr>
-									@foreach ($jobCat as $cat)
-										<div style="font-size:16px; font-weight: bold;">{{ $cat->name }}</div>
-										<div style="display:flex;flex-wrap: wrap;">
-											@foreach ($jobCatDetail as $detail)
-												@if ($cat->id == $detail->job_cat_id)
-													<div style="margin-left: 15px;">
-														@if (!empty($job->getJobCategory() ))
-															{{ html()->checkbox('jobCat[]', (in_array($detail->id, $job->getJobCategory() )), $detail->id) }}{{ $detail->name }}
-														@else
-															{{ html()->checkbox('jobCat[]', false, $detail->id) }}{{ $detail->name }}
-														@endif
-													</div>
-												@endif
-											@endforeach
-										</div>
+				<ul class="jobToggleList">
+					<li  style="display:flex;">
+						<label for="c_ch1">このジョブ宛にカジュアル面談を受け付ける　</label>
+						<div class="button-radio">
+							<input id="cas_ch1" class="radiobutton" name="casual_flag" type="radio" value="1"  @if (old('casual_flag' ,$job->casual_flag) == '1')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()" />
+							<label for="cas_ch1" style="padding:3px 10px;">はい</label> /
+							<input id="cas_ch2" class="radiobutton" name="casual_flag" type="radio" value="0"  @if (old('casual_flag' ,$job->casual_flag) == '0')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()"/>
+							<label for="cas_ch2" style="padding:3px 10px;">いいえ</label> 
+						</div>
+					</li>
+				</ul><!-- /.jobToggle -->
+
+				@if ( isset($unitList[0]) )
+					<div class="formContainer mg-ajust">
+						<div class="item-name">
+							<p>部門</p>
+						</div><!-- /.item-name -->
+						<div class="item-input">
+							<div class="selectWrap harf">
+								<select name="unit"  class="select-no"  @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  onchange="clearMsg()">
+									<option value=""></option>
+									@foreach ($unitList as $un)
+										<option value="{{ $un->id }}" @if (old('unit' ,$job->unit_id) == $un->id)  selected @endif>{{ $un->name }}</option>
 									@endforeach
-									<ul class="oneRow">
-										@error('jobCat[]')
-											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-										@enderror
-									</ul>
-									<hr>
-									<br>
-								</div><!-- /.item-input -->
+								</select>
 							</div>
+						<ul class="oneRow">
+							@error('unit')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+							</ul>
+						</div><!-- /.item-input -->
+					</div><!-- END formContainer mg-ajuse -->
+				@endif
+                                
+				<div class="formContainer mg-ajust-midashi">
+					<div class="item-name">
+						<p>Job Title<span>*</span></p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<input type="text"  name="name"  value="{{ old('name' ,$job->name) }}" @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">
+						<ul class="oneRow">
+							@error('name')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer mg-ajuse -->
+                                
+				<div class="formContainer al-item-none mg-ajust">
+					<div class="item-name">
+						<p>紹介<span>*</span></p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<textarea class="form-mt" name="intro" id="" cols="30" rows="10" placeholder="テキスト" @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">{{ old('intro' ,$job->intro) }}</textarea>
+						<ul class="oneRow">
+							@error('intro')
+							<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer -->
+                                
+				<div class="formContainer mg-ajust">
+					<div class="item-name">
+						<p>ジョブID</p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<input class="harf" name="job_code" type="text" value="{{ old('job_code' ,$job->job_code) }}"  @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">
+						<ul class="oneRow">
+							@error('job_code')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer -->
 
-							<div class="formContainer mg-ajust">
-								<div class="item-name">
-									<p>担当業種</p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<div style="display:flex;flex-wrap: wrap;">
-										@foreach ($industoryCat as $cat)
-												<div style="margin-left: 15px;">
-													@if (!empty($job->getIndcatCat() ))
-														{{ html()->checkbox('indCat[]', (in_array($cat->id, $job->getIndcatCat() )), $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
-													@else
-														{{ html()->checkbox('indCat[]', false, $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
-													@endif
-												</div>
-										@endforeach
-										<ul class="oneRow">
-											@error('jobCat[]')
-												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-											@enderror
-										</ul>
-										<br>
-									</div>
-										<hr>
-								</div><!-- /.item-input -->
+				<div class="formContainer mg-ajust">
+					<div class="item-name">
+						<p>URL</p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<input name="url" type="text" value="{{ old('url' ,$job->url) }}"  @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">
+						<ul class="oneRow">
+							@error('url')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer -->
+
+
+				<div class="formContainer mg-ajust">
+					<div class="item-name">
+						<p>職種</p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<hr>
+						@foreach ($jobCat as $cat)
+							<div style="font-size:16px; font-weight: bold;">{{ $cat->name }}</div>
+							<div style="display:flex;flex-wrap: wrap;">
+								@foreach ($jobCatDetail as $detail)
+									@if ($cat->id == $detail->job_cat_id)
+										<div style="margin-left: 15px;">
+											@if (!empty($job->getJobCategory() ))
+												{{ html()->checkbox('jobCat[]', (in_array($detail->id, $job->getJobCategory() )), $detail->id) }}{{ $detail->name }}
+											@else
+												{{ html()->checkbox('jobCat[]', false, $detail->id) }}{{ $detail->name }}
+											@endif
+										</div>
+									@endif
+								@endforeach
 							</div>
+						@endforeach
+						<ul class="oneRow">
+							@error('jobCat[]')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+						<hr>
+						<br>
+					</div><!-- /.item-input -->
+				</div>
 
-
-							<div class="formContainer mg-ajust">
-								<div class="item-name">
-									<p>年収<span>*</span></p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<div class="selectWrap">
-										<select name="income_id"  class="select-no">
-											<option value=""></option>
-											@foreach ($incomeList as $income)
-												<option value="{{ $income->id }}" @if (old('income_id' ,$job->income_id) == $income->id)  selected @endif>{{ $income->name }}</option>
-											@endforeach
-										</select>
+				<div class="formContainer mg-ajust">
+					<div class="item-name">
+						<p>担当業種</p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<div style="display:flex;flex-wrap: wrap;">
+							@foreach ($industoryCat as $cat)
+									<div style="margin-left: 15px;">
+										@if (!empty($job->getIndcatCat() ))
+											{{ html()->checkbox('indCat[]', (in_array($cat->id, $job->getIndcatCat() )), $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+										@else
+											{{ html()->checkbox('indCat[]', false, $cat->id)->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}{{ $cat->name }}
+										@endif
 									</div>
-									<ul class="oneRow">
-										@error('income_id')
-											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-										@enderror
-									</ul>
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer -->
+							@endforeach
+							<ul class="oneRow">
+								@error('jobCat[]')
+									<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+								@enderror
+							</ul>
+							<br>
+						</div>
+						<hr>
+					</div><!-- /.item-input -->
+				</div>
+
+
+				<div class="formContainer mg-ajust">
+					<div class="item-name">
+						<p>年収<span>*</span></p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<div class="selectWrap">
+							<select name="income_id"  class="select-no">
+								<option value=""></option>
+								@foreach ($incomeList as $income)
+									<option value="{{ $income->id }}" @if (old('income_id' ,$job->income_id) == $income->id)  selected @endif>{{ $income->name }}</option>
+								@endforeach
+							</select>
+						</div>
+						<ul class="oneRow">
+							@error('income_id')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer -->
                                 
-							<div class="formContainer mg-ajust">
-								<div class="item-name">
-									<p>補足カテゴリ</p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<input class="long"  name="sub_category" type="text" value="{{ old('sub_category' ,$job->sub_category) }}" @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer -->
+				<div class="formContainer mg-ajust">
+					<div class="item-name">
+						<p>補足カテゴリ</p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<input class="long"  name="sub_category" type="text" value="{{ old('sub_category' ,$job->sub_category) }}" @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  oninput="clearMsg()">
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer -->
 
-							<div class="formContainer mg-ajust-midashi">
-								<div class="item-name">
-									<p>ロケーション<span>*</span></p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
+				<div class="formContainer mg-ajust-midashi">
+					<div class="item-name">
+						<p>ロケーション<span>*</span></p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
 
-									<ul class="radioList">
-										@foreach ($constLocation as $loc)
-											<li><label><input type="checkbox" class="loc_list"  value="{{ $loc->id }}" name="locations[{{$loc->id}}]"  @if (old('locations.' . $loc->id) == $loc->id) checked @elseif (strpos($job->locations ,$loc->id) !== false) checked @endif><span>{{ $loc->name }}</span></label></li>
-										@endforeach
-											<li><label>　／　<input type="checkbox" value="1" id="remote" name="remote"    @if (old('remote' ,$job->remote_flag) == '1') checked @endif onchange="locChange()"><span>リモート</span></label></li>
-									</ul><!-- /.radioList -->
+						<ul class="radioList">
+							@foreach ($constLocation as $loc)
+								<li><label><input type="checkbox" class="loc_list"  value="{{ $loc->id }}" name="locations[{{$loc->id}}]"  @if (old('locations.' . $loc->id) == $loc->id) checked @elseif (strpos($job->locations ,$loc->id) !== false) checked @endif><span>{{ $loc->name }}</span></label></li>
+							@endforeach
+								<li><label>　／　<input type="checkbox" value="1" id="remote" name="remote"    @if (old('remote' ,$job->remote_flag) == '1') checked @endif onchange="locChange()"><span>リモート</span></label></li>
+						</ul><!-- /.radioList -->
 
-									<ul class="oneRow">
-										@error('locations')
-											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-										@enderror
-									</ul>
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer -->
+						<ul class="oneRow">
+							@error('locations')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer -->
 
+				<div class="formContainer mg-ajust" id="changeElseLocation">
+					<div class="item-name">
+						<p>その他ロケーション</p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<input class="harf" type="text" name="else_location" id="else_location" value="{{  old('else_location',$job->else_location) }}">
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer -->
+
+				<div class="formContainer al-item-none mg-ajust">
+					<div class="item-name">
+						<p>勤務地詳細/その他</p>
+					</div><!-- /.item-name -->
+					<div class="item-input" id="changeWorking_place">
+						<textarea class="form-mt" name="working_place" id="" cols="30" rows="3">{{ old('working_place' ,$job->working_place) }}</textarea>
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer -->
                                 
-							<div class="formContainer mg-ajust" id="changeElseLocation">
-								<div class="item-name">
-									<p>その他ロケーション</p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<input class="harf" type="text" name="else_location" id="else_location" value="{{  old('else_location',$job->else_location) }}">
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer -->
-
-							<div class="formContainer al-item-none mg-ajust">
-								<div class="item-name">
-									<p>勤務地詳細/その他</p>
-								</div><!-- /.item-name -->
-								<div class="item-input" id="changeWorking_place">
-									<textarea class="form-mt" name="working_place" id="" cols="30" rows="3">{{ old('working_place' ,$job->working_place) }}</textarea>
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer -->
+				<div class="formContainer bb-ajust">
+					<div class="item-name">
+						<p>正式応募に必要<br>な書類</p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<ul class="checkboxList">
+							<li><label><input type="checkbox" name="backg" value="1" @if (old('backg' ,$job->backg_flag) == '1')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  onchange="clearMsg()">職務経歴書</label></li>
+							<li><label><input type="checkbox" name="backg_eng" value="1" @if (old('backg_eng',$job->backg_eng_flag) == '1')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()">職務経歴書（英文）</label></li>
+							<li><label><input type="checkbox" name="personal" value="1" @if (old('personal' ,$job->personal_flag) == '1')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()">履歴書</label></li>
+						</ul><!-- /.checkboxList -->
+					</div><!-- /.item-input -->
+				</div><!-- END formContainer -->
                                 
-							<div class="formContainer bb-ajust">
-								<div class="item-name">
-									<p>正式応募に必要<br>な書類</p>
-								</div><!-- /.item-name -->
-								<div class="item-input">
-									<ul class="checkboxList">
-										<li><label><input type="checkbox" name="backg" value="1" @if (old('backg' ,$job->backg_flag) == '1')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif  onchange="clearMsg()">職務経歴書</label></li>
-										<li><label><input type="checkbox" name="backg_eng" value="1" @if (old('backg_eng',$job->backg_eng_flag) == '1')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()">職務経歴書（英文）</label></li>
-										<li><label><input type="checkbox" name="personal" value="1" @if (old('personal' ,$job->personal_flag) == '1')  checked="checked" @endif @if (isset($job->id) && strpos($job->person ,Auth::user()->id) === false) disabled="disabled" @endif onchange="clearMsg()">履歴書</label></li>
-									</ul><!-- /.checkboxList -->
-								</div><!-- /.item-input -->
-							</div><!-- END formContainer -->
-                                
-                                <div class="formContainer bb-ajust">
-                                    <div class="item-name">
-                                        <p>担当<span>*</span></p>
-                                    </div><!-- /.item-name -->
-                                    <div class="item-input item-input-row">
-                                        <div class="item-input-btn">
+				<div class="formContainer bb-ajust">
+					<div class="item-name">
+						<p>担当<span>*</span></p>
+					</div><!-- /.item-name -->
+					<div class="item-input item-input-row">
+						<div class="item-input-btn">
                                             
-                                            <div class="modalContainer">
-                                            	@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false)
-                                                	<a href="#modal" class="squareBtn btn-medium">選択</a>
-                                            	@endif
-                                            </div><!-- /.modalContainer -->
-                                        </div>
-                                        {{Form::hidden('person', old('person' ,$job->person), ['class' => 'form-control', 'id'=>'person' ] )}}
-                                        <span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
-                                        <ul class="oneRow">
-                                            @error('person')
-                                                <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-                                            @enderror
-                                        </ul>
-                                    </div><!-- /.item-input -->
-                                </div>
+							<div class="modalContainer">
+								@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false)
+									<a href="#modal" class="squareBtn btn-medium">選択</a>
+								@endif
+							</div><!-- /.modalContainer -->
+						</div>
+						{{ html()->hidden('person', old('person' ,$job->person)) }}
+						<span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
+						<ul class="oneRow">
+							@error('person')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+					</div><!-- /.item-input -->
+				</div>
 
-                                <div class="btnContainer">
-			                		{{-- 更新成功メッセージ --}}
-			                		@if (session('update_success'))
-		                    			<div id="success3" class="alert alert-success"  style="color:#0000ff;">
-		                      		 		{{session('update_success')}}
-		                    			</div>
-			                		@endif
-									@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false)
-                                    	<a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>
-                              		@else
-				                		@if (session('update_success'))
-    	                            		<a href="/comp/job" class="squareBtn btn-large">戻る</a>
-                                		@else
-                                    		<a href="javascript:history.back();" class="squareBtn btn-large">戻る</a>
-                                		@endif
-                              		@endif
-                                </div><!-- /.btn-container -->
-							{{ html()->form()->close() }}
-						</div><!-- /.secContentsInner -->
-					</section><!-- /.secContents -->
+				<div class="btnContainer">
+					{{-- 更新成功メッセージ --}}
+					@if (session('update_success'))
+						<div id="success3" class="alert alert-success"  style="color:#0000ff;">
+							{{session('update_success')}}
+						</div>
+					@endif
+					@if (!isset($job->id) || strpos($job->person ,Auth::user()->id) !== false)
+						<a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>
+					@else
+						@if (session('update_success'))
+							<a href="/comp/job" class="squareBtn btn-large">戻る</a>
+						@else
+							<a href="javascript:history.back();" class="squareBtn btn-large">戻る</a>
+						@endif
+					@endif
+				</div><!-- /.btn-container -->
+				{{ html()->form()->close() }}
+			</div><!-- /.secContentsInner -->
+		</section><!-- /.secContents -->
                    
-				</div><!-- /.containerContents -->
-			
-			</div><!-- /.mainContentsInner -->
+	</div><!-- /.containerContents -->
+
+</div><!-- /.mainContentsInner -->
 
 
 {{-- 担当　モーダル領域   --}}

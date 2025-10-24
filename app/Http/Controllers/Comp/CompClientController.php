@@ -34,6 +34,7 @@ class CompClientController extends ClientController
 /*************************************
 * 初期表示
 **************************************/
+/*
 	public function index()
 	{
 		$loginUser = Auth::user();
@@ -132,12 +133,13 @@ class CompClientController extends ClientController
 			'alreadyList',
 		));
 	}
-
+*/
 
 
 /*************************************
 * 一覧
 **************************************/
+/*
 	public function list(Request $request)
 	{
 		$loginUser = Auth::user();
@@ -178,7 +180,7 @@ class CompClientController extends ClientController
 		return redirect('comp/client');
 	}
 
-
+*/
 
 
 /*************************************
@@ -239,14 +241,8 @@ class CompClientController extends ClientController
 		
 		$loginUser = Auth::user();
 
-		$endQuery = Interview::Join('users', 'interviews.user_id','=','users.id')
-//			->Join('companies', 'interviews.company_id','=','companies.id')
-//			->leftJoin('units', 'interviews.unit_id','=','units.id')
-//			->leftJoin('jobs', 'interviews.job_id','=','jobs.id')
-			->leftJoin('const_stages', 'interviews.stage_id','=','const_stages.id')
-			->leftJoin('const_statuses', 'interviews.status_id','=','const_statuses.id')
-			->leftJoin('const_results', 'interviews.result_id','=','const_results.id');
-	
+		$endQuery = Interview::selectRaw('interviews.*');
+
 		if ($param['only_me'] == '1') {
 			$endQuery = $endQuery
 				->leftJoin('companies', function ($join) use ($loginUser) {
@@ -299,14 +295,6 @@ class CompClientController extends ClientController
 
 	         
 		$endQuery = $endQuery
-			->selectRaw('interviews.*,' .
-						 'companies.person as company_person,' .
-						 'units.name as unit_name, units.person as unit_person,' .
-						 'jobs.name as job_name, jobs.person as job_person,' .
-						 'const_stages.name as stage_name,' .
-						 'const_statuses.name as status_name,' .
-						 'users.id as user_id, users.name as user_name'
-						 )
 			->where(function($query) {
 			    $query->where('interviews.interview_type' , '0')
 					->orWhere('interviews.interview_type' , '1');
@@ -326,36 +314,17 @@ class CompClientController extends ClientController
 
 		$endList = $endQuery->orderBy('interviews.updated_at' , 'desc')->paginate(20);
 
-
-		$idx = 0;
-		foreach ($endList as $list) {
-			
-			$loc = array();
-			if ($list->interview_type == '0' && $list->interview_kind == '0') {
-				if ( !empty($list->company_person) ) $loc = explode(',', $list->company_person);
-
-			} elseif ($list->interview_type == '0' && $list->interview_kind == '1') {
-				if ( !empty($list->unit_person) ) $loc = explode(',', $list->unit_person);
-
-			} elseif ( ($list->interview_type == '0' && $list->interview_kind == '2') || $list->interview_type == '1' ) {
-				if ( !empty($list->job_person) ) $loc = explode(',', $list->job_person);
-
-			};
-		
-			if ( !empty($loc) ) {
-				$ln = CompMember::whereIn('id' ,$loc)->get();
-
-				$person_name = array();
-				for ($i = 0; $i < count($ln); $i++) {
-					$person_name[] = $ln[$i]['name'];
-				}
-
-				$endList[$idx++]->person_name = implode('/', $person_name);
-			} else {
-				$endList[$idx++]->person_name = '';
-			}
+		$i = 0;
+		$cnt = count($endList);
+		for ($i = 0; $i < $cnt; $i++) {
+			$endList[$i]->getUser();
+//			$endList[$i]->getCompany();
+			$endList[$i]->getUnit();
+			$endList[$i]->getJob();
+			$endList[$i]->getStage();
+			$endList[$i]->getStatus();
+			$endList[$i]->getPerson();
 		}
-
 
 		return $endList;
 	}
@@ -436,26 +405,14 @@ class CompClientController extends ClientController
 		
 		$loginUser = Auth::user();
 
-
-		$endQuery = Interview::Join('users', 'interviews.user_id','=','users.id')
-			->Join('jobs', 'interviews.job_id','=','jobs.id')
-			->leftJoin('units', 'interviews.unit_id','=','units.id')
-			->leftJoin('const_stages', 'interviews.stage_id','=','const_stages.id')
-			->leftJoin('const_statuses', 'interviews.status_id','=','const_statuses.id')
-			->leftJoin('const_results', 'interviews.result_id','=','const_results.id');
+		$endQuery = Interview::Join('jobs', 'interviews.job_id','=','jobs.id');
 
 		if ($param['only_me'] == '1') {
 			$endQuery = $endQuery->where('jobs.person' , 'like' ,"%$loginUser->id%");
 		}
 
 		$endQuery = $endQuery
-			->selectRaw('interviews.*,' .
-						 'units.name as unit_name,' .
-						 'jobs.name as job_name, jobs.person as person,' .
-						 'const_stages.name as stage_name,' .
-						 'const_statuses.name as status_name,' .
-						 'users.id as user_id, users.name as user_name'
-						 )
+			->selectRaw('interviews.*')
 			->where('interviews.company_id' , $loginUser->company_id)
 			->where('interviews.interview_type' ,'1')
 			->where('interviews.aprove_flag', '1')
@@ -468,22 +425,16 @@ class CompClientController extends ClientController
 			->orderBy('interviews.entrance_date' , 'desc')
 			->paginate(20);
 
-		$idx = 0;
-		foreach ($endList as $list) {
-			
-		if ( !empty($list->person) ) {
-			$loc = explode(',', $list->person);
-			$ln = CompMember::whereIn('id' ,$loc)->get();
-
-				$person_name = array();
-				for ($i = 0; $i < count($ln); $i++) {
-					$person_name[] = $ln[$i]['name'];
-				}
-
-				$endList[$idx++]->person_name = implode('/', $person_name);
-			} else {
-				$endList[$idx++]->person_name = '';
-			}
+		$i = 0;
+		$cnt = count($endList);
+		for ($i = 0; $i < $cnt; $i++) {
+			$endList[$i]->getUser();
+//			$endList[$i]->getCompany();
+			$endList[$i]->getUnit();
+			$endList[$i]->getJob();
+			$endList[$i]->getStage();
+			$endList[$i]->getStatus();
+			$endList[$i]->getPerson();
 		}
 
 		return $endList;

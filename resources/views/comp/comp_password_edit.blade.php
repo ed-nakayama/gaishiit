@@ -80,7 +80,7 @@
                          			<a href="javascript:regform.submit()" class="squareBtn btn-large">{{ __('Change Password') }}</a>
                     			</div>
 
-                        	{{ Form::close() }}
+                        	{{ html()->form()->close() }}
                     
                         </div><!-- /.secContentsInner -->
                     </section><!-- /.secContents -->
