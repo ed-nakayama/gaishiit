@@ -297,6 +297,38 @@ input[type=checkbox]:checked::before {
   background-color: #fff;
 }
 
+
+.linkList {
+  margin-bottom: 10px;
+  margin-left: auto;
+}
+.linkList a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 999em;
+  background-color: #e5af24;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+.linkList a:hover {
+  background-color: #ff6347;
+}
+
+.linkList a::after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  mask-image: url(../img/circle-chevron-right-solid.svg);
+  background-size: contain;
+  background-color: #fff;
+}
+
+
 .tbl-mypage-newuser th:nth-child(9) {
   width: 8%;
 }

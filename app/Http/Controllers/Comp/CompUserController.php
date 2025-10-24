@@ -275,11 +275,7 @@ class CompUserController extends UserController
 **************************************/
 	public function get_user($user_id, $company_id)
 	{
-		$userInfo = User::leftJoin('const_englishes as eng','users.english','=','eng.id')
-			->leftJoin('const_englishes as jpn','users.japanese','=','jpn.id')
-			->leftJoin('const_prefs','users.pref' ,'=' ,'const_prefs.id')
-			->selectRaw('users.* ,eng.name as english_name ,jpn.name as japanese_name  ,const_prefs.name as pref_name ')
-			->where('users.id' ,$user_id)
+		$userInfo = User::where('users.id' ,$user_id)
 			->first();
 
 		// 1年以内にメッセージのやり取りがあれば氏名も表示
@@ -291,47 +287,8 @@ class CompUserController extends UserController
 			->where('updated_at', '>' , $pre_date)
 			->count();
 
-		$userInfo['open_flag'] = '0';
-		if ($int_count > 0) $userInfo['open_flag'] = '1';
-
-
-		// 勤務地の取得
-		$locName = array();
-		$locs = explode(",", $userInfo->request_location);
-		$locList = ConstLocation::select('name')->whereIn('id' ,$locs)->get();
-		foreach ($locList as $loc) {
-			$locName[] = $loc->name;
-		}
-		$userInfo['location_name'] = join(" / " ,$locName);
-
-
-		// 職種カテゴリ名の取得
-		$catName = array();
-		$cats = explode(",", $userInfo->job_cats);
-		$catList = JobCat::select('name')->whereIn('id' ,$cats)->get();
-		foreach ($catList as $cat) {
-			$catName[] = $cat->name;
-		}
-		$userInfo['jobcat_name'] = join(" / ",$catName);
-
-		// 職種名の取得
-		$catDetailName = array();
-		$cat_details = explode(",", $userInfo->job_cat_details);
-		$catDetailList = JobCatDetail::select('name')->whereIn('id' ,$cat_details)->get();
-		foreach ($catDetailList as $cat) {
-			$catDetailName[] = $cat->name;
-		}
-		$userInfo['jobcat_detail_name'] = join(" / ",$catDetailName);
-
-
-		// 業種名の取得
-		$catName = array();
-		$cats = explode(",", $userInfo->business_cats);
-		$catList = BusinessCatDetail::select('name')->whereIn('id' ,$cats)->get();
-		foreach ($catList as $cat) {
-			$catName[] = $cat->name;
-		}
-		$userInfo['buscat_name'] = join(" / ",$catName);
+		$userInfo->open_flag = '0';
+		if ($int_count > 0) $userInfo->open_flag = '1';
 
 		return $userInfo;
 	}
@@ -343,7 +300,7 @@ class CompUserController extends UserController
 	public function detail(Request $request)
 	{
 		$loginUser = Auth::user();
-//ddd($request);
+//dd($request);
 
 		if ( session()->has('user_id') ) {
 			$user_id = session('user_id');
@@ -379,23 +336,7 @@ class CompUserController extends UserController
 			->get();
 
 
-		$interviewList = Interview::leftJoin('const_stages' ,'interviews.stage_id' ,'=', 'const_stages.id')
-			->leftJoin('const_statuses' ,'interviews.status_id' ,'=' , 'const_statuses.id')
-			->leftJoin('const_results' ,'interviews.result_id' ,'=' , 'const_results.id')
-			->leftJoin('comp_members', 'interviews.member_id','=','comp_members.id')
-			->leftJoin('companies','interviews.company_id','=','companies.id')
-			->leftJoin('units','interviews.unit_id','=','units.id')
-			->leftJoin('jobs','interviews.job_id','=','jobs.id')
-			->leftJoin('events','interviews.event_id','=','events.id')
-			->selectRaw('interviews.*,' .
-						'comp_members.name as member_name,' .
-						'jobs.id as job_id, jobs.name as job_name, jobs.person as job_person,' .
-						'const_stages.name as stage_name ,const_statuses.name as status_name, const_results.name as result_name,' .
-						'units.id as unit_id, units.name as unit_name, units.person as unit_person,' .
-						'companies.id as company_id, companies.name as company_name, companies.person as company_person,' .
-						'events.id as event_id, events.name as event_name, events.person as event_person'
-						)
-			->where('interviews.company_id' ,$loginUser->company_id)
+		$interviewList = Interview::where('interviews.company_id' ,$loginUser->company_id)
 			->where('interviews.user_id', $user_id)
 			->orderBy('updated_at' ,'desc')
 			->get();
@@ -403,36 +344,17 @@ class CompUserController extends UserController
 
 		$idx = 0;
 		foreach ($interviewList as $list) {
-			
-			$loc = array();
-			if ($list->interview_type == '0' && $list->interview_kind == '0') {
-				if ( !empty($list->company_person) ) $loc = explode(',', $list->company_person);
+			$interviewList[$idx]->getCompany();
+			$interviewList[$idx]->getUnit();
+			$interviewList[$idx]->getJob();
+			$interviewList[$idx]->getEvent();
+			$interviewList[$idx]->getStage();
+			$interviewList[$idx]->getStatus();
+			$interviewList[$idx]->getResult();
+			$interviewList[$idx]->getPerson();
 
-			} elseif ($list->interview_type == '0' && $list->interview_kind == '1') {
-				if ( !empty($list->unit_person) ) $loc = explode(',', $list->unit_person);
-
-			} elseif ( ($list->interview_type == '0' && $list->interview_kind == '2') || $list->interview_type == '1' ) {
-				if ( !empty($list->job_person) ) $loc = explode(',', $list->job_person);
-
-			} elseif ($list->interview_type == '2') {
-				if ( !empty($list->event_person) ) $loc = explode(',', $list->event_person);
-
-			};
-		
-			if ( !empty($loc) ) {
-				$ln = CompMember::whereIn('id' ,$loc)->get();
-
-				$person_name = array();
-				for ($i = 0; $i < count($ln); $i++) {
-					$person_name[] = $ln[$i]['name'];
-				}
-
-				$interviewList[$idx++]->person_name = implode('/', $person_name);
-			} else {
-				$interviewList[$idx++]->person_name = '';
-			}
+			$idx++;
 		}
-
 
 
 		$userInfo = $this->get_user($user_id ,$loginUser->company_id);

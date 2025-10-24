@@ -44,8 +44,8 @@
 											</div><!-- /.memo-container -->
 										@endforeach
 
-										{{ Form::open(['url' => '/comp/user/memo', 'name' => 'memoform' , 'id' => 'memoform']) }}
-										{{ Form::hidden('user_id', $userDetail->id, ['class' => 'form-control', 'id'=>'user_id' ] )}}
+										{{ html()->form('POST', '/comp/user/memo')->id('memoform')->attribute('name', 'memoform')->open() }}
+										{{ html()->hidden('user_id', $userDetail->id) }}
 										<div class="memo-container txtArea">
 											<textarea class="form-mt" name="content" id="content" cols="30" rows="5" placeholder="新しいメモを投稿"></textarea>
 											<ul class="oneRow">
@@ -58,7 +58,7 @@
 										<div class="btnContainer">
 											<a href="javascript:memoform.submit()" class="squareBtn btn-medium">投稿</a>
 										</div><!-- /.btn-container -->
-										{{ Form::close() }}
+										{{ html()->form()->close() }}
 
 									</div><!--/.memo-accordion-content-->
 								</div><!-- /.memo-accordion-container -->
@@ -113,44 +113,44 @@
 								<th style="text-align:left;">求人/イベント/部署 名称</th>
 								<th style="text-align:left;">担当</th>
 							</tr>
-							@foreach ($interviewList as $int)
+							@foreach ($interviewList as $interview)
 								<tr>
-									<td>{{ $int->updated_at->format('Y/m/d/H:i') }}</td>
+									<td>{{ $interview->updated_at->format('Y/m/d/H:i') }}</td>
 									<td>
-										@if ($int->interview_type == '2')
+										@if ($interview->interview_type == '2')
 											<a>イベント</a>
-										@elseif ($int->interview_type == '0')
+										@elseif ($interview->interview_type == '0')
 											<a>カジュアル面談</a>
-										@elseif ($int->interview_type == '1')
+										@elseif ($interview->interview_type == '1')
 											<a>正式応募</a>
 										@else
-											<a>{{ $int->stage_name }}</a>
+											<a>@if (!empty($interview->stage)){{ $interview->stage->name }}@endif</a>
 										@endif
 									</td>
 									<td>
-										@if ($int->aprove_flag == '1')
+										@if ($interview->aprove_flag == '1')
 											<a>承認</a>
-										@elseif ($int->aprove_flag == '2')
+										@elseif ($interview->aprove_flag == '2')
 											<a>否認</a>
 										@else
 											<a></a>
 										@endif
 									</td>
-									<td>{{ $int->status_name }}</td>
-									<td>@if ($int->interview_type == '1'){{ $int->result_name }}@endif</td>
+									<td>@if (!empty($interview->status)) {{ $interview->status->name }}@endif</td>
+									<td>@if ($interview->interview_type == '1' && !empty($interview->result) ){{ $interview->result->name }}@endif</td>
 									<td>
-										@if ( ($int->interview_type == '0') && ($int->interview_kind == '0') )
-										@elseif ( ($int->interview_type == '0') && ($int->interview_kind == '1') )
-											{{ $int->unit_name }}
-										@elseif ( ($int->interview_type == '0') && ($int->interview_kind == '2') )
-											<a href="/comp/job/ref/{{ $int->job_id }}" style="text-decoration:underline;" target="_blank">{{ $int->job_name }}</a>
-										@elseif ($int->interview_type == '1')
-											<a href="/comp/job/ref/{{ $int->job_id }}" style="text-decoration:underline;" target="_blank">{{ $int->job_name }}</a>
-										@elseif ($int->interview_type == '2')
-											{{ $int->event_name }}
+										@if ( ($interview->interview_type == '0') && ($interview->interview_kind == '0') )
+										@elseif ( ($interview->interview_type == '0') && ($interview->interview_kind == '1') )
+											{{ $interview->unit->name }}
+										@elseif ( ($interview->interview_type == '0') && ($interview->interview_kind == '2') )
+											<a href="/comp/job/ref/{{ $interview->job->id }}" style="text-decoration:underline;" target="_blank">{{ $interview->job->name }}</a>
+										@elseif ($interview->interview_type == '1')
+											<a href="/comp/job/ref/{{ $interview->job->id }}" style="text-decoration:underline;" target="_blank">{{ $interview->job->name }}</a>
+										@elseif ($interview->interview_type == '2')
+											{{ $interview->event->name }}
 										@endif
 									</td>
-									<td>{{ $int->person_name }}</td>
+									<td>{{ $interview->person }}</td>
 								</tr>
 							@endforeach
 						</table>
@@ -160,12 +160,12 @@
 						<div class="containerTblUserInfo">
 							<div class="tblCaption">
 								<h2 class="tblCaptionTitle">候補者情報</h2>
-								<ul class="tblCaptionList">
+								<ul class="linkList">
 									<li>
-										{{ Form::open(['url' => '/comp/pdf/base', 'name' => 'baseform' ]) }}
-										{{ Form::hidden("user_id", $userInfo->id, ['class' => 'form-control'] )}}
+										{{ html()->form('POST', '/comp/pdf/base')->attribute('name', 'baseform')->open() }}
+										{{ html()->hidden('user_id', $userInfo->id) }}
 										<a href="javascript:baseform.submit()">&gt;&gt;PDFダウンロード</a>
-										{{ Form::close() }}
+										{{ html()->form()->close() }}
 									</li>
 								</ul>
 							</div><!-- /.tblCaption -->
@@ -188,15 +188,7 @@
 
 								<tr><th colspan="2">職種</th></tr>
 								<tr>
-									<td>
-										@if ($userInfo->job == 1)
-											IC
-										@elseif ($userInfo->job == '2')
-											Management　　　　年数 {{ $userInfo->mgr_year }}年 / 人数 {{ $userInfo->mgr_member }}人
-										@else
-											未設定
-										@endif
-									</td>
+									<td>{{ $userInfo->getCurrentJob() }}</td>
 									<td>{{ $userInfo->occupation }}</td>
 								</tr>
 
@@ -226,10 +218,10 @@
 								<tr><td>{{ $userInfo->getChangeTime() }}</td><td>{{ $userInfo->location_name }}　{{ $userInfo->else_location }}</td></tr>
 
 								<tr><th colspan="2">転職を希望する業種</th></tr>
-								<tr><td colspan="2">{{ $userInfo->buscat_name }}</td></tr>
+								<tr><td colspan="2">{{ $userInfo->getBusDetail() }}</td></tr>
 
 								<tr><th colspan="2">転職を希望する職種</th></tr>
-								<tr><td colspan="2">{{ $userInfo->jobcat_name }}</td></tr>
+								<tr><td colspan="2">{{ $userInfo->getCatDetail() }}</td></tr>
 							</table><!-- /.tblUserInfo -->
 						</div><!-- /.containerTblUserInfo -->
 					</div>
@@ -238,18 +230,18 @@
 						<div class="containerTblUserInfo">
 							<div class="tblCaption">
 								<h2 class="tblCaptionTitle">職務経歴書</h2>
-								<ul class="tblCaptionList">
+								<ul class="linkList"  style="display: flex;justify-content: space-between;">
 									<li>
-										{{ Form::open(['url' => '/comp/pdf/cv', 'name' => 'cvform' ]) }}
-										{{ Form::hidden("user_id", $userInfo->id, ['class' => 'form-control'] )}}
+										{{ html()->form('POST', '/comp/pdf/cv')->attribute('name', 'cvform')->open() }}
+										{{ html()->hidden('user_id', $userInfo->id) }}
 										<a href="javascript:cvform.submit()">&gt;&gt;PDFダウンロード</a>
-										{{ Form::close() }}
+										{{ html()->form()->close() }}
 									</li>
-									<li>
-										{{ Form::open(['url' => '/comp/pdf/cv/eng', 'name' => 'cvengform' ]) }}
-										{{ Form::hidden("user_id", $userInfo->id, ['class' => 'form-control'] )}}
+									<li style="padding-left:10px;">
+										{{ html()->form('POST', '/comp/pdf/cv/eng')->attribute('name', 'cvengform')->open() }}
+										{{ html()->hidden('user_id', $userInfo->id) }}
 										<a href="javascript:cvengform.submit()">&gt;&gt;英文PDFダウンロード</a>
-										{{ Form::close() }}
+										{{ html()->form()->close() }}
 									</li>
 								</ul>
 							</div><!-- /.tblCaption -->
@@ -268,16 +260,7 @@
 								<tr><td>{{ $userInfo->job_title }}</td></tr>
 
 								<tr><th>在職期間</th></tr>
-								<tr><td>
-									{{ $userInfo->enroll_from_year }}年　{{ $userInfo->enroll_from_month }}月　{{ $userInfo->enroll_from_day }}日
-									 ～
-									@if ($userInfo->enroll_to_year == '0')
-										現在
-									@elseif ($userInfo->enroll_to_year == '')
-									@else
-										{{ $userInfo->enroll_to_year }}年　{{ $userInfo->enroll_to_month }}月　{{ $userInfo->enroll_to_yday }}日
-									@endif
-								</td></tr>
+								<tr><td>{{ $userInfo->getEnroll() }}</td></tr>
 
 								<tr><th>業務内容・担当業界・取扱商材・プロジェクト</th></tr>
 								<tr><td>{!! nl2br(e($userInfo->job_detail)) !!}</td></tr>
@@ -286,13 +269,13 @@
 								<tr><td>{{ $userInfo->award }}</td></tr>
 
 								<tr><th>英語力</th></tr>
-								<tr><td>{{ $userInfo->english_name }}</td></tr>
+								<tr><td>{{ $userInfo->getEngishAbility() }}</td></tr>
 
 								<tr><th>TOEIC</th></tr>
 								<tr><td>{{ $userInfo->toeic }} 点</td></tr>
 
 								<tr><th>日本語力</th></tr>
-								<tr><td>{{ $userInfo->japanese_name }}</td></tr>
+								<tr><td>{{ $userInfo->getJapaneseAbility() }}</td></tr>
 							</table><!-- /.tblUserInfo -->
 						</div><!-- /.containerTblUserInfo -->   
 					</div>
@@ -303,12 +286,12 @@
 							<div class="tblCaption">
 								<h2 class="tblCaptionTitle">履歴書</h2>
 								@if ($userInfo->open_flag == '1')
-									<ul class="tblCaptionList">
+									<ul class="linkList">
 										<li>
-											{{ Form::open(['url' => '/comp/pdf/vitae', 'name' => 'vitaeform' ]) }}
-											{{ Form::hidden("user_id", $userInfo->id, ['class' => 'form-control'] )}}
+											{{ html()->form('POST', '/comp/pdf/vitae')->attribute('name', 'vitaeform')->open() }}
+											{{ html()->hidden('user_id', $userInfo->id) }}
 											<a href="javascript:vitaeform.submit()">&gt;&gt;PDFダウンロード</a>
-											{{ Form::close() }}
+											{{ html()->form()->close() }}
 										</li>
 									</ul>
 								@endif
@@ -327,13 +310,13 @@
 									<tr><td>{{ $userInfo->job_title }}</td></tr>
 
 									<tr><th>性別</th></tr>
-									<tr><td>@if ($userInfo->sex == '1')男@elseif ($userInfo->sex == '2')女@else選択しない@endif </td></tr>
+									<tr><td>{{ $userInfo->getSex() }}</td></tr>
 
 									<tr><th>生年月日</th></tr>
-									<tr><td>{{ str_replace('-','/', substr($userInfo->birthday, 0 ,10)) }}</td></tr>
+									<tr><td>{{ $userInfo->getBirthday() }}</td></tr>
                                              
 									<tr><th>現住所</th></tr>
-									<tr><td>{{ $userInfo->pref_name }} @if ($userInfo->open_flag == '1'){{ $userInfo->address }}@endif</td></tr>
+									<tr><td>{{ $userInfo->getPref() }} @if ($userInfo->open_flag == '1'){{ $userInfo->address }}@endif</td></tr>
 
 									<tr><th>メールアドレス</th></tr>
 									<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->email }}@else ************ @endif</td></tr>
@@ -348,10 +331,10 @@
 									<tr><td>{{ $userInfo->dependents }} 人</td></tr>
 
 									<tr><th>配偶者</th></tr>
-									<tr><td>@if ($userInfo->spouse == '1')あり@elseなし@endif<td></tr>
+									<tr><td>{{ $userInfo->getSpouse() }}<td></tr>
 
 									<tr><th>配偶者の扶養義務</th></tr>
-									<tr><td>@if ($userInfo->obligation == '1')あり@elseなし@endif</td></tr>
+									<tr><td>{{ $userInfo->getObligation() }}</td></tr>
 
 								</table><!-- /.tblUserInfo -->
 							@endif

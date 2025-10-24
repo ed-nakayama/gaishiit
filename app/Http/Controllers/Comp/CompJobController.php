@@ -319,7 +319,8 @@ class CompJobController extends Controller
 
 		$comp_id = $loginUser->company_id;
 
-		$job = Job::where('company_id' , $comp_id)
+		$job = Job::withTrashed()
+			->where('company_id' , $comp_id)
 			->where('id', $jobId)
 			->first();
 

@@ -175,7 +175,7 @@ class User extends Authenticatable
 
 
 	/*
-	* 転職を希望する職種　取得
+	* 転職を希望する業種　取得
 	*/
     public function getBusDetail()
     {
