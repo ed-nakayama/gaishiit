@@ -59,7 +59,7 @@
 										{{ html()->hidden('interview_id', $int->id) }}
 
 										<td>{{ $int->updated_at->format('Y/m/d/H:i') }}</td>
-										<td><a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user_name }}</a></td>
+										<td><a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}</a></td>
 										<td>
 											@if ($int->interview_type == '0')
 												{{ html()->hidden('stage', 99) }}
@@ -109,9 +109,9 @@
 										<td>
 											@if ( ($int->interview_type == '0') && ($int->interview_kind == '0') )
 											@elseif ( ($int->interview_type == '0') && ($int->interview_kind == '1') )
-												{{ $int->unit_name }}
+												{{ $int->unit->name }}
 											@else
-												{{ $int->job_name }}
+												@if (!empty($int->job)){{ $int->job->name }}@endif
 											@endif
 										</td>
 										<td><input type="text" name="interviewer" value="{{ $int->interviewer }}"   oninput="beingChange('{{ 'beingsave' . $int->id }}')"></td>
@@ -161,7 +161,7 @@
 										<td>
 											<label  style="padding: 5px 5px;border: 1px solid #ccc;"><input type="date" name="interview_date" value="{{ $int['interview_date'] }}"  oninput="alreadyChange('{{ 'alreadysave' . $int->id }}')"></label>
 										</td>
-										<td><a href="javascript:aluserform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user_name }}</a></td>
+										<td><a href="javascript:aluserform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}</a></td>
 										<td>
 											@if ($int->interview_type == '0')
 												{{ html()->hidden('stage', 99) }}
@@ -208,9 +208,9 @@
 										<td>
 											@if ( ($int->interview_type == '0') && ($int->interview_kind == '0') )
 											@elseif ( ($int->interview_type == '0') && ($int->interview_kind == '1') )
-												{{ $int->unit_name }}
+												{{ $int->unit->name }}
 											@else
-												{{ $int->job_name }}
+												{{ $int->job->name }}
 											@endif
 										</td>
 										<td><input type="text" name="interviewer" value="{{ $int->interviewer }}"  oninput="alreadyChange('{{ 'alreadysave' . $int->id }}')"></td>

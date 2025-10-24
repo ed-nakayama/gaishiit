@@ -22,169 +22,7 @@ class CompMypageController extends Controller
     {
         $this->middleware('auth:comp');
     }
-    
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-		$loginUser = Auth::user();
 
-		$searchHist = SearchHist::where('owner_id' ,$loginUser->id)
-			->where('use_page' ,'COMP_SAVE')
-			->first();
-			
-		if (!$searchHist) {
-			$searchHist = SearchHist::create([
-				'owner_id' => $loginUser->id,
-				'use_page' => 'COMP_SAVE',
-			]);
-		}
-
-//		$search = $searchHist->toArray();
-		$search = $searchHist;
-
-		$userList = $this->search_list($searchHist);
-
-   		return view('comp.mypage' ,compact(
-			'userList',
-			'search',
-		));
-    }
-
-
-/*************************************
-* 検索リスト
-**************************************/
-	public function search_list($param)
-	{
-
-		$loginUser = Auth::user();
-
-		$subSQL0 = \DB::table('users')
-			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age")
-			->where('aprove_flag' , '1');
-
-		$userQuery = \DB::table('users')
-			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
-			->selectRaw("users.*, age")
-			->where(function($query) use  ($loginUser) {
-				$query->whereNull('users.no_company')
-				->orWhere('users.no_company','not LIKE' , "%{$loginUser->company_id}%");
-			})
-			->where('aprove_flag' , '1')
-			->orderBy('created_at','desc');
-
-		if (!empty($param['from_age'])) $userQuery = $userQuery->where('age' ,'>=',  $param['from_age']);
-		if (!empty($param['to_age'])) $userQuery = $userQuery->where('age' ,'<',  $param['to_age'] + 10);
-//		if ($param['current_job'] != '') $userQuery = $userQuery->whereIn('users.current_job' ,  $param['current_job'] );
-
-		// 希望業種
-		if (!empty($param['request_bus_cats'])) {
-			$job = explode(',', $param['request_bus_cats']);
-
-			if (count($job) == 1) {
-				$userQuery = $userQuery->where('users.business_cats',  'like', "%{$job[0]}%" );
-			} else {
-				$userQuery = $userQuery
-					->where(function($query) use ($job) {
-						$query->where('users.business_cats' , 'like', "%{$job[0]}%" );
-						for ($i = 1; $i < count($job); $i++) {
-							$query = $query->orWhere('users.business_cats' , 'like', "%{$job[$i]}%" );
-						}
-					});
-			}
-		}
-
-		// 希望職種
-		if (!empty($param['request_job_cat_details'])) {
-			$job = explode(',', $param['request_job_cat_details']);
-
-			if (count($job) == 1) {
-				$userQuery = $userQuery->where('users.job_cat_details',  'like', "%{$job[0]}%" );
-			} else {
-				$userQuery = $userQuery
-					->where(function($query) use ($job) {
-						$query->where('users.job_cat_details' , 'like', "%{$job[0]}%" );
-						for ($i = 1; $i < count($job); $i++) {
-							$query = $query->orWhere('users.job_cat_details' , 'like', "%{$job[$i]}%" );
-						}
-					});
-			}
-		}
-
-
-		// 希望勤務地
-		if (!empty($param['location'])) {
-			$loc = explode(',', $param['location']);
-			
-			if (count($loc) == 1) {
-				$userQuery = $userQuery->where('users.request_location',  'like', "%{$loc[0]}%" );
-			} else {
-				$userQuery = $userQuery
-					->where(function($query) use  ($loc) {
-						$query->where('users.request_location' , 'like', "%{$loc[0]}%" );
-						for ($i = 1; $i < count($loc); $i++) {
-							$query = $query->orWhere('users.request_location' , 'like', "%{$loc[$i]}%" );
-						}
-					});
-			}
-		}
-
-/*
-		if ($param['freeword'] != '') {
-			$userQuery = $userQuery
-				->where(function($query) use  ($loginUser) {
-					$query->where('users.graduation' , 'like', "%{$param['freeword']}%")
-					->orWhere('users.company' , 'like', "%{$param['freeword']}%")
-					->orWhere('users.job_content' , 'like', "%{$param['freeword']}%")
-					->orWhere('users.japanese_background' , 'like', "%{$param['freeword']}%")
-					->orWhere('users.english_background' , 'like', "%{$param['freeword']}%")
-					;
-				});
-		}
-*/
-		$userList = $userQuery->limit(10)->get();
-
-		$idx = 0;
-		foreach ($userList as $user) {
-
-			$catName = array();
-			$cats = explode(",", $user->job_cats);
-			$len = count($cats);
-
-			for ($i = 0; $i < $len; $i++) {
-				$cat = JobCat::find($cats[$i]);
-				if ($cat) {
-					$catName[] = $cat->name;
-				}
-			}
-
-			$userList[$idx]->cat_names = join("/",$catName);
-
-			if (!empty($user->request_location)) {
-				$loc = explode(',', $user->request_location);
-				$ln = ConstLocation::whereIn('id' ,$loc)->get();
-
-				$loc_name = array();
-				for ($i = 0; $i < count($ln); $i++) {
-					$loc_name[] = $ln[$i]['name'];
-				}
-
-				$userList[$idx++]->location_name = implode('/', $loc_name);
-			} else {
-				$userList[$idx++]->location_name = '';
-			}
-		}
-
-
-
-		return $userList;
-	}
-	
 
 /*************************************
 * 検索リスト
@@ -414,12 +252,8 @@ class CompMypageController extends Controller
 		$subSQL0 = \DB::table('users')
 			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
 		
-		$userQuery = \DB::table('users')
-			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
-//			->leftJoin('const_locations', 'users.request_location','=','const_locations.id')
-//			->selectRaw("users.*, age ,const_locations.name as location_name")
+		$userQuery = User::JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->selectRaw("users.*, age")
-//			->where('aprove_flag' ,'1')
 			->where(function($query) use  ($loginUser) {
 				$query->whereNull('users.no_company')
 				->orWhere('users.no_company','not LIKE' , "%{$loginUser->company_id}%");
@@ -427,9 +261,7 @@ class CompMypageController extends Controller
 
 		if (!empty($param['from_age'])) $userQuery = $userQuery->where('age' ,'>=',  $param['from_age']);
 		if (!empty($param['to_age'])) $userQuery = $userQuery->where('age' ,'<',  $param['to_age'] + 10);
-//		if (!empty($param['current_job'])) $userQuery = $userQuery->whereIn('users.current_job' ,  $param['current_job'] );
 		if (!empty($param['location'])) $userQuery = $userQuery->where('users.request_location' , $param['location'] );
-//		if (!empty($param['request_cat'])) $userQuery = $userQuery->where('users.job_cats' , $param['request_cat'] );
 		if (!empty($param['request_cat'])) $userQuery = $userQuery->where('users.job_cat_details' , $param['request_cat'] );
 
 		if (!empty($param['freeword'])) {
@@ -451,46 +283,6 @@ class CompMypageController extends Controller
 		// 1年以内にメッセージのやり取りがあれば氏名も表示
 		$pre_date = date("Y-m-d",strtotime("-1 year"));
 
-		$idx = 0;
-		foreach ($userList as $user) {
-
-			$catName = array();
-			$cats = explode(",", $user->job_cat_details);
-			$len = count($cats);
-
-			for ($i = 0; $i < $len; $i++) {
-				$cat = JobCatDetail::find($cats[$i]);
-				if ($cat) {
-					$catName[] = $cat->name;
-				}
-			}
-
-			$userList[$idx]->cat_names = join("/",$catName);
-
-			$int_count = Interview::where('interviews.user_id', $user->id)
-				->where('aprove_flag', '1')
-				->where('updated_at', '>' , $pre_date)
-				->count();
-
-			$userList[$idx]->open_flag = '0';
-			if ($int_count > 0) $userList[$idx]->open_flag = '1';
-
-
-			if (!empty($user->request_location)) {
-				$loc = explode(',', $user->request_location);
-				$ln = ConstLocation::whereIn('id' ,$loc)->get();
-
-				$loc_name = array();
-				for ($i = 0; $i < count($ln); $i++) {
-					$loc_name[] = $ln[$i]['name'];
-				}
-
-				$userList[$idx++]->location_name = implode('/', $loc_name);
-			} else {
-				$userList[$idx++]->location_name = '';
-			}
-		}
-
 		return $userList;
 	}
 	
@@ -503,9 +295,7 @@ class CompMypageController extends Controller
 	{
 		$loginUser = Auth::user();
 
-		$beingList = Interview::Join('users', 'interviews.user_id','=','users.id')
-			->leftJoin('const_stages', 'interviews.stage_id','=','const_stages.id')
-			->leftJoin('companies', function ($join) use ($loginUser) {
+		$beingList = Interview::leftJoin('companies', function ($join) use ($loginUser) {
                 $join->on('interviews.company_id','=','companies.id')
 		 			->where('interviews.interview_type' , '0')
 		 			->where('interviews.interview_kind' , '0')
@@ -528,13 +318,10 @@ class CompMypageController extends Controller
 					->where('jobs.company_id' , $loginUser->company_id)
 					->where('jobs.person' , 'like' ,"%$loginUser->id%");
            })
-			->selectRaw('interviews.*,' .
-						 'units.name as unit_name,' .
-						 'jobs.name as job_name,' .
-						 'const_stages.name as stage_name,' .
-						 'users.id as user_id, users.name as user_name')
+			->selectRaw('interviews.*')
 			->where('interviews.aprove_flag', '1')
 			->whereNotIn('interviews.status_id', [4, 9])
+
 			->where(function($query) {
 			    $query->where('interviews.interview_type' , '0')
 					->orWhere('interviews.interview_type' , '1');
@@ -547,9 +334,19 @@ class CompMypageController extends Controller
 			->orderBy('interviews.updated_at')
 			->get();
 
-		$alreadyList = Interview::Join('users', 'interviews.user_id','=','users.id')
-			->leftJoin('const_stages', 'interviews.stage_id','=','const_stages.id')
-			->leftJoin('companies', function ($join) use ($loginUser) {
+//dd($beingList);
+
+		$i = 0;
+		$cnt = count($beingList);
+		for ($i = 0; $i < $cnt; $i++) {
+			$beingList[$i]->getUser();
+			$beingList[$i]->getCompany();
+			$beingList[$i]->getUnit();
+			$beingList[$i]->getJob();
+		}
+
+
+		$alreadyList = Interview::leftJoin('companies', function ($join) use ($loginUser) {
                 $join->on('interviews.company_id','=','companies.id')
 		 			->where('interviews.interview_type' , '0')
 		 			->where('interviews.interview_kind' , '0')
@@ -572,11 +369,7 @@ class CompMypageController extends Controller
 					->where('jobs.company_id' , $loginUser->company_id)
 					->where('jobs.person' , 'like' ,"%$loginUser->id%");
            })
-			->selectRaw('interviews.*,' .
-						 'units.name as unit_name,' .
-						 'jobs.name as job_name,' .
-						 'const_stages.name as stage_name ,' .
-						 'users.id as user_id, users.name as user_name')
+			->selectRaw('interviews.*')
 			->where(function($query) use($loginUser) {
 			    $query->where('companies.person' , 'like' ,"%$loginUser->id%")
 					->orWhere('units.person' , 'like' ,"%$loginUser->id%")
@@ -591,6 +384,14 @@ class CompMypageController extends Controller
 			->orderBy('interviews.updated_at')
 			->get();
 
+		$i = 0;
+		$cnt = count($alreadyList);
+		for ($i = 0; $i < $cnt; $i++) {
+			$alreadyList[$i]->getUser();
+			$alreadyList[$i]->getCompany();
+			$alreadyList[$i]->getUnit();
+			$alreadyList[$i]->getJob();
+		}
 
 		return view('comp.mypage_progress' ,compact(
 			'beingList',
