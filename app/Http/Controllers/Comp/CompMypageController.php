@@ -13,6 +13,7 @@ use App\Models\JobCat;
 use App\Models\JobCatDetail;
 use App\Models\ConstLocation;
 use App\Models\Interview;
+use App\Models\User;
 
 
 class CompMypageController extends Controller
@@ -306,12 +307,8 @@ class CompMypageController extends Controller
 			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age")
 			->where('aprove_flag' , '1');
 		
-		$userQuery = \DB::table('users')
-			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
-//			->leftJoin('const_locations', 'users.request_location','=','const_locations.id')
-//			->selectRaw("users.*, age ,const_locations.name as location_name")
+		$userQuery = User::JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->selectRaw("users.*, age")
-//			->where('aprove_flag' ,'1')
 			->where(function($query) use  ($loginUser) {
 				$query->whereNull('users.no_company')
 				->orWhere('users.no_company','not LIKE' , "%{$loginUser->company_id}%");
@@ -338,38 +335,6 @@ class CompMypageController extends Controller
 		}
 
 		$userList = $userQuery->orderBy('users.created_at' ,'desc')->paginate(10);
-	
-		$idx = 0;
-		foreach ($userList as $user) {
-
-			$catName = array();
-			$cats = explode(",", $user->job_cats);
-			$len = count($cats);
-
-			for ($i = 0; $i < $len; $i++) {
-				$cat = JobCat::find($cats[$i]);
-				if ($cat) {
-					$catName[] = $cat->name;
-				}
-			}
-
-			$userList[$idx]->cat_names = join("/",$catName);
-
-
-			if (!empty($user->request_location)) {
-				$loc = explode(',', $user->request_location);
-				$ln = ConstLocation::whereIn('id' ,$loc)->get();
-
-				$loc_name = array();
-				for ($i = 0; $i < count($ln); $i++) {
-					$loc_name[] = $ln[$i]['name'];
-				}
-
-				$userList[$idx++]->location_name = implode('/', $loc_name);
-			} else {
-				$userList[$idx++]->location_name = '';
-			}
-		}
 
 		return $userList;
 	}
