@@ -37,11 +37,7 @@ class CompBillController extends Controller
 
 		$start_date = date('Y/m/01',strtotime("-1 month"));
 
-		$intList = Interview::join('companies' ,'interviews.company_id' ,'companies.id')
-			->join('users' ,'interviews.user_id' ,'users.id')
-			->join('jobs' ,'interviews.job_id' ,'jobs.id')
-			->selectRaw('interviews.* ,users.name as user_name ,jobs.name as job_name ,jobs.job_code as job_code ,companies.name as company_name')
- 			->where('interviews.company_id' , $loginUser->company_id)
+		$intList = Interview::where('interviews.company_id' , $loginUser->company_id)
 			->where('interviews.interview_type' ,'1' )
 			->where('interviews.result_id', '1')
 			->where(function($query) use  ($start_date) {
@@ -52,6 +48,12 @@ class CompBillController extends Controller
 			
 			->orderBy('entrance_date')
 			->get();
+
+		$cnt = count($intList);
+		for ($i = 0; $i < $cnt; $i++) {
+			$intList[$i]->getUser();
+			$intList[$i]->getJob();
+		}
 
 		return view('comp.claim_every' ,compact(
 			'intList',
