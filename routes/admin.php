@@ -114,15 +114,9 @@ Route::get ('/user/edit',  'AdminUserController@edit')->name('user.edit');
 Route::post('/user/store', 'AdminUserController@store')->name('user.store');
 Route::get ('/user/store', 'AdminUserController@store');
 
-Route::get ('/clientend',      'AdminClientController@endIndex');
-Route::get ('/clientend/list', 'AdminClientController@endList')->name('clientend.list');
-Route::post('/clientend/list', 'AdminClientController@endList');
+Route::get ('/clientend',      'AdminClientController@endIndex')->name('clientend');
+Route::post('/clientend',      'AdminClientController@endIndex');
 
-Route::get ('/client/enter',      'AdminClientController@enter');
-Route::get ('/client/enter/list', 'AdminClientController@enterList');
-Route::post('/client/enter/list', 'AdminClientController@enterList')->name('client.enter.list');
-Route::get ('/client/enter/save', 'AdminClientController@enterSave')->name('cliententer.save');
-Route::post('/client/enter/save', 'AdminClientController@enterSave');
 
 // PDF½ĞÎÏ
 Route::get ('/pdf/base', 'AdminUserController@userBasePdf');

@@ -21,9 +21,9 @@
 
 				<div class="secBtnHead">
 					<div class="secBtnHead-check">
-						{{ Form::open(['url' => '/comp/clientend/list', 'name' => 'listform' , 'id' => 'listform', 'method'=>'GET']) }}
+						{{ html()->form('GET', '/comp/clientend/list')->id('listform')->attribute('name', 'listform')->open() }}
 						 <input type="checkbox" id="only_me" name="only_me" value="1" @if ($search['only_me'] == '1') checked @endif  onchange="this.form.submit()"><label for="only_me">自分の担当のみ表示</label>
-						{{ Form::close() }}
+						{{ html()->form()->close() }}
 					 </div><!-- /.secBtnHead-btn -->
 
 				</div><!-- /.sec-btn -->

@@ -59,9 +59,9 @@
 								{{ html()->hidden('interview_id', $int->id) }}
 								<td>{{ $int->updated_at->format('Y/m/d/H:i') }}</td>
 								<td>
- 									<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user_name }}</a>
+ 									<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}</a>
 								</td>
-								<td>{{ $int->company_name }}</td>
+								<td>{{ $int->company->name }}</td>
 								<td>
 									<label style="padding: 5px 5px;border: 1px solid #ccc;">
 										<input type="date" name="entrance_date" value="{{ $int->entrance_date }}"  oninput="enterChange('{{ 'entersave' . $int->id }}')">
@@ -71,20 +71,20 @@
 									@if ($int->interview_type == '0')
 										カジュアル面談
 									@else
-										{{ $int->stage_name }}
+										{{ $int->stage->name }}
 									@endif
 								</td>
-								<td align="center">{{ $int->status_name }}</td>
+								<td align="center">{{ $int->status->name }}</td>
 								<td>
 									@if ( ($int->interview_type == '0') && ($int->interview_kind == '0') )
-                                        @elseif ( ($int->interview_type == '0') && ($int->interview_kind == '1') )
-                                            {{ $int->unit_name }}
-                                        @else
-                                            {{ $int->job_name }}
-                                        @endif
+									@elseif ( ($int->interview_type == '0') && ($int->interview_kind == '1') )
+										{{ $int->unit->name }}
+									@else
+										{{ $int->job->name }}
+									@endif
 								</td>
 								<td>{{ $int->comment }}</td>
-								<td>{{ $int->person_name }}</td>
+								<td>{{ $int->person }}</td>
 								<td>
 									<div class="btnContainer"  style="display: none;" id="{{ 'entersave' . $int->id }}">
 										<a href="javascript:enterform{{ $int->id }}.submit()" class="squareBtn btn-medium">保存</a>

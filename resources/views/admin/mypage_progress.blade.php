@@ -43,9 +43,8 @@
 						<div class="contentsTitle-container" style="display: flex;justify-content: space-between;">
 							<h2 class="contentsTitle">日程調整中</h2>
 							<ul class="linkList">
-									<li><a href="/admin/clientend">終了した候補者一覧</a></li>
-									<li><a href="/admin/client/enter">採用者一覧</a></li>
-								</ul><!-- /.item -->
+								<li><a href="/admin/clientend">終了した候補者一覧</a></li>
+							</ul><!-- /.item -->
 						</div>
 @if(!isset($beingList[0]))
 						<div>※データはありません。</div>

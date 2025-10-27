@@ -21,12 +21,12 @@
 
 					<div class="secBtnHead">
 						<div class="secBtnHead-btn" style="width:95%">
-							{{ Form::open(['url' => '/comp/unit/list', 'name' => 'listform' , 'id' => 'listform', 'method'=>'GET']) }}
 							<ul class="item-btn" style="-webkit-justify-content: space-between;">
-								<li></li>
+								<li class="linkList"><a href="/comp/unit/edit?unit_id=">新規登録</a></li>
+								{{ html()->form('GET', '/comp/unit/list')->id('listform')->attribute('name', 'listform')->open() }}
 								<li style="white-space:nowrap;"><input type="checkbox" id="only_me" name="only_me" value="1" @if ($param['only_me'] == '1') checked @endif  onchange="this.form.submit()"><label for="only_me">自分の担当のみ表示</label></li>
+								{{ html()->form()->close() }}
 							</ul><!-- /.item -->
-							{{ Form::close() }}
 						</div><!-- /.secBtnHead-btn -->
 					</div><!-- /.sec-btn -->
 
@@ -44,17 +44,17 @@
 								<td>{{ $unit['name'] }}</td>
 								<td>{{ mb_strimwidth($unit->intro, 0, 70, "...") }}</td>
 								<td>@if ($unit->open_flag == '1')公開@endif</td>
-								<td>{{ $unit->person_name }}</td>
+								<td>{{ $unit->persons }}</td>
 								<td>
 									<div class="btnContainer">
-										{{ Form::open(['url' => '/comp/unit/edit', 'name' => 'editform' . $unit->id , 'method'=>'GET' ]) }}
-										{{ Form::hidden('unit_id', $unit->id) }}
+										{{ html()->form('GET', '/comp/unit/edit')->attribute('name', 'editform' . $unit->id)->open() }}
+										{{ html()->hidden('unit_id', $unit->id) }}
 										@if ( strpos($unit->person ,Auth::user()->id) !== false)
 											<a href="javascript:editform{{ $unit->id }}.submit()" class="squareBtn btn-large">編集</a>
 										@else
 											<a href="javascript:editform{{ $unit->id }}.submit()" class="squareGrayBtn btn-large">参照</a>
 										@endif
-										{{ Form::close() }}
+										{{ html()->form()->close() }}
 									</div><!-- /.btn-container -->
 								</td>
 							</tr>

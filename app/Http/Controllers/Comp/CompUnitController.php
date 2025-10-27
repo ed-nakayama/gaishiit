@@ -81,24 +81,11 @@ class CompUnitController extends Controller
 
 		$unitList = $unitQuery->orderBy('units.created_at' , 'desc')->paginate(10);
 
-		$idx = 0;
-		foreach ($unitList as $list) {
-			
-		if ( !empty($list->person) ) {
-			$loc = explode(',', $list->person);
-			$ln = CompMember::whereIn('id' ,$loc)->get();
-
-				$person_name = array();
-				for ($i = 0; $i < count($ln); $i++) {
-					$person_name[] = $ln[$i]['name'];
-				}
-
-				$unitList[$idx++]->person_name = implode('/', $person_name);
-			} else {
-				$unitList[$idx++]->person_name = '';
-			}
+		$i = 0;
+		$cnt = count($unitList);
+		for ($i = 0; $i < $cnt; $i++) {
+			$unitList[$i]->getPerson();
 		}
-
 
 		return $unitList;
 }
@@ -141,10 +128,6 @@ class CompUnitController extends Controller
 
 		$validatedData = $request->validate([
     		'name'     => ['required', 'string', 'max:100'],
-    		'intro'    => ['required', 'string'],
-//    		'job_cat_id' => ['required'],
-//    		'sub_category' => ['required', 'string', 'max:40'],
-//   			'location' => ['required'],
    			'person'   => ['required'],
    		]);
 		
@@ -160,27 +143,12 @@ class CompUnitController extends Controller
 			['company_id' => $comp_id,
             'name'           => $request->name,
             'intro'          => $request->intro,
-//            'job_cat_id'     => $request->job_cat_id,
-//            'sub_category'   => $request->sub_category,
             'casual_flag'    => $casual_flag,
             'person'         => $request->person,
 			]
 		);
 
-/*
-		$cnt = count($request->unit_pr_id);
-		for ($i = 0; $i < $cnt; $i++) {
-			$pr_id = $request->unit_pr_id[$i];
-			$headline = $request->headline[$i];
-			$content = $request->content[$i];
-
-			UnitPr::updateOrCreate(
-				['id' => $pr_id],
-				['unit_id' => $retUnit->id, 'company_id' => $comp_id, 'headline' => $headline, 'content' => $content]
-			);
-		}
-*/
-		return redirect()->route('comp.unit.edit', [ 'unit_id' => $unit_id ] )->with('update_success', '部門情報を保存しました。');
+		return redirect()->route('comp.unit.edit', [ 'unit_id' => $retUnit->id ] )->with('update_success', '部門情報を保存しました。');
 	}
 
 
@@ -199,17 +167,19 @@ class CompUnitController extends Controller
 			->where('company_id' ,$comp_id)
 			->first();
 		
-		if (!isset($unit)) {
-			abort(404);
-		}
+		if (empty($unit)) $unit = new Unit();
 		
-		$unitPr = UnitPr::select()->where('unit_id' , $unit->id)->get();
+//		if (!isset($unit)) {
+//			abort(404);
+//		}
+		
+//		$unitPr = UnitPr::select()->where('unit_id' , $unit->id)->get();
 
 		$edit_flag = $request->edit_flag;
 		
 		return view('comp.unit_edit' ,compact(
 			'unit',
-			'unitPr',
+//			'unitPr',
 			'memberList',
 			'edit_flag',
 		));
@@ -244,7 +214,6 @@ class CompUnitController extends Controller
 			return redirect()->route('comp.unit.edit', [ 'unit_id' => $unit_id ] )->with('option_success', '部門情報を保存しました。');
 		}
 		
-//		return redirect('comp/unit');
 	}
 
 
