@@ -243,76 +243,50 @@ class CompClientController extends ClientController
 
 		$endQuery = Interview::selectRaw('interviews.*');
 
-		if ($param['only_me'] == '1') {
-			$endQuery = $endQuery
-				->leftJoin('companies', function ($join) use ($loginUser) {
-	            	$join->on('interviews.company_id','=','companies.id')
-		 				->where('interviews.interview_type' , '0')
-			 			->where('interviews.interview_kind' , '0')
-						->where('companies.id' , $loginUser->company_id)
-						->where('companies.person' , 'like' ,"%$loginUser->id%");
-				})
-				->leftJoin('units', function ($join) use ($loginUser) {
-	                $join->on('interviews.unit_id','=','units.id')
-		 				->where('interviews.interview_type' , '0')
-		 				->where('interviews.interview_kind' , '1')
-			 			->where('units.company_id' , $loginUser->company_id)
-						->where('units.person' , 'like' ,"%$loginUser->id%");
-	           })
-				->leftJoin('jobs', function ($join) use ($loginUser) {
-	                $join->on('interviews.job_id','=','jobs.id')
-					->where(function($query) {
-			    		$query->where('interviews.interview_type' ,'1')
-							->orWhere('interviews.interview_kind', '2');
-						})
-					->where('jobs.company_id' , $loginUser->company_id)
-					->where('jobs.person' , 'like' ,"%$loginUser->id%");
-	           });
-
-		} else {
-			$endQuery = $endQuery
-				->leftJoin('companies', function ($join) use ($loginUser) {
-	            	$join->on('interviews.company_id','=','companies.id')
-		 				->where('interviews.interview_type' , '0')
-			 			->where('interviews.interview_kind' , '0')
-						->where('companies.id' , $loginUser->company_id);
-				})
-				->leftJoin('units', function ($join) use ($loginUser) {
-	                $join->on('interviews.unit_id','=','units.id')
-		 				->where('interviews.interview_type' , '0')
-		 				->where('interviews.interview_kind' , '1')
-			 			->where('units.company_id' , $loginUser->company_id);
-	           })
-				->leftJoin('jobs', function ($join) use ($loginUser) {
-	                $join->on('interviews.job_id','=','jobs.id')
-					->where(function($query) {
-			    		$query->where('interviews.interview_type' ,'1')
-							->orWhere('interviews.interview_kind', '2');
-						})
-					->where('jobs.company_id' , $loginUser->company_id);
-	           });
-		}
-
-	         
-		$endQuery = $endQuery
-			->where(function($query) {
-			    $query->where('interviews.interview_type' , '0')
-					->orWhere('interviews.interview_type' , '1');
-			})
-			->where('interviews.company_id' , $loginUser->company_id)
+		$comp = Interview::Join('companies', 'interviews.company_id', 'companies.id')
+			->where('interviews.interview_type' , '0')
+			->where('interviews.interview_kind' , '0')
 			->where('interviews.aprove_flag', '1')
-			->where('interviews.status_id', '9');
+			->where('interviews.status_id', 9)
+			->where('companies.id' , $loginUser->company_id);
 
 		if ($param['only_me'] == '1') {
-			$endQuery = $endQuery
-				->where(function($query) use($loginUser) {
-				    $query->where('companies.person' , 'like' ,"%$loginUser->id%")
-						->orWhere('units.person' , 'like' ,"%$loginUser->id%")
-						->orWhere('jobs.person' , 'like' ,"%$loginUser->id%");
-				});
+			$comp = $comp->where('companies.person' , 'like' ,"%$loginUser->id%");
 		}
 
-		$endList = $endQuery->orderBy('interviews.updated_at' , 'desc')->paginate(20);
+		$comp = $comp->selectRaw('interviews.*');
+
+
+		$unit = Interview::join('units', 'interviews.unit_id','=','units.id')
+			->where('interviews.interview_type' , '0')
+			->where('interviews.interview_kind' , '1')
+			->where('interviews.aprove_flag', '1')
+			->where('interviews.status_id', 9)
+	 		->where('units.company_id' , $loginUser->company_id);
+
+		if ($param['only_me'] == '1') {
+			$unit = $unit->where('units.person' , 'like' ,"%$loginUser->id%");
+		}
+
+		$unit = $unit->selectRaw('interviews.*');
+
+
+		$endQuery = Interview::join('jobs','interviews.job_id', 'jobs.id')
+			->whereIn('interviews.interview_type', [0, 1])
+			->where('interviews.interview_kind' , '2')
+			->where('interviews.aprove_flag', '1')
+			->where('interviews.status_id', 9)
+			->where('jobs.company_id' , $loginUser->company_id);
+
+		if ($param['only_me'] == '1') {
+			$endQuery = $endQuery->where('jobs.person' , 'like' ,"%$loginUser->id%");
+		}
+		
+		$endList = $endQuery->selectRaw('interviews.*')
+			->union($comp)
+			->union($unit)
+			->orderBy('updated_at' , 'desc')
+			->paginate(20);
 
 		$i = 0;
 		$cnt = count($endList);
@@ -405,22 +379,19 @@ class CompClientController extends ClientController
 		
 		$loginUser = Auth::user();
 
-		$endQuery = Interview::Join('jobs', 'interviews.job_id','=','jobs.id');
+		$endQuery = Interview::where('interviews.company_id' , $loginUser->company_id);
 
 		if ($param['only_me'] == '1') {
-			$endQuery = $endQuery->where('jobs.person' , 'like' ,"%$loginUser->id%");
+			$endQuery = $endQuery->Join('jobs', 'interviews.job_id','=','jobs.id')
+				->where('jobs.person' , 'like' ,"%$loginUser->id%");
 		}
 
-		$endQuery = $endQuery
-			->selectRaw('interviews.*')
-			->where('interviews.company_id' , $loginUser->company_id)
+		$endList = $endQuery
 			->where('interviews.interview_type' ,'1')
 			->where('interviews.aprove_flag', '1')
 			->where('interviews.result_id', '1')
 			->where('interviews.status_id', '9')
-			;
-
-		$endList = $endQuery
+			->selectRaw('interviews.*')
 			->orderByRaw('interviews.entrance_date IS NULL DESC')
 			->orderBy('interviews.entrance_date' , 'desc')
 			->paginate(20);

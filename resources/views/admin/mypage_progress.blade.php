@@ -40,7 +40,13 @@
 							</div><!-- /.secBtnHead-btn -->
 						</div>
 
-						<h2 class="contentsTitle">日程調整中</h2>
+						<div class="contentsTitle-container" style="display: flex;justify-content: space-between;">
+							<h2 class="contentsTitle">日程調整中</h2>
+							<ul class="linkList">
+									<li><a href="/admin/clientend">終了した候補者一覧</a></li>
+									<li><a href="/admin/client/enter">採用者一覧</a></li>
+								</ul><!-- /.item -->
+						</div>
 @if(!isset($beingList[0]))
 						<div>※データはありません。</div>
 @else
@@ -60,6 +66,7 @@
 							</tr>
                                
 							@foreach ($beingList as $int)
+								@if ($int->company->agency_flag == 1)
 								<tr>
 									{{ html()->form('POST', '/admin/user/detail')->attribute('name', 'userform'. $int->id)->open() }}
 									{{ html()->hidden('user_id',   $int->user_id) }}
@@ -70,9 +77,9 @@
 									{{ html()->hidden('interview_id', $int->id) }}
 									<td>{{ $int->updated_at->format('Y/m/d/H:i') }}</td>
 									<td>
- 										<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user_name }}</a>
+ 										<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}</a>
 									</td>
-									<td>{{ $int->company_name }}</td>
+									<td>{{ $int->company->name }}</td>
 									<td>
 										@if ($int->interview_type == '0')
 											{{ html()->hidden('stage', 99) }}
@@ -124,9 +131,9 @@
 									<td>
 										@if ( ($int->interview_type == '0') && ($int->interview_kind == '0') )
 										@elseif ( ($int->interview_type == '0') && ($int->interview_kind == '1') )
-											{{ $int->unit_name }}
+											{{ $int->unit->name }}
 										@else
-											{{ $int->job_name }}
+											{{ $int->job->name }}
 										@endif
 									</td>
 									<td>
@@ -142,6 +149,7 @@
 									</td>
 									{{ html()->form()->close() }}
 								</tr>
+								@endif
 							@endforeach
 
 						</table>
@@ -183,8 +191,8 @@
 										<input type="date" name="interview_date" value="{{ $int['interview_date'] }}"  oninput="alreadyChange('{{ 'alreadysave' . $int->id }}')">
 									</label>
 								</td>
-								<td><a href="javascript:aluserform{{ $int->id }}.submit()"style="text-decoration: underline;">{{ $int->user_name }}</a></td>
-								<td>{{ $int->company_name }}</td>
+								<td><a href="javascript:aluserform{{ $int->id }}.submit()"style="text-decoration: underline;">{{ $int->user->name }}</a></td>
+								<td>{{ $int->company->name }}</td>
 								<td>
 									@if ($int->interview_type == '0')
 										{{ html()->hidden('stage', 99) }}
@@ -231,9 +239,9 @@
 								<td>
 									@if ( ($int->interview_type == '0') && ($int->interview_kind == '0') )
 									@elseif ( ($int->interview_type == '0') && ($int->interview_kind == '1') )
-										{{ $int->unit_name }}
+										{{ $int->unit->name }}
 									@else
-										{{ $int->job_name }}
+										{{ $int->job->name }}
 									@endif
 								</td>
 								<td>

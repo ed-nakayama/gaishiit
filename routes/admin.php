@@ -15,10 +15,9 @@ Route::middleware('auth:admin')->group(function () {
 
 	// TOPページ
 	Route::resource('mypage', 'MypageController', ['only' => 'index']);
+
 });
 
-// マイページ
-// Route::resource('mypage', 'MypageController', ['only' => 'index']);
 
 // パスワード忘れ
 Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reupdate');
@@ -28,6 +27,11 @@ Route::post('password/email',         'ForgotPasswordController@sendResetLinkEma
 Route::get ('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
 Route::get ('password/complete',      'ResetCompleteController@index')->name('password.complete');
 
+
+
+// パスワード変更
+Route::get ('/password/edit', 'AdminController@editPassword')->name('password.edit');
+Route::post('/password/',     'AdminController@updatePassword')->name('password.update');
 
 // マイページ
 Route::get ('/mypage',      'MypageController@index')->name('mypage');
@@ -66,9 +70,6 @@ Route::post('/mypage/eval/edit',  'MypageController@eval_edit');
 Route::get ('/mypage/eval/store', 'MypageController@eval_store')->name('mypage.eval.store');
 Route::post('/mypage/eval/store', 'MypageController@eval_store');
 
-// パスワード変更
-Route::get ('/password/edit', 'AdminController@editPassword')->name('password.edit');
-Route::post('/password/',     'AdminController@updatePassword')->name('password.update');
 
 // お知らせ関連
 Route::get ('/info/list',   'AdminInfoController@index');
@@ -112,6 +113,16 @@ Route::post('/user/changehist', 'AdminUserController@changeHist');
 Route::get ('/user/edit',  'AdminUserController@edit')->name('user.edit');
 Route::post('/user/store', 'AdminUserController@store')->name('user.store');
 Route::get ('/user/store', 'AdminUserController@store');
+
+Route::get ('/clientend',      'AdminClientController@endIndex');
+Route::get ('/clientend/list', 'AdminClientController@endList')->name('clientend.list');
+Route::post('/clientend/list', 'AdminClientController@endList');
+
+Route::get ('/client/enter',      'AdminClientController@enter');
+Route::get ('/client/enter/list', 'AdminClientController@enterList');
+Route::post('/client/enter/list', 'AdminClientController@enterList')->name('client.enter.list');
+Route::get ('/client/enter/save', 'AdminClientController@enterSave')->name('cliententer.save');
+Route::post('/client/enter/save', 'AdminClientController@enterSave');
 
 // PDF出力
 Route::get ('/pdf/base', 'AdminUserController@userBasePdf');

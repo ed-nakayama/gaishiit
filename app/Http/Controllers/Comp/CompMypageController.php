@@ -295,43 +295,42 @@ class CompMypageController extends Controller
 	{
 		$loginUser = Auth::user();
 
-		$beingList = Interview::leftJoin('companies', function ($join) use ($loginUser) {
-                $join->on('interviews.company_id','=','companies.id')
-		 			->where('interviews.interview_type' , '0')
-		 			->where('interviews.interview_kind' , '0')
-		 			->where('companies.id' , $loginUser->company_id)
-					->where('companies.person' , 'like' ,"%$loginUser->id%");
-           })
-			->leftJoin('units', function ($join) use ($loginUser) {
-                $join->on('interviews.unit_id','=','units.id')
-		 			->where('interviews.interview_type' , '0')
-		 			->where('interviews.interview_kind' , '1')
-		 			->where('units.company_id' , $loginUser->company_id)
-					->where('units.person' , 'like' ,"%$loginUser->id%");
-           })
-			->leftJoin('jobs', function ($join) use ($loginUser) {
-                $join->on('interviews.job_id','=','jobs.id')
-					->where(function($query) {
-			    		$query->where('interviews.interview_type' ,'1')
-							->orWhere('interviews.interview_kind', '2');
-						})
-					->where('jobs.company_id' , $loginUser->company_id)
-					->where('jobs.person' , 'like' ,"%$loginUser->id%");
-           })
-			->selectRaw('interviews.*')
+		$comp = Interview::join('companies', function ($join) use ($loginUser) {
+			$join->on('interviews.company_id','=','companies.id')
+				->where('companies.id' , $loginUser->company_id)
+				->where('companies.person' , 'like' ,"%$loginUser->id%");
+			})
+			->where('interviews.interview_type' , '0')
+			->where('interviews.interview_kind' , '0')
 			->where('interviews.aprove_flag', '1')
 			->whereNotIn('interviews.status_id', [4, 9])
+			->selectRaw('interviews.*');
 
-			->where(function($query) {
-			    $query->where('interviews.interview_type' , '0')
-					->orWhere('interviews.interview_type' , '1');
+		$unit = Interview::join('units', function ($join) use ($loginUser) {
+			$join->on('interviews.unit_id','=','units.id')
+				->where('units.company_id' , $loginUser->company_id)
+				->where('units.person' , 'like' ,"%$loginUser->id%");
 			})
-			->where(function($query) use($loginUser) {
-			    $query->where('companies.person' , 'like' ,"%$loginUser->id%")
-					->orWhere('units.person' , 'like' ,"%$loginUser->id%")
-					->orWhere('jobs.person' , 'like' ,"%$loginUser->id%");
+			->where('interviews.interview_type' , '0')
+			->where('interviews.interview_kind' , '1')
+			->where('interviews.aprove_flag', '1')
+			->whereNotIn('interviews.status_id', [4, 9])
+			->selectRaw('interviews.*');
+
+		$beingList = Interview::join('jobs', function ($join) use ($loginUser) {
+			$join->on('interviews.job_id','=','jobs.id')
+				->where('jobs.company_id' , $loginUser->company_id)
+				->where('jobs.person' , 'like' ,"%$loginUser->id%");
 			})
-			->orderBy('interviews.updated_at')
+			->whereIn('interviews.interview_type', [0, 1])
+			->where('interviews.interview_kind' , '2')
+			->where('interviews.aprove_flag', '1')
+			->whereNotIn('interviews.status_id', [4, 9])
+			->selectRaw('interviews.*')
+
+			->union($comp)
+			->union($unit)
+			->orderBy('updated_at')
 			->get();
 
 //dd($beingList);
@@ -346,43 +345,44 @@ class CompMypageController extends Controller
 		}
 
 
-		$alreadyList = Interview::leftJoin('companies', function ($join) use ($loginUser) {
-                $join->on('interviews.company_id','=','companies.id')
-		 			->where('interviews.interview_type' , '0')
-		 			->where('interviews.interview_kind' , '0')
-		 			->where('companies.id' , $loginUser->company_id)
-					->where('companies.person' , 'like' ,"%$loginUser->id%");
-           })
-			->leftJoin('units', function ($join) use ($loginUser) {
-                $join->on('interviews.unit_id','=','units.id')
-		 			->where('interviews.interview_type' , '0')
-		 			->where('interviews.interview_kind' , '1')
-		 			->where('units.company_id' , $loginUser->company_id)
-					->where('units.person' , 'like' ,"%$loginUser->id%");
-           })
-			->leftJoin('jobs', function ($join) use ($loginUser) {
-                $join->on('interviews.job_id','=','jobs.id')
-					->where(function($query) {
-			    		$query->where('interviews.interview_type' ,'1')
-							->orWhere('interviews.interview_kind', '2');
-						})
-					->where('jobs.company_id' , $loginUser->company_id)
-					->where('jobs.person' , 'like' ,"%$loginUser->id%");
-           })
-			->selectRaw('interviews.*')
-			->where(function($query) use($loginUser) {
-			    $query->where('companies.person' , 'like' ,"%$loginUser->id%")
-					->orWhere('units.person' , 'like' ,"%$loginUser->id%")
-					->orWhere('jobs.person' , 'like' ,"%$loginUser->id%");
+		$comp = Interview::join('companies', function ($join) use ($loginUser) {
+			$join->on('interviews.company_id','=','companies.id')
+				->where('companies.id' , $loginUser->company_id)
+				->where('companies.person' , 'like' ,"%$loginUser->id%");
 			})
+			->where('interviews.interview_type' , '0')
+			->where('interviews.interview_kind' , '0')
 			->where('interviews.aprove_flag', '1')
 			->where('interviews.status_id' , '4')
-			->where(function($query) {
-			    $query->where('interviews.interview_type' , '0')
-					->orWhere('interviews.interview_type' , '1');
+			->selectRaw('interviews.*');
+
+		$unit = Interview::join('units', function ($join) use ($loginUser) {
+			$join->on('interviews.unit_id','=','units.id')
+				->where('units.company_id' , $loginUser->company_id)
+				->where('units.person' , 'like' ,"%$loginUser->id%");
 			})
-			->orderBy('interviews.updated_at')
+			->where('interviews.interview_type' , '0')
+			->where('interviews.interview_kind' , '1')
+			->where('interviews.aprove_flag', '1')
+			->where('interviews.status_id' , '4')
+			->selectRaw('interviews.*');
+
+		$alreadyList = Interview::join('jobs', function ($join) use ($loginUser) {
+			$join->on('interviews.job_id','=','jobs.id')
+				->where('jobs.company_id' , $loginUser->company_id)
+				->where('jobs.person' , 'like' ,"%$loginUser->id%");
+			})
+			->whereIn('interviews.interview_type', [0, 1])
+			->where('interviews.interview_kind' , '2')
+			->where('interviews.aprove_flag', '1')
+			->where('interviews.status_id' , '4')
+			->selectRaw('interviews.*')
+
+			->union($comp)
+			->union($unit)
+			->orderBy('updated_at')
 			->get();
+
 
 		$i = 0;
 		$cnt = count($alreadyList);
