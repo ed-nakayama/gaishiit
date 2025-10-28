@@ -521,13 +521,13 @@ class CompUserController extends UserController
 			->where('interviews.interview_type' , '2')
 			->groupBy('interviews.user_id');
 
-		$userQuery = \DB::table('users')
-			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
+		$userQuery = User::
+			JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->leftJoinSub($subSQL1 , 'last_result' ,'last_result.user_id', 'users.id')
 			->leftJoinSub($subSQL2 , 'last_interview' ,'last_interview.user_id', 'users.id')
 			->leftJoinSub($subSQL3 , 'last_event' ,'last_event.user_id', 'users.id')
 			->leftJoin('const_results', 'const_results.id' , '=', 'users.result_id')
-			->selectRaw("users.*, age, const_results.name as result_name, DATE_FORMAT( GREATEST( ifnull(casual_last_update,0), ifnull(event_last_update,0), ifnull(formal_last_update,0) ) ,'%Y/%m/%d') as last_update")
+			->selectRaw("users.*, const_results.name as result_name, DATE_FORMAT( GREATEST( ifnull(casual_last_update,0), ifnull(event_last_update,0), ifnull(formal_last_update,0) ) ,'%Y/%m/%d') as last_update")
 			->where(function($query) {
 				$query->whereNotNull('casual_last_update')
 					->orWhereNotNull('event_last_update')
@@ -537,7 +537,6 @@ class CompUserController extends UserController
 		if (!empty($param->result)) $userQuery = $userQuery->where('users.result_id' , $param->result);
 		if (!empty($param->from_age)) $userQuery = $userQuery->where('age' ,'>=',  $param->from_age);
 		if (!empty($param->to_age)) $userQuery = $userQuery->where('age' ,'<',  $param->to_age + 10);
-//		if (!empty($param->current_job'])) $userQuery = $userQuery->whereIn('users.current_job' ,  $param['current_job']);
 
 		if (!empty($param['freeword'])) {
 			$freeword = $param->freeword;
@@ -558,24 +557,6 @@ class CompUserController extends UserController
 		
 		$userList = $userQuery->paginate(10);
 
-//ddd($userList);
-
-		$idx = 0;
-		foreach ($userList as $user) {
-
-			$catName = array();
-			$cats = explode(",", $user->job_cats);
-			$len = count($cats);
-
-			for ($i = 0; $i < $len; $i++) {
-				$cat = JobCat::find($cats[$i]);
-				if ($cat) {
-					$catName[] = $cat->name;
-				}
-			}
-
-			$userList[$idx++]->cat_names = join("/",$catName);
-		}
 
 		return $userList;
 	}	

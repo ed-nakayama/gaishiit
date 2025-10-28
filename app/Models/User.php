@@ -356,7 +356,7 @@ class User extends Authenticatable
 		if ($this->job == 1) {
 			$ret = "IC";
 		} else if ($this->job == '2') {
-			$ret = "Management　　　　年数 {$this->mgr_year}年 / 人数 {$this->mgr_member}人";
+			$ret = "Management　年数 {$this->mgr_year}年 / 人数 {$this->mgr_member}人";
 		} else {
 			$ret = "未設定";
 		}
