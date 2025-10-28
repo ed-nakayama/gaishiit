@@ -8,87 +8,71 @@
 
 {{--@include('comp.member_activity')--}}
 
-	<div class="mainContentsInner-oneColumn">
+<div class="mainContentsInner-oneColumn">
 
-                <div class="mainTtl title-main">
-                    <h2>イベント管理</h2>
-                </div><!-- /.mainTtl -->
+	<div class="mainTtl title-main">
+		<h2>イベント管理</h2>
+	</div><!-- /.mainTtl -->
                 
-                <div class="containerContents">
-                    
-                    <section class="secContents">
-                        <div class="secContentsInner">
+	<div class="containerContents">
 
-                            <div class="secBtnHead">
-                                
-                                <div class="secBtnHead-btn">
-                                    <ul class="item-btn">
-                                        <li><a href="/comp/event/register" class="squareBtn">新規作成</a></li>
-                                    </ul><!-- /.item -->
-                                </div><!-- /.secBtnHead-btn -->
-                                <div class="secBtnHead-check">
-                                    {{ Form::open(['url' => '/comp/event/list', 'name' => 'listform' , 'id' => 'listform', 'method'=>'GET']) }}
-                                        <input type="checkbox" id="only_me" name="only_me" value="1" @if ($param['only_me'] == '1') checked @endif  onchange="this.form.submit()"><label for="only_me">自分の担当のみ表示</label>
-                                    {{ Form::close() }}
-                                </div><!-- /.secBtnHead-btn -->
+		<section class="secContents">
+			<div class="secContentsInner">
 
-                            </div><!-- /.sec-btn -->
+				<div class="secBtnHead">
+					<div class="secBtnHead-btn">
+						<ul class="item-btn">
+							<li><a href="/comp/event/register" class="squareBtn">新規作成</a></li>
+						</ul><!-- /.item -->
+					</div><!-- /.secBtnHead-btn -->
 
-							<p style="text-align: center;">全{{ $eventList->total() }}件中 {{  ($eventList->currentPage() -1) * $eventList->perPage() + 1}}-{{ (($eventList->currentPage() -1) * $eventList->perPage() + 1) + (count($eventList) -1)  }}件</p>
-                            <table class="tbl-eventlist mb-ajust" id="eventTable">
-                                <tr>
-                                    <th>作成日</th>
-                                    <th>イベント名称</th>
-                                    <th>部門</th>
-									<th>担当者</th>
-                                    <th></th>
-                                </tr>
-                                @foreach ($eventList as $event)
-                                <tr>
-                                    <td>{{ $event->created_at->format('Y/m/d/H:i') }}</td>
-                                    <td>{{ $event->name }}</td>
-                                    <td>{{ $event->unit_name }}</td>
-									<td>{{ $event->person_name }}</td>
-                                    <td>
-                                        <div class="btnContainer">
-                                        {{ Form::open(['url' => '/comp/event/detail', 'name' => 'detailform' . $event->id , 'method'=>'GET' ]) }}
-                                        {{ Form::hidden('event_id', $event->id) }}
-                                        @if (strpos($event->person ,Auth::user()->id) !== false)
-                                            <a href="javascript:detailform{{ $event->id }}.submit()" class="squareBtn btn-large">詳細</a>
-                                        @else
-                                            <a href="javascript:detailform{{ $event->id }}.submit()" class="squareGrayBtn btn-large">参照</a>
-                                        @endif
-                                       {{ Form::close() }}
-                                        </div><!-- /.btn-container -->
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </table>
+					<div class="secBtnHead-check">
+						{{ html()->form('GET', '/comp/event/list')->id('listform')->attribute('name', 'listform')->open() }}
+						<input type="checkbox" id="only_me" name="only_me" value="1" @if ($param['only_me'] == '1') checked @endif  onchange="this.form.submit()"><label for="only_me">自分の担当のみ表示</label>
+						{{ html()->form()->close() }}
+					</div><!-- /.secBtnHead-btn -->
+				</div><!-- /.sec-btn -->
+
+				<p style="text-align: center;">全{{ $eventList->total() }}件中 {{  ($eventList->currentPage() -1) * $eventList->perPage() + 1}}-{{ (($eventList->currentPage() -1) * $eventList->perPage() + 1) + (count($eventList) -1)  }}件</p>
+				<table class="tbl-eventlist mb-ajust" id="eventTable">
+					<tr>
+						<th>作成日</th>
+						<th>イベント名称</th>
+						<th>部門</th>
+						<th>担当者</th>
+						<th></th>
+					</tr>
+					@foreach ($eventList as $event)
+						<tr>
+							<td>{{ $event->created_at->format('Y/m/d/H:i') }}</td>
+							<td>{{ $event->name }}</td>
+							<td>{{ $event->unit_name }}</td>
+							<td>{{ $event->getPerson() }}</td>
+							<td>
+								<div class="btnContainer">
+									{{ html()->form('GET', '/comp/event/detail')->attribute('name', 'detailform' . $event->id )->open() }}
+									{{ html()->hidden('event_id', $event->id) }}
+									@if (strpos($event->person ,Auth::user()->id) !== false)
+										<a href="javascript:detailform{{ $event->id }}.submit()" class="squareBtn btn-large">詳細</a>
+									@else
+										<a href="javascript:detailform{{ $event->id }}.submit()" class="squareGrayBtn btn-large">参照</a>
+									@endif
+									{{ html()->form()->close() }}
+								</div><!-- /.btn-container -->
+							</td>
+						</tr>
+					@endforeach
+				</table>
  
-                            <div class="pager">
-                               {{ $eventList->appends( $param)->links('pagination.comp') }}
-                            </div>
-                        </div><!-- /.secContentsInner -->
-                    </section><!-- /.secContents -->
+				<div class="pager">
+					{{ $eventList->appends( $param)->links('pagination.comp') }}
+				</div>
+			</div><!-- /.secContentsInner -->
+		</section><!-- /.secContents -->
                    
-                </div><!-- /.containerContents -->
+	</div><!-- /.containerContents -->
 
-            </div><!-- /.mainContentsInner -->
+</div><!-- /.mainContentsInner -->
 
-
-<script type="text/javascript">
-
-
-$(document).ready(function(){
-  $("#eventTable tr:even").not(':first').addClass("evenRow");
-  $("#eventTable tr").not(':first').hover(
-    function(){
-        $(this).addClass("focusRow");
-    },function(){
-        $(this).removeClass("focusRow");
- });
-});
-
-</script>
 
 @endsection

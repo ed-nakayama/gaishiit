@@ -81,8 +81,7 @@ class CompEventController extends Controller
 		$loginUser = Auth::user();
 
 		$eventQuery = Event::leftJoin('units', 'events.unit_id','=','units.id')
-			->leftJoin('comp_members', 'events.member_id','=','comp_members.id')
-			->selectRaw("events.* ,units.name as unit_name ,comp_members.name as member_name ,(CASE WHEN events.person LIKE '%$loginUser->id%' THEN 1 ELSE 0 END) as edit_flag")
+			->selectRaw("events.* ,units.name as unit_name ,(CASE WHEN events.person LIKE '%$loginUser->id%' THEN 1 ELSE 0 END) as edit_flag")
 			->where('events.company_id' , $loginUser->company_id);
 	
 			
@@ -91,24 +90,6 @@ class CompEventController extends Controller
 		}
 
 		$eventList = $eventQuery->orderBy('events.created_at' , 'desc')->paginate(10);
-
-		$idx = 0;
-		foreach ($eventList as $list) {
-			
-		if ( !empty($list->person) ) {
-			$loc = explode(',', $list->person);
-			$ln = CompMember::whereIn('id' ,$loc)->get();
-
-				$person_name = array();
-				for ($i = 0; $i < count($ln); $i++) {
-					$person_name[] = $ln[$i]['name'];
-				}
-
-				$eventList[$idx++]->person_name = implode('/', $person_name);
-			} else {
-				$eventList[$idx++]->person_name = '';
-			}
-		}
 
 		return $eventList;
 }
