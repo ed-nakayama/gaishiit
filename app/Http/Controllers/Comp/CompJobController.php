@@ -108,24 +108,6 @@ class CompJobController extends Controller
 			
 		$jobList = $jobQuery->orderBy('jobs.created_at' , 'desc')->paginate(10);
 
-		$idx = 0;
-		foreach ($jobList as $list) {
-			
-		if ( !empty($list->person) ) {
-			$loc = explode(',', $list->person);
-			$ln = CompMember::whereIn('id' ,$loc)->get();
-
-				$person_name = array();
-				for ($i = 0; $i < count($ln); $i++) {
-					$person_name[] = $ln[$i]['name'];
-				}
-
-				$jobList[$idx++]->person_name = implode('/', $person_name);
-			} else {
-				$jobList[$idx++]->person_name = '';
-			}
-		}
-
 		return $jobList;
 }
 

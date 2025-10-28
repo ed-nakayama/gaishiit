@@ -55,7 +55,7 @@
 								<td>{{ $job->getJobCategoryName() }}</td>
 								<td>{{ $job->unit_name }}</td>
 {{--							<td>{{ $job->member_name }}</td>--}}
-								<td>{{ $job->person_name }}</td>
+								<td>{{ $job->getPerson() }}</td>
 								<td>
 									<div class="btnContainer">
 										{{ html()->form('GET', '/comp/job/edit')->id('editform' . $job->id)->attribute('name', 'editform' . $job->id)->open() }}
