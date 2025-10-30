@@ -141,21 +141,14 @@ class InterviewController extends Controller
 	{
 		$loginUser = Auth::user();
 
-		$interview = Job::rightJoin('interviews','interviews.job_id','=','jobs.id')
-			->leftJoin('companies','interviews.company_id','=','companies.id')
-			->leftJoin('units','interviews.unit_id','=','units.id')
-			->leftJoin('events','interviews.event_id','=','events.id')
-			->selectRaw('interviews.*,' .
-						'jobs.*, ' .
-						'interviews.id as interview_id,' .
-						'interviews.created_at as interviews_created_at,' .
-						'jobs.name as job_name,' .
-						'units.name as unit_name,' .
-						'events.name as event_name,' .
-						'companies.name as company_name, companies.logo_file as company_logo ')
-			->where('interviews.id' ,$request->interview_id)
+		$interview = Interview::where('interviews.id' ,$request->interview_id)
 			->where('interviews.user_id' ,$loginUser->id)
 			->first();
+
+		$interview->getCompany();
+		$interview->getUnit();
+		$interview->getJob();
+		$interview->getEvent();
 
 		if (!isset($interview)) {
 			abort(404);
@@ -168,37 +161,15 @@ class InterviewController extends Controller
 			->orderBy('interview_messages.id')
 			->get();
 
-		$userInfo = User::leftJoin('const_locations','users.request_location','=','const_locations.id')
-			->selectRaw('users.* ,const_locations.name as location_name ')
-			->where('users.id' ,$interview->user_id)
-			->first();
-
 		// 既読フラグセット
 		InterviewMsgStatus::updateOrCreate(
 			['interview_id' => $request->interview_id, 'reader_id' => $loginUser->id ],
 			['reader_type' => 'U', 'read_flag' => '1']
 		);
 
-
-		$catName = array();
-		$cats = explode(",", $userInfo['request_cat']);
-		$len = count($cats);
-
-		for ($i = 0; $i < $len; $i++) {
-			$cat = JobCat::find($cats[$i]);
-			if ($cat) {
-				$catName[] = $cat->name;
-			}
-		}
-
-		$userInfo['cat_names'] = join("/",$catName);
-
-
-		
 		return view('user.interview_flow' ,compact(
 			'interview',
 			'msgList',
-			'userInfo',
 			));
 	}
 
@@ -483,8 +454,8 @@ class InterviewController extends Controller
 		$int_kind = null;
 
 		if (isset($request->int_kind)) $int_kind = $request->int_kind;
-		if (isset($request->unit_id)) $unit_id = $request->unit_id;
-		if (isset($request->job_id)) $job_id = $request->job_id;
+		if (isset($request->unit_id))  $unit_id = $request->unit_id;
+		if (isset($request->job_id))   $job_id = $request->job_id;
 		if (isset($request->event_id)) $event_id = $request->event_id;
 
 		if ($int_type == '0') {
@@ -510,9 +481,9 @@ class InterviewController extends Controller
         ]);
 
 		InterviewMessage::create([
-            'interview_id' => $interview->id,
-            'user_id'      => $loginUser->id,
-            'content'      => $content,
+			'interview_id' => $interview->id,
+			'user_id'      => $loginUser->id,
+			'content'      => $content,
         ]);
 
 
@@ -521,6 +492,31 @@ class InterviewController extends Controller
 			'reader_type' => 'U',
 			'reader_id' => $loginUser->id,
 			'read_flag' => '1'
+		]);
+
+
+		// 自動応答
+		$interview->member_id = '0';
+		$interview->aprove_flag = '1';
+		$interview->aprove_date = date("Y-m-d H:i:s");
+		$interview->save();
+
+		if ($interview->interview_type == '0') {
+			$content ="カジュアル面談のお申込みを受け付けました。\n担当者からの連絡をお待ちください。";
+		}
+
+		if ($interview->interview_type == '1') {
+			$content ="正式応募へのお申込みを受け付けました。\n担当者からの連絡をお待ちください。";
+		}
+
+		if ($interview->interview_type == '2') {
+			$content ="イベントへのお申込みを受け付けました。\n担当者からの連絡をお待ちください。";
+		}
+
+		InterviewMessage::create([
+			'interview_id' => $interview->id,
+			'member_id'    => '0',
+			'content'      => $content,
 		]);
 
 
@@ -533,19 +529,19 @@ class InterviewController extends Controller
         if ($interview->intervew_type == '1') { // 正式
 			if (!empty($interview->job_id)) {
 				$job = Job::find($interview->job_id);
-				$person = explode(",", $job['person']);
+				$person = explode(",", $job->person);
 			}
 			
         } else if ($interview->intervew_type == '2') { // イベント
 	        if ($interview->interview_kind == '1') { // 部署
 				if (!empty($interview->unit_id)) {
 					$unit = Unit::find($interview->unit_id);
-					$person = explode(",", $unit['person']);
+					$person = explode(",", $unit->person);
 				}
 	        } else { // 企業
 				if (!empty($interview->company_id)) {
 					$comp = Company::find($interview->company_id);
-					$person = explode(",", $comp['person']);
+					$person = explode(",", $comp->person);
 				}
 			}
 
@@ -553,17 +549,17 @@ class InterviewController extends Controller
 	        if ($interview->interview_kind == '1') { // 部署
 				if (!empty($interview->unit_id)) {
 					$unit = Unit::find($interview->unit_id);
-					$person = explode(",", $unit['person']);
+					$person = explode(",", $unit->person);
 				}
 			
 	        } elseif ($interview->interview_kind == '2') { // ジョブ
 				if (!empty($interview->job_id)) {
 					$job = Job::find($interview->job_id);
-					$person = explode(",", $job['person']);
+					$person = explode(",", $job->person);
 				}
 	        } else { // 企業
 //				$comp = Company::find($interview->company_id);
-				$person = explode(",", $comp['person']);
+				$person = explode(",", $comp->person);
 			}
         }
 

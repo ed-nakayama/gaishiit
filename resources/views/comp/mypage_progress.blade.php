@@ -14,10 +14,12 @@
 	</div><!-- /.mainTtl -->
 
 		<div class="containerContents">
-
 			<section class="secContents-mb">
 				<div class="tab_box_no">
 					<div class="btn_area">
+					<p class="tab_btn msgMenu__tab"><a href="/comp/msg/casual/list">カジュアル面談</a><span class="msgMenu__badge">{{ $member_act['user_casual_cnt'] }}</span></p>
+					<p class="tab_btn msgMenu__tab"><a href="/comp/msg/formal/list">正式応募</a><span class="msgMenu__badge">{{ $member_act['user_formal_cnt'] }}</span></p>
+					<p class="tab_btn msgMenu__tab"><a href="/comp/msg/event/list">イベント</a><span class="msgMenu__badge">{{ $member_act['event_cnt'] }}</span></p>
 						<p class="tab_btn"><a href="/comp/mypage/main">保存した条件の候補者</a></p>
 						<p class="tab_btn"><a href="/comp/mypage/newuser">新しい候補者を探す</a></p>
 						<p class="tab_btn active"><a href="/comp/mypage/progress">面談進捗管理</a></p>

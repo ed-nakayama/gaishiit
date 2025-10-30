@@ -87,6 +87,26 @@ input[type=checkbox]:checked::before {
   font-weight: bold;
 }
 
+.msgMenu__tab {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+}
+
+.msgMenu__badge {
+  position: relative;
+  top: 10%;
+  margin-left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #f00;
+  font-size: 14px;
+  font-weight: bold;
+  vertical-align: middle;
+  vertical-align: middle;
+}
+
 .userNameMenu .userNameMenu__button {
   display: inline-flex;
   align-items: center;

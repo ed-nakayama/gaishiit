@@ -34,6 +34,13 @@
 
 @section('content')
 
+<style>
+.scroll{
+  height: 350px;
+  overflow: auto;
+}
+</style>
+
 
 @include('user.user_activity')
 
@@ -58,49 +65,49 @@
 					<div class="date">
 						<dl>
 							<dt>依頼日：</dt>
-							<dd>{{ str_replace('-', '/' ,substr($interview->interviews_created_at, 0, 16)) }}</dd>
+							<dd>{{ str_replace('-', '/' ,substr($interview->created_at, 0, 16)) }}</dd>
 						</dl>
 					</div>
 					<div class="ttl"> 
 						<a>
 							<figure>
-								<img src="{{ $interview->company_logo }}" alt="">
+								<img src="{{ $interview->company->logo_file }}" alt="">
 							</figure>
 						</a>
 						<div class="txt">
 							<p class="name">
 								<a>
-									{{ $interview->company_name }}
+									{{ $interview->company->name }}
 								</a>
 							</p>
 						</div>
 					</div>
 					<div class="item-info">
 						<dl>
-							@if ( !empty($interview->unit_name) )
+							@if ( !empty($interview->unit) )
 								<dt style="white-space:nowrap;width:64px;">部門</dt>
-								<dd>{{ mb_strimwidth($interview->unit_name, 0, 30, "...") }}</dd>
+								<dd>{{ mb_strimwidth($interview->unit->name, 0, 30, "...") }}</dd>
 							@endif
-							@if ( !empty($interview->event_name) )
+							@if ( !empty($interview->event) )
 								<dt style="white-space:nowrap;width:64px;">イベント</dt>
-								<dd>{{ mb_strimwidth($interview->event_name, 0, 30, "...") }}</dd>
+								<dd>{{ mb_strimwidth($interview->event->name, 0, 30, "...") }}</dd>
 							@endif
 						</dl>
-						@if ( !empty($interview->name) )
+						@if ( !empty($interview->job) )
 							<dl>
 								<dt style="white-space:nowrap;">求人</dt>
 								<dd>
-									<span class="job-txt">{{ $interview->name }}@if(!empty($interview->job_code)) [ID:{{ $interview->job_code }}]@endif</span>
+									<span class="job-txt">{{ $interview->job->name }}@if(!empty($interview->job->job_code)) [ID:{{ $interview->job->job_code }}]@endif</span>
 								</dd>
 							</dl>
 							<dl>
 								<dd>
 									<div class="item-btm" style="margin-top: 0px;">
-										@if (!empty($interview->job_cat_details))
-										<a style="background:#E5AF24;color:#fff;border:4px solid #E5AF24;border-radius: 20px;" >{{  $interview->getJobCategoryName() }}</a>
+										@if (!empty($interview->job->getJobCategoryName()) )
+										<a style="background:#E5AF24;color:#fff;border:4px solid #E5AF24;border-radius: 20px;" >{{  $interview->job->getJobCategoryName() }}</a>
 										@endif
-										@if (!empty($interview->locations))
-										<p class="location"  style="font-size: 1.4rem;">{{ $interview->getLocations() }} @if (!empty($job->else_location)) ({{ $job->else_location }})@endif</p>
+										@if (!empty($interview->job->getLocations()) )
+										<p class="location"  style="font-size: 1.4rem;">{{ $interview->job->getLocations() }} @if (!empty($job->else_location)) ({{ $job->else_location }})@endif</p>
 										@endif
 									</div>
 								</dd>
@@ -158,7 +165,7 @@
 						
 						<div class="message-area" style="margin-top: 10px;">
 							{{ html()->form('POST', "/interview/aprove")->attribute('name', "apform")->open() }}
-							{{ html()->hidden('interview_id' ,$interview->interview_id) }}
+							{{ html()->hidden('interview_id' ,$interview->id) }}
 							{{ html()->hidden('aprove_flag','1') }}
 							<button type="submit" style="margin-top: 10px;">はい、承諾します</button>
 							{{ html()->form()->close() }}
@@ -166,7 +173,7 @@
 
 						<div class="message-area" style="margin-top: 10px;">
 							{{ html()->form('POST', "/interview/aprove")->attribute('name', "rejform")->open() }}
-							{{ html()->hidden('interview_id', $interview->interview_id) }}
+							{{ html()->hidden('interview_id', $interview->id) }}
 							{{ html()->hidden('aprove_flag','2') }}
 							<button type="submit" style="margin-top: 10px;">辞退します</button>
 							{{ html()->form()->close() }}
@@ -180,8 +187,8 @@
 				<div class="chat">
 					<div class="chat-inner">
 
+<div class="scroll">
 						@foreach ($msgList as $msg)
-							@if ($loop->last)<a id="last_msg"></a>@endif
 							@if ( !empty($msg->user_name) )
 								<div class="balloon-chat right">
 									<div class="time" style="font-size: 1.2rem;">{{  $msg->created_at->format('Y/m/d/H:i') }}</div>
@@ -225,46 +232,56 @@
 								</div>
 							@endif
   						@endforeach
+</div>{{-- END scroll --}}
+
+						@if (!empty($interview->end_thread))
+							<div style="display: flex; display: -webkit-flex; -webkit-justify-content: space-between; justify-content: space-between;">
+								<div></div>
+								<div style="padding:5px; font-size:18px;">―このスレッドは終了しました―</div>
+								<div></div>
+							</div>
+						@endif
 					</div> <!-- END chat-inner -->
 
-					<hr>
-					
-					<div class="chat-inner message-wrap">
-						<div class="toggle-btn">
-							<span></span>
-							<span></span>
-						</div>
- 						<div class="messageBg">
-							<h2>新しいメッセージを送る</h2>
-							<div class="message-area">
-								{{ html()->form('POST', "/interview/flowpost")->id('postform')->attribute('name', "postform")->acceptsFiles()->open() }}
-								{{ html()->hidden('interview_id', $interview->interview_id)->id('interview_id') }}
-								@if ($interview->aprove_flag == '0')
-									<input type="radio" name="aprove_flag" value="1" @if (old('aprove_flag') == '1') checked @endif>承認　　
-									<input type="radio" name="aprove_flag" value="2" @if (old('aprove_flag') == '2') checked @endif>否認
-									@error('aprove_flag')
+
+					@if (empty($interview->end_thread))
+						<hr>
+						<div class="chat-inner message-wrap">
+							<div class="toggle-btn">
+								<span></span>
+								<span></span>
+							</div>
+	 						<div class="messageBg">
+								<h2>新しいメッセージを送る</h2>
+								<div class="message-area">
+									{{ html()->form('POST', "/interview/flowpost")->id('postform')->attribute('name', "postform")->acceptsFiles()->open() }}
+									{{ html()->hidden('interview_id', $interview->id)->id('interview_id') }}
+									@if ($interview->aprove_flag == '0')
+										<input type="radio" name="aprove_flag" value="1" @if (old('aprove_flag') == '1') checked @endif>承認　　
+										<input type="radio" name="aprove_flag" value="2" @if (old('aprove_flag') == '2') checked @endif>否認
+										@error('aprove_flag')
+											<ul class="oneRow">
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											</ul>
+										@enderror
+										<br><br>
+									@endif
+									<textarea name="content" id="" cols="30" rows="10" placeholder="本文を入力してください"></textarea>
+									@error('content')
 										<ul class="oneRow">
 											<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
 										</ul>
 									@enderror
-									<br><br>
-								@endif
-								<textarea name="content" id="" cols="30" rows="10" placeholder="本文を入力してください"></textarea>
-								@error('content')
-									<ul class="oneRow">
-										<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-									</ul>
-								@enderror
-								<div style="text-align:left;">
-								添付ファイル：{{ html()->file('up_file') }}
-								</div>
-								<button type="submit">送信</button>
-								{{ html()->form()->close() }}
-							</div> <!-- END message-area -->
-						</div> <!-- END messageBg -->
-					</div> <!-- END chat-inner message-wrap -->
-
-				</div> <!-- END chat -->
+									<div style="text-align:left;">
+									添付ファイル：{{ html()->file('up_file') }}
+									</div>
+									<button type="submit">送信</button>
+									{{ html()->form()->close() }}
+								</div> <!-- END message-area -->
+							</div> <!-- END messageBg -->
+						</div> <!-- END chat-inner message-wrap -->
+					</div> <!-- END chat -->
+					@endif
 {{-- END メッセージ --}}
 			@endif
 					
@@ -282,7 +299,11 @@
 /////////////////////////////////////////////////////////
 $(document).ready(function() {
 
-	window.location.hash = "last_msg";
+	// 要素を特定して取得
+	const scrollContainer = document.querySelector('.scroll');
+
+	// 要素のスクロールバーを最下部まで移動させる
+	scrollContainer.scrollTop = scrollContainer.scrollHeight - scrollContainer.clientHeight;
 
 });
 

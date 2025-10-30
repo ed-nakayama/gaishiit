@@ -61,14 +61,13 @@ class CompInterviewController extends InterviewController
 /*************************************
 * カジュアルリスト
 **************************************/
-	public function casualList()
-	{
+	public function getMsgList($interview_type) {
+
 		$loginUser = Auth::user();
 
  		$query =  Interview::query();
 
-		$interviewList = $query->join('users','interviews.user_id','=','users.id')
-			->leftJoin('comp_members','interviews.member_id','=','comp_members.id')
+		$interviewList = $query->leftJoin('comp_members','interviews.member_id','=','comp_members.id')
 			->leftJoin('interview_msg_statuses', function ($join) use ($loginUser) {
                 $join->on('interview_msg_statuses.interview_id','=','interviews.id')
 					->where('interview_msg_statuses.reader_id' ,$loginUser->id);
@@ -82,16 +81,6 @@ class CompInterviewController extends InterviewController
 			    ->orderBy('interview_messages.updated_at', 'desc')
 			    ->take(1)
 			])
-
-			->selectRaw('interviews.*,' .
-						'interview_msg_statuses.read_flag,' .
-						'users.name as user_name, users.nick_name as user_nick_name,' .
-						'comp_members.name as member_name,' .
-						'jobs.name as job_name,' .
-						'units.name as unit_name,' .
-						'companies.name as company_name')
-			->where('interviews.company_id' ,$loginUser->company_id)
-
 
 			->where(function($query) use ($loginUser) {
 				$query
@@ -110,32 +99,50 @@ class CompInterviewController extends InterviewController
 				;
 			})
 
-			->where('interview_type' ,0)
+			->where('interview_type' ,$interview_type)
 			->orderBy('last_update' ,'desc')
 			->paginate(10);
 
 		$i = 0;
 		foreach ($interviewList as $cas) {
+			$interviewList[$i]->getUser();
+			$interviewList[$i]->getCompany();
+			$interviewList[$i]->getUnit();
+			$interviewList[$i]->getJob();
+			$interviewList[$i]->getMsgStatus($loginUser->id);
+
 	 		$msg = InterviewMessage::leftJoin('comp_members','interview_messages.member_id','=','comp_members.id')
 	 			->leftJoin('users','interview_messages.user_id','=','users.id')
-	 			->selectRaw('content ,users.name as user_name, comp_members.name as member_name')
+	 			->selectRaw('content ,users.name as user_name ,users.nick_name as user_nick_name, comp_members.name as member_name')
 	 			->where('interview_id', $cas->id)
 	 			->orderBy('interview_messages.id', 'desc')
 	 			->first();
 	 		
 	 		if (!empty($msg->user_name)) {
 				if ($cas->aprove_flag == '1') {
- 	 				$interviewList[$i]->last_sender = $msg->user_name;
+ 	 				$interviewList[$i]->last_sender = "（候補者）". $msg->user_name;
 				} else {
- 	 				$interviewList[$i]->last_sender = $cas->user_nick_name;
+ 	 				$interviewList[$i]->last_sender = "（候補者）". $msg->user_nick_name;
 				}
  	 		} else {
  	 			$interviewList[$i]->last_sender = $msg->member_name;
  			}
- 	 		$interviewList[$i++]->last_msg = $msg->content;
+ 	 		$interviewList[$i]->last_msg = $msg->content;
+
+			$i++;
 		}
-		
-		
+
+		return $interviewList;
+	}
+
+
+/*************************************
+* カジュアルリスト
+**************************************/
+	public function casualList()
+	{
+		$interviewList = $this->getMsgList(0);
+
 		return view('comp.casual_msg_list' ,compact('interviewList'));
 	}
 
@@ -145,57 +152,8 @@ class CompInterviewController extends InterviewController
 **************************************/
 	public function formalList()
 	{
-		$loginUser = Auth::user();
+		$interviewList = $this->getMsgList(1);
 
- 		$query =  Interview::query();
-
-		$interviewList = $query->join('users','interviews.user_id','=','users.id')
-			->leftJoin('comp_members','interviews.member_id','=','comp_members.id')
-			->leftJoin('interview_msg_statuses', function ($join) use ($loginUser) {
-                $join->on('interview_msg_statuses.interview_id','=','interviews.id')
-					->where('interview_msg_statuses.reader_id' ,$loginUser->id);
-			})
-			->leftJoin('companies','interviews.company_id','=','companies.id')
-			->leftJoin('units','interviews.unit_id','=','units.id')
-			->Join('jobs','interviews.job_id','=','jobs.id')
-
-			->addSelect(['last_update' => InterviewMessage::select('interview_messages.updated_at')
-			    ->whereColumn('interview_messages.interview_id', 'interviews.id')
-			    ->orderBy('interview_messages.updated_at', 'desc')
-			    ->take(1)
-			])
-
-			->selectRaw('interviews.*,' .
-						'interview_msg_statuses.read_flag,' .
-						'users.name as user_name, users.nick_name as user_nick_name,' .
-						'comp_members.name as member_name,' .
-						'jobs.name as job_name,' .
-						'units.name as unit_name,' .
-						'companies.name as company_name')
-			->where('jobs.person' , 'like' ,"%$loginUser->id%")
-			->where('interviews.company_id' ,$loginUser->company_id)
-			->where('interview_type' ,1)
-			->orderBy('last_update' ,'desc')
-			->paginate(10);
-
-		$i = 0;
-		foreach ($interviewList as $cas) {
-	 		$msg = InterviewMessage::leftJoin('comp_members','interview_messages.member_id','=','comp_members.id')
-	 			->leftJoin('users','interview_messages.user_id','=','users.id')
-	 			->selectRaw('content ,users.name as user_name, comp_members.name as member_name')
-	 			->where('interview_id', $cas->id)
-	 			->orderBy('interview_messages.id', 'desc')
-	 			->first();
-	 		
-	 		if (!empty($msg->user_name)) {
- 	 			$interviewList[$i]->last_sender = $msg['user_name'];
- 	 		} else {
- 	 			$interviewList[$i]->last_sender = $msg['member_name'];
- 			}
- 	 		$interviewList[$i++]->last_msg = $msg['content'];
-		}
-		
-		
 		return view('comp.formal_msg_list' ,compact('interviewList'));
 	}
 
@@ -216,21 +174,12 @@ class CompInterviewController extends InterviewController
                 $join->on('interview_msg_statuses.interview_id','=','interviews.id')
 					->where('interview_msg_statuses.reader_id' ,$loginUser->id);
 			})
-			->leftJoin('companies','events.company_id','=','companies.id')
-			->leftJoin('units','events.unit_id','=','units.id')
 
 			->addSelect(['last_update' => InterviewMessage::select('interview_messages.updated_at')
 			    ->whereColumn('interview_messages.interview_id', 'interviews.id')
 			    ->orderBy('interview_messages.updated_at', 'desc')
 			    ->take(1)
 			])
-
-			->selectRaw('interviews.*,' .
-						'interview_msg_statuses.read_flag,' .
-						'users.name as user_name, users.nick_name as user_nick_name,' .
-						'comp_members.name as member_name,' .
-						'units.name as unit_name,' .
-						'companies.name as company_name')
 			->where('events.person' , 'like' ,"%$loginUser->id%")
 			->where('interviews.company_id' ,$loginUser->company_id)
 			->orderBy('last_update' ,'desc')
@@ -238,18 +187,23 @@ class CompInterviewController extends InterviewController
 
 		$i = 0;
 		foreach ($eventList as $cas) {
+			$eventList[$i]->getUser();
+			$eventList[$i]->getCompany();
+			$eventList[$i]->getUnit();
+			$eventList[$i]->getMsgStatus($loginUser->id);
+
 	 		$msg = InterviewMessage::leftJoin('comp_members','interview_messages.member_id','=','comp_members.id')
 	 			->leftJoin('users','interview_messages.user_id','=','users.id')
-	 			->selectRaw('content ,users.name as user_name ,users.nick_name as nick_name, comp_members.name as member_name')
+	 			->selectRaw('content ,users.name as user_name ,users.nick_name as user_nick_name, comp_members.name as member_name')
 	 			->where('interview_id', $cas->id)
 	 			->orderBy('interview_messages.id', 'desc')
 	 			->first();
 	 		
 	 		if (!empty($msg->user_name)) {
 				if ($cas->aprove_flag == '1') {
- 	 				$eventList[$i]->last_sender = $msg->user_name;
+ 	 				$eventList[$i]->last_sender =  "（候補者）" . $msg->user_name;
 				} else {
- 	 				$eventList[$i]->last_sender = $msg->nick_name;
+ 	 				$eventList[$i]->last_sender =  "（候補者）" . $msg->user_nick_name;
 				}
  	 		} else {
  	 			$eventList[$i]->last_sender = $msg->member_name;
@@ -334,20 +288,15 @@ class CompInterviewController extends InterviewController
 			['reader_type' => 'C', 'read_flag' => '1']
 		);
 
-		$interview = Job::rightJoin('interviews','interviews.job_id','=','jobs.id')
-			->leftJoin('companies','interviews.company_id','=','companies.id')
-			->leftJoin('units','interviews.unit_id','=','units.id')
-			->leftJoin('events','interviews.event_id','=','events.id')
-			->selectRaw('interviews.*,' .
-						'jobs.* ,' .
-						'interviews.id as interview_id,' .
-						'interviews.created_at as interviews_created_at,' .
-						'units.name as unit_name,' .
-						'events.name as event_name ,' .
-						'companies.name as company_name, companies.logo_file as company_logo ')
-			->where('interviews.id' ,$request->interview_id)
+		$interview = Interview::where('interviews.id' ,$request->interview_id)
 			->where('interviews.company_id' ,$loginUser->company_id)
 			->first();
+
+		$interview->getUser();
+		$interview->getCompany();
+		$interview->getUnit();
+		$interview->getJob();
+		$interview->getEvent();
 
 		if (!isset($interview)) {
 			abort(404);
@@ -361,8 +310,6 @@ class CompInterviewController extends InterviewController
 			->where('interview_messages.interview_id' , $request->interview_id)
 			->orderBy('interview_messages.id')
 			->get();
-
-		$userInfo = $this->get_user($interview->user_id);
 
 		$maskMsg = MaskMessage::where('member_id' ,$loginUser->id)
 			->where('interview_type' ,$interview->interview_type)
@@ -390,7 +337,6 @@ class CompInterviewController extends InterviewController
 		return view('comp.interview_flow' ,compact(
 			'interview',
 			'msgList',
-			'userInfo',
 			'maskMsg',
 			));
 	}
@@ -941,5 +887,28 @@ class CompInterviewController extends InterviewController
 
 		return Storage::download($filePath, $fileName, $headers);
 	}
+
+
+/*************************************
+* スレッド終了
+**************************************/
+	public function endThread(Request $request) {
+		
+		$loginUser = Auth::user();
+
+		$interview = Interview::where('interviews.id' ,$request->interview_id)
+			->where('interviews.company_id' , $loginUser->company_id)
+			->first();
+
+		if (!isset($interview)) {
+			abort(404);
+		}
+
+		$interview->end_thread = 1;
+		$interview->save();
+
+		return redirect('comp/interview/flow?interview_id=' . $request->interview_id);
+	}
+
 
 }

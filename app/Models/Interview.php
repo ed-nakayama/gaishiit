@@ -139,7 +139,7 @@ class Interview extends Model
 	{
 		$this->stage = null;
 
-		if (!empty($this->tage_id)) {
+		if (!empty($this->stage_id)) {
 			$this->stage = ConstStage::where('id' ,$this->stage_id)
 			->first();
 		}

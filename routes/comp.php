@@ -10,14 +10,14 @@ Auth::routes([
     'verify'   => false
 ]);
 
-
+/*
 // ログイン認証後
 Route::middleware('auth:comp')->group(function () {
 
     // TOPページ
     Route::resource('mypage', 'CompMypageController', ['only' => 'index']);
 });
-
+*/
 
 	// ログインテスト
 Route::get ('virtual/login', 'Auth\VirtualLoginController@showLoginForm2');
@@ -31,8 +31,7 @@ Route::get ('password/complete',      'ResetCompleteController@index')->name('pa
 
 
 	// マイページ
-//Route::get ('/mypage',      'CompMypageController@index')->name('mypage');
-Route::get ('/mypage',        'CompMypageController@index_main');
+Route::get ('/mypage',        'CompMypageController@index_main')->name('mypage');
 Route::get ('/mypage/search', 'CompMypageController@search');
 Route::post('/mypage/search', 'CompMypageController@search');
 	
@@ -130,10 +129,12 @@ Route::post('/admin/unit/edit', 'CompUnitController@store');
 Route::get ('/admin/unit/register', 'CompUnitController@adminGetRegister')->name('admin.unit.register');
 Route::post('/admin/unit/register', 'CompUnitController@adminPostRegister');
 
+/*
 // ユーザ関連
 Route::get ('/client',      'CompClientController@index');
 Route::get ('/client/list', 'CompClientController@list')->name('client.list');
 Route::post('/client/list', 'CompClientController@list');
+*/
 
 Route::get ('/clientend',      'CompClientController@endIndex');
 Route::get ('/clientend/list', 'CompClientController@endList')->name('clientend.list');
@@ -145,11 +146,11 @@ Route::post('/client/enter/list', 'CompClientController@enterList')->name('clien
 Route::get ('/client/enter/save', 'CompClientController@enterSave')->name('cliententer.save');
 Route::post('/client/enter/save', 'CompClientController@enterSave');
 
-Route::get ('/user',          'CompUserController@index');
-Route::get ('/user/list',     'CompUserController@list');
-Route::post('/user/list',     'CompUserController@list');
-Route::get ('/user/freelist', 'CompUserController@freeList');
-Route::post('/user/freelist', 'CompUserController@freeList');
+//Route::get ('/user',          'CompUserController@index');
+//Route::get ('/user/list',     'CompUserController@list');
+//Route::post('/user/list',     'CompUserController@list');
+//Route::get ('/user/freelist', 'CompUserController@freeList');
+//Route::post('/user/freelist', 'CompUserController@freeList');
 
 Route::get ('/user/detail', 'CompUserController@detail');
 Route::post('/user/detail', 'CompUserController@detail');
@@ -174,8 +175,8 @@ Route::get ('/candidate',      'CompUserController@canIndex');
 Route::get ('/candidate/list', 'CompUserController@canList');
 Route::post('/candidate/list', 'CompUserController@canList');
 
-Route::get ('/candidate/freelist', 'CompUserController@canFreeList');
-Route::post('/candidate/reelist',  'CompUserController@canFreeList');
+//Route::get ('/candidate/freelist', 'CompUserController@canFreeList');
+//Route::post('/candidate/reelist',  'CompUserController@canFreeList');
 
 // 企業メンバー関連
 Route::get ('/member',     'CompMemberController@index');
@@ -219,12 +220,15 @@ Route::post('/interview/aprove', 'CompInterviewController@aprove');
 Route::get ('/interview/dl/attach', 'CompInterviewController@dlAttach');
 Route::post('/interview/dl/attach', 'CompInterviewController@dlAttach');
 
+Route::get ('/interview/endthread', 'CompInterviewController@endThread');
 
 // 請求関連
-Route::get ('/billing',      'CompInterviewController@billing');
-Route::post('/billing',      'CompInterviewController@billing');
-Route::get ('/billing/hist', 'CompInterviewController@billingHist');
-Route::post('/billing/hist', 'CompInterviewController@billingHist');
+//Route::get ('/billing',      'CompInterviewController@billing');
+//Route::post('/billing',      'CompInterviewController@billing');
+//Route::get ('/billing/hist', 'CompInterviewController@billingHist');
+//Route::post('/billing/hist', 'CompInterviewController@billingHist');
+Route::get ('/claim/every',   'CompBillController@claimEvery')->name('claim.every');
+Route::get ('/claim/monthly', 'CompBillController@claimMonthly')->name('claim.monthly');
 
 // FAQ
 Route::get ('/faq/list',   'CompFaqController@index');
@@ -233,6 +237,4 @@ Route::post('/faq',        'CompFaqController@store');
 Route::get ('/faq/change', 'CompFaqController@edit')->name('faq.change');
 Route::post('/faq/change', 'CompFaqController@change');
 	
-Route::get ('/claim/every',   'CompBillController@claimEvery')->name('claim.every');
-Route::get ('/claim/monthly', 'CompBillController@claimMonthly')->name('claim.monthly');
 
