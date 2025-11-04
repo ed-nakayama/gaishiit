@@ -166,7 +166,7 @@
 							@else
 								<div style="display: flex;"><a href="javascript:lastMsg();void(0)" class="squareBtn btn-large" style="padding: 5px;">最新のメッセージに移動</a></div><br>
 								<div class="containerTalk talk-bd-bt" style="margin-bottom: 20px;padding-bottom: 20px;">
-									<ul class="talkItemList" >
+									<ul class="talkItemList">
 <div class="scroll">
 										@foreach ($msgList as $msg)
 											@if ($msg->user_name != '')
@@ -496,9 +496,10 @@
 {{-- モーダル --}}
 
 	<div class="remodal" data-remodal-id="modal">
-		{{ Form::open(['url' => '/comp/interview/mask', 'name' => 'maskform' , 'id' => 'maskform']) }}
-		{{ Form::hidden('interview_type', $interview->interview_type, ['class' => 'form-control', 'id'=>'interview_type' ]) }}
-		{{ Form::hidden('interview_id', $interview->interview_id, ['class' => 'form-control', 'id'=>'interview_id' ]) }}
+		{{ html()->form('POST', "/comp/interview/mask")->id('maskform')->attribute('name', 'maskform')->open() }}
+		{{ html()->hidden('interview_type', $interview->interview_type) }}
+		{{ html()->hidden('interview_id', $interview->id) }}
+
 		<div class="modalTitle">
 			<h2>定型文編集</h2>
 		</div><!-- /.modalTitle -->
@@ -543,7 +544,7 @@
 		<div class="btnContainer">
 					<a href="javascript:maskform.submit()" class="squareBtn btn-large">保存</a>
 		</div><!-- /.btn-container -->
-		{{ Form::close() }}
+		{{ html()->form()->close() }}
 	</div>
 
 {{-- END モーダル --}}
