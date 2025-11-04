@@ -572,7 +572,7 @@ class CompInterviewController extends InterviewController
 
 
 	/*************************************
-	* インタビューフロー
+	* 定型メッセージ作成／変更
 	**************************************/
 	public function interviewMask(Request $request)
 	{
@@ -580,18 +580,34 @@ class CompInterviewController extends InterviewController
 
 		if ( empty($request->select) ) { // 新規作成
 
-        	MaskMessage::create([
-            	'member_id' => $loginUser->id,
-            	'interview_type' => $request->interview_type,
-            	'title' => $request->title,
-            	'content' => $request->content,
-        	]);
+			MaskMessage::create([
+				'member_id' => $loginUser->id,
+				'interview_type' => $request->interview_type,
+				'title' => $request->title,
+				'content' => $request->content,
+			]);
 
-		} else {						// 変更
-        	$mask = MaskMessage::find($request->select);
-        	$mask->title = $request->title;
-        	$mask->content = $request->content;
+		} else { // 変更
+			$mask = MaskMessage::find($request->select);
+			$mask->title = $request->title;
+			$mask->content = $request->content;
 			$mask->save();
+		}
+
+		return redirect('comp/interview/flow?interview_id=' . $request->interview_id);
+	}
+
+
+	/*************************************
+	* 定型メッセージ削除
+	**************************************/
+	public function interviewMaskDel(Request $request)
+	{
+		$loginUser = Auth::user();
+
+		if ( !empty($request->select) ) { // 新規作成
+			$mask = MaskMessage::find($request->select);
+			$mask->delete();
 		}
 
 		return redirect('comp/interview/flow?interview_id=' . $request->interview_id);

@@ -208,6 +208,8 @@ Route::get ('/interview/flowpost', 'CompInterviewController@interviewFlowPost');
 Route::post('/interview/flowpost', 'CompInterviewController@interviewFlowPost');
 Route::get ('/interview/mask',     'CompInterviewController@interviewMask');
 Route::post('/interview/mask',     'CompInterviewController@interviewMask');
+Route::get ('/interview/mask/del', 'CompInterviewController@interviewMaskDel');
+Route::post('/interview/mask/del', 'CompInterviewController@interviewMaskDel');
 
 Route::get ('/interview/request',       'CompInterviewController@interview_request');
 Route::post('/interview/request',       'CompInterviewController@interview_request');

@@ -496,6 +496,12 @@
 {{-- モーダル --}}
 
 	<div class="remodal" data-remodal-id="modal">
+		{{ html()->form('POST', "/comp/interview/mask/del")->id('maskdelform')->attribute('name', 'maskdelform')->open() }}
+		{{ html()->hidden('interview_type', $interview->interview_type) }}
+		{{ html()->hidden('interview_id', $interview->id) }}
+		{{ html()->hidden('select', '') }}
+		{{ html()->form()->close() }}
+
 		{{ html()->form('POST', "/comp/interview/mask")->id('maskform')->attribute('name', 'maskform')->open() }}
 		{{ html()->hidden('interview_type', $interview->interview_type) }}
 		{{ html()->hidden('interview_id', $interview->id) }}
@@ -541,8 +547,9 @@
 			</div>
 		</div><!-- /.modalInner -->
 
-		<div class="btnContainer">
-					<a href="javascript:maskform.submit()" class="squareBtn btn-large">保存</a>
+		<div class="btnContainer" style="display: -webkit-flex;display:flex; -webkit-justify-content: space-around; justify-content: space-around;">
+			<a href="javascript:void(0);" onclick="maskDel();" class="squareBtn btn-large" style="background-color:red;" id="mask_del">削除</a>
+			<a href="javascript:maskform.submit()" class="squareBtn btn-large">保存</a>
 		</div><!-- /.btn-container -->
 		{{ html()->form()->close() }}
 	</div>
@@ -598,9 +605,22 @@ function changeModMask(obj) {
 				break;
 			}
 		}
+		document.getElementById('mask_del').style.backgroundColor = 'red';
+	} else {
+		document.getElementById('mask_del').style.backgroundColor = 'gray';
 	}
 
 }
+
+
+function maskDel() {
+
+	if (maskform.select.value) {
+		maskdelform.select.value = maskform.select.value;
+		document.maskdelform.submit();
+	}
+}
+
 
 //////////////////////////////////////
 // status 変更イベント
@@ -621,7 +641,7 @@ if (!!select) {
 function lastMsg() {
 
 	location.href = '#last_msg';
-	
+
 	// 要素を特定して取得
 	const scrollContainer = document.querySelector('.scroll');
 
@@ -648,6 +668,8 @@ $(document).ready(function() {
 			}
 		}
 	}
+
+	document.getElementById('mask_del').style.backgroundColor = 'gray';
 
 	lastMsg();
 

@@ -2206,7 +2206,7 @@ select {
     background-color: #707070;
 }
 .profileTagListItem li.bg-pattern-b {
-    background-color: #B1B1B1;
+  background-color: #B1B1B1;
 }
 
 /* 地図アイコン*/
@@ -2331,7 +2331,8 @@ select {
 }
 .talkItem {
 /*    width: 60%;T.N */
-    width: 96%;
+/*    width: 96%;*/
+    width: 66%;
 }
 .talkItemProfile {
     display: flex;
@@ -2365,11 +2366,14 @@ select {
 
 /* 吹き出しの背景色 */
 .talkItemMesseage.bg-pattern-a {
-    background-color: #707070;
+/*  background-color: #707070;*/
+    background-color: #5B9BD5;
     color: #fff;
 }
 .talkItemMesseage.bg-pattern-b {
-    background-color: #EFEFEF;
+/*  background-color: #EFEFEF;*/
+    background-color: #0070C0;
+    color: #fff;
 }
 
 /* トークボックスの下にボーダーがある場合 */
