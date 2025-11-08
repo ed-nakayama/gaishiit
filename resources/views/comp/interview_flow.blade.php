@@ -517,7 +517,8 @@
 				<div class="item-input">
 					<div class="selectWrap seventy">
 						<select name="select" id="mod_select" class="select-no" onchange="changeModMask(this);" >
-							<option value="">新規作成</option>
+							<option value="-1">-選択してください-</option>
+							<option value="0">新規作成</option>
 							@foreach ($maskMsg as $mask)
 								@if ($mask->interview_type == $interview->interview_type)
 									<option value="{{ $mask->id }}">{{ $mask->title }}</option>
@@ -547,16 +548,14 @@
 			</div>
 		</div><!-- /.modalInner -->
 
-		<div class="btnContainer" style="display: -webkit-flex;display:flex; -webkit-justify-content: space-around; justify-content: space-around;">
-			<a href="javascript:void(0);" onclick="maskDel();" class="squareBtn btn-large" style="background-color:red;" id="mask_del">削除</a>
-			<a href="javascript:maskform.submit()" class="squareBtn btn-large">保存</a>
+		<div class="btnContainer linkList" style="display: -webkit-flex;display:flex; -webkit-justify-content: space-around; justify-content: space-around;">
+			<a href="javascript:void(0);" onclick="maskDel();  " class="squareBtn btn-large" id="mask_del">削除</a>
+			<a href="javascript:void(0);" onclick="maskSave();"  class="squareBtn btn-large" id="mask_save">保存</a>
 		</div><!-- /.btn-container -->
 		{{ html()->form()->close() }}
 	</div>
 
 {{-- END モーダル --}}
-
-
 
 <?php
 $maskMsgJson = json_encode($maskMsg);
@@ -597,7 +596,23 @@ function changeModMask(obj) {
     var value = obj.options[idx].value; 
 	var i;
 	
-	if (idx > 0) {
+	if (idx == 0) {
+		document.getElementById('mask_del').style.backgroundColor = 'gray';
+		document.getElementById('mask_del').style.pointerEvents = 'none';
+		document.getElementById('mask_save').style.backgroundColor = 'gray';
+		document.getElementById('mask_save').style.pointerEvents = 'none';
+		document.getElementById( "mod_title" ).value = '';
+		document.getElementById( "mod_content" ).value = '';
+
+	} else if (idx == 1) {
+		document.getElementById('mask_del').style.backgroundColor = 'gray';
+		document.getElementById('mask_del').style.pointerEvents = 'none';
+		document.getElementById('mask_save').style.backgroundColor = '';
+		document.getElementById('mask_save').style.pointerEvents = 'auto';
+		document.getElementById( "mod_title" ).value = '';
+		document.getElementById( "mod_content" ).value = '';
+
+	} else  {
 		for (i = 0; i < maskMsg.length; i++) {
 			if (maskMsg[i]['id'] == value) {
 				document.getElementById( "mod_title" ).value = maskMsg[i]['title'];
@@ -605,9 +620,10 @@ function changeModMask(obj) {
 				break;
 			}
 		}
-		document.getElementById('mask_del').style.backgroundColor = 'red';
-	} else {
-		document.getElementById('mask_del').style.backgroundColor = 'gray';
+		document.getElementById('mask_del').style.backgroundColor = '';
+		document.getElementById('mask_del').style.pointerEvents = 'auto';
+		document.getElementById('mask_save').style.backgroundColor = '';
+		document.getElementById('mask_save').style.pointerEvents = 'auto';
 	}
 
 }
@@ -615,11 +631,20 @@ function changeModMask(obj) {
 
 function maskDel() {
 
-	if (maskform.select.value) {
+	if (window.confirm('削除を実行しますか？')) {
+ 		// 「OK」がクリックされた場合の処理
 		maskdelform.select.value = maskform.select.value;
 		document.maskdelform.submit();
 	}
+
 }
+
+
+function maskSave() {
+
+	document.maskform.submit();
+}
+
 
 
 //////////////////////////////////////
@@ -670,6 +695,9 @@ $(document).ready(function() {
 	}
 
 	document.getElementById('mask_del').style.backgroundColor = 'gray';
+	document.getElementById('mask_del').style.pointerEvents = 'none';
+	document.getElementById('mask_save').style.backgroundColor = 'gray';
+	document.getElementById('mask_save').style.pointerEvents = 'none';
 
 	lastMsg();
 

@@ -578,7 +578,7 @@ class CompInterviewController extends InterviewController
 	{
 		$loginUser = Auth::user();
 
-		if ( empty($request->select) ) { // 新規作成
+		if ($request->select == 0) { // 新規作成
 
 			MaskMessage::create([
 				'member_id' => $loginUser->id,
