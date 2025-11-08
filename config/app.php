@@ -185,6 +185,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 		// PDF
         Barryvdh\DomPDF\ServiceProvider::class,
+		Barryvdh\Snappy\ServiceProvider::class,	//ди╡ц
 		// EXCEL
 		Maatwebsite\Excel\ExcelServiceProvider::class,        
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
@@ -239,7 +240,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 		// PDF
-		'PDF' => Barryvdh\DomPDF\Facade::class,
+//		'PDF' => Barryvdh\DomPDF\Facade::class,
+		'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
+		'DomPdf' => Barryvdh\DomPDF\Facade\Pdf::class,
+		'SnappyPdf' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+		'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
 		// EXCEL
 		'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 

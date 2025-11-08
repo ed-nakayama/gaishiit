@@ -196,10 +196,11 @@ class CompUserController extends UserController
 			$userInfo = $this->get_user($request->user_id, $loginUser->company_id);
 		}
 		
-		$pdf = \PDF::loadView('pdf_templates.user_base',
+		$pdf = \SnappyPdf::loadView('pdf_templates.user_base',
 			['userInfo' => $userInfo],
-		);
-		$pdf->setPaper('A4');
+		)
+			->setPaper('A4')
+			->setOption('disable-smart-shrinking', true);
 		
 		return $pdf->download('user_basic.pdf');
 	}
@@ -218,7 +219,7 @@ class CompUserController extends UserController
 		}
 		
 	
-		$pdf = \PDF::loadView('pdf_templates.user_cv',
+		$pdf = \DomPdf::loadView('pdf_templates.user_cv',
 			['userInfo' => $userInfo],
 		);
 		$pdf->setPaper('A4');
@@ -240,7 +241,7 @@ class CompUserController extends UserController
 		}
 		
 
-		$pdf = \PDF::loadView('pdf_templates.user_cv_eng',
+		$pdf = \DomPdf::loadView('pdf_templates.user_cv_eng',
 			['userInfo' => $userInfo],
 		);
 		$pdf->setPaper('A4');
@@ -261,7 +262,7 @@ class CompUserController extends UserController
 			$userInfo = $this->get_user($request->user_id, $loginUser->company_id);
 		}
 
-		$pdf = \PDF::loadView('pdf_templates.user_vitae',
+		$pdf = \DomPdf::loadView('pdf_templates.user_vitae',
 			['userInfo' => $userInfo],
 		);
 		$pdf->setPaper('A4');

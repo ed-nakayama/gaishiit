@@ -29,6 +29,7 @@ use App\Mail\AproveToComp;
 use App\Mail\RejectToUser;
 use App\Mail\AgentToUser;
 
+
 class AdminUserController extends UserController
 {
 
@@ -295,7 +296,7 @@ class AdminUserController extends UserController
 			->first();
 
 		$searchHist->result = $request->result;
-		$searchHist->from_age = !empty($request->from_age) ? $request->from_age : '1';
+		$searchHist->from_age = $request->from_age;
 		$searchHist->to_age = $request->to_age;
 		$searchHist->current_job = $request->current_job;
 		$searchHist->freeword = $request->freeword;
@@ -488,11 +489,12 @@ class AdminUserController extends UserController
 			$userInfo = User::where('users.id' ,$request->user_id)
 				->first();
 		}
-		
-		$pdf = \PDF::loadView('pdf_templates.user_base_open',
+
+		$pdf = \SnappyPdf::loadView('pdf_templates.user_base',
 			['userInfo' => $userInfo],
-		);
-		$pdf->setPaper('A4');
+		)
+			->setPaper('A4')
+			->setOption('disable-smart-shrinking', true);
 		
 		return $pdf->download('user_basic_open.pdf');
 	}
