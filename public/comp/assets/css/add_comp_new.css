@@ -303,7 +303,7 @@ input[type=checkbox]:checked::before {
   font-weight: bold;
 }
 .contentsTitle-container .linkList a:hover {
-  background-color: #ff6347;
+  background-color: #FF0033;
 }
 
 .contentsTitle-container .linkList a::after {
@@ -334,7 +334,7 @@ input[type=checkbox]:checked::before {
   font-weight: bold;
 }
 .linkList a:hover {
-  background-color: #ff6347;
+  background-color: #FF0033;
 }
 
 .linkList a::after {
