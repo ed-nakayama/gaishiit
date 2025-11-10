@@ -490,7 +490,7 @@ class AdminUserController extends UserController
 				->first();
 		}
 
-		$pdf = \SnappyPdf::loadView('pdf_templates.user_base',
+		$pdf = \SnappyPdf::loadView('pdf_templates.user_base_open',
 			['userInfo' => $userInfo],
 		)
 			->setPaper('A4')
