@@ -97,6 +97,7 @@
 								<a class="job-detail__buttonLink openModal button-modal" href="#modalLogin">正式応募<span>依頼する</span></a>
 							@endif
 						</li>
+{{--
 						<li>
 							<span class="job-detail__buttonTitle">外資IT特化のプロに相談しながら進めたい！</span>
 							@if (Auth::guard('user')->check())
@@ -105,9 +106,13 @@
 								<a class="job-detail__buttonLink openModal button-modal" href="#modalLogin">転職エージェント<span>相談する</span></a>
 							@endif
 						</li>
+--}}
 					</ul>
-
+{{--
 					<p class="job-detail__caution">※「正式に応募する」と「外資IT特化の転職エージェントに相談」は、職務経歴書 、履歴書 が必要です。個人設定よりご登録をお願いします。</p>
+--}}
+					<p class="job-detail__caution">※「正式に応募する」は、職務経歴書 、履歴書 が必要です。個人設定よりご登録をお願いします。</p>
+					<p class="job-detail__caution">尚、カジュアル面談は保証されているものではなく不成立になる場合もございますのでご了承ください。</p>
 					<br>
 					@if (!empty($interviewList[0]))
 						以前にこの求人へのカジュアル面談の依頼または、正式応募をしたことがあります
@@ -171,6 +176,7 @@
 								<a class="job-detail__buttonLink openModal button-modal" href="#modalLogin">正式応募<span>依頼する</span></a>
 							@endif
 						</li>
+{{--
 						<li>
 							<span class="job-detail__buttonTitle">外資IT特化のプロに相談しながら進めたい！</span>
 							@if (Auth::guard('user')->check())
@@ -179,6 +185,7 @@
 								<a class="job-detail__buttonLink openModal button-modal" href="#modalLogin">転職エージェント<span>相談する</span></a>
 							@endif
 						</li>
+--}}
 					</ul>
 
 				</div><!-- job-detail__inner -->
