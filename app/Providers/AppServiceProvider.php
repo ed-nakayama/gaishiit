@@ -54,6 +54,23 @@ class AppServiceProvider extends ServiceProvider
     {
         $url->forceScheme('https');
 
+
+        // 管理画面用のクッキー名称、セッションテーブル名を変更する
+        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+        if (strpos($uri, '/admin/') === 0) {
+            config([
+                'session.cookie' => config('const.session_cookie_admin'),
+                'session.table' => config('const.ssession_table_admin'),
+            ]);
+            
+        } elseif (strpos($uri, '/comp/') === 0 ) {
+            config([
+                'session.cookie' => config('const.session_cookie_comp'),
+                'session.table' => config('const.ssession_table_comp'),
+            ]);
+        }
+
+		// referer 参照
 		$referer = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 		$ip = !empty($_SERVER['HTTP_X_REAL_IP']) ? $_SERVER['HTTP_X_REAL_IP'] : '';
 
@@ -62,35 +79,9 @@ class AppServiceProvider extends ServiceProvider
 		$root_url = '://' . $url_info['host'];
 
 		if ( !empty($ip) && (strpos($referer ,$root_url) === false) ) {
-//			$url_info = parse_url($referer);
-//			$root_url = $url_info['scheme'] . '://' . $url_info['host'];
-		
 			session()->put('lp_ref', $referer);
 			session()->put('lp_ip' , $ip);
-
-//			$lpRef = LpRef::create([
-//				'ip' => $ip,
-//				'referer' => $referer,
-//			]);
-
 		}
-
-        // 管理画面用のクッキー名称、セッションテーブル名を変更する
-        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-//        if (strpos($uri, '/admin/') === 0 || $uri === '/admin') {
-        if (strpos($uri, '/admin/') === 0) {
-            config([
-                'session.cookie' => config('const.session_cookie_admin'),
-                'session.table' => config('const.ssession_table_admin'),
-            ]);
-            
-//        } elseif (strpos($uri, '/comp/') === 0 || $uri === '/comp') {
-        } elseif (strpos($uri, '/comp/') === 0 ) {
-            config([
-                'session.cookie' => config('const.session_cookie_comp'),
-                'session.table' => config('const.ssession_table_comp'),
-            ]);
-        }
 
 
     	$years = strftime("%Y");
