@@ -614,6 +614,7 @@ function locChange() {
 /////////////////////////////////////////////////////////
 // 削除　表示／非表示
 /////////////////////////////////////////////////////////
+/*
 function delDisp() {
 
 	var open_flag = document.getElementById("c_ch1");
@@ -628,14 +629,14 @@ function delDisp() {
 		}
 	}
 }
-
+*/
 
 /////////////////////////////////////////////////////////
 // 公開フラグチェック
 /////////////////////////////////////////////////////////
 function checkOpen() {
 
-	delDisp();
+//	delDisp();
 }
 
 
@@ -724,7 +725,7 @@ $(document).ready(function() {
 	// 担当対応
 	ResetPerson();
 	putPerson();
-	delDisp();
+//	delDisp();
 	elseChangeCont();
  });
 
