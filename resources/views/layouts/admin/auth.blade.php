@@ -69,6 +69,9 @@
                         <li><a href="/admin/faq/list">FAQ</a></li>
                         <li><a href="/admin/ask">お問合せ一覧</a></li>
                     </ul><br>
+                    <ul class="menu">　　　　
+                        <li><a href="/admin/unavailable">取込不可キーワード</a></li>
+                    </ul><br>
 @endif
                 </div><!-- /.containerMenu -->
             </div><!-- /.menu -->

@@ -283,3 +283,6 @@ Route::post('/supervisor/add',   'BlogController@superAdd');
 Route::get ('/supervisor/store', 'BlogController@superStore');
 Route::post('/supervisor/store', 'BlogController@superStore');
 
+// RPA´ØÏ¢
+Route::get ('/unavailable', 'RpaController@index');
+Route::post('/unavailable', 'RpaController@store');

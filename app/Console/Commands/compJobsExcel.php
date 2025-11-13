@@ -12,6 +12,7 @@ use App\Models\CompMember;
 use App\Models\Unit;
 use App\Models\Job;
 use App\Models\JobCatDetail;
+use App\Models\Rpa;
 
 use Excel;
 
@@ -343,6 +344,20 @@ end_proc:
     private function create_job($job_arr)
     {
 
+		$rpa = Rpa::find(1);
+
+		$keyword = explode(",", $rpa->keyword);
+
+		$cnt = count($keyword);
+		
+		for ($i = 0; $i < $cnt; $i++) {
+			$word = trim($keyword[$i]);
+			
+			if(!empty($word) && strpos($job_arr['job_title'], $word) !== false) {
+				return;
+			}
+		}
+
 		print_r("新規　OK  \n");
 
 		$this->set_open($job_arr);
@@ -383,6 +398,18 @@ end_proc:
 ********************************************/
     private function update_job($job ,$job_arr)
     {
+		$rpa = Rpa::find(1);
+
+		$keyword = explode(",", $rpa->keyword);
+
+		$cnt = count($keyword);
+		
+		for ($i = 0; $i < $cnt; $i++) {
+			if(strpos($job_arr['job_title'], $keyword[$i]) !== false) {
+				return;
+			}
+		}
+
 		print_r("更新　OK JobID=" . $job->id . "\n");
 
 		$portal_flag = !empty($job_arr['portal'] == '1') ? '1' : '0';
