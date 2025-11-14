@@ -2570,7 +2570,7 @@ select {
 	width: 6%;
 }
 .tbl-joblist th:nth-child(6) { /* 公開/非公開 */
-	width: 5%;
+	width: 7%;
 }
 .tbl-joblist th:nth-child(7) { /* Close */
 	width: 5%;

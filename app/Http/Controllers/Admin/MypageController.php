@@ -28,7 +28,6 @@ class MypageController extends Controller
 	public function __construct()
     {
         $this->middleware('auth:admin');
-//        dd(Auth::check());
     }
     
     
@@ -389,13 +388,50 @@ class MypageController extends Controller
 		$portal_flag = $request->portal_flag;
 		$comp_id = $request->comp_id;
 
-
 		if (!empty($request->dl)) {
 			$jobList = Job::Join('companies', 'jobs.company_id','=','companies.id')
 				->leftJoin('units', 'jobs.unit_id','=','units.id')
 				->selectRaw('jobs.*, companies.salesforce_id as salesforce_id, companies.name_english as comp_name_english , units.name as unit_name');
 
 		} else {
+
+			if (!empty($request->bulk)) {
+				if ($request->bulk == '1') { // 一括削除
+					$closeCheck = $request->closeCheck;
+
+					$cnt = count($closeCheck);
+					for ($i = 0; $i < $cnt; $i++) {
+						$job = Job::find($closeCheck[$i]);
+
+						$job->delete();
+					}
+				}
+				
+				if ($request->bulk == '2') { // 一括表示
+					$dispCheck = $request->dispCheck;
+
+					$cnt = count($dispCheck);
+					for ($i = 0; $i < $cnt; $i++) {
+						$job = Job::find($dispCheck[$i]);
+
+						$job->open_flag = '1';
+						$job->save();
+					}
+				} 
+				
+				if ($request->bulk == '3') { // 一括非表示
+					$dispCheck = $request->dispCheck;
+
+					$cnt = count($dispCheck);
+					for ($i = 0; $i < $cnt; $i++) {
+						$job = Job::find($dispCheck[$i]);
+
+						$job->open_flag = '0';
+						$job->save();
+					}
+				}
+			}
+
 			$jobList = Job::Join('companies', 'jobs.company_id','=','companies.id')
 				->leftJoin('units', 'jobs.unit_id','=','units.id')
 				->selectRaw('jobs.*, companies.name as company_name, units.name as unit_name');
@@ -579,6 +615,21 @@ class MypageController extends Controller
 			'unitList',
 			'memberList',
 		));
+	}
+
+
+/*************************************
+* 再編集
+**************************************/
+	public function job_reedit( Request $request )
+	{
+		$comp_id = $request->company_id;
+		$job_id = $request->job_id;
+
+		$request->session()->regenerate();
+		$request->session()->regenerateToken(); // CSRFトークンを再生成
+
+		return redirect()->route('admin.mypage.job.edit', [ 'company_id' => $comp_id, 'job_id' => $job_id, ] );
 	}
 
 

@@ -10,17 +10,98 @@
 function func_dl() {
 
 	document.addform.dl.value = '1';
+	document.addform.bulk.value = '';
 	document.addform.submit();
 }
 
 function func_nodl() {
 
 	document.addform.dl.value = '';
+	document.addform.bulk.value = '';
 	document.addform.submit();
+}
+
+function func_bulk(blk) { //  1:一括削除 2:一括表示 3:一括非表示
+
+	document.addform.dl.value = '';
+	document.addform.bulk.value = blk;
+
+	$cnt = 0;
+
+	if (blk == 1) {
+		let closeCheck = document.getElementsByName("closeCheck[]");
+
+		for (var i = 0; i < closeCheck.length; i++) {
+			if (closeCheck[i].checked) $cnt++;
+		}
+	}
+	
+	if (blk == 2 || blk == 3) {
+		let dispCheck = document.getElementsByName("dispCheck[]");
+
+		for (var i = 0; i < dispCheck.length; i++) {
+			if (dispCheck[i].checked) $cnt++;
+		}
+	}
+
+	if ($cnt == 0) {
+		alert('1件も選択されていません。');
+		return false;
+	}
+	
+	document.addform.submit();
+}
+
+function closeCheckControl() {
+
+	let closeCheckAll = document.getElementById("closeCheckAll");
+	let closeCheck = document.getElementsByName("closeCheck[]");
+
+	for (var i = 0; i < closeCheck.length; i++) {
+		closeCheckAll.checked == true ? closeCheck[i].checked = true :closeCheck[i].checked = false;
+	}
+}
+
+
+function dispCheckControl() {
+
+	let dispCheckAll = document.getElementById("dispCheckAll");
+	let dispCheck = document.getElementsByName("dispCheck[]");
+
+	for (var i = 0; i < dispCheck.length; i++) {
+		dispCheckAll.checked == true ? dispCheck[i].checked = true :dispCheck[i].checked = false;
+	}
 }
 
 
 </script>
+
+<style>
+.all-btn {
+	display: -webkit-flex;
+	display:flex;
+	height:40px;
+	align-items: center;
+}
+
+
+.all-btn li {
+	margin-left:10px;
+}
+
+.all-btn li input[type="checkbox"] {
+	width:20px;
+}
+
+
+.all-btn li input[type="button"] {
+	padding-top:5px;
+	padding-bottom:5px;
+	width:90px;
+}
+
+</style>
+
 
 <div class="mainContentsInner-oneColumn">
 
@@ -56,6 +137,7 @@ function func_nodl() {
 
 						{{ html()->form('GET', '/admin/mypage/joblist/list')->id('addform')->attribute('name', 'addform')->open() }}
 						{{ html()->hidden('dl', '') }}
+						{{ html()->hidden('bulk', '') }}
 						<div class="secBtnHead">
 							<div class="secBtnHead-btn">
 								<ul class="item-btn" style="align-items: center;">
@@ -141,7 +223,7 @@ function func_nodl() {
 
 									<li style="width: auto;white-space:nowrap;">
 										{{ html()->form('POST', '/admin/mypage/joblist/upload')->attribute('name', 'upform')->acceptsFiles()->open() }}
-										{{ html()->file('file')->class('form-control') }}
+										{{ html()->file('file') }}
 										{{ html()->form()->close() }}
 									</li>
 									<li style="width: auto;white-space:nowrap;"><a href="javascript:upform.submit()" class="squareBtn">　更新用 CSVアップロード　</a></li>
@@ -161,6 +243,14 @@ function func_nodl() {
 @if(!isset($jobList[0]))
 						<div>※データはありません。</div>
 @else
+						<ul class="all-btn">
+							<li>{{ html()->checkbox('dispCheckAll',false ,'1')->attribute('onclick' ,'javascript:dispCheckControl()') }}  表示/非表示一括チェック</li>
+							<li><input type="button" value="一括表示" class="squareBtn" onclick="func_bulk(2)"></li>
+							<li><input type="button" value="一括非表示" class="squareBtn" onclick="func_bulk(3)"></li>
+							<li style="margin-left:50px;">{{ html()->checkbox('closeCheckAll',false ,'1')->attribute('onclick' ,'javascript:closeCheckControl()') }} 削除一括チェック</li>
+							<li><input type="button" value="一括削除" class="squareBtn" onclick="func_bulk(1)"></li>
+						</ul>
+
 						<p style="text-align: center;">全{{ $jobList->total() }}件中 {{  ($jobList->currentPage() -1) * $jobList->perPage() + 1}}-{{ (($jobList->currentPage() -1) * $jobList->perPage() + 1) + (count($jobList) -1)  }}件</p>
 						<div class="pager">
 							{{ $jobList->appends(request()->query())->links('pagination.admin') }}
@@ -195,9 +285,9 @@ function func_nodl() {
 										{{ html()->form()->close() }}
 									</td>
 									<td>@if ($int->portal_flag == '1')　portal @else 一般 @endif</td>
-									<td>@if ($int->open_flag == '1')表示 @else非表示 @endif</td>
+									<td>{{ html()->checkbox('dispCheck[]',false ,$int->id)->id('disp' . $int->id)->attribute('form', 'addform') }} @if ($int->open_flag == '1')表示 @else非表示 @endif</td>
 									<td  style="text-align: center;">
-										{{ html()->checkbox('',false ,$int->id)->id('close' . $int->id)->attribute('onchange', "modalConfirm($int->id);") }}
+										{{ html()->checkbox('closeCheck[]',false ,$int->id)->id('close' . $int->id)->attribute('form', 'addform') }}
 									</td>
 									<td>{{ $int->getJobCategoryName() }}</td>
 									<td>{{ $int->unit_name }}</td>
