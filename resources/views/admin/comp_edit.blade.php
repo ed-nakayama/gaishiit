@@ -26,8 +26,8 @@
 					<div class="secContentsInner">
 						<div class="panel_area" style="padding: 0px;">
 
-							{{ Form::open(['url' => '/admin/comp/register', 'name' => 'regform' , 'id' => 'regform', "enctype" => "multipart/form-data"]) }}
-							{{ Form::hidden('comp_id', old('comp_id' ,$comp->id)) }}
+							{{ html()->form('POST', '/admin/comp/register')->id('regform')->attribute('name', 'regform')->acceptsFiles()->open() }}
+							{{ html()->hidden('comp_id', old('comp_id' ,$comp->id)) }}
 							<div class="secContentsInner">
 
 								<div class="formContainer mg-ajust-midashi">
@@ -75,6 +75,20 @@
 										<input type="text" name="name_english" value="{{ old('name_english' ,$comp->name_english) }}">
 										<ul class="oneRow">
 											@error('name_english')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+										</ul>
+									</div><!-- /.item-input -->
+								</div>
+
+								<div class="formContainer mg-ajust-midashi">
+									<div class="item-name">
+										<p>企業名称 検索文字</p>
+									</div><!-- /.item-name -->
+									<div class="item-input">
+										<input type="text" name="search_name" value="{{ old('search_name' ,$comp->search_name) }}">
+										<ul class="oneRow">
+											@error('search_name')
 												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
 											@enderror
 										</ul>
@@ -420,7 +434,7 @@
 										@endif
 									</div><!-- /.item-input -->
 									<div class="item-input">
-										{{ Form::file('logo', ['class'=>'form-control']) }}
+										{{ html()->file('logo') }}
 									</div>
 									<div class="item-input">
 										<p> ※jpg、png、500KB以内</p>
@@ -430,7 +444,7 @@
 
 								<div class="formContainer mg-ajust-midashi">
 									<div class="item-name">
-										<p>イメージ<span>*</span></p>
+										<p>イメージ</p>
 									</div><!-- /.item-name -->
 									<div class="item-input">
 										@if ( isset($comp->image_file) )
@@ -438,7 +452,7 @@
 										@endif
 									</div><!-- /.item-input -->
 									<div class="item-input">
-										{{ Form::file('image', ['class'=>'form-control']) }}
+										{{ html()->file('image')->class('form-control') }}
 									</div>
 									<div class="item-input">
 										<p> ※jpg、png、500KB以内</p>
