@@ -219,7 +219,7 @@
 							@endif
 						</div><!-- /.item-input -->
 						<div class="item-input">
-							{{ Form::file('logo', ['class'=>'form-control']) }}
+							{{ html()->file('logo') }}
 						</div>
 						<div class="item-input">
 							<p> ※jpg、png、500KB以内</p>
@@ -237,7 +237,7 @@
 							@endif
 						</div><!-- /.item-input -->
 						<div class="item-input">
-							{{ Form::file('image', ['class'=>'form-control']) }}
+							{{ html()->file('image') }}
 						</div>
 						<div class="item-input">
 							<p> ※jpg、png、500KB以内</p>

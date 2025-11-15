@@ -77,6 +77,21 @@ class Interview extends Model
 
 
 /*************************************
+* 企業名 取得
+**************************************/
+	public function getCompanyName()
+	{
+		$this->getCompany();
+
+		if (!empty($this->company)) {
+			return $this->company->name;
+		} else {
+			return '';
+		}
+	}
+
+
+/*************************************
 * 部署情報 取得
 **************************************/
 	public function getUnit()
@@ -89,6 +104,20 @@ class Interview extends Model
 		}
 	}
 
+
+/*************************************
+* 部署名 取得
+**************************************/
+	public function getUnitName()
+	{
+		$this->getUnit();
+
+		if (!empty($this->unit)) {
+			return $this->unit->name;
+		} else {
+			return '';
+		}
+	}
 
 
 /*************************************
@@ -106,6 +135,21 @@ class Interview extends Model
 
 
 /*************************************
+* ジョブ名 取得
+**************************************/
+	public function getJobName()
+	{
+		$this->getJob();
+
+		if (!empty($this->job)) {
+			return $this->job->name;
+		} else {
+			return '';
+		}
+	}
+
+
+/*************************************
 * イベント 取得
 **************************************/
 	public function getEvent()
@@ -115,6 +159,21 @@ class Interview extends Model
 		if (!empty($this->event_id)) {
 			$this->event = Event::withTrashed()
 				->find($this->event_id);
+		}
+	}
+
+
+/*************************************
+* イベント名 取得
+**************************************/
+	public function getEventName()
+	{
+		$this->getEvent();
+
+		if (!empty($this->event)) {
+			return $this->event->name;
+		} else {
+			return '';
 		}
 	}
 
@@ -147,6 +206,21 @@ class Interview extends Model
 
 
 /*************************************
+* ステージ名 取得
+**************************************/
+	public function getStageName()
+	{
+		$this->getStage();
+
+		if (!empty($this->stage)) {
+			return $this->stage->name;
+		} else {
+			return '';
+		}
+	}
+
+
+/*************************************
 * ステータス 取得
 **************************************/
 	public function getStatus()
@@ -161,7 +235,23 @@ class Interview extends Model
 
 
 /*************************************
-* ステータス 取得
+* ステータス名 取得
+**************************************/
+	public function getStatusName()
+	{
+		$this->getStatus();
+
+		if (!empty($this->status)) {
+			return $this->status->name;
+		} else {
+			return '';
+		}
+	}
+
+
+
+/*************************************
+* 結果 取得
 **************************************/
 	public function getResult()
 	{
@@ -170,6 +260,21 @@ class Interview extends Model
 		if (!empty($this->result_id)) {
 			$this->result = ConstResult::where('id' ,$this->result_id)
 			->first();
+		}
+	}
+
+
+/*************************************
+* 結果名 取得
+**************************************/
+	public function getResultName()
+	{
+		$this->getResult();
+
+		if (!empty($this->result)) {
+			return $this->result->name;
+		} else {
+			return '';
 		}
 	}
 

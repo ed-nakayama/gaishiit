@@ -5,78 +5,76 @@
 
 @section('content')
 
-            <div class="mainContentsInner-oneColumn">
+<div class="mainContentsInner-oneColumn">
 
-                <div class="secTitle">
-                    <div class="title-main">
-                        <h2>職種管理</h2>
-                    </div><!-- /.mainTtl -->
-                </div><!-- /.sec-title -->
+	<div class="secTitle">
+		<div class="title-main">
+			<h2>職種管理</h2>
+		</div><!-- /.mainTtl -->
+	</div><!-- /.sec-title -->
 
 
-                <div class="containerContents">
+	<div class="containerContents">
 
-                    <section class="secContents">
-                        <div class="secContentsInner">
+		<section class="secContents">
+			<div class="secContentsInner">
 
-							@if (auth()->user()->cat_priv == '1')
-                            <div class="secBtnHead">
-                                <div class="secBtnHead-btn">
-                                   {{ Form::open(['url' => '/admin/jobcat/add', 'name' => 'addform' , 'id' => 'addform']) }}
-                                    <ul class="item-btn">
-                                       <li></li>
-                                       <li style="width: 300px;"><input type="text" name="solo_job_name" value="{{ old('solo_job_name') }}" placeholder="職種名"></li>
-                                        <li><a href="javascript:addform.submit()" class="squareBtn">追加</a></li>
-                                    </ul><!-- /.item -->
-                                    <ul class="item-btn">
-                                       <li></li>
-                                         @error('solo_job_name')
-                                             <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-                                         @enderror
-										@if (Session::has('message'))
-    										<li><p>{{ session('message') }}</p></li>
-										@endif
-                                     </ul>
-									{{ html()->form()->close() }}
-                                </div><!-- /.secBtnHead-btn -->
-                           </div>
-							@endif
+				@if (auth()->user()->cat_priv == '1')
+					<div class="secBtnHead">
+						<div class="secBtnHead-btn">
+							{{ html()->form('POST', '/admin/jobcat/add')->id('addform')->attribute('name', 'addform')->open() }}
+							<ul class="item-btn">
+								<li></li>
+								<li style="width: 300px;"><input type="text" name="solo_job_name" value="{{ old('solo_job_name') }}" placeholder="職種名"></li>
+								<li><a href="javascript:addform.submit()" class="squareBtn">追加</a></li>
+							</ul><!-- /.item -->
+							<ul class="item-btn">
+								<li></li>
+								@error('solo_job_name')
+									<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+								@enderror
+								@if (Session::has('message'))
+    								<li><p>{{ session('message') }}</p></li>
+								@endif
+							</ul>
+							{{ html()->form()->close() }}
+						</div><!-- /.secBtnHead-btn -->
+					</div>
+				@endif
 
-                             <table class="tbl-cat-5th mb-ajust" id="memberTable">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>表示順</th>
-                                    <th>職種名</th>
-                                    <th>削除</th>
-                                    <th></th>
-                                </tr>
-                                @foreach ($catList as $cat)
-                                <tr>
-                               {{ Form::open(['url' => '/admin/jobcat/store', 'name' => 'catform' . $cat['id'] ]) }}
-                               {{ Form::hidden('cat_id', $cat['id']) }}
-                                    <td>{{ $cat['id'] }}</td>
-                                    <td><input type="text" name="order_num" value="{{ $cat['order_num'] }}" oninput="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
-                                    <td><input type="text" name="name" value="{{ $cat['name'] }}" oninput="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
-                                    <td><input type="checkbox" name="del_flag" value="1" @if ($cat->del_flag == '1') checked @endif   onchange="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
-                                    <td>
-                                        <div class="btnContainer"  style="display: none;" id="{{ 'catsave' . $cat['id'] }}">
-										@if (auth()->user()->cat_priv == '1')
-                                        	<a href="javascript:catform{{ $cat['id'] }}.submit();" class="squareBtn btn-medium">保存</a>
-                                        @endif
-                                        </div><!-- /.btn-container -->
-                                    </td>
-								{{ html()->form()->close() }}
-                                </tr>
-                                @endforeach
-                            </table>
- 
+				<table class="tbl-cat-5th mb-ajust" id="memberTable">
+					<tr>
+						<th>ID</th>
+						<th>表示順</th>
+						<th>職種名</th>
+						<th>削除</th>
+						<th></th>
+					</tr>
+					@foreach ($catList as $cat)
+						<tr>
+							{{ html()->form('POST', '/admin/jobcat/store')->id('catform' . $cat->id)->attribute('name', 'catform' . $cat->id)->open() }}
+							{{ html()->hidden('cat_id', $cat->id) }}
+							<td>{{ $cat->id }}</td>
+							<td><input type="text" name="order_num" value="{{ $cat->order_num }}" oninput="catChange('{{ 'catsave' . $cat->id }}')"></td>
+							<td><input type="text" name="name" value="{{ $cat->name }}" oninput="catChange('{{ 'catsave' . $cat->id }}')"></td>
+							<td><input type="checkbox" name="del_flag" value="1" @if ($cat->del_flag == '1') checked @endif   onchange="catChange('{{ 'catsave' . $cat->id }}')"></td>
+							<td>
+								<div class="btnContainer"  style="display: none;" id="{{ 'catsave' . $cat->id }}">
+									@if (auth()->user()->cat_priv == '1')
+										<a href="javascript:catform{{ $cat->id }}.submit();" class="squareBtn btn-medium">保存</a>
+									@endif
+								</div><!-- /.btn-container -->
+							</td>
+							{{ html()->form()->close() }}
+						</tr>
+					@endforeach
+				</table>
 
-                        </div><!-- /.secContentsInner -->
-                    </section><!-- /.secContents -->
-                    
-                </div><!-- /.containerContents -->
+			</div><!-- /.secContentsInner -->
+		</section><!-- /.secContents -->
 
-            </div><!-- /.mainContentsInner -->
+	</div><!-- /.containerContents -->
+</div><!-- /.mainContentsInner -->
 
 <script>
 

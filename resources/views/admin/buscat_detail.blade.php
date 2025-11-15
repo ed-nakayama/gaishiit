@@ -5,94 +5,91 @@
 
 @section('content')
 
-            <div class="mainContentsInner-oneColumn">
+<div class="mainContentsInner-oneColumn">
 
-                <div class="secTitle">
-                    <div class="title-main">
-                        <h2>業種詳細管理</h2>
-                    </div><!-- /.mainTtl -->
-                </div><!-- /.sec-title -->
+	<div class="secTitle">
+		<div class="title-main">
+			<h2>業種詳細管理</h2>
+		</div><!-- /.mainTtl -->
+	</div><!-- /.sec-title -->
 
+	<div class="containerContents">
 
-                <div class="containerContents">
+		<section class="secContents">
+			<div class="secContentsInner">
 
-                    <section class="secContents">
-                        <div class="secContentsInner">
+				<div class="secBtnHead">
+					<div class="secBtnHead-btn">
+						<ul class="item-btn">
+							<li style="width: auto;" >
+								業種カテゴリ
+							</li>
+							<li style="width: auto;" >
+								<div class="selectWrap">
+									{{ html()->form('POST', '/admin/buscatdetail')->attribute('name', 'changeform')->open() }}
+									<select name="buscat_id"  class="select-no" onchange="this.form.submit()">
+										@foreach ($businessCat as $cat)
+											<option value="{{ $cat->id }}" @if ( $bus_cat->id == $cat->id)  selected @endif>{{ $cat->name }}</option>
+										@endforeach
+									</select>
+									{{ html()->form()->close() }}
+									</div>
+							</li>
 
-                            <div class="secBtnHead">
-                                 <div class="secBtnHead-btn">
-                                    <ul class="item-btn">
-										<li style="width: auto;" >
-											業種カテゴリ
-										</li>
-                                       <li style="width: auto;" >
-                                			<div class="selectWrap">
-											{{ Form::open(['url' => '/admin/buscatdetail', 'name' => 'changeform']) }}
-											<select name="buscat_id"  class="select-no" onchange="this.form.submit()">
-												@foreach ($businessCat as $cat)
-													<option value="{{ $cat->id }}" @if ( $bus_cat->id == $cat->id)  selected @endif>{{ $cat->name }}</option>
-												@endforeach
-											</select>
-											{{ Form::close() }}
-											</div>
-                                       </li>
+							@if (auth()->user()->cat_priv == '1')
+								<li style="width: 300px;">
+									{{ html()->form('POST', '/admin/buscatdetail/add')->id('addform')->attribute('name', 'addform')->open() }}
+									{{ html()->hidden('buscat_id', $bus_cat->id) }}
+									<input type="text" name="solo_bus_name" value="{{ old('solo_bus_name') }}" placeholder="業種詳細名">
+									{{ html()->form()->close() }}
+								</li>
+								<li><a href="javascript:addform.submit()" class="squareBtn">追加</a></li>
+							@endif
+						</ul><!-- /.item -->
+						@if (auth()->user()->cat_priv == '1')
+ 							@error('solo_bus_name')
+								<div class="item-input" style="text-align: right;" >
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								</div><!-- /.item-input -->
+							@enderror
+						@endif
+					</div><!-- /.secBtnHead-btn -->
+				</div>
 
-										@if (auth()->user()->cat_priv == '1')
-                                       <li style="width: 300px;">
-	                                   		{{ Form::open(['url' => '/admin/buscatdetail/add', 'name' => 'addform' , 'id' => 'addform']) }}
-		                               		{{ Form::hidden('buscat_id', $bus_cat->id) }}
-                                       		<input type="text" name="solo_bus_name" value="{{ old('solo_bus_name') }}" placeholder="業種詳細名">
-										{{ html()->form()->close() }}
-                                       </li>
-                                        <li><a href="javascript:addform.submit()" class="squareBtn">追加</a></li>
-										@endif
-                                    </ul><!-- /.item -->
+				<table class="tbl-cat-5th mb-ajust" id="memberTable">
+					<tr>
+						<th>ID</th>
+						<th>表示順</th>
+						<th>業種名</th>
+						<th>削除</th>
+						<th></th>
+					</tr>
+					@foreach ($catList as $cat)
+						<tr>
+							{{ html()->form('POST', '/admin/buscatdetail/store')->attribute('name', 'catform' . $cat['id'])->open() }}
+							{{ html()->hidden('buscat_id', $bus_cat->id) }}
+							{{ html()->hidden('buscatdetail_id', $cat->id) }}
+
+							<td>{{ $cat['id'] }}</td>
+							<td><input type="text" name="order_num" value="{{ $cat['order_num'] }}" oninput="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
+							<td><input type="text" name="name" value="{{ $cat['name'] }}" oninput="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
+							<td><input type="checkbox" name="del_flag" value="1" @if ($cat->del_flag == '1') checked @endif   onchange="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
+							<td>
+								<div class="btnContainer"  style="display: none;" id="{{ 'catsave' . $cat['id'] }}">
 									@if (auth()->user()->cat_priv == '1')
- 									@error('solo_bus_name')
-										<div class="item-input" style="text-align: right;" >
-											<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
-										</div><!-- /.item-input -->
-									@enderror
+										<a href="javascript:catform{{ $cat['id'] }}.submit();" class="squareBtn btn-medium">保存</a>
 									@endif
-                                </div><!-- /.secBtnHead-btn -->
-                           </div>
-							
-                             <table class="tbl-cat-5th mb-ajust" id="memberTable">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>表示順</th>
-                                    <th>業種名</th>
-                                    <th>削除</th>
-                                    <th></th>
-                                </tr>
-                                @foreach ($catList as $cat)
-                                <tr>
-                               {{ Form::open(['url' => '/admin/buscatdetail/store', 'name' => 'catform' . $cat['id'] ]) }}
-	                           {{ Form::hidden('buscat_id', $bus_cat->id) }}
-                               {{ Form::hidden('buscatdetail_id', $cat->id) }}
-                                    <td>{{ $cat['id'] }}</td>
-                                    <td><input type="text" name="order_num" value="{{ $cat['order_num'] }}" oninput="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
-                                    <td><input type="text" name="name" value="{{ $cat['name'] }}" oninput="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
-                                    <td><input type="checkbox" name="del_flag" value="1" @if ($cat->del_flag == '1') checked @endif   onchange="catChange('{{ 'catsave' . $cat['id'] }}')"></td>
-                                    <td>
-                                        <div class="btnContainer"  style="display: none;" id="{{ 'catsave' . $cat['id'] }}">
-										@if (auth()->user()->cat_priv == '1')
-                                        	<a href="javascript:catform{{ $cat['id'] }}.submit();" class="squareBtn btn-medium">保存</a>
-                                        @endif
-                                        </div><!-- /.btn-container -->
-                                    </td>
+								</div><!-- /.btn-container -->
+							</td>
 								{{ html()->form()->close() }}
-                                </tr>
-                                @endforeach
-                            </table>
- 
+						</tr>
+					@endforeach
+				</table>
 
-                        </div><!-- /.secContentsInner -->
-                    </section><!-- /.secContents -->
-                    
-                </div><!-- /.containerContents -->
-
-            </div><!-- /.mainContentsInner -->
+			</div><!-- /.secContentsInner -->
+		</section><!-- /.secContents -->
+	</div><!-- /.containerContents -->
+</div><!-- /.mainContentsInner -->
 
 <script>
 

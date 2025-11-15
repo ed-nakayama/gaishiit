@@ -436,12 +436,12 @@ window.addEventListener('DOMContentLoaded', function() {
 								<th>部門</th>
 								<th>ジョブ</th>
 							</tr>
-							 @foreach ($interviewList as $int)
+							 @foreach ($interviewList as $interview)
 								<tr>
-									<td>{{ str_replace('-','/', substr($int['entrance_date'], 0 ,10)) }}</td>
-									<td>{{ $int['company_name'] }}</td>
-									<td>{{ $int['unit_name'] }}</td>
-									<td>{{ $int['job_name'] }}</td>
+									<td>{{ str_replace('-','/', substr($interview->entrance_date, 0 ,10)) }}</td>
+									<td>{{ $interview->getCompanyName() }}</td>
+									<td>{{ $interview->getUnitName() }}</td>
+									<td>{{ $interview->getJobName() }}</td>
 								</tr>
 							@endforeach
 						</table>
@@ -459,13 +459,13 @@ window.addEventListener('DOMContentLoaded', function() {
 								<th>内容</th>
 								<th>種別</th>
 							</tr>
-							@foreach ($ownerList as $int)
+							@foreach ($ownerList as $owner)
 								<tr>
-									<td>{{ str_replace('-','/', substr($int['updated_at'], 0 ,10)) }}</td>
-									<td>{{ $int['company_name'] }}</td>
-									<td>{{ $int['unit_name'] }}</td>
-									<td>@if ($int['interview_type'] == '1'){{ $int['job_name'] }}@elseif ($int['interview_type'] == '2'){{ $int['event_name'] }}@else @endif</td>
-									<td>@if ($int['interview_type'] == '1')正式応募@elseif ($int['interview_type'] == '2')イベント@elseカジュアル面談@endif</td>
+									<td>{{ str_replace('-','/', substr($owner->updated_at, 0 ,10)) }}</td>
+									<td>{{ $owner->getCompanyName() }}</td>
+									<td>{{ $owner->getUnitName() }}</td>
+									<td>@if ($owner->interview_type == '1'){{ $owner->getJobName() }}@elseif ($owner->interview_type == '2'){{ $owner->getEventName() }}@else  @endif</td>
+									<td>@if ($owner->interview_type == '1')正式応募@elseif ($owner->interview_type == '2')イベント@elseカジュアル面談@endif</td>
 								</tr>
 							@endforeach
 						</table>

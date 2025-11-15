@@ -18,7 +18,7 @@
 		<section class="secContents-mb">
 			<div class="secContentsInner">
 
-				{{ Form::open(['url' => 'admin/candidate/list', 'name' => 'modalform' ,'method' => 'GET' ]) }}
+				{{ html()->form('GET', '/admin/candidate/list')->attribute('name', 'modalform')->open() }}
 
 				<div class="formContainer mg-ajust" style="width:90%;">
 					<div class="item-name" style="width:40px;">
@@ -111,54 +111,55 @@
 					</div><!-- /.btn-container -->
 				</div><!-- /.formContainer -->
    
-		{{ html()->form()->close() }}
+				{{ html()->form()->close() }}
 
 @if(!isset($userList[0]))
 				<div>※データはありません。</div>
 @else
-							<p style="text-align: center;">全{{ $userList->total() }}件中 {{  ($userList->currentPage() -1) * $userList->perPage() + 1}}-{{ (($userList->currentPage() -1) * $userList->perPage() + 1) + (count($userList) -1)  }}件</p>
-                           <table class="tbl-candidate">
-                                <tr>
-                                    <th>登録日</th>
-                                    <th>氏名</th>
-                                    <th>年齢</th>
-                                    <th>勤務先</th>
-                                    <th>現在の職務内容</th>
-                                    <th>役職</th>
-                                    <th>最終学歴</th>
-                                    <th>理論年収（OTE）</th>
-                                    <th>希望勤務地</th>
-                                </tr>
+				<p style="text-align: center;">全{{ $userList->total() }}件中 {{  ($userList->currentPage() -1) * $userList->perPage() + 1}}-{{ (($userList->currentPage() -1) * $userList->perPage() + 1) + (count($userList) -1)  }}件</p>
+				<table class="tbl-candidate">
+					<tr>
+						<th>登録日</th>
+						<th>氏名</th>
+						<th>年齢</th>
+						<th>勤務先</th>
+						<th>現在の職務内容</th>
+						<th>役職</th>
+						<th>最終学歴</th>
+						<th>理論年収（OTE）</th>
+						<th>希望勤務地</th>
+					</tr>
                                
-                              @foreach ($userList as $int)
-                                <tr>
-                                    <td>{{ str_replace('-','/', substr($int->created_at, 0 ,10)) }}</td>
-                                    <td>
-                                        {{ Form::open(['url' => '/admin/user/detail', 'name' => 'userform' . $int->id ]) }}
-                                        {{ Form::hidden('user_id', $int->id) }}
-										{{ Form::hidden('parent_id', '2') }}
-                                        <a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}</a>
-                                        {{ Form::close() }}
-                                    </td>
-                                    <td>{{ $int->age }}</td>
-                                    <td>{{ $int->company }}</td>
-                                    <td>{{ mb_strimwidth($int->job_content, 0, 40, "...") }}</td>
-                                    <td>{{ $int->job_title }}</td>
-                                    <td>{{ $int->graduation . ' ' . $int->department }}</td>
-                                    <td align="center">{{ $int->ote_income }} 万円</td>
-                                    <td>{{ $int->location_name }}</td>
-                                </tr>
-                              @endforeach
+					@foreach ($userList as $int)
+						<tr>
+							<td>{{ str_replace('-','/', substr($int->created_at, 0 ,10)) }}</td>
+							<td>
+								{{ html()->form('POST', '/admin/user/detail')->attribute('name', 'userform' . $int->id)->open() }}
+								{{ html()->hidden('user_id', $int->id) }}
+								{{ html()->hidden('parent_id', '2') }}
+								<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}</a>
+								{{ html()->form()->close() }}
+							</td>
+							<td>{{ $int->getAge() }}</td>
+							<td>{{ $int->company }}</td>
+							<td>{{ mb_strimwidth($int->job_content, 0, 40, "...") }}</td>
+							<td>{{ $int->job_title }}</td>
+							<td>{{ $int->graduation . ' ' . $int->department }}</td>
+							<td align="center">{{ $int->ote_income }} 万円</td>
+							<td>{{ $int->getLocation() }}</td>
+						</tr>
+					@endforeach
 
-                            </table>
-                            <div class="pager">
-                               {{ $userList->appends($searchHist->toArray())->links('pagination.admin') }}
-                            </div>
+				</table>
+
+				<div class="pager">
+					{{ $userList->appends($searchHist->toArray())->links('pagination.admin') }}
+				</div>
 @endif
 
-						</div><!-- /.secContentsInner -->
-					</section><!-- /.secContents-mb -->
-				</div><!-- /.containerContents -->
-            </div><!-- /.mainContentsInner-oneColumn -->
+			</div><!-- /.secContentsInner -->
+		</section><!-- /.secContents-mb -->
+	</div><!-- /.containerContents -->
+</div><!-- /.mainContentsInner-oneColumn -->
 
 @endsection

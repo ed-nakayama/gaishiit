@@ -64,19 +64,16 @@ class AdminUserController extends UserController
 		$subSQL0 = \DB::table('users')
 			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
 		
-		$userQuery = \DB::table('users')
-			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
+		$userQuery = User::JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->leftJoin('const_locations', 'users.request_location','=','const_locations.id')
 			->selectRaw("users.*, age ,const_locations.name as location_name")
 			->where('aprove_flag' ,$aprove)
-			->whereNull('deleted_at')
 			->orderBy('created_at' ,'desc');
 
 		$userList = $userQuery->paginate(20);
 
 		return $userList;
 	}
-	
 
 
 /*************************************
@@ -185,11 +182,7 @@ class AdminUserController extends UserController
 		$userInfo = User::where('users.id' ,$user_id)
 			->first();
 
-		$interviewList = Interview::leftJoin('companies','interviews.company_id','=','companies.id')
-			->leftJoin('units','interviews.unit_id','=','units.id')
-			->leftJoin('jobs','interviews.job_id','=','jobs.id')
-			->selectRaw('interviews.* ,companies.name as company_name ,units.name as unit_name ,jobs.name as job_name ')
-			->where('interviews.user_id' ,$user_id)
+		$interviewList = Interview::where('interviews.user_id' ,$user_id)
 			->whereNotNull('interviews.entrance_date')
 			->get();
 
@@ -204,11 +197,6 @@ class AdminUserController extends UserController
 					->whereRaw('interviews.updated_at = last_update')
 					;
 			    })
-            ->leftJoin('companies','interviews.company_id','=','companies.id')
-			->leftJoin('units','interviews.unit_id','=','units.id')
-			->leftJoin('jobs','interviews.job_id','=','jobs.id')
-			->leftJoin('events','interviews.event_id','=','events.id')
-			->selectRaw('interviews.* ,companies.name as company_name ,units.name as unit_name ,jobs.name as job_name ,events.name as event_name ')
 			->where('interviews.user_id' ,$user_id)
 //			->whereNull('interviews.entrance_date')
 			->get();
@@ -270,8 +258,6 @@ class AdminUserController extends UserController
 				'use_page'       => 'ADMIN_CAND',
 			]);
 		}
-		
-//		$search = $searchHist->toArray();
 
 		$userList = $this->search_can_list($searchHist);
 
@@ -288,7 +274,6 @@ class AdminUserController extends UserController
 **************************************/
 	public function canList(Request $request)
 	{
-//dd($request);
 		$loginUser = Auth::user();
 
 		$searchHist = SearchHist::where('owner_id' ,$loginUser->id)
@@ -299,11 +284,11 @@ class AdminUserController extends UserController
 		$searchHist->from_age = $request->from_age;
 		$searchHist->to_age = $request->to_age;
 		$searchHist->current_job = $request->current_job;
+		$searchHist->location = $request->location;
+		$searchHist->request_cat = $request->request_cat;
 		$searchHist->freeword = $request->freeword;
 
 		$searchHist->save();
-
-//		$search = $searchHist->toArray();
 
 		$userList = $this->search_can_list($searchHist);
 
@@ -323,17 +308,16 @@ class AdminUserController extends UserController
 		$subSQL0 = \DB::table('users')
 			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
 
-		$userQuery = \DB::table('users')
-			->JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
-			->leftJoin('const_locations','users.request_location','=','const_locations.id')
+		$userQuery = User::JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
 			->where('aprove_flag', '1')
-			->whereNull('deleted_at')
-			->selectRaw("users.*, age ,const_locations.name as location_name");
+			->selectRaw("users.*");
 
 		if (!empty($param->result)) $userQuery = $userQuery->where('users.result_id' , $param->result);
 		if (!empty($param->from_age)) $userQuery = $userQuery->where('age' ,'>=',  $param->from_age);
 		if (!empty($param->to_age)) $userQuery = $userQuery->where('age' ,'<',  $param->to_age + 10);
 		if (!empty($param->current_job)) $userQuery = $userQuery->whereIn('users.job_cats' , ["{$param->current_job}"]);
+		if (!empty($param->location)) $userQuery = $userQuery->where('users.request_location', 'like', "%{$param->location}%");
+		if (!empty($param->request_cat)) $userQuery = $userQuery->where('users.job_cats', 'like', "%{$param->request_cat}%");
 
 		if (!empty($param->freeword)) {
 			$freeword = $param->freeword;
@@ -345,32 +329,11 @@ class AdminUserController extends UserController
 					->orWhere('users.email' , 'like', "%{$freeword}%")
 					->orWhere('users.company' , 'like', "%{$freeword}%")
 					->orWhere('users.job_content' , 'like', "%{$freeword}%")
-//					->orWhere('users.japanese_background' , 'like', "%{$freeword}%")
-//					->orWhere('users.english_background' , 'like', "%{$freeword}%")
 					;
 				});
 		}
 		
 		$userList = $userQuery->orderBy('created_at' ,'desc')->paginate(20);
-
-//ddd($userList);
-
-		$idx = 0;
-		foreach ($userList as $user) {
-
-			$catName = array();
-			$cats = explode(",", $user->job_cats);
-			$len = count($cats);
-
-			for ($i = 0; $i < $len; $i++) {
-				$cat = JobCatDetail::find($cats[$i]);
-				if ($cat) {
-					$catName[] = $cat->name;
-				}
-			}
-
-			$userList[$idx++]->cat_names = join("/",$catName);
-		}
 
 		return $userList;
 	}	
