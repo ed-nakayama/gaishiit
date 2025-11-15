@@ -287,6 +287,7 @@ class AdminUserController extends UserController
 		$searchHist->location = $request->location;
 		$searchHist->request_cat = $request->request_cat;
 		$searchHist->freeword = $request->freeword;
+		$searchHist->aprove_flag = $request->aprove_flag;
 
 		$searchHist->save();
 
@@ -309,8 +310,23 @@ class AdminUserController extends UserController
 			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
 
 		$userQuery = User::JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
-			->where('aprove_flag', '1')
+//			->where('aprove_flag', '1')
 			->selectRaw("users.*");
+
+		if ($param->aprove_flag == '0') {
+			$userQuery = $userQuery->where('aprove_flag' , '0');
+			
+		} elseif ($param->aprove_flag == '1') {
+			$userQuery = $userQuery->where('aprove_flag' , '1');
+
+		} elseif ($param->aprove_flag == '2') {
+			$userQuery = $userQuery->where('aprove_flag' , '2');
+		}
+
+		if (!empty($request->user_name) ) {
+			$user_name = $request->user_name;
+			$userQuery = $userQuery->where('name' , 'like', "%{$user_name}%");
+		}
 
 		if (!empty($param->result)) $userQuery = $userQuery->where('users.result_id' , $param->result);
 		if (!empty($param->from_age)) $userQuery = $userQuery->where('age' ,'>=',  $param->from_age);

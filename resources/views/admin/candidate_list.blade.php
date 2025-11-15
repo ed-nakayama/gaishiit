@@ -106,6 +106,21 @@
 						<input type="text" name="freeword" value="{{ $searchHist->freeword }}"  style="width:400px;">
 					</div><!-- /.item-input -->
 
+					<div class="item-name" style="width:80px;">
+						<p>承認/未承認</p>
+					</div><!-- /.item-name -->
+
+					<div class="item-input">
+						<div class="selectWrap harf">
+							<select name="aprove_flag"  class="select-no">
+								{{ html()->option('すべて') }}
+								{{ html()->option('未承認'    , '0' , ($searchHist->aprove_flag == '0')) }}
+								{{ html()->option('承認'      , '1' , ($searchHist->aprove_flag == '1')) }}
+								{{ html()->option('リジェクト', '2' , ($searchHist->aprove_flag == '2')) }}
+							</select>
+						</div>
+					</div><!-- /.formContainer -->
+
 					<div class="btnContainer">
 						<a href="javascript:modalform.submit()" class="squareBtn btn-large" style="width:120px; line-height:10px;">検索</a>
 					</div><!-- /.btn-container -->
@@ -117,10 +132,11 @@
 				<div>※データはありません。</div>
 @else
 				<p style="text-align: center;">全{{ $userList->total() }}件中 {{  ($userList->currentPage() -1) * $userList->perPage() + 1}}-{{ (($userList->currentPage() -1) * $userList->perPage() + 1) + (count($userList) -1)  }}件</p>
-				<table class="tbl-candidate">
+				<table class="tbl-aprove">
 					<tr>
 						<th>登録日</th>
 						<th>氏名</th>
+						<th>状況</th>
 						<th>年齢</th>
 						<th>勤務先</th>
 						<th>現在の職務内容</th>
@@ -140,6 +156,7 @@
 								<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}</a>
 								{{ html()->form()->close() }}
 							</td>
+							<td>@if ( $int->aprove_flag == '1')<font color="blue">承認済</font>@elseif ( $int->aprove_flag == '2')<font color="red">リジェクト</font>@endif</td>
 							<td>{{ $int->getAge() }}</td>
 							<td>{{ $int->company }}</td>
 							<td>{{ mb_strimwidth($int->job_content, 0, 40, "...") }}</td>
