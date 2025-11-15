@@ -5,44 +5,42 @@
 
 @section('content')
 
-			<div class="mainContentsInner">
+<div class="mainContentsInner">
 
-				<div class="mainTtl title-main">
-                        <h2>企業代理ログイン</h2>
-                </div><!-- /.mainTtl -->
+	<div class="mainTtl title-main">
+		<h2>企業代理ログイン</h2>
+	</div><!-- /.mainTtl -->
 
-                <div class="containerContents">
+	<div class="containerContents">
 
-                    <section class="secContents">
-                        <div class="secContentsInner">
+		<section class="secContents">
+			<div class="secContentsInner">
 
-							<form method="POST" name ="form1" action="{{ route('comp.login') }}">
-								@csrf
-								<input id="email" type="hidden" name="email" value="">
-								<input id="password" type="hidden"  name="password" value="">
-                        	{{ Form::close() }}
+				<form method="POST" name ="form1" action="{{ route('comp.login') }}">
+				@csrf
+				<input id="email" type="hidden" name="email" value="">
+				<input id="password" type="hidden"  name="password" value="">
+				{{ html()->form()->close() }}
 
-							<table id="userTable">
-								@foreach ($memberList as $mem)
-									<tr data-email="{{ $mem->id }}" data-password="{{ $mem->pw_raw }}">
-										<td>
-												[ {{ $mem->company_name }} ]　
-										</td>
-										<td>
-												{{ $mem->name }}
-										</td>
-									</tr>
-								@endforeach
-							</table>
+				<table id="userTable">
+					@foreach ($memberList as $mem)
+						<tr data-email="{{ $mem->id }}" data-password="{{ $mem->pw_raw }}">
+							<td>
+									[ {{ $mem->company_name }} ]　
+							</td>
+							<td>
+									{{ $mem->name }}
+							</td>
+						</tr>
+					@endforeach
+				</table>
 
-						</div><!-- /.secContentsInner -->
-					</section><!-- /.secContents-mb -->
-				</div><!-- /.containerContents -->
-            </div><!-- /.mainContentsInner-oneColumn -->
+			</div><!-- /.secContentsInner -->
+		</section><!-- /.secContents-mb -->
+	</div><!-- /.containerContents -->
+</div><!-- /.mainContentsInner-oneColumn -->
 
 
-
-	
 <script>
 
 $(document).ready(function(){

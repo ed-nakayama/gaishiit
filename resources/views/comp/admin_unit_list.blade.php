@@ -6,62 +6,55 @@
 	<title>部門設定 - 部門一覧｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
+<div class="mainContentsInner-oneColumn">
 
-            <div class="mainContentsInner-oneColumn">
+	<div class="secTitle">
+		<div class="title-main">
+			<h2>部門設定 - 部門一覧</h2>
+		</div><!-- /.mainTtl -->
+	</div><!-- /.sec-title -->
 
+	<div class="containerContents">
 
-                <div class="secTitle">
-                    <div class="title-main">
-                    <h2>部門設定 - 部門一覧</h2>
-                    </div><!-- /.mainTtl -->
-                </div><!-- /.sec-title -->
+		<section class="secContents">
+			<div class="secContentsInner">
+				<div class="secBtnHead">
+					<div class="secBtnHead-btn">
+						<ul class="item-btn">
+							 <li><a href="/comp/admin/unit/register" class="squareBtn">新規作成</a></li>
+						</ul><!-- /.item -->
+					</div><!-- /.secBtnHead-btn -->
+				</div><!-- /.sec-btn -->
 
-                
-                <div class="containerContents">
-                    
-                    <section class="secContents">
-                        <div class="secContentsInner">
-
-                            <div class="secBtnHead">
-                                
-                                <div class="secBtnHead-btn">
-                                    <ul class="item-btn">
-                                        <li><a href="/comp/admin/unit/register" class="squareBtn">新規作成</a></li>
-                                    </ul><!-- /.item -->
-                                </div><!-- /.secBtnHead-btn -->
-                            </div><!-- /.sec-btn -->
-
-                            <table class="tbl-2th" id="unitTable">
-                                <tr>
-                                    <th>部門</th>
-                                    <th></th>
-                                </tr>
-                                @foreach ($unitList as $unit)
-                                <tr>
-                                     <td>{{ $unit['name'] }}</td>
-                                    <td>
-                                        <div class="btnContainer">
-                                        {{ Form::open(['url' => '/comp/admin/unit/edit', 'name' => 'editform' . $unit->id ,'method'=>'GET' ]) }}
-                                        {{ Form::hidden('unit_id', $unit->id) }}
-                                            <a href="javascript:editform{{ $unit->id }}.submit()" class="squareBtn btn-large">編集</a>
-                                       {{ Form::close() }}
-                                        </div><!-- /.btn-container -->
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </table>
+				<table class="tbl-2th" id="unitTable">
+					<tr>
+						<th>部門</th>
+						<th></th>
+					</tr>
+					@foreach ($unitList as $unit)
+						<tr>
+							<td>{{ $unit['name'] }}</td>
+							<td>
+								<div class="btnContainer">
+									{{ html()->form('GET', '/comp/admin/unit/edit')->id('editform' . $unit->id)->attribute('name', 'editform' . $unit->id)->open() }}
+									{{ html()->hidden('unit_id', $unit->id) }}
+									<a href="javascript:editform{{ $unit->id }}.submit()" class="squareBtn btn-large">編集</a>
+									{{ html()->form()->close() }}
+								</div><!-- /.btn-container -->
+							</td>
+						</tr>
+					 @endforeach
+				</table>
  
-                            <div class="pager">
-                               {{ $unitList->links('pagination.comp') }}
-                            </div>
-						</div><!-- /.secContentsInner -->
-					</section><!-- /.secContents -->
+				<div class="pager">
+					{{ $unitList->links('pagination.comp') }}
+				</div>
+			</div><!-- /.secContentsInner -->
+		</section><!-- /.secContents -->
                    
-				</div><!-- /.containerContents -->
-			
-			</div><!-- /.mainContentsInner -->
+	</div><!-- /.containerContents -->
+</div><!-- /.mainContentsInner -->
 
-    
 
 <script type="text/javascript">
 

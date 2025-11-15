@@ -164,7 +164,7 @@
 									@endif
 								</div><!-- /.modalContainer -->
 							</div>
-							{{Form::hidden('person', old('person' ,$unit->person), ['class' => 'form-control', 'id'=>'person' ] )}}
+							{{ html()->hidden('person', old('person' ,$unit->person)) }}
 							<span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
 							<ul class="oneRow">
 								@error('person')

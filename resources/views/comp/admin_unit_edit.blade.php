@@ -6,72 +6,69 @@
 	<title>部門設定｜{{ config('app.name', 'Laravel') }}</title>
 </head>
 
-            <div class="mainContentsInner-oneColumn">
+<div class="mainContentsInner-oneColumn">
 
-                <div class="secTitle">
-                    <div class="title-main">
-                    @if ( !isset($unit->id) )
-                        <h2>部門設定 - 新規作成</h2>
-                    @else
-                        <h2>部門設定 - 編集</h2>
-                    @endif
-                    </div><!-- /.mainTtl -->
-                </div><!-- /.sec-title -->
+	<div class="secTitle">
+		<div class="title-main">
+			@if ( !isset($unit->id) )
+				<h2>部門設定 - 新規作成</h2>
+			@else
+				<h2>部門設定 - 編集</h2>
+			@endif
+		</div><!-- /.mainTtl -->
+	</div><!-- /.sec-title -->
 
+	<div class="containerContents">
 
-                <div class="containerContents">
-
-                    {{ Form::open(['url' => '/comp/admin/unit/register', 'name' => 'regform' , 'id' => 'regform', 'files' => true]) }}
-                    {{Form::hidden('unit_id', old('unit_id' ,$unit->id), ['class' => 'form-control', 'id'=>'unit_id' ] )}}
-
-                    <section class="secContents">
-                        <div class="secContentsInner">
+		<section class="secContents">
+			<div class="secContentsInner">
+				{{ html()->form('POST', '/comp/admin/unit/register')->id('regform')->attribute('name', 'regform')->open() }}
+				{{ html()->hidden('unit_id', old('unit_id' ,$unit->id)) }}
                                 
-                                <div class="formContainer mg-ajust-midashi">
-                                    <div class="item-name">
-                                        <p>部門名称<span>*</span></p>
-                                    </div><!-- /.item-name -->
-                                    <div class="item-input">
-                                        <input type="text"  name="name"  value="{{ old('name' ,$unit->name) }}">
-                                <ul class="oneRow">
-                                    @error('name')
-                                        <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-                                    @enderror
-                                </ul>
-                                    </div><!-- /.item-input -->
-                                </div>
+				<div class="formContainer mg-ajust-midashi">
+					<div class="item-name">
+						<p>部門名称<span>*</span></p>
+					</div><!-- /.item-name -->
+					<div class="item-input">
+						<input type="text"  name="name"  value="{{ old('name' ,$unit->name) }}">
+						<ul class="oneRow">
+							@error('name')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+					</div><!-- /.item-input -->
+				</div>
 
-                                <div class="formContainer bb-ajust">
-                                    <div class="item-name">
+				<div class="formContainer bb-ajust">
+					<div class="item-name">
                                         <p>担当<span>*</span></p>
-                                    </div><!-- /.item-name -->
-                                    <div class="item-input item-input-row">
-                                        <div class="item-input-btn">
-                                            
-                                            <div class="modalContainer">
-                                                <a href="#modal" class="squareBtn btn-medium">選択</a>
-                                            </div><!-- /.modalContainer -->
-                                        </div>
-                                        {{Form::hidden('person', old('person' ,$unit->person), ['class' => 'form-control', 'id'=>'person' ] )}}
-                                        <span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
-                                        <ul class="oneRow">
-                                            @error('person')
-                                                <li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-                                            @enderror
-                                        </ul>
-                                    </div><!-- /.item-input -->
-                                </div>
+					</div><!-- /.item-name -->
+					<div class="item-input item-input-row">
+						<div class="item-input-btn">
 
-                                <div class="btnContainer">
-                                    <a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>
-                                </div><!-- /.btn-container -->
-                            {{ Form::close() }}
-                        </div><!-- /.secContentsInner -->
-                    </section><!-- /.secContents -->
+							<div class="modalContainer">
+								<a href="#modal" class="squareBtn btn-medium">選択</a>
+							 </div><!-- /.modalContainer -->
+						</div>
+						{{ html()->hidden('person', old('person' ,$unit->person)) }}
+						<span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
+						<ul class="oneRow">
+							@error('person')
+								<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+							@enderror
+						</ul>
+					</div><!-- /.item-input -->
+				</div>
+
+				<div class="btnContainer">
+					<a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>
+				</div><!-- /.btn-container -->
+				{{ html()->form()->close() }}
+			</div><!-- /.secContentsInner -->
+		</section><!-- /.secContents -->
                     
-                </div><!-- /.containerContents -->
-
-            </div><!-- /.mainContentsInner -->
+	</div><!-- /.containerContents -->
+</div><!-- /.mainContentsInner -->
 
 
 {{-- 担当　モーダル領域   --}}

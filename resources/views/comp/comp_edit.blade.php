@@ -262,18 +262,17 @@
 						</div><!-- /.item-name -->
 						<div class="item-input item-input-row">
 							<div class="item-input-btn">
-                                            
 								<div class="modalContainer">
 									<a href="#modal" class="squareBtn btn-medium">選択</a>
 								</div><!-- /.modalContainer -->
+								<ul class="oneRow" style="white-space: nowrap;">
+									@error('person')
+										<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+									@enderror
+								</ul>
 							</div>
-							{{Form::hidden('person', $comp->person, ['class' => 'form-control', 'id'=>'person' ] )}}
+							{{ html()->hidden('person', $comp->person) }}
 							<span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
-							<ul class="oneRow">
-								@error('person')
-									<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-								@enderror
-							</ul>
 						</div><!-- /.item-input -->
 					</div>
 
