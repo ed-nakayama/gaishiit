@@ -320,27 +320,6 @@ class MypageController extends Controller
 			->orderBy('jobs.name')
 			->paginate(20);
 
-		$arg = 0;
-		foreach ($jobList as $job) {
-			if (!empty($job->locations)) {
-
-				$loc = explode(",", $job->locations);
-
-				$str = array();
-				for ($i = 0; $i < count($loc); $i++) {
-					$temp = ConstLocation::find($loc[$i]);
-
-					if (!empty($temp->name)) $str[] = $temp->name;
-				}
-				$locStr = implode("/", $str);
-
-				$jobList[$arg++]->location_names = $locStr;
-
-			} else {
-				$jobList[$arg++]->location_names = '';
-			}
-		}
-
 		$comp_name = '';
 		$job_title = '';
 		$sub_category = '';

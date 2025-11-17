@@ -243,6 +243,7 @@ function dispCheckControl() {
 @if(!isset($jobList[0]))
 						<div>※データはありません。</div>
 @else
+@if (Auth::user()->agent_priv == '0')
 						<ul class="all-btn">
 							<li>{{ html()->checkbox('dispCheckAll',false ,'1')->attribute('onclick' ,'javascript:dispCheckControl()') }}  表示/非表示一括チェック</li>
 							<li><input type="button" value="一括表示" class="squareBtn" onclick="func_bulk(2)"></li>
@@ -250,7 +251,7 @@ function dispCheckControl() {
 							<li style="margin-left:50px;">{{ html()->checkbox('closeCheckAll',false ,'1')->attribute('onclick' ,'javascript:closeCheckControl()') }} 削除一括チェック</li>
 							<li><input type="button" value="一括削除" class="squareBtn" onclick="func_bulk(1)"></li>
 						</ul>
-
+@endif
 						<p style="text-align: center;">全{{ $jobList->total() }}件中 {{  ($jobList->currentPage() -1) * $jobList->perPage() + 1}}-{{ (($jobList->currentPage() -1) * $jobList->perPage() + 1) + (count($jobList) -1)  }}件</p>
 						<div class="pager">
 							{{ $jobList->appends(request()->query())->links('pagination.admin') }}
@@ -285,9 +286,16 @@ function dispCheckControl() {
 										{{ html()->form()->close() }}
 									</td>
 									<td>@if ($int->portal_flag == '1')　portal @else 一般 @endif</td>
-									<td>{{ html()->checkbox('dispCheck[]',false ,$int->id)->id('disp' . $int->id)->attribute('form', 'addform') }} @if ($int->open_flag == '1')表示 @else非表示 @endif</td>
+									<td>
+@if (Auth::user()->agent_priv == '0')
+										{{ html()->checkbox('dispCheck[]',false ,$int->id)->id('disp' . $int->id)->attribute('form', 'addform') }}
+@endif
+										@if ($int->open_flag == '1')表示 @else非表示 @endif
+									</td>
 									<td  style="text-align: center;">
+@if (Auth::user()->agent_priv == '0')
 										{{ html()->checkbox('closeCheck[]',false ,$int->id)->id('close' . $int->id)->attribute('form', 'addform') }}
+@endif
 									</td>
 									<td>{{ $int->getJobCategoryName() }}</td>
 									<td>{{ $int->unit_name }}</td>
