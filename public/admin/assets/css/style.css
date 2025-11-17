@@ -2601,6 +2601,57 @@ select {
 	background-color: #ffffcc;
 }
 
+.tbl-joblist-agent {
+    width: 100%;
+    font-size: 10px;
+	word-break:  break-all;
+}
+.tbl-joblist-agent  tr:nth-child(odd) td {
+	background-color:#F5F5F5;
+}
+.tbl-joblist-agent th:nth-child(1) { /* 更新日 */
+	width: 6%;
+}
+.tbl-joblist-agent th:nth-child(2) { /* 企業名 */
+	width: 10%;
+}
+.tbl-joblist-agent th:nth-child(3) { /* ジョブID */
+	width: 6%;
+}
+.tbl-joblist-agent th:nth-child(4) { /* Job Title */
+	width: auto;
+}
+.tbl-joblist-agent th:nth-child(5) { /* 外Web/内Web */
+	width: 6%;
+}
+.tbl-joblist-agent th:nth-child(6) { /* 公開/非公開 */
+	width: 7%;
+}
+.tbl-joblist-agent th:nth-child(7) { /* 職種 */
+	width: 10%;
+}
+.tbl-joblist-agent th:nth-child(8) { /* 部門 */
+	width: 10%;
+}
+.tbl-joblist-agent th:nth-child(9) { /* ロケーション */
+	width: 8%;
+}
+.tbl-joblis-agentt th:nth-child(10) { /* 勤務地詳細/その他 */
+	width: 8%;
+}
+.tbl-joblist-agent th:nth-child(11) { /* URL */
+	width: 12%;
+}
+
+.tbl-joblist-agent th {
+    border-bottom: 1px solid #707070;
+}
+.tbl-joblist-agent th, .tbl-joblist-agent td {
+    padding: 5px 10px;
+}
+.tbl-joblist-agent tr:hover td {
+	background-color: #ffffcc;
+}
 
 /* コチコミ一覧 */
 .tbl-evallist {

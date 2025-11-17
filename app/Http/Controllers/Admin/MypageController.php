@@ -58,7 +58,6 @@ class MypageController extends Controller
 			'sel_aprove',
 			'user_name',
 		));
-
 	}
 
 
@@ -332,6 +331,25 @@ class MypageController extends Controller
 		$portal_flag = 2;
 		$comp_id = '';
 
+		$user = \Auth::user();
+
+		if ($user->agent_priv == '1') {
+			return view('admin.mypage_agent' ,compact(
+			'jobList',
+			'comp_name',
+			'job_title',
+			'sub_category',
+			'working_place',
+			'unit_name',
+			'location',
+			'freeword',
+			'open_flag',
+			'cat_flag',
+			'portal_flag',
+			'comp_id',
+			));
+		}
+
 		return view('admin.mypage_joblist' ,compact(
 			'jobList',
 			'comp_name',
@@ -556,6 +574,25 @@ class MypageController extends Controller
 				->orderBy('companies.name')
 				->orderBy('jobs.name')
 				->paginate(20);
+
+			$user = \Auth::user();
+
+			if ($user->agent_priv == '1') {
+				return view('admin.mypage_agent' ,compact(
+				'jobList',
+				'comp_name',
+				'job_title',
+				'sub_category',
+				'working_place',
+				'unit_name',
+				'location',
+				'freeword',
+				'open_flag',
+				'cat_flag',
+				'portal_flag',
+				'comp_id',
+				));
+			}
 
 			return view('admin.mypage_joblist' ,compact(
 				'jobList',
