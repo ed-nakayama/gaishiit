@@ -613,6 +613,26 @@ class MypageController extends Controller
 
 
 /*************************************
+* 参照
+**************************************/
+	public function job_ref( Request $request )
+	{
+		$comp_id = $request->company_id;
+
+ 		$memberList = CompMember::select('id', 'name')->where('company_id' , $comp_id)->get();
+ 		$unitList = Unit::select('id', 'name')->where('company_id' , $comp_id)->get();
+
+		$job = Job::find($request->job_id);
+
+		return view('admin.job_ref' ,compact(
+			'job',
+			'unitList',
+			'memberList',
+		));
+	}
+
+
+/*************************************
 * 状態変更
 **************************************/
 	public function job_change( Request $request )

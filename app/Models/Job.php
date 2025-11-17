@@ -58,6 +58,22 @@ class Job extends Model
 	}
 
 
+/*************************************
+* 部署名取得
+**************************************/
+	public function getUnitName()
+	{
+		$result = null;
+
+		if (!empty($this->unit_id)) {
+			$temp = Unit::find($this->unit_id);
+			$result = $temp->name;
+		}
+
+		return $result;
+	}
+
+
 
  /*****************************************
  * 企業ランキング 取得

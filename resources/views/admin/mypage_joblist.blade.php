@@ -279,7 +279,11 @@ function dispCheckControl() {
 									<td>{{ $int->company_name }}</td>
 									<td>{{ $int->job_code }}</td>
 									<td>
+@if (Auth::user()->agent_priv == '0')
 										{{ html()->form('GET', '/admin/mypage/job/edit')->attribute('name', 'userform'. $int->id)->open() }}
+@else
+										{{ html()->form('GET', '/admin/mypage/job/ref')->attribute('name', 'userform'. $int->id)->open() }}
+@endif
 										{{ html()->hidden('company_id', $int->company_id) }}
 										{{ html()->hidden('job_id', $int->id) }}
 										<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}</a>

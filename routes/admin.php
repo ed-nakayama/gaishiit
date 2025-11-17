@@ -14,9 +14,8 @@ Auth::routes([
 Route::middleware('auth:admin')->group(function () {
 
 	// TOPページ
-	Route::resource('mypage', 'MypageController', ['only' => 'index']);
+//	Route::resource('mypage', 'MypageController', ['only' => 'index']);
 
-});
 
 
 // パスワード忘れ
@@ -51,6 +50,11 @@ Route::get ('/mypage/joblist/list',     'MypageController@joblist_list');
 Route::post('/mypage/joblist/list',     'MypageController@joblist_list');
 Route::get ('/mypage/job/edit',         'MypageController@job_edit')->name('mypage.job.edit');
 Route::post('/mypage/job/edit',         'MypageController@job_edit');
+Route::get ('/mypage/job/ref',         'MypageController@job_ref')->name('mypage.job.ref');
+Route::post('/mypage/job/ref',         'MypageController@job_ref');
+
+Route::get ('/mypage/job/reedit',         'MypageController@job_reedit')->name('mypage.job.reedit');
+
 Route::get ('/mypage/job/change',       'MypageController@job_change');
 Route::post('/mypage/job/change',       'MypageController@job_change');
 Route::get ('/mypage/job/post',         'MypageController@job_post');
@@ -286,3 +290,5 @@ Route::post('/supervisor/store', 'BlogController@superStore');
 // RPA関連
 Route::get ('/unavailable', 'RpaController@index');
 Route::post('/unavailable', 'RpaController@store');
+
+});

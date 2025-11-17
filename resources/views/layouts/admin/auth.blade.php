@@ -27,23 +27,15 @@
                 <h1 class="logo"><a href="/admin/mypage"><img src="/images/logo_on_admin.png" width="150"></a></h1>
                 <div class="containerMenu">
 
+@if (Auth::user()->agent_priv == '0')
                     <ul class="menu">【アカウント管理】　
-@if (Auth::user()->agent_priv == '0')
                         <li><a href="/admin/comp/list">企業登録</a></li>
-@endif
-@if (Auth::user()->agent_priv == '0' || Auth::user()->recruit_priv == '1')
                         <li><a href="/admin/candidate">候補者管理</a></li>
-@endif
-@if (Auth::user()->agent_priv == '0' || Auth::user()->recruit_priv == '1')
                         <li><a href="/admin/candidate/referer">候補者 Referer</a></li>
-@endif
-@if (Auth::user()->agent_priv == '0')
                         <li><a href="/admin/ownership">オーナーシップ管理</a></li>
                         <li><a href="/admin/admin/list">メンバー管理</a></li>
                         <li><a href="/admin/log/list">ログイン履歴</a></li>
-@endif
                     </ul>
-@if (Auth::user()->agent_priv == '0')
 					<br>
                     <ul class="menu">【設定変更】　
                         <li><a href="/admin/buscat">業種管理</a></li>

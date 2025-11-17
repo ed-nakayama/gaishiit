@@ -16,20 +16,11 @@
 
 <div class="mainContentsInner">
 	<div class="mainTtl title-main">
-		@if (Auth::user()->agent_priv == '0')
-			<h2>ジョブ管理 - 編集</h2>
-		@else
-			<h2>ジョブ管理 - 参照</h2>
-		@endif
+		<h2>ジョブ管理 - 編集</h2>
 		<h3>{{ $job->getCompanyName() }}</h3>
 	</div><!-- /.mainTtl -->
 
 	<div class="containerContents">
-		@if (Auth::user()->agent_priv == '1')
-			<fieldset disabled>
-		@else
-			<fieldset>
-		@endif
 					{{ html()->form('POST', '/admin/mypage/job/change')->id('changeform')->attribute('name', 'changeform')->open() }}
 					{{ html()->hidden('company_id', old('company_id' ,$job->company_id)) }}
 					{{ html()->hidden('job_id', old('job_id' ,$job->id)) }}
@@ -48,13 +39,11 @@
 								<li>
                                     <label id="del_lavel"  for=""><span>削除する</span><input type="checkbox"  name="del_flag" id="del_flag" value="1"  @if (old('dell_flag' ,$job->del_flag) == '1')  checked="checked" @endif /></label>
 								</li>
-@if (Auth::user()->agent_priv == '0')
 								<li>
                             		<div class="btnContainer">
 										<a href="javascript:changeform.submit()" class="squareBtn btn-short">表示設定保存</a>
                             		</div><!-- /.btn-container -->
 								</li>
-@endif
 								<li>
                             		<div class="btnContainer">
 										ID : {{ $job->id }}
@@ -70,7 +59,6 @@
                        </div><!-- /.secContentsInner -->
                     </section><!-- /.secContents-mb -->
 					{{ html()->form()->close() }}
-</fieldset>
 
 					{{ html()->form('POST', '/admin/mypage/job/post')->id('regform')->attribute('name', 'regform')->open() }}
 					{{ html()->hidden('company_id', old('company_id' ,$job->company_id)) }}
@@ -78,11 +66,6 @@
 					<section class="secContents">
 
                         <div class="secContentsInner">
-@if (Auth::user()->agent_priv == '1')
-<fieldset disabled>
-@else
-<fieldset>
-@endif
 
 								{{-- 更新成功メッセージ --}}
 								@if (session('update_success'))
@@ -165,7 +148,6 @@
 									</ul>
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
-</fieldset>
 
 <div class="scroll">
 							<div class="formContainer mg-ajust">
@@ -186,12 +168,6 @@
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
 
-@if (Auth::user()->agent_priv == '1')
-<fieldset disabled>
-@else
-<fieldset>
-@endif
-                                
 							<div class="formContainer mg-ajust">
 								<div class="item-name">
 									<p>ジョブID</p>
@@ -205,7 +181,6 @@
 									</ul>
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
-</fieldset>
 
 							<div class="formContainer mg-ajust-midashi">
 								<div class="item-name">
@@ -298,11 +273,6 @@
 								</div><!-- /.item-input -->
 							</div>
 
-@if (Auth::user()->agent_priv == '1')
-<fieldset disabled>
-@else
-<fieldset>
-@endif
 							<div class="formContainer mg-ajust">
 								<div class="item-name">
 									<p>年収</p>
@@ -332,7 +302,6 @@
 									<input class="long"  name="sub_category" type="text" value="{{ old('sub_category' ,$job->sub_category) }}">
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
-</fieldset>
 
 							<div class="formContainer mg-ajust-midashi">
 								<div class="item-name">
@@ -342,9 +311,6 @@
 
 									<ul class="radioList">
 										@foreach ($constLocation as $loc)
-{{--
-											<li><label><input type="checkbox" value="{{ $loc->id }}" name="locations[]"  @if (strpos($job->locations ,$loc->id) !== false) checked @endif  onchange="elseChange()" @if (Auth::user()->agent_priv == '1') onClick="return false;" @endif><span>{{ $loc->name }}</span></label></li>
---}}
 											<li><label>
 												@if (!empty($job->getLocationArray() ))
 													{{ html()->checkbox('locations[]', (in_array($loc->id, old("locations", $job->getLocationArray()) )), $loc->id)->attribute('onchange', "elseChange()")->attribute('onClick', (Auth::user()->agent_priv == '1') ? 'return false;' : 'return true;') }}<span>{{ $loc->name }}</span>
@@ -368,12 +334,7 @@
 									</ul>
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
-                                
-@if (Auth::user()->agent_priv == '1')
-<fieldset disabled>
-@else
-<fieldset>
-@endif
+
 							<div class="formContainer mg-ajust" id="changeElseLocation">
 								<div class="item-name">
 									<p>その他ロケーション</p>
@@ -391,7 +352,6 @@
 									<textarea class="form-mt" name="working_place" id="" cols="30" rows="3">{{ old('working_place' ,$job->working_place) }}</textarea>
 								</div><!-- /.item-input -->
 							</div><!-- END formContainer -->
-</fieldset>
 
 							<div class="formContainer bb-ajust">
 								<div class="item-name">
@@ -413,11 +373,10 @@
 								<div class="item-input item-input-row">
 									<div class="item-input-btn">
 
-@if (Auth::user()->agent_priv == '0')
 										<div class="modalContainer">
 											<a href="#modal" class="squareBtn btn-medium">選択</a>
 										</div><!-- /.modalContainer -->
-@endif
+
 									</div>
 									{{ html()->hidden('person', old('person' ,$job->person)) }}
 									<span id="member_text" class="border border-secondary border-5 bg-white" style="padding-right: 15px;"></span>
@@ -451,7 +410,6 @@
 
 
 </div>{{-- END scroll --}}
-@if (Auth::user()->agent_priv == '0')
 								<div class="btnContainer">
 								{{-- 更新成功メッセージ --}}
 									@if (session('update_success'))
@@ -459,7 +417,6 @@
 									@endif
 									<a href="javascript:regform.submit()" class="squareBtn btn-large">保存</a>
 								</div><!-- /.btn-container -->
-@endif
 							{{ html()->form()->close() }}
 
 						</div><!-- /.secContentsInner -->
