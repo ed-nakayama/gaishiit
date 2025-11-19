@@ -770,16 +770,14 @@ end_proc:
 				$this->open_date = null;
 			}
 		} else {
-			if (strcmp($this->event_job,'Event') == 0) {
-				$this->open_flag = 0;
-				$this->open_date = null;
-
-			} else {
-				$this->open_flag = 1;
-				$this->open_date = date("Y-m-d H:i:s");
-			}
+			$this->open_flag = 1;
+			$this->open_date = date("Y-m-d H:i:s");
 		}
 
+		if (strcmp($this->event_job,'Event') == 0) {
+			$this->open_flag = 0;
+			$this->open_date = null;
+		}
 	}
 
 
