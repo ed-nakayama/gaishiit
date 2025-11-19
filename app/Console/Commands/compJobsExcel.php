@@ -343,24 +343,22 @@ end_proc:
 ********************************************/
     private function create_job($job_arr)
     {
+		print_r("新規　OK  \n");
+
+		$this->set_open($job_arr);
 
 		$rpa = Rpa::find(1);
 
 		$keyword = explode(",", $rpa->keyword);
 
 		$cnt = count($keyword);
-		
 		for ($i = 0; $i < $cnt; $i++) {
-			$word = trim($keyword[$i]);
-			
-			if(!empty($word) && strpos($job_arr['job_title'], $word) !== false) {
-				return;
+			if(strpos($job_arr['job_title'], $keyword[$i]) !== false) {
+				$this->open_flag = 0;
+				$this->open_date = null;
 			}
 		}
 
-		print_r("新規　OK  \n");
-
-		$this->set_open($job_arr);
 
 		$job = Job::create([
 			'company_id'        => $job_arr['comp_id'],
@@ -398,18 +396,6 @@ end_proc:
 ********************************************/
     private function update_job($job ,$job_arr)
     {
-		$rpa = Rpa::find(1);
-
-		$keyword = explode(",", $rpa->keyword);
-
-		$cnt = count($keyword);
-		
-		for ($i = 0; $i < $cnt; $i++) {
-			if(strpos($job_arr['job_title'], $keyword[$i]) !== false) {
-				return;
-			}
-		}
-
 		print_r("更新　OK JobID=" . $job->id . "\n");
 
 		$portal_flag = !empty($job_arr['portal'] == '1') ? '1' : '0';
@@ -420,6 +406,19 @@ end_proc:
 			$job->open_flag = $this->open_flag;
 			$job->open_date = $this->open_date;
 		}
+
+		$rpa = Rpa::find(1);
+
+		$keyword = explode(",", $rpa->keyword);
+
+		$cnt = count($keyword);
+		for ($i = 0; $i < $cnt; $i++) {
+			if(strpos($job_arr['job_title'], $keyword[$i]) !== false) {
+				$job->open_flag = 0;
+				$job->open_date = null;
+			}
+		}
+
 
 		if ($job->portal_flag == '0') {
 			$job->portal_flag = $portal_flag;
@@ -778,6 +777,7 @@ end_proc:
 			$this->open_flag = 0;
 			$this->open_date = null;
 		}
+
 	}
 
 
