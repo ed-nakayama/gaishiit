@@ -16,13 +16,21 @@ Route::get('/welcome', function () {
 });
 
 
+Route::get('/test', function () {
+    return view('test');
+});
+
+Route::get('/api/suggestions', 'SearchController@getSuggestions');
+
+
 Auth::routes([
     'register' => false,
     'reset'    => false,
     'verify'   => false
 ]);
 
-Route::get('/', 'User\Auth\LoginController@top')->name('users.index');
+//Route::get('/', 'User\Auth\LoginController@top')->name('users.index');
+Route::get('/', 'Auth\LoginController@top')->name('users.index');
 
 Route::get('/comps', 'Comp\Auth\LoginController@showLoginForm')->name('comps.index');
 Route::post('/comps', 'Comp\Auth\LoginController@login');

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
 class ForgotPasswordController extends Controller
 {
     /*
@@ -20,4 +23,25 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
     
+    protected function validateEmail(Request $request)
+	{
+/*
+    	$request->validate([
+	        'email' => 'required|email|exists:users,email',
+        }),
+	    ], [
+	        'email.exists' => 'このメールアドレスは登録されていません。'
+	    ]);
+*/
+
+    	$request->validate([
+	        'email' => [
+	        	'required',
+	        	'email',
+	        	'exists:users,email',
+	        	Rule::exists('users')->where('aprove_flag', 1),
+	        ]
+	    ]);
+
+	}
 }
