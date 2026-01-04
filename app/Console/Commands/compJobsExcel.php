@@ -355,8 +355,8 @@ end_proc:
 		for ($i = 0; $i < $cnt; $i++) {
 			if (!empty($keyword[$i])) {
 				if(strpos($job_arr['job_title'], $keyword[$i]) !== false) {
-					$job->open_flag = 0;
-					$job->open_date = null;
+					$this->open_flag = 0;
+					$this->open_date = null;
 				}
 			}
 		}
