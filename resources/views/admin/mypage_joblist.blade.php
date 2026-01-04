@@ -226,7 +226,7 @@ function dispCheckControl() {
 										{{ html()->file('file') }}
 										{{ html()->form()->close() }}
 									</li>
-									<li style="width: auto;white-space:nowrap;"><a href="javascript:upform.submit()" class="squareBtn">　更新用 CSVアップロード　</a></li>
+									<li style="width: auto;white-space:nowrap;"><a href="javascript:upform.submit()" class="squareBtn">　更新用 excelアップロード　</a></li>
 
 									<li style="width: auto;white-space:nowrap;"><a href="/admin/mypage/joblist/download" class="squareBtn">　一括ダウンロード　</a></li>
 								</ul><!-- /.item -->
@@ -236,6 +236,9 @@ function dispCheckControl() {
 										{{session('upload_success')}}
 									</div>
 								@endif
+								@error('file')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
 							</div><!-- /.secBtnHead-btn -->
 						</div>
 @endif

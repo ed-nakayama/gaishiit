@@ -962,11 +962,29 @@ class MypageController extends Controller
     public function upload_csv(Request $request) {
 
 		$validatedData = $request->validate([
-			'file' => ['required'],
+			'file' => ['required','mimes:csv','extensions:csv'],
 		]);
 
 		$file_name = $request->file('file')->getClientOriginalName();
 		$request->file('file')->storeAS('public/comp_jobs/csv',$file_name);
+
+		return redirect('admin/mypage/joblist')->with('upload_success', 'アップロード完了しました。');
+	}
+
+
+/*******************************************
+* RPA エクセル ファイルアップロード
+********************************************/
+    public function upload_excel(Request $request) {
+
+		$validatedData = $request->validate([
+			'file' => ['required','mimes:xlsx,xls','extensions:xlsx,xls'],
+		]);
+
+		$file_name = $request->file('file')->getClientOriginalName();
+		$path = $request->file('file')->storeAS('public/comp_jobs/excel',$file_name);
+
+		Storage::move($path, 'public/comp_jobs/' . basename($path));
 
 		return redirect('admin/mypage/joblist')->with('upload_success', 'アップロード完了しました。');
 	}

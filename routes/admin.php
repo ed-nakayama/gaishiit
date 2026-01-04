@@ -61,8 +61,10 @@ Route::get ('/mypage/job/post',         'MypageController@job_post');
 Route::post('/mypage/job/post',         'MypageController@job_post');
 Route::get ('/mypage/joblist/download', 'MypageController@joblist_download');
 
-Route::get ('/mypage/joblist/upload', 'MypageController@upload_csv');
-Route::post('/mypage/joblist/upload', 'MypageController@upload_csv');
+//Route::get ('/mypage/joblist/upload', 'MypageController@upload_csv');
+//Route::post('/mypage/joblist/upload', 'MypageController@upload_csv');
+Route::get ('/mypage/joblist/upload', 'MypageController@upload_excel');
+Route::post('/mypage/joblist/upload', 'MypageController@upload_excel');
 
 Route::get ('/mypage/jobsfc',             'MypageController@jobsfc');
 Route::post('/mypage/jobsfc',             'MypageController@jobsfc');
