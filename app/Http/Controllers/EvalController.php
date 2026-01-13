@@ -66,7 +66,7 @@ class EvalController extends Controller
 			'join_status'   => ['required'],
 			'join_year'     => ['required'],
 			'retire_year'   => ['required','after_or_equal:join_year'],
-			'occupation'    => ['required', 'string'],
+			'eval_occupation'    => ['required', 'string'],
 		]);
 
 		$approve_flag = '0'; // 編集中
@@ -86,14 +86,14 @@ class EvalController extends Controller
 	public function confirm(Request $request)
 	{
 		$validated = $request->validate([
-			'comp_id'       => ['required', 'string'],
-			'emp_status'    => ['required'],
-			'tenure_status' => ['required'],
-			'join_status'   => ['required'],
-			'join_year'     => ['required'],
-			'retire_year'   => ['required'],
-			'occupation'    => ['required', 'string'],
-			'retire_year'   => ['required'],
+			'comp_id'         => ['required', 'string'],
+			'emp_status'      => ['required'],
+			'tenure_status'   => ['required'],
+			'join_status'     => ['required'],
+			'join_year'       => ['required'],
+			'retire_year'     => ['required'],
+			'eval_occupation' => ['required', 'string'],
+			'retire_year'     => ['required'],
 		]);
 
 		if (isset($request->next)) {
@@ -113,7 +113,7 @@ class EvalController extends Controller
 		$eval->join_status        = $request->join_status;
 		$eval->join_year          = $request->join_year;
 		$eval->retire_year        = $request->retire_year;
-		$eval->occupation         = $request->occupation;
+		$eval->occupation         = $request->eval_occupation;
 		$eval->ote_income         = $request->ote_income;
 		$eval->salary_point       = $request->salary_point;
 		$eval->salary_content     = $request->salary_content;
@@ -174,7 +174,7 @@ class EvalController extends Controller
 				'join_status'        => $request->join_status,
 				'join_year'          => $request->join_year,
 				'retire_year'        => $request->retire_year,
-				'occupation'         => $request->occupation,
+				'occupation'         => $request->eval_occupation,
 				'ote_income'         => $request->ote_income,
 				'salary_point'       => $request->salary_point,
 				'salary_content'     => $request->salary_content,
@@ -201,7 +201,7 @@ class EvalController extends Controller
 			$eval->join_status        = $request->join_status;
 			$eval->join_year          = $request->join_year;
 			$eval->retire_year        = $request->retire_year;
-			$eval->occupation         = $request->occupation;
+			$eval->occupation         = $request->eval_occupation;
 			$eval->ote_income         = $request->ote_income;
 			$eval->salary_point       = $request->salary_point;
 			$eval->salary_content     = $request->salary_content;

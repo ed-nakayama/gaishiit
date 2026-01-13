@@ -130,9 +130,16 @@ return [
     |
     */
 
+/*
     'custom' => [
         '属性名' => [
             'ルール名' => 'カスタムメッセージ',
+        ],
+    ],
+*/
+    'custom' => [
+        'job_cats' => [
+            'required' => '職種は必ず選択してください。',
         ],
     ],
 
@@ -165,7 +172,7 @@ return [
         'graduation' => '最終学歴',
         'department' => '学部',
         'company' => '勤務先',
-        'job' => '職務',
+        'job' => '職種',
         'mgr_year' => '年数',
         'mgr_member' => '人数',
         'job_content' => '職務内容',
@@ -206,7 +213,11 @@ return [
 
         'business_cats' => '業種',
         'job_cats' => '職種',
-        'user_name' => 'お名前',
+        'user_name' => '氏名',
+        'user_name1' => '氏名（姓）',
+        'user_name2' => '氏名（名）',
+        'user_name_kana1' => '氏名（姓カナ）',
+        'user_name_kana2' => '氏名（名カナ）',
         'job_title' => '役職',
         'qa_kind' => 'お問合せの種類',
         'aprove_flag' => '承認／否認',
@@ -228,12 +239,14 @@ return [
         'join_status' => '入社形態',
         'join_year' => '入社年',
         'retire_year' => '退社年',
-        'occupation' => '職種',
+        'occupation' => '職務',
         'input_len' => '全項目の合計',
         'open_date' => '公開日',
         'income' => '年収',
         'income_id' => '年収',
         'file' => 'ファイル',
+
+        'eval_occupation' => '職種',
 
     ],
 

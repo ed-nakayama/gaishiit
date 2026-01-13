@@ -45,7 +45,7 @@
 					<div class="containerProfile">
 						<p class="requesteDate">依頼日：{{ str_replace('-', '/' ,substr($interview->created_at, 0, 16)) }}</p>
 						@if ($interview->aprove_flag == '1' || $interview->interview_type == '1')
-							<p class="profileName">{{ $interview->user->name  }}</p>
+							<p class="profileName">{{ $interview->user->name  }}{{ $interview->user->name2  }}</p>
 						@else
 							<p class="profileName">{{ $interview->user->nick_name  }}</p>
 						@endif
@@ -374,7 +374,7 @@
 
 								<table class="tblUserInfo">
 									<tr><th width="50%">氏名</th><th>メールアドレス</th></tr>
-									<tr><td>@if ($interview->aprove_flag == '1' || $interview->interview_type == '1'){{ $interview->user->name }}@else{{ $interview->user->nick_name }}@endif</td><td>@if ($interview->aprove_flag == '1' || $interview->interview_type == '1'){{ $interview->user->email }}@else ************ @endif</td></tr>
+									<tr><td>@if ($interview->aprove_flag == '1' || $interview->interview_type == '1'){{ $interview->user->name }}{{ $interview->user->name2 }} @if (!empty($interview->user->name_kana))／@endif{{ $interview->user->name_kana }}@if (!empty($interview->user->name_kana2))　{{$interview->user->name_kana2 }}@endif @else{{ $interview->user->nick_name }}@endif</td><td>@if ($interview->aprove_flag == '1' || $interview->interview_type == '1'){{ $interview->user->email }}@else ************ @endif</td></tr>
 
 									<tr><th>生年月日</th><th>性別</th</tr>
 									<tr><td>{{ $interview->user->getBirthday() }}</td><td>{{ $interview->user->getSex() }}</td></tr>

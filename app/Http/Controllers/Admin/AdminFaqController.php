@@ -129,7 +129,12 @@ class AdminFaqController extends Controller
 			->orderBy('created_at' ,'desc')
 			->paginate(10);
 
-    
+		$i = 0;
+		foreach ($askList as $cas) {
+			$askList[$i]->getUser();
+			$i++;
+		}
+
 		return view('admin.admin_ask' ,compact('askList'));
 	}
 

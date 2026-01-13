@@ -156,7 +156,7 @@ class InterviewController extends Controller
 
 		$msgList = InterviewMessage::leftJoin('users','interview_messages.user_id','=','users.id')
 			->leftJoin('comp_members','interview_messages.member_id','=','comp_members.id')
-			->selectRaw('interview_messages.*  ,users.name as user_name, comp_members.name as member_name')
+			->selectRaw('interview_messages.*  ,concat(users.name, users.name2)  as user_name, comp_members.name as member_name')
 			->where('interview_messages.interview_id' , $request->interview_id)
 			->orderBy('interview_messages.id')
 			->get();

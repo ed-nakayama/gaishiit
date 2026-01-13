@@ -45,11 +45,11 @@
 											{{ Form::open(['url' => '/admin/claim/every/store', 'name' => 'editform' . $int->id ]) }}
 											{{ Form::hidden('interview_id', $int->id) }}
 											<td align="center"><input type="checkbox" name="complete_flag" value="1" @if ($int->complete_flag == '1') checked="checked" @endif  onchange="contChange('{{ 'contsave' . $int->id }}')"></td>
-											<td>{{ $int->company_name }}</td>
+											<td>{{ $int->company->name }}</td>
 											<td>{{ str_replace('-','/', substr($int->entrance_date, 0 ,10)) }}</td>
-											<td>{{ $int->user_name }}</td>
-											<td>{{ $int->job_name }}</td>
-											<td>{{ $int->job_id }}</td>
+											<td>{{ $int->user->name }}{{ $int->user->name2 }}</td>
+											<td>{{ $int->job->name }}</td>
+											<td>{{ $int->job->id }}</td>
 											<td><input type="text" name="job_note" value="{{ $int->job_note }}" onchange="contChange('{{ 'contsave' . $int->id }}')"></td>
 											<td><input type="text" name="amount" value="{{ $int->amount }}" onchange="contChange('{{ 'contsave' . $int->id }}')"></td>
 											<td>

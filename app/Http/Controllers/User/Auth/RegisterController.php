@@ -94,7 +94,10 @@ class RegisterController extends Controller
     {
 		if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$validatedData = $request->validate([
-				'user_name'        => ['required', 'string', 'max:60'],
+				'user_name1'       => ['required', 'string', 'max:60'],
+				'user_name2'       => ['required', 'string', 'max:60'],
+				'user_name_kana1'  => ['required', 'string', 'max:60'],
+				'user_name_kana2'  => ['required', 'string', 'max:60'],
 				'email'            => ['required', 'string', 'email', 'max:60', 'unique:users'],
 				'selectYear'       => ['required'],
 				'selectMonth'      => ['required'],
@@ -103,9 +106,9 @@ class RegisterController extends Controller
 
 				'graduation'       => ['required', 'string', 'max:100'],
 				'company'          => ['required', 'string', 'max:80'],
-				'job'              => ['required'],
-				'mgr_year'         => ['required_if:job,2', 'integer' ,'nullable'],
-				'mgr_member'       => ['required_if:job,2', 'integer' ,'nullable'],
+				'job_cats'         => ['required'],
+				'mgr_year'         => ['required_if:job_cats,2', 'integer' ,'nullable'],
+				'mgr_member'       => ['required_if:job_cats,2', 'integer' ,'nullable'],
 				'occupation'       => ['required', 'string'],
 
 				'section'          => ['nullable', 'string', 'max:200'],
@@ -137,7 +140,10 @@ class RegisterController extends Controller
     public function postRegister(Request $request)
     {
 		$validatedData = $request->validate([
-			'user_name'        => ['required', 'string', 'max:60'],
+			'user_name1'       => ['required', 'string', 'max:60'],
+			'user_name2'       => ['required', 'string', 'max:60'],
+			'user_name_kana1'  => ['required', 'string', 'max:60'],
+			'user_name_kana2'  => ['required', 'string', 'max:60'],
 			'email'            => ['required', 'string', 'email', 'max:60', 'unique:users'],
 			'selectYear'       => ['required'],
 			'selectMonth'      => ['required'],
@@ -146,9 +152,9 @@ class RegisterController extends Controller
 
 			'graduation'       => ['required', 'string', 'max:100'],
 			'company'          => ['required', 'string', 'max:80'],
-			'job'              => ['required'],
-			'mgr_year'         => ['required_if:job,2', 'integer' ,'nullable'],
-			'mgr_member'       => ['required_if:job,2', 'integer' ,'nullable'],
+			'job_cats'         => ['required'],
+			'mgr_year'         => ['required_if:job_cats,2', 'integer' ,'nullable'],
+			'mgr_member'       => ['required_if:job_cats,2', 'integer' ,'nullable'],
 			'occupation'       => ['required', 'string'],
 
 			'section'          => ['nullable', 'string', 'max:200'],
@@ -192,14 +198,17 @@ class RegisterController extends Controller
 
 		// ユーザ登録
         $retUser = User::create([
-            'name'             => $request->user_name,
+            'name'             => $request->user_name1,
+            'name2'            => $request->user_name2,
+            'name_kana'        => $request->user_name_kana1,
+            'name_kana2'       => $request->user_name_kana2,
             'email'            => $request->email,
             'birthday'         => $birthday,
             'sex'              => $request->sex,
 
             'graduation'       => $request->graduation,
             'company'          => $request->company,
-            'job'              => $request->job,
+            'job'              => $request->job_cats,
             'mgr_year'         => $request->mgr_year,
             'mgr_member'       => $request->mgr_member,
             'occupation'       => $request->occupation,

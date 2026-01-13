@@ -29,7 +29,7 @@
 			</ol>
 		</div>
 
-		{{ html()->form('POST', '/register')->id('regform')->attributes(['name' => 'regform','onsubmit' => 'return formSubmit();'])->open() }}
+		{{ html()->form('POST', '/register')->id('regform')->attributes(['name' => 'regform'])->open() }}
 
 		<div class="con-wrap">
 
@@ -40,20 +40,48 @@
 
 						<div class="item-block" style="display: block;">
 							<div class="exp-required-block">
-								<p class="exp-required">必須</p><p class="ttl exp-required-title">　お名前</p>
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　氏名</p>
 							</div>
 							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
 								<div class="contact-list">
 									<div class="input-wrap">
-										{{ html()->text('user_name', $reg->user_name)->disabled() }}
-										{{ html()->hidden('user_name', $reg->user_name) }}
+										{{ html()->text('user_name1', $reg->user_name1)->disabled() }}　　
+										{{ html()->hidden('user_name1', $reg->user_name1) }}
+										{{ html()->text('user_name2', $reg->user_name2)->disabled() }}
+										{{ html()->hidden('user_name2', $reg->user_name2) }}
 									</div>
 								</div>
-								@error('user_name')
+								@error('user_name1')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+								@error('user_name2')
 									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
 								@enderror
 							</div>
 						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　氏名（カナ）</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('user_name_kana1', $reg->user_name_kana1)->disabled() }}　　
+										{{ html()->hidden('user_name_kana1', $reg->user_name_kana1) }}
+										{{ html()->text('user_name_kana2', $reg->user_name_kana2)->disabled() }}
+										{{ html()->hidden('user_name_kana2', $reg->user_name_kana2) }}
+									</div>
+								</div>
+								@error('user_name_kana1')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+								@error('user_name_kana2')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
+
 
 						<div class="item-block" style="display: block;">
 							<div class="exp-required-block">
@@ -120,8 +148,8 @@
 													{{ html()->option("男性", '1', ($reg->sex == '1')) }}
 													{{ html()->option("女性", '2', ($reg->sex == '2')) }}
 													{{ html()->option("選択しない", '0', ($reg->sex == '0')) }}
-													{{ html()->hidden('sex', $reg->sex) }}
 												</select>
+												{{ html()->hidden('sex', $reg->sex) }}
 											</label>
 										</div>
 										@error('sex')
@@ -187,15 +215,26 @@
 										<div class="form-block">
 											<div class="form-inner">
 												<div class="check-box-btn">
-													<label>{{ html()->checkbox('job', ($reg->job == '1'), '1')->disabled() }}<span>IC</span></label>
-													<label>{{ html()->checkbox('job', ($reg->job == '2'), '2')->disabled() }}<span>Management</span></label>
-													{{ html()->hidden('job', $reg->job) }}
+													<label>{{ html()->checkbox('job_cats', ($reg->job_cats == '1'), '1')->disabled() }}<span>IC</span></label>
+													<label>{{ html()->checkbox('job_cats', ($reg->job_cats == '2'), '2')->disabled() }}<span>Management</span></label>
+													{{ html()->hidden('job_cats', $reg->job_cats) }}
 												</div>
 											</div>
 										</div>
+										<ul class="oneRow">
+											@error('job_cats')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+											@error('mgr_year')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+											@error('mgr_member')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+										</ul>
 
 										<div class="contact-list">
-											@if ($reg->job == '2')
+											@if ($reg->job_cats == '2')
 												<div class="input-wrap">
 													{{ html()->text('job_title', $reg->mgr_year . '年　' . $reg->mgr_member . '人')->disabled() }}
 													{{ html()->hidden('mgr_year', $reg->mgr_year) }}
@@ -206,15 +245,6 @@
 											{{ html()->hidden('occupation', $reg->occupation) }}
 										</div>
 										<ul class="oneRow">
-											@error('job')
-												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-											@enderror
-											@error('mgr_year')
-												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-											@enderror
-											@error('mgr_member')
-												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
-											@enderror
 											@error('occupation')
 												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
 											@enderror
@@ -942,9 +972,9 @@ $("[name='change_time']").on("click", function(){
 /////////////////////////////////////////////////////////
 // 職務内容　１つのみ選択
 /////////////////////////////////////////////////////////
-$("[name='job']").on("click", function(){
+$("[name='job_cats']").on("click", function(){
 	if ($(this).prop('checked')){
-    	$("[name='job']").prop('checked', false);
+    	$("[name='job_cats']").prop('checked', false);
         $(this).prop('checked', true);
     }
 });
@@ -1200,19 +1230,6 @@ function ResetBus() {
     }
 }
 
-
-/*****************************************************************
-* submit時
-******************************************************************/
-function formSubmit() {
-
-	document.getElementById("birthday").value
-		= toBirthday(document.getElementById("js_year").value,
-			document.getElementById("js_month").value,
-			document.getElementById("js_day").value);
-
-	return true;
-}
 
 
 /////////////////////////////////////////////////////////

@@ -15,7 +15,7 @@
 
 <div class="pane-leftbar">
 	<nav class="maypage-sidenav">
-		<p class="maypage-sidenav__name">{{ Auth::guard('user')->user()->name }}</p>
+		<p class="maypage-sidenav__name">{{ Auth::guard('user')->user()->name }}{{ Auth::guard('user')->user()->name2 }}</p>
 		<p class="maypage-sidenav__id">お客様番号 : {{ Auth::guard('user')->user()->nick_name }}</p>
 		<figure class="maypage-sidenav__graph">
 			<figcaption>プロフィール完成度</figcaption>

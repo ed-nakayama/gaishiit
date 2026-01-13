@@ -371,15 +371,20 @@ class AdminUserController extends UserController
 					->whereRaw('interviews.updated_at = last_update')
 					;
 			})
-			->join('users','interviews.user_id','=','users.id')
-			->leftJoin('companies','interviews.company_id','=','companies.id')
-			->leftJoin('units','interviews.unit_id','=','units.id')
-			->leftJoin('jobs','interviews.job_id','=','jobs.id')
-			->leftJoin('events','interviews.event_id','=','events.id')
-			->selectRaw('interviews.* ,users.name as user_name, companies.name as company_name ,units.name as unit_name ,jobs.name as job_name ,events.name as event_name ')
-//			->where('interviews.user_id' ,$user_id)
-//			->whereNull('interviews.entrance_date')
+			->selectRaw('interviews.*')
 			->paginate(20);
+
+		$i = 0;
+		foreach ($ownerList as $cas) {
+			$ownerList[$i]->getUser();
+			$ownerList[$i]->getCompany();
+			$ownerList[$i]->getUnit();
+			$ownerList[$i]->getJob();
+			$ownerList[$i]->getEvent();
+			$i++;
+		}
+
+
 
 		return view('admin.ownership_list' ,compact(
 			'ownerList',

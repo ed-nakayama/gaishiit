@@ -14,8 +14,8 @@
 					</div><!-- /.tblCaption -->
 
 					<table class="tblUserInfo">
-						<tr><th>お名前</th></tr>
-						<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}@else {{ $userInfo->nick_name }} @endif</td></tr>
+						<tr><th>氏名</th></tr>
+						<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}　{{ $userInfo->name2 }} @if (!empty($userInfo->name_kana))／@endif{{$userInfo->name_kana }}@if (!empty($userInfo->name_kana2))　{{$userInfo->name_kana2 }}@endif @else {{ $userInfo->nick_name }} @endif</td></tr>
                                             
 						<tr><th>企業名</th></tr>
 						<tr><td>{{ $userInfo->company }}</td></tr>

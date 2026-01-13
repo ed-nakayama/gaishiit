@@ -56,7 +56,7 @@
                                         {{ Form::open(['url' => '/admin/user/detail', 'name' => 'userform' . $int->id ]) }}
                                         {{ Form::hidden('user_id', $int->id) }}
 										{{ Form::hidden('parent_id', '2') }}
-                                        <a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}</a>
+                                        <a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}{{ $int->name2 }}</a>
                                         {{ Form::close() }}
                                     </td>
 									<td>@if ( $int->aprove_flag == '1')<font color="blue">承認済</font>@elseif ( $int->aprove_flag == '2')<font color="red">リジェクト</font>@endif</td>

@@ -51,7 +51,7 @@
 								{{ html()->hidden('parent_id', '4') }}
 								{{ html()->form()->close() }}
 
-							<td><a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}</a></td>
+							<td><a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}{{ $int->user->name2 }}</a></td>
 							<td>
 								@if ($int->interview_type == '0')
 									カジュアル面談

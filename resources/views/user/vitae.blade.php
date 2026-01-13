@@ -42,16 +42,16 @@
 							<p class="ttl">氏名</p>
 							<div class="form-inner contact">
 								<div class="contact-list">
-									<div class="input-wrap"><input type="text" name="name" value="{{ old('name' ,$user->name) }}"  disabled="disabled"  class="long"></div>
+									<div class="input-wrap"><input type="text" name="name" value="{{ $user->name }}　{{ $user->name2 }}"  disabled="disabled"  class="long"></div>
 								</div>
 							</div>
 						</div>
 
 						<div class="item-block">
-							<p class="ttl">ふりがな ※</p>
+							<p class="ttl">氏名（カナ）</p>
 							<div class="form-inner contact">
 								<div class="contact-list">
-									<div class="input-wrap"><input type="text" name="name_kana" value="{{ old('name_kana' ,$user->name_kana) }}"  class="long"></div>
+									<div class="input-wrap"><input type="text" name="name_kana" value="{{ $user->name_kana }}　{{ $user->name_kana2 }}"  disabled="disabled"   class="long"></div>
 								</div>
 							</div>
 						</div>

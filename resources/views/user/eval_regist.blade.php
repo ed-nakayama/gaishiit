@@ -208,10 +208,10 @@
 							<div class="form-inner contact">
 								<div class="contact-list">
 									<div class="input-wrap">
-										{{ html()->text('occupation', $eval->occupation)->class('long') }}
+										{{ html()->text('eval_occupation', $eval->occupation)->class('long') }}
 									</div>
 								</div>
-								@error('occupation')
+								@error('eval_occupation')
 									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
 								@enderror
 							</div>

@@ -94,7 +94,7 @@
 										{{ html()->form('POST', '/admin/user/detail')->attribute('name', 'userform'. $int->id)->open() }}
 										{{ html()->hidden('user_id',   $int->id) }}
 										{{ html()->hidden('parent_id', '0') }}
-										<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}</a>
+										<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->name }}@if (!empty($int->name2)){{ $int->name2 }}@endif</a>
 										{{ html()->form()->close() }}
 									</td>
 									<td>@if ( $int->aprove_flag == '1')<font color="blue">承認済</font>@elseif ( $int->aprove_flag == '2')<font color="red">リジェクト</font>@endif</td>

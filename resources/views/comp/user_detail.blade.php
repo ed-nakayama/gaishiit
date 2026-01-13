@@ -25,7 +25,7 @@
 					<div class="userDetailInner">
 
 						<div class="userDetailMain">
-							<p class="name">@if ($userInfo->open_flag == '1'){{ $userInfo->name }}@else{{ $userInfo->nick_name }}@endif</p>
+							<p class="name">@if ($userInfo->open_flag == '1'){{ $userInfo->name }}{{ $userInfo->name2 }}@else{{ $userInfo->nick_name }}@endif</p>
 							<p class="status">採用：<span class="off">@if (!empty($userComp)){{ $userComp->result_name }}@else未設定@endif</span></p>
 						</div><!-- /.userDetailMain -->
 
@@ -171,8 +171,8 @@
 							</div><!-- /.tblCaption -->
 
 							<table class="tblUserInfo">
-								<tr><th width="50%">お名前</th><th>メールアドレス</th></tr>
-								<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}@else ************ @endif</td><td>@if ($userInfo->open_flag == '1'){{ $userInfo->email }}@else ************ @endif</td></tr>
+								<tr><th width="50%">氏名</th><th>メールアドレス</th></tr>
+								<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}{{ $userInfo->name2 }} @if (!empty($userInfo->name_kana))／@endif{{ $userInfo->name_kana }}@if (!empty($userInfo->name_kana2))　{{ $userInfo->name_kana2 }}@endif @else ************ @endif</td><td>@if ($userInfo->open_flag == '1'){{ $userInfo->email }}@else ************ @endif</td></tr>
 								<tr><th>生年月日</th><th>性別</th></tr>
 								<tr><td>{{ str_replace('-','/', substr($userInfo->birthday, 0 ,10)) }}</td><td>@if ($userInfo->sex == '1')男@elseif ($userInfo->sex == '2')女@else選択しない@endif</td></tr>
 							</table>
@@ -247,8 +247,8 @@
 							</div><!-- /.tblCaption -->
 
 							<table class="tblUserInfo">
-								<tr><th>お名前</th></tr>
-								<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}@else ************ @endif</td></tr>
+								<tr><th>氏名</th></tr>
+								<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}{{ $userInfo->name2 }} @if (!empty($userInfo->name_kana))／@endif{{ $userInfo->name_kana }}@if (!empty($userInfo->name_kana2))　{{ $userInfo->name_kana2 }}@endif @else ************ @endif</td></tr>
 
 								<tr><th>企業名</th></tr>
 								<tr><td>{{ $userInfo->company }}</td></tr>
@@ -301,10 +301,10 @@
 								<table class="tblUserInfo">
 
 									<tr><th>氏名</th></tr>
-									<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}@else ************ @endif</td></tr>
+									<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}　{{ $userInfo->name2 }}@else ************ @endif</td></tr>
 
-									<tr><th>ふりがな</th></tr>
-									<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name_kana }}@else ************ @endif</td></tr>
+									<tr><th>フリガナ</th></tr>
+									<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name_kana }}　{{ $userInfo->name_kana2 }}@else ************ @endif</td></tr>
                                             
 									<tr><th>役職</th></tr>
 									<tr><td>{{ $userInfo->job_title }}</td></tr>

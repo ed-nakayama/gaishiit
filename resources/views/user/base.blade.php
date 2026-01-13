@@ -38,7 +38,7 @@
 				</center>
 			@endif
 
-			{{ html()->form('POST', "/base/store")->attribute('name', "baseform")->attribute('onsubmit', 'return formSubmit();')->open() }}
+			{{ html()->form('POST', "/base/store")->attribute('name', "baseform")->open() }}
 
 			<div class="item setting">
 				<div class="item-inner">
@@ -47,15 +47,39 @@
 					<div class="setting-list">
 						<div class="item-block" style="display: block;">
 							<div class="exp-required-block">
-								<p class="exp-required">必須</p><p class="ttl exp-required-title">　お名前</p>
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　氏名</p>
 							</div>
 							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
 								<div class="contact-list">
 									<div class="input-wrap">
-										{{ html()->text('user_name' ,old('user_name' ,$user->name))->placeholder('山田　太郎')->style($errors->has('user_name') ? 'background:#ffc0cb;' : '') }}
+										{{ html()->text('user_name1' ,old('user_name1' ,$user->name))->placeholder('山田')->style($errors->has('user_name1') ? 'background:#ffc0cb;' : '') }}　
+										{{ html()->text('user_name2' ,old('user_name2' ,$user->name2))->placeholder('太郎')->style($errors->has('user_name2') ? 'background:#ffc0cb;' : '') }}
 									</div>
 								</div>
-								@error('user_name')
+								@error('user_name1')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+								@error('user_name2')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　氏名（カナ）</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('user_name_kana1' ,old('user_name_kana1' ,$user->name_kana))->placeholder('ヤマダ')->style($errors->has('user_name_kana1') ? 'background:#ffc0cb;' : '') }}　
+										{{ html()->text('user_name_kana2' ,old('user_name_kana2' ,$user->name_kana2))->placeholder('タロウ')->style($errors->has('user_name_kana2') ? 'background:#ffc0cb;' : '') }}
+									</div>
+								</div>
+								@error('user_name_kana1')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+								@error('user_name_kana2')
 									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
 								@enderror
 							</div>

@@ -16,7 +16,7 @@
 					<table class="tblUserInfo">
 
 						<tr><th>Candidate Name</th></tr>
-						<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}@else {{ $userInfo->nick_name }} @endif</td></tr>
+						<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }} @if (!empty($userInfo->name_kana))／@endif{{$userInfo->name_kana }}@if (!empty($userInfo->name_kana2))　{{$userInfo->name_kana2 }}@endif @else {{ $userInfo->nick_name }} @endif</td></tr>
 
 						<tr><th>Company Name</th></tr>
 						<tr><td>{{ $userInfo->en_company }}</td></tr>

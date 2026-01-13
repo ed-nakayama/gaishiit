@@ -24,12 +24,15 @@
 /////////////////////////////////////////////////////////
 function ShowTerm() {
 
-	var user_name        = document.getElementById('user_name').value;
+	var user_name1       = document.getElementById('user_name1').value;
+	var user_name2       = document.getElementById('user_name2').value;
+	var user_name_kana1  = document.getElementById('user_name_kana1').value;
+	var user_name_kana2  = document.getElementById('user_name_kana2').value;
 	var email            = document.getElementById('email').value;
 	var sex              = document.getElementById('sex').value;
 	var graduation       = document.getElementById('graduation').value;
 	var company          = document.getElementById('company').value;
-	var job              = document.getElementsByName('job')
+	var job_cats         = document.getElementsByName('job_cats')
 	var occupation       = document.getElementById('occupation').value;
 	var change_time      = document.getElementById('change_time').value;
 	var request_location = document.getElementsByName('request_location[]');
@@ -39,7 +42,10 @@ function ShowTerm() {
 	
 	var total = 0;
 
-	if (user_name.length == 0)       total++;
+	if (user_name1.length == 0)      total++;
+	if (user_name2.length == 0)      total++;
+	if (user_name_kana1.length == 0) total++;
+	if (user_name_kana2.length == 0) total++;
 	if (email.length == 0)           total++;
 	if (sex.length == 0)             total++;
 	if (graduation.length == 0)      total++;
@@ -51,8 +57,8 @@ function ShowTerm() {
 	if (income.length == 0)          total++;
 
 	flag = false;
-	for (var i = 0; i < job.length; i++) {
-		if (job[i].checked) flag = true;
+	for (var i = 0; i < job_cats.length; i++) {
+		if (job_cats[i].checked) flag = true;
 	}
 	if (flag == false) total++;
 
@@ -82,7 +88,7 @@ function ShowTerm() {
 			</ol>
 		</div>
 
-		{{ html()->form('POST', '/register/confirm')->id('regform')->attributes(['name' => 'regform','onsubmit' => 'return formSubmit();'])->open() }}
+		{{ html()->form('POST', '/register/confirm')->id('regform')->attributes(['name' => 'regform'])->open() }}
 
 		<div class="con-wrap">
 			<div class="remainTerm"><p>残り未完了項目　</p><p id="remain" class="rowRemain"></p><p  class="rowCount">箇所</p></div>
@@ -94,15 +100,39 @@ function ShowTerm() {
 
 						<div class="item-block" style="display: block;">
 							<div class="exp-required-block">
-								<p class="exp-required">必須</p><p class="ttl exp-required-title">　お名前</p>
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　氏名</p>
 							</div>
 							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
 								<div class="contact-list">
 									<div class="input-wrap">
-										{{ html()->text('user_name')->placeholder('山田　太郎')->style($errors->has('user_name') ? 'background:#ffc0cb;' : '')->attributes(['autofocus', 'onChange' => 'ShowTerm();']) }}
+										{{ html()->text('user_name1')->placeholder('山田')->style($errors->has('user_name1') ? 'background:#ffc0cb;' : '')->attributes(['autofocus', 'onChange' => 'ShowTerm();']) }}　　
+										{{ html()->text('user_name2')->placeholder('太郎')->style($errors->has('user_name2') ? 'background:#ffc0cb;' : '')->attributes(['autofocus', 'onChange' => 'ShowTerm();']) }}
 									</div>
 								</div>
-								@error('user_name')
+								@error('user_name1')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+								@error('user_name2')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+							</div>
+						</div>
+
+						<div class="item-block" style="display: block;">
+							<div class="exp-required-block">
+								<p class="exp-required">必須</p><p class="ttl exp-required-title">　氏名（カナ）</p>
+							</div>
+							<div class="form-inner contact" style="margin-top:10px;margin-bottom:20px;">
+								<div class="contact-list">
+									<div class="input-wrap">
+										{{ html()->text('user_name_kana1')->placeholder('ヤマダ')->style($errors->has('user_name_kana1') ? 'background:#ffc0cb;' : '')->attributes(['autofocus', 'onChange' => 'ShowTerm();']) }}　　
+										{{ html()->text('user_name_kana2')->placeholder('タロウ')->style($errors->has('user_name_kana2') ? 'background:#ffc0cb;' : '')->attributes(['autofocus', 'onChange' => 'ShowTerm();']) }}
+									</div>
+								</div>
+								@error('user_name_kana1')
+									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
+								@enderror
+								@error('user_name_kana2')
 									<span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span>
 								@enderror
 							</div>
@@ -245,8 +275,8 @@ function ShowTerm() {
 										<div class="form-block">
 											<div class="form-inner">
 												<div class="check-box-btn">
-													<label><input type="checkbox" value="1" onclick="changeJobDisabled(1);" name="job" @if (old('job') == '1')  checked="checked" @endif  onChange="ShowTerm();"><span>IC</span></label>
-													<label><input type="checkbox" value="2" onclick="changeJobDisabled(2);" name="job" @if (old('job') == '2')  checked="checked" @endif  onChange="ShowTerm();"><span>Management</span></label>
+													<label><input type="checkbox" value="1" onclick="changeJobDisabled(1);" name="job_cats" @if (old('job_cats') == '1')  checked="checked" @endif  onChange="ShowTerm();"><span>IC</span></label>
+													<label><input type="checkbox" value="2" onclick="changeJobDisabled(2);" name="job_cats" @if (old('job_cats') == '2')  checked="checked" @endif  onChange="ShowTerm();"><span>Management</span></label>
 												</div>
 											</div>
 										</div>
@@ -266,12 +296,8 @@ function ShowTerm() {
 													</li>
 												</ul>
 											</div>
-											<div class="input-wrap">
-												{{ html()->text('occupation')->class('long')->placeholder('ITコンサルタントなど')->style($errors->has('occupation') ? 'background:#ffc0cb;' : '')->attributes(['onChange' => 'ShowTerm();']); }}
-											</div>
-										</div>
 										<ul class="oneRow">
-											@error('job')
+											@error('job_cats')
 												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
 											@enderror
 											@error('mgr_year')
@@ -280,6 +306,12 @@ function ShowTerm() {
 											@error('mgr_member')
 												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
 											@enderror
+										</ul>
+											<div class="input-wrap">
+												{{ html()->text('occupation')->class('long')->placeholder('ITコンサルタントなど')->style($errors->has('occupation') ? 'background:#ffc0cb;' : '')->attributes(['onChange' => 'ShowTerm();']); }}
+											</div>
+										</div>
+										<ul class="oneRow">
 											@error('occupation')
 												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
 											@enderror
@@ -995,7 +1027,7 @@ $("[name='change_time']").on("click", function(){
 /////////////////////////////////////////////////////////
 $("[name='job']").on("click", function(){
 	if ($(this).prop('checked')){
-    	$("[name='job']").prop('checked', false);
+    	$("[name='job_cats']").prop('checked', false);
         $(this).prop('checked', true);
     }
 });
@@ -1381,9 +1413,9 @@ $(document).ready(function() {
  	putBus();
  
 	var change_time = @json(old('change_time'));
-	var job = @json(old('job'));
+	var job_cats = @json(old('job_cats'));
 
-	changeJobDisabled(job);
+	changeJobDisabled(job_cats);
 
 	changeElse();
 

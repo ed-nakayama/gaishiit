@@ -118,7 +118,7 @@
 								{{ html()->form('POST', '/comp/user/detail')->attribute('name', 'userform' . $user->id)->open() }}
 								{{ html()->hidden('user_id', $user->id) }}
 								{{ html()->hidden('parent_id', '2') }}
-								<a href="javascript:userform{{ $user->id }}.submit()" style="text-decoration: underline;">{{ $user->name }}</a>
+								<a href="javascript:userform{{ $user->id }}.submit()" style="text-decoration: underline;">{{ $user->name }}{{ $user->name2 }}</a>
 								{{ html()->form()->close() }}
 							</td>
 							<td>

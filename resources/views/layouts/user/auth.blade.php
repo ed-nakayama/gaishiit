@@ -141,7 +141,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-PQ27GXX7');</script>
 <!-- End Google Tag Manager -->
-
 <body style="background-color:#FAFAFA;">
 
 <!-- Google Tag Manager (noscript) -->
@@ -185,7 +184,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 @if (Auth::guard('user')->check())
 								<div class="userMenu">
 									<input type="checkbox" id="toggle" autocomplete="off">
-									<label for="toggle" onclick=""  style="transform: rotate(0.03deg);">{{ Auth::guard('user')->user()->name }}</label>  
+									<label for="toggle" onclick=""  style="transform: rotate(0.03deg);">{{ Auth::guard('user')->user()->name }}{{ Auth::guard('user')->user()->name2 }}</label>  
 									<ul id="menu">  
 {{--										<li style="transform: rotate(0.03deg);"><a href="/mypage">マイページ　　</a></li>--}}
 										<li style="transform: rotate(0.03deg);"><a href="/setting" style="font-size:1.6rem;">個人設定　　　</a></li>

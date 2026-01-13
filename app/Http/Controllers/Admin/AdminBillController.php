@@ -314,19 +314,25 @@ class AdminBillController extends Controller
 	{
 		$start_date = date('Y/m/01',strtotime("-1 month"));
 
-		$intList = Interview::join('companies' ,'interviews.company_id' ,'companies.id')
-			->join('users' ,'interviews.user_id' ,'users.id')
-			->join('jobs' ,'interviews.job_id' ,'jobs.id')
-			->selectRaw('interviews.* ,users.name as user_name ,jobs.name as job_name ,jobs.job_code as job_code ,companies.name as company_name')
+		$intList = Interview::selectRaw('interviews.*')
 			->where('interviews.interview_type' ,'1' )
 			->where('interviews.result_id', '1')
 			->where(function($query) use  ($start_date) {
 				$query->whereNull('interviews.entrance_date')
 				->orWhere('interviews.entrance_date' ,'>=' ,$start_date);
 			})
-			->orderBy('companies.id')
+			->orderBy('company_id')
 			->orderBy('entrance_date')
 			->get();
+
+		$i = 0;
+		foreach ($intList as $cas) {
+			$intList[$i]->getUser();
+			$intList[$i]->getCompany();
+			$intList[$i]->getJob();
+			$i++;
+		}
+
 
 		return view('admin.claim_every' ,compact(
 			'intList',

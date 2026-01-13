@@ -6,7 +6,6 @@
 		<div class="mainContentsInner">
 			<div class="containerContents">
 				<section class="secContents">
-
 					<div class="containerTblUserInfo" style="max-width: 85%;">
 						<div class="tblCaption">
 							<h2 class="tblCaptionTitle">候補者情報</h2>
@@ -14,8 +13,8 @@
                                         
 						<table class="tblUserInfo">
 
-							<tr><th width="50%">お名前</th><th>メールアドレス</th></tr>
-							<tr><td>{{ $userInfo->name }}</td><td>{{ $userInfo->email }}</td></tr>
+							<tr><th width="50%">氏名</th><th>メールアドレス</th></tr>
+							<tr><td>{{ $userInfo->name }}　{{ $userInfo->name2 }} @if (!empty($userInfo->name_kana))／{{ $userInfo->name_kana }}@endif @if (!empty($userInfo->name_kana2))　{{ $userInfo->name_kana2 }}@endif</td><td>{{ $userInfo->email }}</td></tr>
 
 							<tr><th>生年月日</th><th>性別</th></tr>
 								<tr><td>{{ $userInfo->getBirthday() }}</td><td>{{ $userInfo->getSex() }}</td></tr>
@@ -25,7 +24,7 @@
 						<div class="tblCaption">
 							<h2 class="tblCaptionTitle">キャリア情報</h2>
 						</div><!-- /.tblCaption -->
-                                        
+
 						<table class="tblUserInfo">
 
 							<tr><th>最終学歴</th><th>勤務先（現在または在籍していた）</th></tr>
@@ -38,7 +37,10 @@
 							<tr><td>{{ $userInfo->section }}</td><td>{{ $userInfo->job_title }}</td></tr>
 
 							<tr><th colspan="2">職務内容</th></tr>
-							<tr><td colspan="2">{!! nl2br(e($userInfo->job_content)) !!}</td></tr>
+
+							<tr><td colspan="2" style="word-wrap: break-word;overflow-wrap: break-word;word-break: break-all;">
+							{!! nl2br(e($userInfo->job_content)) !!}
+							</td></tr>
 
 							<tr><th>過去3年の平均実績（Actual Earnings）</th><th>理論年収（OTE）</th></tr>
 							<tr><td>{{ $userInfo->actual_income }} 万円</td><td>{{ $userInfo->ote_income }} 万円</td></tr>
@@ -47,11 +49,12 @@
 							<tr><td colspan="2">{{ $userInfo->old_company }}</td></tr>
 
 							<tr><th colspan="2">キャリアに関する希望</th></tr>
-							<tr><td colspan="2">{!! nl2br(e($userInfo->request_carrier)) !!}</td></tr>
+
+							<tr><td colspan="2" style="word-wrap: break-word;">{!! nl2br(e($userInfo->request_carrier)) !!}</td></tr>
 
 							<tr><th colspan="2">非表示企業</th></tr>
 							<tr><td colspan="2">{!! nl2br(e($userInfo->getNoCompany())) !!}</td></tr>
- 						</table>
+						</table>
 						<br>
 
 						<div class="tblCaption">
@@ -74,7 +77,6 @@
  						</table>
 
 					</div><!-- /.containerTblUserInfo -->   
-
 				</section><!-- /.secContents -->
 			</div><!-- /.containerContents -->
 		</div><!-- /.mainContentsInner -->

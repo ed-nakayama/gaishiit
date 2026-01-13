@@ -1004,9 +1004,9 @@ class MypageController extends Controller
 		$query = Evaluation::leftJoin('companies', 'evaluations.company_id', 'companies.id')
 			->leftJoin('users', 'evaluations.user_id', 'users.id');
 
-//		if ($sel_aprove != '99') {
-//			$query = $query->where('approve_flag' , $sel_aprove);
-//		}
+		if ($sel_aprove != '99') {
+			$query = $query->where('approve_flag' , $sel_aprove);
+		}
 			
 		if (isset($request->freeword)) {
 

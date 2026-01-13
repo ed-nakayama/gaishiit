@@ -107,7 +107,7 @@
 						<p class="ttl" style="max-width: 180px; width: 100%;">職種</p>
 							<div class="form-wrap">
 								{{ $eval->occupation }}
-								<input type="hidden" name="occupation" value="{{ $eval->occupation }}">
+								<input type="hidden" name="eval_occupation" value="{{ $eval->occupation }}">
 							</div>
 						</div>
 

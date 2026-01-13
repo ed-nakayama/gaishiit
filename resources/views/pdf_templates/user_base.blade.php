@@ -13,8 +13,8 @@
 					</div><!-- /.tblCaption -->
                                         
 					<table class="tblUserInfo">
-						<tr><th width="50%">お名前</th><th>メールアドレス</th></tr>
-						<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}@else {{ $userInfo->nick_name }} @endif</td><td>@if ($userInfo->open_flag == '1'){{ $userInfo->email }} @else ************ @endif</td></tr>
+						<tr><th width="50%">氏名</th><th>メールアドレス</th></tr>
+						<tr><td>@if ($userInfo->open_flag == '1'){{ $userInfo->name }}　{{ $userInfo->name2 }} @if (!empty($userInfo->name_kana))／{{ $userInfo->name_kana }}@endif @if (!empty($userInfo->name_kana2))　{{ $userInfo->name_kana2 }}@endif @else {{ $userInfo->nick_name }} @endif</td><td>@if ($userInfo->open_flag == '1'){{ $userInfo->email }} @else ************ @endif</td></tr>
 
 						<tr><th>生年月日</th><th>性別</th></tr>
 						<tr><td>{{ $userInfo->getBirthday() }}</td><td>{{ $userInfo->getSex() }}</td>

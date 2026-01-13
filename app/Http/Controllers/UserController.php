@@ -267,7 +267,10 @@ class UserController extends Controller
 	public function base_store( Request $request )
 	{
 		$validatedData = $request->validate([
-			'user_name'        => ['required', 'string', 'max:60'],
+			'user_name1'       => ['required', 'string', 'max:60'],
+			'user_name2'       => ['required', 'string', 'max:60'],
+			'user_name_kana1'  => ['required', 'string', 'max:60'],
+			'user_name_kana2'  => ['required', 'string', 'max:60'],
 			'selectYear'       => ['required'],
 			'selectMonth'      => ['required'],
 			'selectDate'       => ['required'],
@@ -302,7 +305,10 @@ class UserController extends Controller
 
 		$user = User::find($loginUser->id);
 
-		$user->name = $request->user_name;
+		$user->name  = $request->user_name1;
+		$user->name2 = $request->user_name2;
+		$user->name_kana  = $request->user_name_kana1;
+		$user->name_kana2 = $request->user_name_kana2;
 		$user->birthday = $birthday;
 		$user->sex = $request->sex;
 
@@ -538,7 +544,7 @@ class UserController extends Controller
 
 		$user = User::find($loginUser->id);
 
-		$user->name_kana = $request->name_kana;
+//		$user->name_kana = $request->name_kana;
 		$user->pref = $request->pref;
 		$user->address = $request->address;
 //		$user->hist_email = $request->hist_email;

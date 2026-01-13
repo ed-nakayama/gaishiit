@@ -136,7 +136,7 @@ window.addEventListener('DOMContentLoaded', function() {
 			</tr>
 			<tr>
 				<td>内容</td>
-				<td>{{ html()->textarea('content' ,"$userInfo->name 様\n\n")->rows('16')->style('font-family:initial;') }}</td>
+				<td>{{ html()->textarea('content' ,"$userInfo->name $userInfo->name2 様\n\n")->rows('16')->style('font-family:initial;') }}</td>
 			</tr>
 		</table>
 		<br>
@@ -172,7 +172,7 @@ window.addEventListener('DOMContentLoaded', function() {
 							<div class="userDetailInner">
 
 								<div class="userDetailMain">
-									<p class="name">{{ $userInfo->name }}（{{ $userInfo->nick_name }}）</p>
+									<p class="name">{{ $userInfo->name }}{{ $userInfo->name2 }}（{{ $userInfo->nick_name }}）</p>
 									<p class="status"><span class="off">{{ $userInfo->getAprove() }}</span></p>
 								</div><!-- /.userDetailMain -->
 								<br><br>
@@ -270,8 +270,8 @@ window.addEventListener('DOMContentLoaded', function() {
 							</div><!-- /.tblCaption -->
                                         
 							<table class="tblUserInfo">                                       
-								<tr><th width="50%">お名前</th><th>メールアドレス</th></tr>
-								<tr><td>{{ $userInfo->name }}</td><td>{{ $userInfo->email }}</td></tr>
+								<tr><th width="50%">氏名</th><th>メールアドレス</th></tr>
+								<tr><td>{{ $userInfo->name }}@if (!empty($userInfo->name2))　{{ $userInfo->name2 }}@endif @if (!empty($userInfo->name_kana))／@endif{{ $userInfo->name_kana }}@if (!empty($userInfo->name_kana2))　{{ $userInfo->name_kana2 }}@endif</td><td>{{ $userInfo->email }}</td></tr>
 
 								<tr><th>生年月日</th><th>性別</th></tr>
 								<tr><td>{{ $userInfo->getBirthday() }}</td><td>{{ $userInfo->getSex() }}</td></tr>
@@ -383,10 +383,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
 							<table class="tblUserInfo">
 								<tr><th>氏名</th></tr>
-								<tr><td>{{ $userInfo->name }}</td></tr>
+								<tr><td>{{ $userInfo->name }}　{{ $userInfo->name2 }}</td></tr>
 
-								<tr><th>ふりがな</th></tr>
-								<tr><td>{{ $userInfo->name_kana }}</td></tr>
+								<tr><th>フリガナ</th></tr>
+								<tr><td>{{ $userInfo->name_kana }}　{{ $userInfo->name_kana2 }}</td></tr>
                                             
 								<tr><th>役職</th></tr>
 								<tr><td>{{ $userInfo->job_title }}</td></tr>

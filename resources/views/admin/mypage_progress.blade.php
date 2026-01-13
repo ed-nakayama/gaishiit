@@ -76,7 +76,7 @@
 									{{ html()->hidden('interview_id', $int->id) }}
 									<td>{{ $int->updated_at->format('Y/m/d/H:i') }}</td>
 									<td>
- 										<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}</a>
+ 										<a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}{{ $int->user->name2 }}</a>
 									</td>
 									<td>{{ $int->company->name }}</td>
 									<td>
@@ -190,7 +190,7 @@
 										<input type="date" name="interview_date" value="{{ $int['interview_date'] }}"  oninput="alreadyChange('{{ 'alreadysave' . $int->id }}')">
 									</label>
 								</td>
-								<td><a href="javascript:aluserform{{ $int->id }}.submit()"style="text-decoration: underline;">{{ $int->user->name }}</a></td>
+								<td><a href="javascript:aluserform{{ $int->id }}.submit()"style="text-decoration: underline;">{{ $int->user->name }}{{ $int->user->name2 }}</a></td>
 								<td>{{ $int->company->name }}</td>
 								<td>
 									@if ($int->interview_type == '0')

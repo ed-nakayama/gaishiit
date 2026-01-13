@@ -33,13 +33,13 @@
                                         {{ Form::open(['url' => '/admin/user/detail', 'name' => 'userform' . $int->id ]) }}
                                         {{ Form::hidden('user_id', $int->user_id) }}
 										{{ Form::hidden('parent_id', '3') }}
-                                        <a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user_name }}</a>
+                                        <a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}{{ $int->user->name2 }}</a>
 										{{ html()->form()->close() }}
                                     </td>
                                     <td>{{ str_replace('-','/', substr($int['updated_at'], 0 ,10)) }}</td>
-                                    <td>{{ $int['company_name'] }}</td>
-                                    <td>{{ $int['unit_name'] }}</td>
-                                    <td>@if ($int['interview_type'] == '1'){{ $int['job_name'] }}@elseif ($int['interview_type'] == '2'){{ $int['event_name'] }}@else @endif</td>
+                                    <td>@if (!empty($int->company)){{ $int->company->name }}@endif</td>
+                                    <td>@if (!empty($int->unit)){{ $int->unit->name }}@endif</td>
+                                    <td>@if ($int['interview_type'] == '1')@if (!empty($int->job)){{ $int->job->name }}@endif @elseif ($int['interview_type'] == '2')@if (!empty($int->event)){{ $int->event->name }}@endif @else @endif</td>
                                     <td>@if ($int['interview_type'] == '1')正式応募@elseif ($int['interview_type'] == '2')イベント@elseカジュアル面談@endif</td>
                                 </tr>
                                 @endforeach

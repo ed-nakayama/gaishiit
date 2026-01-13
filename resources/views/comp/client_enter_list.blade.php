@@ -54,7 +54,7 @@
 							{{ html()->hidden('interview_id', $int->id) }}
 
 							<td>{{ $int->updated_at->format('Y/m/d/H:i') }}</td>
-							<td><a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}</a></td>
+							<td><a href="javascript:userform{{ $int->id }}.submit()" style="text-decoration: underline;">{{ $int->user->name }}{{ $int->user->name2 }}</a></td>
 							<td>
 								<label style="padding: 5px 5px;border: 1px solid #ccc;"><input type="date" name="entrance_date" value="{{ $int->entrance_date }}"  oninput="progChange('{{ 'progsave' . $int->id }}')"></label>
 							</td>

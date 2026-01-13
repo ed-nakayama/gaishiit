@@ -41,7 +41,7 @@
 											@endif
 										</th>
 										<th class="receiveName">
-											<a href="/comp/interview/flow?interview_id={{ $interview->id }}">@if ($interview->aprove_flag == '1'){{  $interview->user->name }}@else{{  $interview->user->nick_name }}@endif</a>
+											<a href="/comp/interview/flow?interview_id={{ $interview->id }}">@if ($interview->aprove_flag == '1'){{  $interview->user->name }}{{  $interview->user->name2 }}@else{{  $interview->user->nick_name }}@endif</a>
 										</th>
 										<th>{{  $interview->job->name }}</th>
 										<th>@if ($interview->aprove_flag == '1')承認@elseif ($interview->aprove_flag == '2')否認@endif</th>

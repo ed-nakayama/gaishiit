@@ -28,7 +28,7 @@
 						@foreach ($askList as $ask)
 						<tr>
 							<td>{{ str_replace(' ','/', str_replace('-','/', substr($ask->created_at, 0 ,16))) }}</td>
-							<td>{{ $ask->candidate_name }}</td>
+							<td>@if (!empty($ask->user)){{ $ask->user->name }}{{ $ask->user->name2 }}@endif</td>
 							<td>{{ $ask->user_name }}</td>
 							<td>{{ $ask->email }}</td>
 							<td>{!! nl2br(e($ask->content)) !!}</td>
