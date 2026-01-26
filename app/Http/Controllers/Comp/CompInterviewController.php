@@ -364,6 +364,7 @@ class CompInterviewController extends InterviewController
 			$interview->save();
 		}
 
+
 		// イメージファイル保存
 		$filename = '';
 		$path = '';
@@ -391,8 +392,9 @@ class CompInterviewController extends InterviewController
         
         // 未読フラグに設定
         if ($interview->intervew_type == '1') { // 正式応募
-			$job = Job::find($interview->job_id);
-			$person = explode(",", $job['person']);
+			$job = Job::withTrashed()
+				->find($interview->job_id);
+			$person = explode(",", $job->person);
 
 			if ($user->formal_mail_flag == '1')  {
 				Mail::send(new MessageToUser($user ,$comp ,$interview));
@@ -402,12 +404,13 @@ class CompInterviewController extends InterviewController
 
         } else if ($interview->intervew_type == '2') { // イベント
 	        if ($interview->interview_kind == '1') { // 部署
-				$unit = Unit::find($interview->unit_id);
-				$person = explode(",", $unit['person']);
+				$unit = Unit::withTrashed()
+					->find($interview->unit_id);
+				$person = explode(",", $unit->person);
 
 	        } else { // 企業
 				$comp = Company::find($interview->company_id);
-				$person = explode(",", $comp['person']);
+				$person = explode(",", $comp->person);
 			}
 
 			if ($user->event_mail_flag == '1')  {
@@ -417,16 +420,18 @@ class CompInterviewController extends InterviewController
 			}
 			
         } else { // カジュアル
-	        if ($interview->interview_kind == '1') { // 部署
-				$unit = Unit::find($interview->unit_id);
-				$person = explode(",", $unit['person']);
 
+	        if ($interview->interview_kind == '1') { // 部署
+				$unit = Unit::withTrashed()
+					->find($interview->unit_id);
+				$person = explode(",", $unit['person']);
 	        } elseif ($interview->interview_kind == '2') { // ジョブ
-				$job = Job::find($interview->job_id);
-				$person = explode(",", $job['person']);
+				$job = Job::withTrashed()
+					->find($interview->job_id);
+				$person = explode(",", $job->person);
 
 	        } else { // 企業
-				$person = explode(",", $comp['person']);
+				$person = explode(",", $comp->person);
 			}
 
 			if ($user->casual_mail_flag == '1')  {
