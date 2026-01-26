@@ -232,31 +232,34 @@ class InterviewController extends Controller
         
         // 未読フラグに設定
         if ($interview->interview_type == '1') { // 正式
-			$job = Job::find($interview->job_id);
-			$person = explode(",", $job['person']);
+			$job = Job::withTrashed()
+				->find($interview->job_id);
+			$person = explode(",", $job->person);
 
         } else if ($interview->interview_type == '2') { // イベント
 	        if ($interview->interview_kind == '1') { // 部署
-				$unit = Unit::find($interview->unit_id);
-				$person = explode(",", $unit['person']);
+				$unit = Unit::withTrashed()
+				->find($interview->unit_id);
+				$person = explode(",", $unit->person);
 
 	        } else { // 企業
-//				$comp = Company::find($interview->company_id);
-				$person = explode(",", $comp['person']);
+				$comp = Company::find($interview->company_id);
+				$person = explode(",", $comp->person);
 			}
 
         } else { // カジュアル
 	        if ($interview->interview_kind == '1') { // 部署
 				$unit = Unit::find($interview->unit_id);
-				$person = explode(",", $unit['person']);
+				$person = explode(",", $unit->person);
 
 	        } elseif ($interview->interview_kind == '2') { // ジョブ
-				$job = Job::find($interview->job_id);
-				$person = explode(",", $job['person']);
+				$job = Job::withTrashed()
+				->find($interview->job_id);
+				$person = explode(",", $job->person);
 
 	        } else { // 企業
-//				$comp = Company::find($interview->company_id);
-				$person = explode(",", $comp['person']);
+				$comp = Company::find($interview->company_id);
+				$person = explode(",", $comp->person);
 			}
         }
 
