@@ -12,9 +12,14 @@
 
 	} else if ( (false !== strpos($param1, 'occupation')) || (false !== strpos($param2, 'occupation')) ) {
 		$cat             = \app\Models\JobCatDetail::where('id', $param['job_cat_details'])->where('del_flag','0')->first();
-		$valJobCat       = \app\Models\JobCat::where('id', $cat->job_cat_id)->where('del_flag','0')->orderBy('order_num')->orderBy('id')->get();
-		$valJobCatDetail = \app\Models\JobCatDetail::where('job_cat_id', $cat->job_cat_id)->where('del_flag','0')->orderBy('order_num')->orderBy('id')->get();
-		if (!empty($cat->job_cat_id)) $job_cat_id = $cat->job_cat_id;
+		if (!empty($cat)) {
+			$valJobCat       = \app\Models\JobCat::where('id', $cat->job_cat_id)->where('del_flag','0')->orderBy('order_num')->orderBy('id')->get();
+			$valJobCatDetail = \app\Models\JobCatDetail::where('job_cat_id', $cat->job_cat_id)->where('del_flag','0')->orderBy('order_num')->orderBy('id')->get();
+			$job_cat_id = $cat->job_cat_id;
+		} else {
+			$valJobCat       = \app\Models\JobCat::where('del_flag','0')->orderBy('order_num')->orderBy('id')->get();
+			$valJobCatDetail = \app\Models\JobCatDetail::where('del_flag','0')->orderBy('order_num')->orderBy('id')->get();
+		}
 	} else {
 		$valJobCat       = \app\Models\JobCat::where('del_flag','0')->orderBy('order_num')->orderBy('id')->get();
 		$valJobCatDetail = \app\Models\JobCatDetail::where('del_flag','0')->orderBy('order_num')->orderBy('id')->get();

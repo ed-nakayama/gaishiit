@@ -21,7 +21,7 @@
 					<table class="tbl-3th">
 						<tr>
 							<th style="width:100px;">更新日</th>
-							<th>除外キーワード<font color="red">（半角のカンマでキーワードを区切って下さい。）</font></th>
+							<th>ジョブタイトル内 除外キーワード<font color="red">（半角のカンマでキーワードを区切って下さい。）</font></th>
 							<th></th>
 						</tr>
 						<tr>

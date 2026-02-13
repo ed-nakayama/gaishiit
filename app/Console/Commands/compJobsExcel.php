@@ -343,7 +343,6 @@ end_proc:
 ********************************************/
     private function create_job($job_arr)
     {
-		print_r("新規　OK  \n");
 
 		$this->set_open($job_arr);
 
@@ -357,10 +356,12 @@ end_proc:
 				if(strpos($job_arr['job_title'], $keyword[$i]) !== false) {
 					$this->open_flag = 0;
 					$this->open_date = null;
+					return;
 				}
 			}
 		}
 
+		print_r("新規　OK  \n");
 
 		$job = Job::create([
 			'company_id'        => $job_arr['comp_id'],
@@ -398,7 +399,6 @@ end_proc:
 ********************************************/
     private function update_job($job ,$job_arr)
     {
-		print_r("更新　OK JobID=" . $job->id . "\n");
 
 		$portal_flag = !empty($job_arr['portal'] == '1') ? '1' : '0';
 
@@ -419,10 +419,12 @@ end_proc:
 				if(strpos($job_arr['job_title'], $keyword[$i]) !== false) {
 					$job->open_flag = 0;
 					$job->open_date = null;
+					return;
 				}
 			}
 		}
 
+		print_r("更新　OK JobID=" . $job->id . "\n");
 
 		if ($job->portal_flag == '0') {
 			$job->portal_flag = $portal_flag;

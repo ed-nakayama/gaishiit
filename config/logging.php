@@ -45,13 +45,19 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
-        ],
+    	],
 
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
             'days' => 14,
+        	// ↓ここを追加・変更
+        	'formatter' => Monolog\Formatter\LineFormatter::class,
+        	'formatter_with' => [
+            	'format' => "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n",
+            	'dateFormat' => "Y-m-d H:i:s", // 日時フォーマットの指定
+        	],
         ],
 
         'slack' => [
