@@ -5,6 +5,22 @@
 
 @section('content')
 
+<script>
+function func_dl() {
+
+	document.modalform.dl.value = '1';
+	document.modalform.submit();
+}
+
+function func_nodl() {
+
+	document.modalform.dl.value = '';
+	document.modalform.submit();
+}
+
+</script>
+
+
 <div class="mainContentsInner-oneColumn">
 
 	<div class="secTitle">
@@ -19,6 +35,7 @@
 			<div class="secContentsInner">
 
 				{{ html()->form('GET', '/admin/candidate/list')->attribute('name', 'modalform')->open() }}
+				{{ html()->hidden('dl', '') }}
 
 				<div class="formContainer mg-ajust" style="width:90%;">
 					<div class="item-name" style="width:40px;">
@@ -122,7 +139,8 @@
 					</div><!-- /.formContainer -->
 
 					<div class="btnContainer">
-						<a href="javascript:modalform.submit()" class="squareBtn btn-large" style="width:120px; line-height:10px;">検索</a>
+						<a href="#" class="squareBtn btn-large" style="width:120px; line-height:10px;"  onclick="func_nodl()">検索</a>　
+						<a href="#" class="squareBtn btn-large" style="width:120px; line-height:10px;" onclick="func_dl()">検索ダウンロード</a>
 					</div><!-- /.btn-container -->
 				</div><!-- /.formContainer -->
    

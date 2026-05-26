@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 
 use Validator;
 use Redirect;
 use URL;
+use Excel;
+
+use App\Exports\UserExport;
 
 use App\Models\User;
 use App\Models\JobCat;
@@ -32,6 +36,8 @@ use App\Mail\AgentToUser;
 
 class AdminUserController extends UserController
 {
+
+	private $XLSX_USER_DIR = 'user_list';
 
 	public function __construct()
 	{
@@ -276,6 +282,38 @@ class AdminUserController extends UserController
 	{
 		$loginUser = Auth::user();
 
+		if (!empty($request->dl)) {
+			$searchHist = new SearchHist();
+
+			$searchHist->result = $request->result;
+			$searchHist->from_age = $request->from_age;
+			$searchHist->to_age = $request->to_age;
+			$searchHist->current_job = $request->current_job;
+			$searchHist->location = $request->location;
+			$searchHist->request_cat = $request->request_cat;
+			$searchHist->freeword = $request->freeword;
+			$searchHist->aprove_flag = $request->aprove_flag;
+
+			$userList = $this->search_can_list_dl($searchHist);
+
+			$userListName = 'UserList_'   . date("Ymd_His") . ".xlsx";
+			$exUserFile  = "user_list/" . $userListName;
+
+			$view = view('admin.export_userlist' ,compact(
+					'userList',
+				));
+				
+			Excel::store(new UserExport($view), $exUserFile, 'public');
+
+			$mimeType = Storage::mimeType($userListName);
+			$headers = [['Content-Type' => $mimeType]];
+			$dlFileName = "Gaishi_UserList.xlsx";
+			$dlFile ="public/user_list/" . $userListName;
+
+			return Storage::download($dlFile, $dlFileName, $headers);
+		}
+
+
 		$searchHist = SearchHist::where('owner_id' ,$loginUser->id)
 			->where('use_page' ,'ADMIN_CAND')
 			->first();
@@ -291,6 +329,7 @@ class AdminUserController extends UserController
 
 		$searchHist->save();
 
+
 		$userList = $this->search_can_list($searchHist);
 
 		return view('admin.candidate_list' ,compact(
@@ -299,6 +338,60 @@ class AdminUserController extends UserController
 		));
  
 	}
+
+
+/*************************************
+* 候補者管理 検索リスト
+**************************************/
+	public function search_can_list_dl($param)
+	{
+		$subSQL0 = \DB::table('users')
+			->selectRaw("id, TIMESTAMPDIFF(YEAR, users.birthday, CURDATE()) AS age");
+
+		$userQuery = User::JoinSub($subSQL0 , 'user_age' ,'user_age.id', 'users.id')
+			->selectRaw("users.*");
+
+		if ($param->aprove_flag == '0') {
+			$userQuery = $userQuery->where('aprove_flag' , '0');
+			
+		} elseif ($param->aprove_flag == '1') {
+			$userQuery = $userQuery->where('aprove_flag' , '1');
+
+		} elseif ($param->aprove_flag == '2') {
+			$userQuery = $userQuery->where('aprove_flag' , '2');
+		}
+
+		if (!empty($request->user_name) ) {
+			$user_name = $request->user_name;
+			$userQuery = $userQuery->where('name' , 'like', "%{$user_name}%");
+		}
+
+		if (!empty($param->result)) $userQuery = $userQuery->where('users.result_id' , $param->result);
+		if (!empty($param->from_age)) $userQuery = $userQuery->where('age' ,'>=',  $param->from_age);
+		if (!empty($param->to_age)) $userQuery = $userQuery->where('age' ,'<',  $param->to_age + 10);
+		if (!empty($param->current_job)) $userQuery = $userQuery->whereIn('users.job_cats' , ["{$param->current_job}"]);
+		if (!empty($param->location)) $userQuery = $userQuery->where('users.request_location', 'like', "%{$param->location}%");
+		if (!empty($param->request_cat)) $userQuery = $userQuery->where('users.job_cats', 'like', "%{$param->request_cat}%");
+
+		if (!empty($param->freeword)) {
+			$freeword = $param->freeword;
+
+			$userQuery = $userQuery
+				->where(function($query) use ($freeword) {
+					$query->where('users.graduation' , 'like', "%{$freeword}%")
+					->orWhere('users.name' , 'like', "%{$freeword}%")
+					->orWhere('users.email' , 'like', "%{$freeword}%")
+					->orWhere('users.company' , 'like', "%{$freeword}%")
+					->orWhere('users.job_content' , 'like', "%{$freeword}%")
+					;
+				});
+		}
+		
+		$userList = $userQuery->orderBy('created_at' ,'desc')->get();
+
+		return $userList;
+	}	
+
 
 
 /*************************************
