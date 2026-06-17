@@ -99,8 +99,22 @@ class MypageController extends Controller
 
 		if (!empty($request->user_name) ) {
 			$user_name = $request->user_name;
-			$userQuery = $userQuery->where('name' , 'like', "%{$user_name}%");
+//			$userQuery = $userQuery->where('name' , 'like', "%{$user_name}%");
+
+			$userQuery = $userQuery->where(function($query) use ($user_name) {
+					$query->where('name' , 'like', "%{$user_name}%")
+					->orWhere('name2' , 'like', "%{$user_name}%")
+					->orWhere('name_kana' , 'like', "%{$user_name}%")
+					->orWhere('name_kana2' , 'like', "%{$user_name}%")
+					;
+				});
+
 		}
+
+
+
+
+
 
 		$userList = $userQuery
 			->orderBy('created_at' ,'desc')
