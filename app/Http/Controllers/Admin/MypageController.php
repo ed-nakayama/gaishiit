@@ -46,6 +46,9 @@ class MypageController extends Controller
 
 		$sel_aprove = '';
 		$user_name = '';
+		$user_name2 = '';
+		$user_kana = '';
+		$user_kana2 = '';
 
 		$user = \Auth::user();
 
@@ -57,6 +60,9 @@ class MypageController extends Controller
 			'userList',
 			'sel_aprove',
 			'user_name',
+			'user_name2',
+			'user_kana',
+			'user_kana2',
 		));
 	}
 
@@ -67,7 +73,10 @@ class MypageController extends Controller
 	public function list(Request $request)
 	{
 		$sel_aprove = $request->sel_aprove;
-		$user_name = !empty($request->user_name) ? $request->user_name : '';
+		$user_name  = !empty($request->user_name)  ? $request->user_name : '';
+		$user_name2 = !empty($request->user_name2) ? $request->user_name2 : '';
+		$user_kana  = !empty($request->user_kana)  ? $request->user_kana : '';
+		$user_kana2 = !empty($request->user_kana2) ? $request->user_kana2 : '';
 
 		$userList = $this->search_list($request);
 
@@ -75,6 +84,9 @@ class MypageController extends Controller
 			'userList',
 			'sel_aprove',
 			'user_name',
+			'user_name2',
+			'user_kana',
+			'user_kana2',
 		));
 
 	}
@@ -99,21 +111,23 @@ class MypageController extends Controller
 
 		if (!empty($request->user_name) ) {
 			$user_name = $request->user_name;
-//			$userQuery = $userQuery->where('name' , 'like', "%{$user_name}%");
-
-			$userQuery = $userQuery->where(function($query) use ($user_name) {
-					$query->where('name' , 'like', "%{$user_name}%")
-					->orWhere('name2' , 'like', "%{$user_name}%")
-					->orWhere('name_kana' , 'like', "%{$user_name}%")
-					->orWhere('name_kana2' , 'like', "%{$user_name}%")
-					;
-				});
-
+			$userQuery = $userQuery->where('name' , 'like', "%{$user_name}%");
 		}
 
+		if (!empty($request->user_name2) ) {
+			$user_name2 = $request->user_name2;
+			$userQuery = $userQuery->where('name2' , 'like', "%{$user_name2}%");
+		}
 
+		if (!empty($request->user_kana) ) {
+			$user_kana = $request->user_kana;
+			$userQuery = $userQuery->where('name_kana' , 'like', "%{$user_kana}%");
+		}
 
-
+		if (!empty($request->user_kana2) ) {
+			$user_kana2 = $request->user_kana2;
+			$userQuery = $userQuery->where('name_kana2' , 'like', "%{$user_kana2}%");
+		}
 
 
 		$userList = $userQuery

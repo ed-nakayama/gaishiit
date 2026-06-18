@@ -56,12 +56,27 @@
 										</div>
 										{{ html()->form()->close() }}
 									</li>
-									<li style="margin-top: 6px;text-align:right;">候補者名
+									<li style="margin-top: 6px;text-align:right;">姓
 									</li>
-									<li style="width: 180px;">
+									<li style="width: 100px;">
 										{{ html()->form('GET', '/admin/mypage/list')->attribute('name', 'sarchform')->open() }}
 										{{ html()->hidden('sel_aprove') }}
 										{{ html()->text('user_name', $user_name) }}
+									</li>
+									<li style="width: 20px; margin-top: 6px;text-align:right;">名
+									</li>
+									<li style="width: 100px;">
+										{{ html()->text('user_name2', $user_name2) }}
+									</li>
+									<li style="width: 40px; margin-top: 6px;text-align:right;">セイ
+									</li>
+									<li style="width: 100px;">
+										{{ html()->text('user_kana', $user_kana) }}
+									</li>
+									<li style="width: 40px; margin-top: 6px;text-align:right;">メイ
+									</li>
+									<li style="width: 100px;">
+										{{ html()->text('user_kana2', $user_kana2) }}
 										{{ html()->form()->close() }}
 									</li>
 									<li style="margin-top: 2px;"><a href="" class="squareBtn" onclick="user_search();return false;">検索</a></li>
