@@ -248,6 +248,14 @@ return [
 
         'eval_occupation' => '職種',
 
+        'employ_num'     => '従業員数（人）',
+        'establish_year' => '設立年（西暦）',
+        'monthly_price'  => '月払い契約 金額',
+        'yearly_price'   => '年払い契約 金額',
+        'in_mail_casual' => '最大InMail数（正式応募）',
+        'in_mail_formal' => '最大InMail数（カジュアル面談）',
+
+
     ],
 
 'values' => [

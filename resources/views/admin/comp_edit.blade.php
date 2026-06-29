@@ -190,6 +190,11 @@
 									</div><!-- /.item-name -->
 									<div class="item-input">
 										<input type="text" name="employ_num"  value="{{ old('employ_num' ,$comp->employ_num) }}">
+										<ul class="oneRow">
+											@error('employ_num')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+										</ul>
 									</div><!-- /.item-input -->
 
 									<div style="margin: 0 10px 0 20px;">
@@ -197,6 +202,11 @@
 									</div><!-- /.item-name -->
 									<div class="item-input">
 										<input type="text" name="establish_year"  value="{{ old('establish_year' ,$comp->establish_year) }}">
+										<ul class="oneRow">
+											@error('establish_year')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+										</ul>
 									</div><!-- /.item-input -->
 
 									<div style="margin: 0 10px 0 20px;">
@@ -410,8 +420,16 @@
 										<p>最大InMail数</p>
 									</div><!-- /.item-name -->
 									<div class="item-input">
-										正式応募　<input type="text" name="in_mail_formal" value="{{$comp->in_mail_formal }}" style="width: 100px;">
-										　　カジュアル面談　<input type="text" name="in_mail_casual" value="{{$comp->in_mail_casual }}" style="width: 100px;">
+										正式応募　<input type="text" name="in_mail_formal" value="{{ old('in_mail_formal' ,$comp->in_mail_formal) }}" style="width: 100px;">
+										　　カジュアル面談　<input type="text" name="in_mail_casual" value="{{ old('in_mail_casual' ,$comp->in_mail_casual) }}" style="width: 100px;">
+										<ul class="oneRow">
+											@error('in_mail_formal')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+											@error('in_mail_casual')
+												<li><span class="invalid-feedback" role="alert" style="color:#ff0000;">{{ $message }}</span></li>
+											@enderror
+										</ul>
 									</div><!-- /.item-input -->
 								</div>
 								
@@ -452,7 +470,7 @@
 										@endif
 									</div><!-- /.item-input -->
 									<div class="item-input">
-										{{ html()->file('image')->class('form-control') }}
+										{{ html()->file('image') }}
 									</div>
 									<div class="item-input">
 										<p> ※jpg、png、500KB以内</p>

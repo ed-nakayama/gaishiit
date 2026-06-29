@@ -134,7 +134,13 @@ class AdminCompanyController extends CompanyController
 		$validatedData = $request->validate([
 			'name'             => ['required', 'string', 'max:40'],
 			'name_english'     => ['required', 'string', 'max:60'],
-   		]);
+			'monthly_price'    => ['nullable','integer'],
+			'yearly_price'     => ['nullable','integer'],
+			'employ_num'       => ['nullable','integer'],
+			'establish_year'   => ['nullable','integer'],
+			'in_mail_casual'   => ['nullable','integer'],
+			'in_mail_formal'   => ['nullable','integer'],
+		]);
 
 		$agency_flag = '0';
 		$backg_flag = '0';
@@ -153,6 +159,7 @@ class AdminCompanyController extends CompanyController
 			['name'              => $request->name,
             'name_kana'          => $request->name_kana,
             'name_english'       => $request->name_english,
+            'search_name'        => $request->search_name,
             'business_cat_id'    => $request->business_cat,
             'every_start_date'   => $request->every_start_date,
             'every_end_date'     => $request->every_end_date,
