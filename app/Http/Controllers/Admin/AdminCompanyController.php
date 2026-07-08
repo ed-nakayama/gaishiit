@@ -85,6 +85,8 @@ class AdminCompanyController extends CompanyController
 
 		$comp = Company::find($request->comp_id);
 
+		$comp->salesforce_id = $request->salesforce_id;
+
 		if (!empty($request->open_flag)) {
 			$comp->open_flag = $request->open_flag;
 		} else {

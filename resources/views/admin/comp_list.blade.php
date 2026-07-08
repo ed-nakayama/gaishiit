@@ -69,14 +69,14 @@
 								{{ html()->hidden('comp_id', $comp->id) }}
 								{{ html()->form()->close() }}
 
-								<td>{{ $comp->id }}</td>
-								<td><a href="javascript:editform{{ $comp['id'] }}.submit()" style="text-decoration: underline;">{{ $comp->name }}</a></td>
-								<td style="text-align: right;">{{ $comp->salesforce_id }}</td>
-								<td>{{ mb_substr($comp->intro, 0 ,8) }}</td>
 								{{ html()->form('POST', '/admin/comp/inmail')->id('inmailform')->attribute('name', 'inmailform' . $comp->id)->open() }}
 								{{ html()->hidden('comp_id', $comp->id) }}
 								{{ html()->hidden('comp_name', $comp_name) }}
 								{{ html()->hidden('page', $compList->currentPage()) }}
+								<td>{{ $comp->id }}</td>
+								<td><a href="javascript:editform{{ $comp['id'] }}.submit()" style="text-decoration: underline;">{{ $comp->name }}</a></td>
+								<td><input type="text" name="salesforce_id" " maxlength="20" value="{{ $comp->salesforce_id }}" style="width: 160px;"  oninput="inmailChange('{{ 'inmailsave' . $comp->id }}')"></td>
+								<td>{{ mb_substr($comp->intro, 0 ,8) }}</td>
 								<td  style="text-align: center;"><input type="checkbox" name="open_flag" value="1"  onchange="inmailChange('{{ 'inmailsave' . $comp->id }}')"  @if ($comp->open_flag == '1') checked @endif ></td>
 								<td style="text-align: center;"><input type="checkbox" name="agency_flag" value="1"  onchange="inmailChange('{{ 'inmailsave' . $comp->id }}')"  @if ($comp->agency_flag == '1') checked @endif ></td>
 								<td style="text-align: right;">{{ $comp->mon_inmail_formal }}</td>
