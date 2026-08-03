@@ -30,4 +30,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+	'salesforce' => [
+    	'client_id' => env('SF_CLIENT_ID'),
+    	'username' => env('SF_USERNAME'),
+    	'login_url' => env('SF_LOGIN_URL'),
+    	'private_key_path' => env('SF_PRIVATE_KEY_PATH'),
+    	'api_version' => env('SF_API_VERSION', 'v67.0'),
+    	'notify_email' => env('SALESFORCE_SYNC_NOTIFY_EMAIL'),
+	],
+
 ];
