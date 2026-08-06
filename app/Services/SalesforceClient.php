@@ -298,6 +298,162 @@ class SalesforceClient
         return $response->body();
     }
 
+    /**
+     * 削除対象のIdリストをBulk APIで一括削除する。
+     *
+     * @param array<int, string> $ids
+     * @return array{jobId: string, state: string, successCsv: string, failedCsv: string}
+     */
+    public function deleteViaBulkApi(string $sObjectType, array $ids): array
+    {
+        $jobId = $this->createIngestJob($sObjectType, 'delete');
+
+        $lines = ['Id'];
+        foreach ($ids as $id) {
+            $lines[] = $id;
+        }
+
+        $this->uploadJobData($jobId, implode("\n", $lines));
+        $this->closeJob($jobId);
+
+        $finalState = $this->pollUntilComplete($jobId);
+
+        return [
+            'jobId' => $jobId,
+            'state' => $finalState,
+            'successCsv' => $this->getSuccessfulResults($jobId),
+            'failedCsv' => $this->getFailedResults($jobId),
+        ];
+    }
+
+    /**
+     * SOQLを実行し、件数上限なく全件を配列で取得する(Bulk API 2.0 Query)。
+     * 匿名Apexの5,000行制限や、通常APIの件数上限を受けない。
+     *
+     * @return array<int, array<string, string>>
+     */
+    public function queryAll(string $soql): array
+    {
+        $jobId = $this->createQueryJob($soql);
+        $this->pollQueryJobUntilComplete($jobId);
+
+        $records = [];
+        $locator = null;
+
+        do {
+            [$csv, $locator] = $this->fetchQueryResultsPage($jobId, $locator);
+            $records = array_merge($records, $this->parseCsvToArray($csv));
+        } while ($locator !== null);
+
+        return $records;
+    }
+
+    private function createQueryJob(string $soql): string
+    {
+        $this->ensureAuthenticated();
+
+        $response = $this->withAuthRetry(
+            fn () => Http::withToken($this->accessToken)
+                ->post("{$this->instanceUrl}/services/data/{$this->apiVersion}/jobs/query", [
+                    'operation' => 'query',
+                    'query' => $soql,
+                    'contentType' => 'CSV',
+                ]),
+        );
+
+        if ($response->failed()) {
+            throw new RuntimeException("クエリジョブ作成失敗: {$response->status()} {$response->body()}");
+        }
+
+        return $response->json('id');
+    }
+
+    private function pollQueryJobUntilComplete(string $jobId, int $intervalSeconds = 5, int $timeoutSeconds = 300): string
+    {
+        $this->ensureAuthenticated();
+
+        $elapsed = 0;
+
+        while ($elapsed < $timeoutSeconds) {
+            $response = $this->withAuthRetry(
+                fn () => Http::withToken($this->accessToken)
+                    ->get("{$this->instanceUrl}/services/data/{$this->apiVersion}/jobs/query/{$jobId}"),
+            );
+
+            if ($response->failed()) {
+                throw new RuntimeException("クエリジョブ状態取得失敗: {$response->status()} {$response->body()}");
+            }
+
+            $state = $response->json('state');
+
+            if (in_array($state, ['JobComplete', 'Failed', 'Aborted'], true)) {
+                if ($state !== 'JobComplete') {
+                    throw new RuntimeException("クエリジョブが失敗しました(state: {$state}): " . $response->body());
+                }
+                return $state;
+            }
+
+            sleep($intervalSeconds);
+            $elapsed += $intervalSeconds;
+        }
+
+        throw new RuntimeException("クエリジョブ完了待ちがタイムアウトしました: jobId={$jobId}");
+    }
+
+    /**
+     * @return array{0: string, 1: ?string} CSV文字列と、続きがある場合の次ページlocator(無ければnull)
+     */
+    private function fetchQueryResultsPage(string $jobId, ?string $locator): array
+    {
+        $this->ensureAuthenticated();
+
+        $query = ['maxRecords' => 10000];
+        if ($locator !== null) {
+            $query['locator'] = $locator;
+        }
+
+        $response = $this->withAuthRetry(
+            fn () => Http::withToken($this->accessToken)
+                ->get("{$this->instanceUrl}/services/data/{$this->apiVersion}/jobs/query/{$jobId}/results", $query),
+        );
+
+        if ($response->failed()) {
+            throw new RuntimeException("クエリ結果取得失敗: {$response->status()} {$response->body()}");
+        }
+
+        $nextLocator = $response->header('Sforce-Locator');
+        $hasMore = $nextLocator && $nextLocator !== 'null';
+
+        return [$response->body(), $hasMore ? $nextLocator : null];
+    }
+
+    /**
+     * CSV文字列を連想配列の配列に変換する(1行目をヘッダーとして使用)。
+     *
+     * @return array<int, array<string, string>>
+     */
+    private function parseCsvToArray(string $csv): array
+    {
+        $csv = str_replace(["\r\n", "\r"], "\n", $csv);
+        $lines = array_values(array_filter(explode("\n", $csv), fn ($l) => trim($l) !== ''));
+
+        if (empty($lines)) {
+            return [];
+        }
+
+        $header = str_getcsv(array_shift($lines));
+        $rows = [];
+
+        foreach ($lines as $line) {
+            $row = str_getcsv($line);
+            if (count($row) === count($header)) {
+                $rows[] = array_combine($header, $row);
+            }
+        }
+
+        return $rows;
+    }
+
     private function ensureAuthenticated(): void
     {
         if ($this->accessToken === null) {

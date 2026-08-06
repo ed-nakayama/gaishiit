@@ -110,6 +110,7 @@ class dl_sfc extends Command
 			// 半角スペース 変換
 			$job_name      = str_replace( "\xc2\xa0", " ", $job->name );
 			$job_code      = str_replace( "\xc2\xa0", " ", $job->job_code );
+			$comp_name_eng = str_replace( "\xc2\xa0", " ", $job->comp_name_english );
 			$unit_name     = str_replace( "\xc2\xa0", " ", $job->unit_name );
 			$job_cat_name  = str_replace( "\xc2\xa0", " ", $job->getJobCategoryName() );
 			$sub_category  = str_replace( "\xc2\xa0", " ", $job->sub_category );
@@ -120,6 +121,7 @@ class dl_sfc extends Command
 
 			$job_name      = str_replace( ",", "，" ,$job_name );
 			$job_code      = str_replace( ",", "，" ,$job_code );
+			$comp_name_eng = str_replace( ",", "，" ,$comp_name_eng );
 			$unit_name     = str_replace( ",", "，" ,$unit_name );
 			$job_cat_name  = str_replace( ",", "，" ,$job_cat_name );
 			$sub_category  = str_replace( ",", "，" ,$sub_category );
@@ -134,6 +136,7 @@ class dl_sfc extends Command
 			$for_agent     = str_replace( "\n" ,'<br>' ,$for_agent );
 
 			$job_name      = str_replace( '"'  ,''     ,$job_name );
+			$comp_name_eng = str_replace( '"'  ,''     ,$comp_name_eng );
 			$unit_name     = str_replace( '"'  ,''     ,$unit_name );
 			$job_cat_name  = str_replace( '"'  ,''     ,$job_cat_name );
 			$sub_category  = str_replace( '"'  ,''     ,$sub_category );
@@ -167,6 +170,7 @@ class dl_sfc extends Command
 			$job_name       = mb_convert_encoding($job_name       ,'SJIS-WIN' ,'UTF-8');
 			$job_short_name = mb_convert_encoding($job_short_name ,'SJIS-WIN' ,'UTF-8');
 			$job_code       = mb_convert_encoding($job_code       ,'SJIS-WIN' ,'UTF-8');
+			$comp_name_eng  = mb_convert_encoding($comp_name_eng  ,'SJIS-WIN' ,'UTF-8');
 			$unit_name      = mb_convert_encoding($unit_name      ,'SJIS-WIN' ,'UTF-8');
 			$job_cat_name   = mb_convert_encoding($job_cat_name   ,'SJIS-WIN' ,'UTF-8');
 			$sub_category   = mb_convert_encoding($sub_category   ,'SJIS-WIN' ,'UTF-8');
@@ -190,7 +194,7 @@ class dl_sfc extends Command
 
 
 			$detail =  '"' . $job->salesforce_id . '"'
-					. ',"' . $job->comp_name_english . '"'
+					. ',"' . $comp_name_eng . '"'
 					. ',"' . $job_code_hd . $job_name  . '"'
 					. ',"' . $job_code_hd . $job_short_name  . $job_id_ft . '"'
 					. ',"' . $job_code       . '"'

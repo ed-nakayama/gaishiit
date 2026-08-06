@@ -40,6 +40,9 @@ class SyncSalesforceData extends Command
     /** 処理済みファイルの移動先（CSV_DIR配下のサブディレクトリ名） */
     private const BACKUP_SUBDIR = 'backup';
 
+    /** 失敗レコードCSVの保存先（CSV_DIR配下のサブディレクトリ名） */
+    private const FAILED_SUBDIR = 'failed';
+
     /**
      * CSVヘッダー(表示ラベル)からSalesforce項目API名を判定できない場合に、
      * 手動で対応を指定する上書き用マッピング。
@@ -131,7 +134,7 @@ class SyncSalesforceData extends Command
         if (! file_exists($filePath)) {
             $message = "ファイルが見つかりません: {$filePath}";
             $this->error($message);
-            return ['file' => $fileName, 'success' => false, 'successCount' => 0, 'failedCount' => 0, 'message' => $message];
+            return ['file' => $fileName, 'success' => false, 'successCount' => 0, 'failedCount' => 0, 'message' => $message, 'failedFilePath' => null];
         }
 
         try {
@@ -141,7 +144,7 @@ class SyncSalesforceData extends Command
             if (empty($records)) {
                 $message = 'レコードが0件のため、処理をスキップしました。';
                 $this->warn($message);
-                return ['file' => $fileName, 'success' => true, 'successCount' => 0, 'failedCount' => 0, 'message' => $message];
+                return ['file' => $fileName, 'success' => true, 'successCount' => 0, 'failedCount' => 0, 'message' => $message, 'failedFilePath' => null];
             }
 
             // 表示ラベル -> API参照名 のマッピングをDescribe APIから自動生成
@@ -159,7 +162,7 @@ class SyncSalesforceData extends Command
             if (! isset($translatedRecords[0][self::EXTERNAL_ID_FIELD])) {
                 $message = self::EXTERNAL_ID_FIELD . ' 列がCSVから見つかりませんでした。';
                 $this->error($message);
-                return ['file' => $fileName, 'success' => false, 'successCount' => 0, 'failedCount' => 0, 'message' => $message];
+                return ['file' => $fileName, 'success' => false, 'successCount' => 0, 'failedCount' => 0, 'message' => $message, 'failedFilePath' => null];
             }
 
             $csv = $this->buildCsv($translatedRecords);
@@ -174,7 +177,7 @@ class SyncSalesforceData extends Command
                 $message = "ジョブが正常に完了しませんでした(state: {$result['state']}, jobId: {$result['jobId']})";
                 Log::error('Salesforce Bulk API ジョブが正常終了しませんでした', ['file' => $fileName, 'jobId' => $result['jobId'], 'state' => $result['state']]);
                 $this->error($message);
-                return ['file' => $fileName, 'success' => false, 'successCount' => 0, 'failedCount' => count($translatedRecords), 'message' => $message];
+                return ['file' => $fileName, 'success' => false, 'successCount' => 0, 'failedCount' => count($translatedRecords), 'message' => $message, 'failedFilePath' => null];
             }
 
             $failedCount = max($this->countCsvRows($result['failedCsv']) - 1, 0); // ヘッダー行を除く
@@ -190,19 +193,99 @@ class SyncSalesforceData extends Command
 
             $this->info("成功: {$successCount} 件 / 失敗: {$failedCount} 件");
 
+            $failedFilePath = null;
+            if ($failedCount > 0) {
+                $apiNameToLabel = array_flip($labelToApiName);
+                $failedFilePath = $this->saveFailedCsv($fileName, $result['failedCsv'], $apiNameToLabel);
+            }
+
             return [
                 'file' => $fileName,
                 'success' => $failedCount === 0,
                 'successCount' => $successCount,
                 'failedCount' => $failedCount,
                 'message' => $failedCount > 0 ? "{$failedCount} 件のレコードが失敗しました。" : '正常に完了しました。',
+                'failedFilePath' => $failedFilePath,
             ];
         } catch (\Throwable $e) {
             $message = 'Salesforce連携でエラーが発生しました: ' . $e->getMessage();
             $this->error($message);
             Log::error('salesforce:sync 失敗', ['file' => $fileName, 'exception' => $e]);
-            return ['file' => $fileName, 'success' => false, 'successCount' => 0, 'failedCount' => 0, 'message' => $message];
+            return ['file' => $fileName, 'success' => false, 'successCount' => 0, 'failedCount' => 0, 'message' => $message, 'failedFilePath' => null];
         }
+    }
+
+    /**
+     * 失敗レコードのCSVをファイルに保存し、保存先パスを返す。
+     * Salesforceが返すNumber型項目は末尾に ".0" が付くことがあるため、見やすさのために除去する。
+     * ヘッダーはAPI参照名から元のCSVと同じ表示ラベルに変換する。
+     *
+     * @param array<string, string> $apiNameToLabel API参照名 => 表示ラベル
+     */
+    private function saveFailedCsv(string $originalFileName, string $failedCsv, array $apiNameToLabel): string
+    {
+        $failedCsv = $this->stripTrailingZeroDecimal($failedCsv);
+        $failedCsv = $this->translateFailedCsvHeader($failedCsv, $apiNameToLabel);
+
+        $failedDir = storage_path(self::CSV_DIR . '/' . self::FAILED_SUBDIR);
+
+        if (! is_dir($failedDir)) {
+            mkdir($failedDir, 0755, true);
+        }
+
+        $baseName = pathinfo($originalFileName, PATHINFO_FILENAME);
+        $path = $failedDir . '/' . date('Ymd_His') . "_NG_{$baseName}.csv";
+
+        file_put_contents($path, $failedCsv);
+
+        return $path;
+    }
+
+    /**
+     * 失敗CSVのヘッダー行を、API参照名から元のCSVと同じ表示ラベルに変換する。
+     * sf__Id / sf__Error はSalesforce固有の付加列なので、分かりやすい日本語ラベルに変更する。
+     *
+     * @param array<string, string> $apiNameToLabel API参照名 => 表示ラベル
+     */
+    private function translateFailedCsvHeader(string $csv, array $apiNameToLabel): string
+    {
+        $lines = explode("\n", $csv, 2); // ヘッダー行とそれ以降を分離
+
+        if (empty($lines)) {
+            return $csv;
+        }
+
+        $headerLine = rtrim($lines[0], "\r");
+        $rest = $lines[1] ?? '';
+
+        $headers = str_getcsv($headerLine);
+
+        $specialLabels = [
+            'sf__Id' => 'Salesforce ID',
+            'sf__Error' => 'エラー内容',
+            'sf__Created' => '新規作成フラグ',
+        ];
+
+        $translatedHeaders = array_map(function ($h) use ($apiNameToLabel, $specialLabels) {
+            return $specialLabels[$h] ?? ($apiNameToLabel[$h] ?? $h);
+        }, $headers);
+
+        $handle = fopen('php://temp', 'r+');
+        fputcsv($handle, $translatedHeaders);
+        rewind($handle);
+        $translatedHeaderLine = rtrim(stream_get_contents($handle), "\n");
+        fclose($handle);
+
+        return $translatedHeaderLine . "\n" . $rest;
+    }
+
+    /**
+     * CSV中の "63377.0" のような整数+".0" の値を "63377" に整形する。
+     * ダブルクォートで囲まれた数値("63377.0")にも対応する。
+     */
+    private function stripTrailingZeroDecimal(string $csv): string
+    {
+        return preg_replace('/(?<=[",])(\d+)\.0(?=[",\r\n])/', '$1', $csv);
     }
 
     /**
@@ -244,19 +327,32 @@ class SyncSalesforceData extends Command
         }
 
         $hasFailure = collect($results)->contains(fn ($r) => ! $r['success']);
-        $subject = ($hasFailure ? '[要確認] ' : '[完了] ') . 'Salesforce CSV同期処理結果';
+        $subject = "【外資IT】" . ($hasFailure ? '[要確認] ' : '[完了] ') . 'Salesforce CSV同期処理結果';
 
         $lines = [];
         foreach ($results as $r) {
             $status = $r['success'] ? 'OK' : 'NG';
             $lines[] = "[{$status}] {$r['file']} : 成功 {$r['successCount']} 件 / 失敗 {$r['failedCount']} 件 / {$r['message']}";
+            if (! empty($r['failedFilePath'])) {
+                $lines[] = "    失敗レコード一覧: " . basename($r['failedFilePath']) . "(添付ファイル参照)";
+            }
         }
 
         $body = "Salesforce CSV同期処理が完了しました。\n\n" . implode("\n", $lines);
 
+        $attachments = collect($results)
+            ->pluck('failedFilePath')
+            ->filter()
+            ->values()
+            ->all();
+
         try {
-            Mail::raw($body, function ($message) use ($to, $subject) {
+            Mail::raw($body, function ($message) use ($to, $subject, $attachments) {
                 $message->to($to)->subject($subject);
+
+                foreach ($attachments as $path) {
+                    $message->attach($path);
+                }
             });
         } catch (\Throwable $e) {
             $this->error('通知メールの送信に失敗しました: ' . $e->getMessage());
@@ -328,27 +424,78 @@ class SyncSalesforceData extends Command
 
     /**
      * CSVを読み込み、連想配列の配列として返す（1行目をヘッダーとして使用）。
+     * 文字コードを自動判定してUTF-8に変換し、列数が不一致のレコードは警告を出してスキップする。
+     *
+     * fgetcsv()をストリーム経由で使うことで、ダブルクォートで囲まれたフィールド内に
+     * 改行が含まれる場合(合法なCSV)でも、1レコードとして正しく読み込める。
+     * (事前に改行で行分割すると、クォート内の改行を誤って次レコードの開始と解釈してしまうため)
      *
      * @return array<int, array<string, string>>
      */
     private function readCsv(string $filePath): array
     {
-        $rows = [];
-        $handle = fopen($filePath, 'r');
+        $raw = file_get_contents($filePath);
 
-        if ($handle === false) {
+        if ($raw === false) {
             throw new \RuntimeException("CSVを開けません: {$filePath}");
         }
 
-        $header = fgetcsv($handle);
+        $raw = $this->normalizeEncoding($raw);
+        $raw = str_replace(["\r\n", "\r"], "\n", $raw); // 改行コードを統一
 
-        while (($row = fgetcsv($handle)) !== false) {
+        $stream = fopen('php://temp', 'r+');
+        fwrite($stream, $raw);
+        rewind($stream);
+
+        $header = fgetcsv($stream);
+
+        if ($header === false || $header === [null]) {
+            fclose($stream);
+            return [];
+        }
+
+        $headerCount = count($header);
+        $rows = [];
+        $recordNumber = 1; // ヘッダーを1件目として数える
+
+        while (($row = fgetcsv($stream)) !== false) {
+            $recordNumber++;
+
+            if ($row === [null]) {
+                continue; // 空行はスキップ
+            }
+
+            if (count($row) !== $headerCount) {
+                $this->warn("列数が不正なため {$recordNumber} 件目のレコードをスキップしました(期待:{$headerCount}列、実際:" . count($row) . '列)');
+                Log::warning('salesforce:sync CSVレコードスキップ', [
+                    'file' => basename($filePath),
+                    'record' => $recordNumber,
+                    'expected' => $headerCount,
+                    'actual' => count($row),
+                ]);
+                continue;
+            }
+
             $rows[] = array_combine($header, $row);
         }
 
-        fclose($handle);
+        fclose($stream);
 
         return $rows;
+    }
+
+    /**
+     * Shift-JIS(CP932)で保存されたCSVをUTF-8に変換する。
+     * 既にUTF-8の場合は変換せずそのまま返す(自動判定はSJIS/UTF-8の誤検出があるため、
+     * 変換後に不正なマルチバイト列がないかで判定する簡易チェックを行う)。
+     */
+    private function normalizeEncoding(string $content): string
+    {
+        if (mb_check_encoding($content, 'UTF-8')) {
+            return $content;
+        }
+
+        return mb_convert_encoding($content, 'UTF-8', 'SJIS-win');
     }
 
     /**

@@ -26,6 +26,8 @@ class DelOldFiles extends Command
 	private $LOG_DIR      = 'public/comp_jobs/logs';
 	private $JOB_DIR      = 'public/comp_jobs/joblist';
 	private $CSV_DIR      = 'public/comp_jobs';
+	private $SFC_BCK_DIR  = 'public/comp_jobs/sfc/backup';
+	private $SFC_FAIL_DIR = 'public/comp_jobs/sfc/failed';
 	
 
     /**
@@ -49,6 +51,8 @@ class DelOldFiles extends Command
 		$this->del_files($this->LOG_DIR);
 		$this->del_files($this->BACKUP_DIR);
 		$this->del_files($this->JOB_DIR);
+//		$this->del_files($this->SFC_BCK_DIR);
+//		$this->del_files($this->SFC_FAIL_DIR);
 
 //		$this->del_open_zero();
 	}

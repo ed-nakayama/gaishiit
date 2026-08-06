@@ -2,7 +2,7 @@
 
 
 @section('addheader')
-    <title>�ѥ���ɥꥻ�å� | {{ config('app.name', 'Laravel') }}</title>
+    <title>パスワードリセット | {{ config('app.name', 'Laravel') }}</title>
     <link href="{{ asset('css/department.css') }}" rel="stylesheet">
 @endsection
 
@@ -13,7 +13,7 @@
 			<div class="mainContentsInner">
 
 				<div class="mainTtl title-main">
-                        <h2>�ѥ���ɥꥻ�å�</h2>
+                        <h2>パスワードリセット</h2>
                 </div><!-- /.mainTtl -->
 
                 <div class="containerContents">
@@ -26,7 +26,7 @@
 
                                 <div class="formContainer mg-ajust-midashi">
                                     <div class="item-name"></div>
-                                    <div class="item-name"><p>�᡼�륢�ɥ쥹</p></div>
+                                    <div class="item-name"><p>メールアドレス</p></div>
                                     <div class="item-input">
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus  style="width:300px; height: 30px;font-size: 14px;">
 
@@ -44,7 +44,7 @@
                                 </div>
 
                        			<div class="btnContainer">
-                                    <a href="javascript:form1.submit()" class="squareBtn btn-large">����</a>
+                                    <a href="javascript:form1.submit()" class="squareBtn btn-large">送信</a>
                         		</div><br>
 
 							{{ html()->form()->close() }}

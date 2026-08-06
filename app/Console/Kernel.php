@@ -34,6 +34,9 @@ class Kernel extends ConsoleKernel
 		// RPAからのexcel取込み
 		$schedule->command('command:compjobsexcel')->everyFifteenMinutes()->unlessBetween('0:00', '6:50'); // 15分毎
 
+		// ジョブ内容整理
+		$schedule->command('command:jobsImportAI')->dailyAt('04:00');     // 毎日 4:00
+
 		// 現在未使用
 //		$schedule->command('command:compjobscsv')->everyFifteenMinutes()->unlessBetween('3:00', '8:00'); // 15分毎
 
@@ -51,6 +54,9 @@ class Kernel extends ConsoleKernel
 
 		// SF用CSVファイル作成
 		$schedule->command('command:dl_sfc')->dailyAt('07:00');     // 毎日 7:00
+
+		// SF用CSVファイルアップロード
+		$schedule->command('salesforce:sync')->dailyAt('07:30');     // 毎日 7:30
 
 		// ランキング設定
 		$schedule->command('command:setranking')->dailyAt('05:00');     // 毎日 5:00
