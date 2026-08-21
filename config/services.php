@@ -39,4 +39,8 @@ return [
     	'notify_email' => env('SALESFORCE_SYNC_NOTIFY_EMAIL'),
 	],
 
+	'company_api' => [
+    	'key' => env('COMPANY_API_KEY'),
+	],
+
 ];

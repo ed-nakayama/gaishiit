@@ -73,6 +73,12 @@ class JobsImportAI extends Command
 
 //				echo $this->response;
 				Mail::send(new OpenAPING(MAIL_ADDR ,$this->response));
+
+				// クレジット残高不足のエラーの場合は、メール送信後にプログラムを終了する
+				if (strpos($this->response, 'You have no credits remaining') !== false) {
+					exit(1);
+				}
+
 				break;
 			}
 

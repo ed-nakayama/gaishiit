@@ -14,4 +14,6 @@ return[
 
     'OPENAI_API_KEY' => env('OPENAI_API_KEY', ''),
 
+	'SALESFORCE_API_TOKEN' => env('SALESFORCE_API_TOKEN'),
+
 ];

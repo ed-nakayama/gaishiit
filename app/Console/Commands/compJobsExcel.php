@@ -98,9 +98,7 @@ class CompJobsExcel extends Command
 			$filepath = pathinfo($file);
 			
 			if (strcmp($filepath['extension'] ,'xlsx') == 0) {
-//				if (strpos($filepath['filename'],'[Open]') === false) {
-					$files[] = $allFiles[$i];
-//				}
+				$files[] = $allFiles[$i];
 			}
 		}
 
@@ -155,9 +153,6 @@ class CompJobsExcel extends Command
 			
 				$data = $import->sheetData;
 
-			// コード変換
-//				$data = mb_convert_encoding($data, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
-
 				$comp_id = '';
 				$comp_name = '';
 				$comp_error_flag = 0;
@@ -200,13 +195,7 @@ class CompJobsExcel extends Command
 					if (!empty($job_arr['job_detail_3']) ) {
 						$tempJobDetail = $tempJobDetail . "\n\n" . $job_arr['job_detail_3'] ;
 					}
-					if (!empty($job_arr['job_detail_4']) ) {
-						$tempJobDetail = $tempJobDetail . "\n\n" . $job_arr['job_detail_4'] ;
-					}
-					if (!empty($job_arr['job_detail_5']) ) {
-						$tempJobDetail = $tempJobDetail . "\n\n" . $job_arr['job_detail_5'] ;
-					}
-					
+
 					$this->jobDetail = rtrim($tempJobDetail);
 
 					$this->check_error($job_arr);
@@ -220,45 +209,47 @@ class CompJobsExcel extends Command
 						$this->set_unit($job_arr);
 						$this->set_location($job_arr);
 
-						if (!empty($job_arr['job_id'])) { // jobID あり
+						if (!empty($job_arr['job_id'])) {
+							// 【キー1】job_id（募集番号）がある場合は company_id + job_code で検索
 							$job = Job::withTrashed()
 								->where('company_id' ,$job_arr['comp_id'])
 								->where('job_code' ,$job_arr['job_id'])
 								->orderBy('id', 'DESC')
 								->first();
-				
-						} else { // job タイトル & URL
 
-							$cnt = Job::withTrashed()
+						} else {
+							// 【キー2】job_id が空の場合は company_id + url で検索する。
+							// url は本来ユニークである前提だが、実際にユニークでない
+							// （同一company_id・urlが複数存在する）場合は job_title も
+							// 条件に加えて絞り込む。
+							$urlCnt = Job::withTrashed()
 								->where('company_id' ,$job_arr['comp_id'])
 								->where('url' ,$job_arr['url'])
-								->where('name' ,$job_arr['job_title'])
 								->where(function($query) {
 									$query->whereNull('job_code')
 									->orWhere('job_code' , '');
 								})
 								->count();
-					
-							if ($cnt == 0) {
-								$job = null;
-							
-							} elseif ($cnt == 1) {
+
+							if ($urlCnt <= 1) {
+								// url が（company_id内で）ユニークとみなせる場合は
+								// company_id + url のみをキーとする
 								$job = Job::withTrashed()
 									->where('company_id' ,$job_arr['comp_id'])
 									->where('url' ,$job_arr['url'])
-									->where('name' ,$job_arr['job_title'])
 									->where(function($query) {
 										$query->whereNull('job_code')
 										->orWhere('job_code' , '');
 									})
 									->first();
-						
+
 							} else {
+								// url がユニークでない場合は job_title も加えて
+								// company_id + url + name をキーとする
 								$job = Job::withTrashed()
 									->where('company_id' ,$job_arr['comp_id'])
 									->where('url' ,$job_arr['url'])
 									->where('name' ,$job_arr['job_title'])
-									->where('intro' ,$this->jobDetail)
 									->where(function($query) {
 										$query->whereNull('job_code')
 										->orWhere('job_code' , '');
@@ -269,13 +260,10 @@ class CompJobsExcel extends Command
 						}
 
 						// ジョブタイトル
-						$jobTitle = $job_arr['job_title'];
-						if ( (strpos($jobTitle,'障がい者') === false) && (strpos($jobTitle,'Internship') === false) ) {
-							if (empty($job)) {
-								$this->create_job($job_arr);
-							} else {
-								$this->update_job($job ,$job_arr);
-							}
+						if (empty($job)) {
+							$this->create_job($job_arr);
+						} else {
+							$this->update_job($job ,$job_arr);
 						}
 					}
 				} // end foreach
@@ -389,6 +377,8 @@ end_proc:
 			'for_agent'         => $job_arr['agent'],
 			'event_job'         => $this->event_job,
 			'portal_flag'       => !empty($job_arr['portal'] == '1') ? '1' : '0',
+			'app_contents'      => !empty($job_arr['job_detail_4']) ?  $job_arr['job_detail_4'] : null,
+			'app_details'       => !empty($job_arr['job_detail_5']) ?  $job_arr['job_detail_5'] : null,
 		]);
 
 	}
@@ -455,7 +445,10 @@ end_proc:
 				$job->url = $job_arr['url'];
 			}
 		}
-		
+
+		$job->app_contents = !empty($job_arr['job_detail_4']) ?  $job_arr['job_detail_4'] : null;
+		$job->app_details  = !empty($job_arr['job_detail_5']) ?  $job_arr['job_detail_5'] : null;
+print_r($job->app_details);
 		$job->updated_at = date("Y-m-d H:i:s");
 		$job->deleted_at = null;
 		$job->save();
