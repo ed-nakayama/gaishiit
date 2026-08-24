@@ -33,3 +33,5 @@ Route::get('/rpas', [RpaApiController::class, 'show']);
 Route::middleware(VerifySalesforceApiToken::class)
     ->post('/job-recommend', [JobRecommendController::class, 'recommend']);
 
+Route::middleware(VerifySalesforceApiToken::class)
+    ->post('/job-recommend-file', [JobRecommendController::class, 'recommendFromFile']);
